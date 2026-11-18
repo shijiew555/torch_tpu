@@ -200,5 +200,7 @@ A restore on a new VM was not tested yet.
 
 ### Test status
 
-Only the bash syntax and the running-build check were tested.
-A full save and restore was not run yet.
+* Save: tested on 2026-11-18.
+  It took 1,479 s and wrote a 9.5 GB archive and the 107 MB base wheel.
+  `pigz -t` on the archive and a zip test on the wheel both passed.
+* Restore on a new VM: not tested yet.
