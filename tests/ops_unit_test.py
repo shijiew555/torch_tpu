@@ -20490,6 +20490,31 @@ class OpsGradUnitTest(TorchTpuVsCpuTestBase):
 
     self.assert_close_tpu_vs_cpu(compute)
 
+  @parameterized.product(
+      return_inverse=[True, False],
+      return_counts=[True, False],
+      dtype=[torch.float32, torch.bfloat16, torch.int64, torch.bool],
+  )
+  def test_unique_unsorted(self, return_inverse, return_counts, dtype):
+    if dtype.is_floating_point:
+      input_value = torch.randn((2, 10, 5), dtype=dtype)
+    elif dtype == torch.bool:
+      input_value = torch.randint(0, 2, (2, 10, 5)).to(torch.bool)
+    else:
+      input_value = torch.randint(0, 10, (2, 10, 5), dtype=dtype)
+
+    def compute(device):
+      # sorted=False allows any order. TorchTPU always sorts, like CUDA. The
+      # CPU kernel does not sort, so the CPU reference uses sorted=True.
+      return torch.unique(
+          input_value.to(device),
+          sorted=device == "cpu",
+          return_inverse=return_inverse,
+          return_counts=return_counts,
+      )
+
+    self.assert_close_tpu_vs_cpu(compute)
+
   def test_unique2_distributions(self):
     for dtype in [torch.float32, torch.int64]:
       for distribution in [
