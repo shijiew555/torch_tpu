@@ -30,16 +30,18 @@ Repository cache size: 12 GB.
    pip install nox
    ```
 
-3. Share build caches between all worktrees.
-   Add these lines to `/root/.bazelrc`:
+3. Share the repository cache between all worktrees.
+   Add this line to `/root/.bazelrc`:
 
    ```
-   common --disk_cache=/root/.cache/bazel-disk
    common --repository_cache=/root/.cache/bazel-repo
    ```
 
+   The disk cache needs no setup.
+   The repo `.bazelrc` already sets `build --disk_cache=~/.cache/bazel/bazel-disk-cache`, and all worktrees share it.
+   A `--disk_cache` line under `common` in `/root/.bazelrc` has no effect, because the repo's `build` line overrides it.
    The caches are not persistent on Colab.
-   A new VM starts the build from zero.
+   A new VM starts the build from zero unless you restore them (see below).
 
 ## Build command
 
@@ -116,12 +118,12 @@ Google Drive must be mounted at `/content/drive`.
 
 All files go to `/content/drive/MyDrive/torch_tpu_build/`:
 
-* `bazel-cache.tar.gz`: the Bazel disk cache (`/root/.cache/bazel-disk`) and repository cache (`/root/.cache/bazel-repo`).
+* `bazel-cache.tar.gz`: the Bazel disk cache (`/root/.cache/bazel/bazel-disk-cache`, 5.8 GB on 2026-11-18) and repository cache (`/root/.cache/bazel-repo`, 12 GB).
   The disk cache holds the compiled actions and is the important part.
 * `wheel/*.whl`: the built wheel, if the build made one.
 * `MANIFEST.txt`: the save time, source commit, and Bazel, Python, and torch versions.
 
-The Bazel output base (`/root/.cache/bazel/`) is not saved.
+The Bazel output bases (`/root/.cache/bazel/_bazel_root/`) are not saved.
 It is very large, and Bazel fills it again from the disk cache.
 
 ### Save (before the VM stops)
@@ -177,9 +179,16 @@ The restore script does these steps:
 
 * Shows `MANIFEST.txt`.
 * Unpacks the caches into `/root/.cache/`.
-* Adds the `--disk_cache` and `--repository_cache` lines to `/root/.bazelrc`, once only.
+* Adds the `--repository_cache` line to `/root/.bazelrc`, once only.
 * Installs bazelisk as `/usr/local/bin/bazel` if it is missing.
 * With `--install-wheel`, runs `pip install --force-reinstall --no-deps` on the saved wheel.
+
+### Evidence that the cache works
+
+On 2026-11-18, new worktrees on the same VM reused the disk cache of the base build.
+Worker builds in new worktrees had about 13,600 disk cache hits each.
+Each worktree has its own output base, so a new VM with a restored cache is the same case.
+A restore on a new VM was not tested yet.
 
 ### When the cache does not help
 

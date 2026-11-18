@@ -6,8 +6,9 @@
 #   find the built wheel. Default: /root/torch_tpu/.claude/worktrees/base
 #
 # Saves:
-#   * /root/.cache/bazel-disk  (compiled actions - the important part)
-#   * /root/.cache/bazel-repo  (downloaded external dependencies)
+#   * /root/.cache/bazel/bazel-disk-cache (compiled actions - the important
+#     part; the repo .bazelrc sets this path with `build --disk_cache`)
+#   * /root/.cache/bazel-repo (downloaded external dependencies)
 #   * bazel-bin/ci/wheel/*.whl (the built wheel, if it exists)
 #
 # Run it when no bazel build is running, so the cache is consistent.
@@ -21,14 +22,14 @@ if [[ ! -d /content/drive/MyDrive ]]; then
   echo "ERROR: Google Drive is not mounted at /content/drive." >&2
   exit 1
 fi
-if pgrep -f 'bazel(isk)?[^ ]* .*(build|test)' >/dev/null; then
+if pgrep -f '(^|/)bazel (build|test) ' >/dev/null; then
   echo "WARNING: a bazel build may be running. Stop it first for a" \
        "consistent cache, or press Ctrl-C within 10 s." >&2
   sleep 10
 fi
 
 dirs=()
-for d in bazel-disk bazel-repo; do
+for d in bazel/bazel-disk-cache bazel-repo; do
   if [[ -d "${CACHE_ROOT}/${d}" ]]; then
     dirs+=("${d}")
   else

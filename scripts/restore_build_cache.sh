@@ -4,9 +4,10 @@
 # Usage: restore_build_cache.sh [--install-wheel]
 #   --install-wheel: also pip install the saved wheel.
 #
-# Restores /root/.cache/bazel-disk and /root/.cache/bazel-repo, and adds
-# them to /root/.bazelrc. Then the build command in BUILD_NOTES.md reuses
-# the cache. Cache hits need the same Bazel, Python and torch versions as
+# Restores /root/.cache/bazel/bazel-disk-cache (the disk cache path that
+# the repo .bazelrc sets) and /root/.cache/bazel-repo, and adds the
+# repository cache to /root/.bazelrc. Then the build command in
+# BUILD_NOTES.md reuses the cache. Cache hits need the same Bazel, Python and torch versions as
 # in MANIFEST.txt, and the same build flags.
 set -euo pipefail
 
@@ -28,8 +29,7 @@ pigz -dc "${ARCHIVE}" | tar -C "${CACHE_ROOT}" -xf -
 echo "Extract done in $(( $(date +%s) - start )) s."
 
 touch "${BAZELRC}"
-for line in "common --disk_cache=${CACHE_ROOT}/bazel-disk" \
-            "common --repository_cache=${CACHE_ROOT}/bazel-repo"; do
+for line in "common --repository_cache=${CACHE_ROOT}/bazel-repo"; do
   grep -qxF "${line}" "${BAZELRC}" || echo "${line}" >> "${BAZELRC}"
 done
 echo "${BAZELRC}:"
