@@ -1,0 +1,49 @@
+{
+  "permissions": {
+    "defaultMode": "bypassPermissions",
+    "additionalDirectories": [
+      "/root/torch_tpu",
+      "/root/claude-tmp"
+    ],
+    "allow": [
+      "Bash",
+      "Read",
+      "Edit",
+      "Write",
+      "NotebookEdit",
+      "WebFetch",
+      "WebSearch",
+      "Bash(gh pr:*)",
+      "Bash(flock:*)",
+      "Bash(mv:*)",
+      "Bash(chmod:*)",
+      "Bash(chown:*)",
+      "Bash(rm:*)",
+      "Bash(rmdir:*)",
+      "Bash(sudo:*)",
+      "Bash(kill:*)",
+      "Bash(git commit:*)"
+    ],
+    "ask": [
+      "Bash(dd:*)",
+      "Bash(pkill:*)",
+      "Bash(git push:*)",
+      "Bash(git reset:*)",
+      "Bash(git clean:*)",
+      "Bash(git checkout:*)",
+      "Bash(pip install:*)",
+      "Bash(pip uninstall:*)",
+      "Bash(docker:*)",
+      "Bash(truncate:*)",
+      "Bash(shred:*)",
+      "Bash(mkfs:*)"
+
+    ],
+    "deny": [
+      "Bash(rm -rf /:*)",
+      "Bash(git push --force:*)",
+      "Bash(git push -f:*)"
+    ]
+  }
+}
+
