@@ -15,11 +15,15 @@
 """Tests that compiled graph outputs keep the aliasing of eager mode."""
 
 from collections.abc import Callable, Sequence
+import pickle
 
 from absl.testing import absltest
 from absl.testing import parameterized
 import torch
+from torch.utils import _pytree as pytree
 from torch_tpu._internal import testing as tt_testing
+from torch_tpu._internal.compile import tpu_torch_compile
+from torch_tpu._internal.export import export as torch_tpu_export
 from tests import seed_test_utils
 
 
@@ -107,6 +111,39 @@ class OutputAliasTest(seed_test_utils.RepeatableTest, parameterized.TestCase):
     self.assertEqual(len(outputs), len(expected_outputs))
     for output, expected_output in zip(outputs, expected_outputs, strict=True):
       torch.testing.assert_close(output, expected_output)
+
+  def test_aliased_output_reconstructor_survives_pickle(self):
+    base = torch.arange(16.0).view(4, 4)
+    _, spec = pytree.tree_flatten((base, base[1:]))
+    layout = torch_tpu_export._TensorLayout(  # pylint: disable=protected-access
+        dtype=torch.float32,
+        shape=torch.Size([3, 4]),
+        stride=(4, 1),
+        storage_offset=4,
+    )
+    reconstructor = torch_tpu_export._AliasedOutputReconstructor(  # pylint: disable=protected-access
+        leaf_reconstructor=tpu_torch_compile.FxOutputReconstructor(
+            [torch_tpu_export._DedupedTensorOutput(tensor_idx=0), None],  # pylint: disable=protected-access
+            [
+                torch_tpu_export._TensorLayout(  # pylint: disable=protected-access
+                    dtype=torch.float32,
+                    shape=torch.Size([4, 4]),
+                    stride=(4, 1),
+                    storage_offset=0,
+                )
+            ],
+            pytree.tree_structure([0, 0]),
+        ),
+        aliased_layouts={1: (0, layout)},
+        spec=spec,
+    )
+
+    restored = pickle.loads(pickle.dumps(reconstructor))
+    out_base, out_view = restored(inputs=[], deduped_outputs=[base])
+
+    self.assertIs(out_base, base)
+    self.assertIs(out_view._base, base)  # pylint: disable=protected-access
+    torch.testing.assert_close(out_view, base[1:])
 
 
 if __name__ == "__main__":

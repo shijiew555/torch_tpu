@@ -586,7 +586,7 @@ def _process_fx_outputs(
           f" but got {item}"
       )
 
-  # Returns each base once, and reads the views from it.
+  # Adds each base to the MLIR outputs once. The views are rebuilt from it.
   base_output_indices: list[int] = []
   for first_idx, base in bases:
     key = _TensorDedupeKey.from_tensor(base)
