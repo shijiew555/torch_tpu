@@ -81,7 +81,8 @@ class OutputAliasTest(seed_test_utils.RepeatableTest, parameterized.TestCase):
     aliasing = _aliasing(outputs)
     with torch.no_grad():
       outputs[0].add_(100)
-    return aliasing, [output.detach().cpu() for output in outputs]
+    # Autograd checks the views when they are read, so read them before detach.
+    return aliasing, [output.cpu().detach() for output in outputs]
 
   @parameterized.product(
       fn=[
