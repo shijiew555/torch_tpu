@@ -171,6 +171,20 @@ absl::StatusOr<mlir::MlirOp> BuildCol2ImShlo(
   const auto padding_attr = mlir::DenseIntElementsAttr::get(
       padding_type, {pad_h_low, pad_h_high, pad_w_low, pad_w_high});
 
+  // The convolution only sums inputs scaled by 0/1 weights. Use HIGHEST
+  // precision for f32 so the TPU does not round the input to bf16.
+  mlir::ArrayAttr precision_config;
+  if (element_type.isF32()) {
+    const mlir::stablehlo::Precision precisions[2] = {
+        mlir::stablehlo::Precision::
+            HIGHEST,  // EXPLICIT_PRECISION_OK=f32_col2im
+        mlir::stablehlo::Precision::
+            DEFAULT,  // EXPLICIT_PRECISION_OK=identity_rhs
+    };
+    precision_config = mlir::stablehlo::PrecisionConfigAttr::get(
+        &builder.getContext(), precisions);
+  }
+
   // Convolution output shape: (N, C, conv_out_h, conv_out_w)
   auto conv = mlir::stablehlo::Convolution(
       conv_output_type, reshaped_input_op, weights,
@@ -195,7 +209,7 @@ absl::StatusOr<mlir::MlirOp> BuildCol2ImShlo(
       /*rhs_dilation=*/
       op_builder.getDenseI64ArrayAttr({dilation[0], dilation[1]}),
       /*window_reversal=*/op_builder.getDenseBoolArrayAttr({true, true}),
-      /*precision_config=*/{});
+      /*precision_config=*/precision_config);
 
   // Slice to final output shape: (N, C, output_h, output_w)
   return mlir::stablehlo::Slice(

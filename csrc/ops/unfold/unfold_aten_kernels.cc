@@ -106,6 +106,20 @@ absl::StatusOr<mlir::MlirOp> BuildUnfoldBackwardShlo(
   const auto conv_output_type = mlir::RankedTensorType::get(
       {batch, 1, normalized_dim_size}, element_type);
 
+  // The convolution only sums inputs scaled by 0/1 weights. Use HIGHEST
+  // precision for f32 so the TPU does not round the input to bf16.
+  mlir::ArrayAttr precision_config;
+  if (element_type.isF32()) {
+    const mlir::stablehlo::Precision precisions[2] = {
+        mlir::stablehlo::Precision::
+            HIGHEST,  // EXPLICIT_PRECISION_OK=f32_unfold_backward
+        mlir::stablehlo::Precision::
+            DEFAULT,  // EXPLICIT_PRECISION_OK=identity_rhs
+    };
+    precision_config = mlir::stablehlo::PrecisionConfigAttr::get(
+        &builder.getContext(), precisions);
+  }
+
   auto conv = mlir::stablehlo::Convolution(
       conv_output_type, reshaped_grad_in, weights,
       mlir::stablehlo::ConvDimensionNumbersAttr::get(
@@ -126,7 +140,7 @@ absl::StatusOr<mlir::MlirOp> BuildUnfoldBackwardShlo(
       /*lhs_dilation=*/op_builder.getDenseI64ArrayAttr({step}),
       /*rhs_dilation=*/op_builder.getDenseI64ArrayAttr({1}),
       /*window_reversal=*/op_builder.getDenseBoolArrayAttr({true}),
-      /*precision_config=*/{});
+      /*precision_config=*/precision_config);
 
   SmallInt64Vector reshaped_conv_shape;
   for (int i = 0; i < rank; ++i) {
