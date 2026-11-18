@@ -1,8 +1,11 @@
 # Building torch_tpu from source on the Colab TPU VM
 
-Status: in progress, not yet verified to finish.
-At 2026-11-18 04:30 UTC the build was at 17,761 of 20,617 actions with no errors.
-This file will be updated when the build ends.
+Status: verified.
+The build of upstream main `afd6943a` finished successfully at 2026-11-18 06:51 UTC.
+Elapsed time: 14,584 s (about 4 hours) without a remote cache, on a shared machine.
+Output: `bazel-bin/ci/wheel/torch_tpu-0.3.0-cp314-cp314-manylinux_2_31_x86_64.whl` (107 MB).
+The wheel is for Python 3.14 (the hermetic Python of the build), not for the system Python 3.13.
+Repository cache size: 12 GB.
 
 ## Environment
 
