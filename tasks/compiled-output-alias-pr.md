@@ -68,10 +68,23 @@ Fixes #<issue>.
 
 New test `tests/compile/output_alias_test.py` compiles views, slices, transposes, views without their base, `split`, duplicated outputs, and independent outputs, with and without `requires_grad`.
 It checks that output aliasing and the values after an in-place write match CPU eager.
-Before the fix, 5 of 12 cases fail.
+It also checks that the new reconstructor survives pickling, for the compile caches.
 
 Run on TPU v5e with torch 2.14.1+cpu, libtpu 0.0.50, torch_tpu 0.3.0 binaries with this branch's Python on `PYTHONPATH` (no bazel build):
 
-RESULTS_TABLE
+| Test (`python3 -m tests.compile.<name>`) | Before | After |
+|---|---|---|
+| `output_alias_test` (new) | 5 failed, 1 error of 13 | 13 passed |
+| `fx_output_reconstructor_test` | 19 passed | 19 passed |
+| `small_graph_test` | 75 passed, 7 skipped | 75 passed, 7 skipped |
+| `output_modify_test` | 2 passed | 2 passed |
+| `clone_mutated_returned_placeholders_test` | 42 passed | 42 passed |
+| `backend_serialization_test` | 11 passed | 11 passed |
+| `aot_autograd_cache_test` | passed | passed |
+| `cache_test` | passed | passed |
+| `split_compile_test` | 17 passed, 1 skipped | 17 passed, 1 skipped |
+
+After the fix, `random_ops_test`, `trace_autograd_ops_test`, `activation_checkpointing_test`, and `dtensor_test` pass.
+`compile_api_test` passes except 2 `optimization_barrier` gradient tests, which fail the same way without this change in this environment.
 
 `BASE_SHA=upstream/main nox -s lint` passes.
