@@ -94,12 +94,12 @@ class CopyTest(seed_test_utils.RepeatableTest):
   def test_cpu_to_tpu_non_blocking_dangling_pinned(self):
     device = torch.device('tpu')
 
-    def _dangling_transfer(device):
+    def _dangling_transfer():
       """Starts a transfer and drops the tensor being copied out of on host."""
-      x = torch.arange(1024, dtype=torch.int32, device='cpu').pin_memory(device)
+      x = torch.arange(1024, dtype=torch.int32, device='cpu').pin_memory()
       return x.to(device, non_blocking=True)
 
-    tpu_values = [_dangling_transfer(device) for _ in range(1024)]
+    tpu_values = [_dangling_transfer() for _ in range(1024)]
     torch.accelerator.synchronize()
 
     cpu_values = [t.to('cpu', non_blocking=True) for t in tpu_values]
@@ -115,7 +115,7 @@ class CopyTest(seed_test_utils.RepeatableTest):
 
     def _cancelled_transfer(x):
       # Start a transfer to pinned host memory...
-      y = torch.empty_like(x, device='cpu').pin_memory(x.device)
+      y = torch.empty_like(x, device='cpu').pin_memory()
       y.copy_(x, non_blocking=True)
       # ...but delete the destination tensor before the transfer completes.
       del y

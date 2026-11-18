@@ -13,6 +13,7 @@
 # limitations under the License.
 
 import time
+import warnings
 
 from absl.testing import absltest
 import torch
@@ -375,6 +376,27 @@ class AsyncTransferTest(seed_test_utils.RepeatableTest):
     self.assertTrue(t_pinned.is_pinned())
     utils.assert_close(t, t_pinned)
 
+  def test_to_tpu_non_blocking_unpinned_source(self):
+    """Verifies non-blocking H2D copies from unpinned memory do not warn."""
+    cpu_src = torch.arange(1024, dtype=torch.float32)
+    self.assertFalse(cpu_src.is_pinned())
+    tpu_dst = torch.empty(1024, dtype=torch.float32, device='tpu')
+
+    # Report every C++ warning, also ones that torch shows only once per
+    # process.
+    warn_always = torch.is_warn_always_enabled()
+    torch.set_warn_always(True)
+    try:
+      with warnings.catch_warnings():
+        warnings.simplefilter('error')
+        tpu_tensor = cpu_src.to('tpu', non_blocking=True)
+        tpu_dst.copy_(cpu_src, non_blocking=True)
+    finally:
+      torch.set_warn_always(warn_always)
+
+    utils.assert_close(tpu_tensor.cpu(), cpu_src)
+    utils.assert_close(tpu_dst.cpu(), cpu_src)
+
   def test_h2d_sync_race(self):
     """Verifies that torch.accelerator.synchronize() properly waits for H2D transfers.
 
@@ -510,7 +532,7 @@ class AsyncTransferTest(seed_test_utils.RepeatableTest):
     # 1 byte of data on TPU, to be transferred to host.
     tpu_src = torch.ones(1, dtype=torch.uint8, device=device)
     # Pinned memory to copy into.
-    cpu_dst = torch.empty(1, dtype=torch.uint8, device='cpu').pin_memory(device)
+    cpu_dst = torch.empty(1, dtype=torch.uint8, device='cpu').pin_memory()
 
     work_stream = torch.tpu.Stream()
     transfer_stream = torch.tpu.Stream()
