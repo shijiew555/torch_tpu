@@ -105,8 +105,88 @@ See `discovery/E6.md` for the exact steps.
 
 ## Save and restore the build cache (Google Drive)
 
-* Save: `scripts/save_build_cache.sh` writes the Bazel disk cache, the repository cache, and the wheel to `/content/drive/MyDrive/torch_tpu_build`.
-  Run it when no build is running.
-* Restore on a new VM: `scripts/restore_build_cache.sh` (add `--install-wheel` to also install the saved wheel).
-  Then run the build command above.
-  Cache hits need the same Bazel, Python, and torch versions as in `MANIFEST.txt`.
+Two scripts in `scripts/` keep the build results across Colab VMs.
+A full build takes hours, but a restored cache turns most of it into cache hits.
+Google Drive must be mounted at `/content/drive`.
+
+### What is saved
+
+All files go to `/content/drive/MyDrive/torch_tpu_build/`:
+
+* `bazel-cache.tar.gz`: the Bazel disk cache (`/root/.cache/bazel-disk`) and repository cache (`/root/.cache/bazel-repo`).
+  The disk cache holds the compiled actions and is the important part.
+* `wheel/*.whl`: the built wheel, if the build made one.
+* `MANIFEST.txt`: the save time, source commit, and Bazel, Python, and torch versions.
+
+The Bazel output base (`/root/.cache/bazel/`) is not saved.
+It is very large, and Bazel fills it again from the disk cache.
+
+### Save (before the VM stops)
+
+1. Wait until no bazel build or test is running.
+   If one is running, the script warns you and waits 10 seconds, so that you can stop it with Ctrl-C.
+2. Run:
+
+   ```bash
+   bash /root/torch_tpu/.claude/coord/scripts/save_build_cache.sh
+   ```
+
+   To take the wheel from a different checkout, give its path:
+
+   ```bash
+   bash /root/torch_tpu/.claude/coord/scripts/save_build_cache.sh \
+     /root/torch_tpu/.claude/worktrees/<name>
+   ```
+
+3. Check the output.
+   It shows the size, the time it took, the wheel name, and the manifest.
+
+The script writes `bazel-cache.tar.gz.partial` first and renames it at the end.
+So an interrupted save does not replace an older good archive.
+If a save is interrupted, delete the `.partial` file.
+
+### Restore (on a new VM)
+
+1. Clone the fork and get this branch:
+
+   ```bash
+   git clone https://github.com/shijiew555/torch_tpu.git /root/torch_tpu
+   git -C /root/torch_tpu fetch origin agent-coord
+   ```
+
+2. Run the restore script straight from the branch:
+
+   ```bash
+   git -C /root/torch_tpu show origin/agent-coord:scripts/restore_build_cache.sh | bash
+   ```
+
+   To also install the saved wheel into system Python, add the flag:
+
+   ```bash
+   git -C /root/torch_tpu show origin/agent-coord:scripts/restore_build_cache.sh \
+     | bash -s -- --install-wheel
+   ```
+
+3. Run the build command from "Build command" above.
+   Bazel uses the restored cache, so only the changed files compile.
+
+The restore script does these steps:
+
+* Shows `MANIFEST.txt`.
+* Unpacks the caches into `/root/.cache/`.
+* Adds the `--disk_cache` and `--repository_cache` lines to `/root/.bazelrc`, once only.
+* Installs bazelisk as `/usr/local/bin/bazel` if it is missing.
+* With `--install-wheel`, runs `pip install --force-reinstall --no-deps` on the saved wheel.
+
+### When the cache does not help
+
+* Cache hits need the same Bazel, Python, and torch versions as in `MANIFEST.txt`, and the same build flags.
+* Files that changed since the saved commit compile again.
+  If upstream main moved a lot, more of the build runs again.
+* The saved wheel matches only the commit in `MANIFEST.txt`.
+  Do not use it to test a change on a newer commit.
+
+### Test status
+
+Only the bash syntax and the running-build check were tested.
+A full save and restore was not run yet.
