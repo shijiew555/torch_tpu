@@ -102,3 +102,11 @@ Then run `bazel test` under `flock /root/tpu.lock` with `--local_test_jobs=1`.
 
 The installed 0.3.0 binaries can run the upstream main Python code through a `PYTHONPATH` overlay.
 See `discovery/E6.md` for the exact steps.
+
+## Save and restore the build cache (Google Drive)
+
+* Save: `scripts/save_build_cache.sh` writes the Bazel disk cache, the repository cache, and the wheel to `/content/drive/MyDrive/torch_tpu_build`.
+  Run it when no build is running.
+* Restore on a new VM: `scripts/restore_build_cache.sh` (add `--install-wheel` to also install the saved wheel).
+  Then run the build command above.
+  Cache hits need the same Bazel, Python, and torch versions as in `MANIFEST.txt`.
