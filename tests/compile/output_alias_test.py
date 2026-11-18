@@ -24,6 +24,7 @@ from torch.utils import _pytree as pytree
 from torch_tpu._internal import testing as tt_testing
 from torch_tpu._internal.compile import tpu_torch_compile
 from torch_tpu._internal.export import export as torch_tpu_export
+from torch_tpu._internal.utils import test_utils as utils
 from tests import seed_test_utils
 
 
@@ -63,7 +64,7 @@ def _aliasing(outputs: Sequence[torch.Tensor]) -> list[list[bool]]:
   return [[_shares_storage(a, b) for b in outputs] for a in outputs]
 
 
-class OutputAliasTest(seed_test_utils.RepeatableTest, parameterized.TestCase):
+class OutputAliasTest(seed_test_utils.RepeatableTest):
 
   def setUp(self):
     super().setUp()
@@ -110,7 +111,7 @@ class OutputAliasTest(seed_test_utils.RepeatableTest, parameterized.TestCase):
     self.assertEqual(aliasing, expected_aliasing)
     self.assertEqual(len(outputs), len(expected_outputs))
     for output, expected_output in zip(outputs, expected_outputs, strict=True):
-      torch.testing.assert_close(output, expected_output)
+      utils.assert_close(output, expected_output)
 
   def test_aliased_output_reconstructor_survives_pickle(self):
     base = torch.arange(16.0).view(4, 4)
@@ -143,7 +144,7 @@ class OutputAliasTest(seed_test_utils.RepeatableTest, parameterized.TestCase):
 
     self.assertIs(out_base, base)
     self.assertIs(out_view._base, base)  # pylint: disable=protected-access
-    torch.testing.assert_close(out_view, base[1:])
+    utils.assert_close(out_view, base[1:])
 
 
 if __name__ == "__main__":
