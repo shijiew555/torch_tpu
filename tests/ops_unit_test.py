@@ -20382,7 +20382,7 @@ class OpsGradUnitTest(TorchTpuVsCpuTestBase):
       # CPU kernel does not sort, so the CPU reference uses sorted=True.
       return torch.unique(
           input_value.to(device),
-          sorted=device == "cpu",
+          sorted=torch.device(device).type == "cpu",
           return_inverse=return_inverse,
           return_counts=return_counts,
       )
