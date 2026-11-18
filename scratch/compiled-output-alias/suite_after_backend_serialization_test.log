@@ -1,0 +1,62 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794986778.898265  318234 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794986779.989995  318234 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794986779.994848  318234 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/root/torch_tpu/.claude/tmp/compiled-output-alias/ov/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+Running tests under Python 3.13.18: /usr/bin/python3
+Repro with --test_random_seed=1234
+[ RUN      ] BackendSerializationTest.test_compile_inside_tracing_context_without_dynamo_source
+I0000 00:00:1794986780.017429  318234 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794986780.762564  318234 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+I0000 00:00:1794986780.780847  318418 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1794986780.780889  318418 tier2_compilation_cache.cc:81] Tier-2 compilation cache is disabled for world size 1.
+I1118 07:26:21.182337 138382450520192 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] BackendSerializationTest.test_compile_inside_tracing_context_without_dynamo_source
+[ RUN      ] BackendSerializationTest.test_different_shapes_produce_different_cache_keys
+I1118 07:26:21.246732 138382450520192 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 07:26:21.415020 138382450520192 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] BackendSerializationTest.test_different_shapes_produce_different_cache_keys
+[ RUN      ] BackendSerializationTest.test_different_storage_offsets_produce_different_cache_keys
+I1118 07:26:21.501367 138382450520192 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 07:26:21.557627 138382450520192 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 07:26:21.856770 138382450520192 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 07:26:21.930322 138382450520192 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] BackendSerializationTest.test_different_storage_offsets_produce_different_cache_keys
+[ RUN      ] BackendSerializationTest.test_fallback_key_entry_stays_in_memory
+I1118 07:26:22.025345 138382450520192 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] BackendSerializationTest.test_fallback_key_entry_stays_in_memory
+[ RUN      ] BackendSerializationTest.test_input_mutation
+I1118 07:26:22.122899 138382450520192 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] BackendSerializationTest.test_input_mutation
+[ RUN      ] BackendSerializationTest.test_int_scalar_input
+I1118 07:26:22.230695 138382450520192 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] BackendSerializationTest.test_int_scalar_input
+[ RUN      ] BackendSerializationTest.test_multiple_serialization_roundtrips
+I1118 07:26:22.319428 138382450520192 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] BackendSerializationTest.test_multiple_serialization_roundtrips
+[ RUN      ] BackendSerializationTest.test_pickle_tensor_does_not_blow_up_memory
+[       OK ] BackendSerializationTest.test_pickle_tensor_does_not_blow_up_memory
+[ RUN      ] BackendSerializationTest.test_pickling_constant_attribute_tensor_on_tpu
+[       OK ] BackendSerializationTest.test_pickling_constant_attribute_tensor_on_tpu
+[ RUN      ] BackendSerializationTest.test_registered_backend_uses_aot_autograd_cache
+I1118 07:26:24.270011 138382450520192 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] BackendSerializationTest.test_registered_backend_uses_aot_autograd_cache
+[ RUN      ] BackendSerializationTest.test_simple
+I1118 07:26:24.385246 138382450520192 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] BackendSerializationTest.test_simple
+----------------------------------------------------------------------
+Ran 11 tests in 4.401s
+
+OK
+I0000 00:00:1794986785.421022  318234 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794986785.421086  318234 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=21
+num_cache_hits=9 {42.8%}
+num_compilations=12
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

@@ -1,0 +1,42 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794978517.896653  232964 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794978518.937172  232964 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794978518.938859  232964 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/usr/local/lib/python3.13/dist-packages/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+I0000 00:00:1794978518.948053  232964 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794978519.736697  232964 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+cpu: tensor([1, 2, 3])
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E3/repro_unique.py", line 4, in <module>
+    print("tpu:", torch.unique(x.to("tpu"), sorted=False).cpu())
+                  ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/_jit_internal.py", line 637, in fn
+    return if_false(*args, **kwargs)
+  File "/usr/local/lib/python3.13/dist-packages/torch/_jit_internal.py", line 637, in fn
+    return if_false(*args, **kwargs)
+  File "/usr/local/lib/python3.13/dist-packages/torch/functional.py", line 1102, in _return_output
+    output, _, _ = _unique_impl(input, sorted, return_inverse, return_counts, dim)
+                   ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/functional.py", line 973, in _unique_impl
+    output, inverse_indices, counts = torch._unique2(
+                                      ~~~~~~~~~~~~~~^
+        input,
+        ^^^^^^
+    ...<2 lines>...
+        return_counts=return_counts,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+RuntimeError: unique2(): sorted=False is not yet supported
+I0000 00:00:1794978519.745114  232964 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794978519.745132  232964 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=0
+num_cache_hits=0 {NA}
+num_compilations=0
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

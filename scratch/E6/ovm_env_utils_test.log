@@ -1,0 +1,44 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794972451.279064  138210 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794972452.244616  138210 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794972452.249353  138210 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/root/torch_tpu/.claude/tmp/E6/overlay_main/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+Running tests under Python 3.13.18: /usr/bin/python3
+Repro with --test_random_seed=1234
+[ RUN      ] GetAndSetStrEnvOnceTest.test_current_env_var_value_wins_over_the_resolved_one
+I0000 00:00:1794972452.266239  138210 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794972453.046462  138210 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+[       OK ] GetAndSetStrEnvOnceTest.test_current_env_var_value_wins_over_the_resolved_one
+[ RUN      ] GetAndSetStrEnvOnceTest.test_empty_env_var_counts_as_set
+[       OK ] GetAndSetStrEnvOnceTest.test_empty_env_var_counts_as_set
+[ RUN      ] GetAndSetStrEnvOnceTest.test_set_env_var_is_returned_without_calling_the_factory
+[       OK ] GetAndSetStrEnvOnceTest.test_set_env_var_is_returned_without_calling_the_factory
+[ RUN      ] GetAndSetStrEnvOnceTest.test_unset_env_var_is_restored_without_calling_the_factory_again
+[       OK ] GetAndSetStrEnvOnceTest.test_unset_env_var_is_restored_without_calling_the_factory_again
+[ RUN      ] GetAndSetStrEnvOnceTest.test_unset_env_var_is_set_to_the_generated_value
+[       OK ] GetAndSetStrEnvOnceTest.test_unset_env_var_is_set_to_the_generated_value
+[ RUN      ] GetAndSetStrEnvOnceTest.test_value_factory_is_called_at_most_once
+[       OK ] GetAndSetStrEnvOnceTest.test_value_factory_is_called_at_most_once
+Repro with --test_random_seed=1234
+[ RUN      ] SetStrEnvTest.test_empty_value_is_set
+[       OK ] SetStrEnvTest.test_empty_value_is_set
+[ RUN      ] SetStrEnvTest.test_set_env_var_is_overwritten
+[       OK ] SetStrEnvTest.test_set_env_var_is_overwritten
+[ RUN      ] SetStrEnvTest.test_unset_env_var_is_set
+[       OK ] SetStrEnvTest.test_unset_env_var_is_set
+----------------------------------------------------------------------
+Ran 9 tests in 0.804s
+
+OK
+I0000 00:00:1794972453.063415  138210 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794972453.063436  138210 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=0
+num_cache_hits=0 {NA}
+num_compilations=0
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

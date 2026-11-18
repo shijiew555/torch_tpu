@@ -1,0 +1,27 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794973747.453667  158374 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794973749.126148  158374 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794973749.128536  158374 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/usr/local/lib/python3.13/dist-packages/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+torch_tpu: /usr/local/lib/python3.13/dist-packages/torch_tpu/__init__.py
+cpu  backend=None       share_storage=True b[0,:3] after a.add_(100) = [100.0, 102.0, 104.0]
+I0000 00:00:1794973749.161927  158374 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794973750.180101  158374 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+cpu  backend=aot_eager  share_storage=True b[0,:3] after a.add_(100) = [100.0, 102.0, 104.0]
+cpu  backend=inductor   share_storage=True b[0,:3] after a.add_(100) = [100.0, 102.0, 104.0]
+I0000 00:00:1794973788.776514  158911 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1794973788.776549  158911 tier2_compilation_cache.cc:81] Tier-2 compilation cache is disabled for world size 1.
+tpu  backend=None       share_storage=True b[0,:3] after a.add_(100) = [100.0, 102.0, 104.0]
+tpu  backend=tpu        share_storage=False b[0,:3] after a.add_(100) = [0.0, 2.0, 4.0]
+I0000 00:00:1794973817.152231  158374 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794973830.078948  158374 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=6
+num_cache_hits=1 {16.6%}
+num_compilations=5
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

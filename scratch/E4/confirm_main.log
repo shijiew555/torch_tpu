@@ -1,0 +1,91 @@
++ export PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/root/torch_tpu/.claude/tmp/E6/overlay_main
++ PYTHONDONTWRITEBYTECODE=1
++ PYTHONPATH=/root/torch_tpu/.claude/tmp/E6/overlay_main
++ python -c 'import torch_tpu; print(torch_tpu.__file__)'
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794977050.297729  208709 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794977051.226394  208709 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794977051.227806  208709 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/root/torch_tpu/.claude/tmp/E6/overlay_main/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+/root/torch_tpu/.claude/tmp/E6/overlay_main/torch_tpu/__init__.py
++ python /root/torch_tpu/.claude/tmp/E4/repro_stream.py
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794977053.769350  208760 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794977054.728967  208760 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794977054.730345  208760 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/root/torch_tpu/.claude/tmp/E6/overlay_main/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+I0000 00:00:1794977054.737788  208760 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794977055.522158  208760 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+torch.Stream device_type=tpu, device_index=0, stream_id=1
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E4/repro_stream.py", line 5, in <module>
+    print(torch.Stream(device=torch.accelerator.current_accelerator()))  # fails
+          ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: expected device index to be >= 0, got -1
+I0000 00:00:1794977055.526907  208760 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794977055.526921  208760 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=0
+num_cache_hits=0 {NA}
+num_compilations=0
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+
++ python /root/torch_tpu/.claude/tmp/E4/repro_pin_warn.py
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794977058.859229  209035 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794977060.656278  209035 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794977060.657666  209035 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/root/torch_tpu/.claude/tmp/E6/overlay_main/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+I0000 00:00:1794977060.665968  209035 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794977061.381760  209035 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+/root/torch_tpu/.claude/tmp/E4/repro_pin_warn.py:5: DeprecationWarning: The argument 'device' of Tensor.pin_memory() is deprecated. Please do not pass this argument. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/native/Memory.cpp:46.)
+  y = batch.to("tpu", non_blocking=True)
+/root/torch_tpu/.claude/tmp/E4/repro_pin_warn.py:5: DeprecationWarning: The argument 'device' of Tensor.is_pinned() is deprecated. Please do not pass this argument. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/native/Memory.cpp:31.)
+  y = batch.to("tpu", non_blocking=True)
+tensor([1., 1., 1., 1.])
+I0000 00:00:1794977061.388929  209035 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794977061.388943  209035 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=0
+num_cache_hits=0 {NA}
+num_compilations=0
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+
++ python /root/torch_tpu/.claude/tmp/E4/repro_pin_warn_default.py
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794977064.554971  209267 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794977065.489926  209267 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794977065.491333  209267 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/root/torch_tpu/.claude/tmp/E6/overlay_main/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+I0000 00:00:1794977065.499414  209267 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794977066.226715  209267 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E4/repro_pin_warn_default.py", line 5, in <module>
+    torch.ones(4).to("tpu", non_blocking=True)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+DeprecationWarning: The argument 'device' of Tensor.pin_memory() is deprecated. Please do not pass this argument. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/native/Memory.cpp:46.)
+I0000 00:00:1794977066.232133  209267 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794977066.232149  209267 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=0
+num_cache_hits=0 {NA}
+num_compilations=0
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

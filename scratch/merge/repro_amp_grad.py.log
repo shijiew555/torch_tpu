@@ -1,0 +1,50 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794978533.797795  233193 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794978534.798686  233193 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794978534.800178  233193 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/usr/local/lib/python3.13/dist-packages/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+I0000 00:00:1794978534.807773  233193 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794978535.478615  233193 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E3/repro_amp_grad.py", line 4, in <module>
+    F.adaptive_max_pool2d(x, (2, 2)).sum().backward()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/_tensor.py", line 623, in backward
+    torch.autograd.backward(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        self, gradient, retain_graph, create_graph, inputs=inputs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/usr/local/lib/python3.13/dist-packages/torch/autograd/__init__.py", line 395, in backward
+    _engine_run_backward(
+    ~~~~~~~~~~~~~~~~~~~~^
+        tensors,
+        ^^^^^^^^
+    ...<5 lines>...
+        accumulate_grad=True,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/usr/local/lib/python3.13/dist-packages/torch/autograd/graph.py", line 1072, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        t_outputs, *args, **kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )  # Calls into the C++ engine to run the backward pass
+    ^
+RuntimeError: operator 'aten::adaptive_max_pool2d_backward.grad_input' is not implemented for TPU. Please file a feature request
+I0000 00:00:1794978535.491170  233453 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1794978535.491229  233453 tier2_compilation_cache.cc:81] Tier-2 compilation cache is disabled for world size 1.
+I0000 00:00:1794978536.880592  233193 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794978536.880686  233193 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=5
+num_cache_hits=0 {0.0%}
+num_compilations=5
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

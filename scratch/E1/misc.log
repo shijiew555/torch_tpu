@@ -1,0 +1,115 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794970852.551590   95218 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794970871.514547   95218 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794970871.516810   95218 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/usr/local/lib/python3.13/dist-packages/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+I0000 00:00:1794970874.182067   95218 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794970875.098365   95218 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+I0000 00:00:1794970879.006117   95721 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1794970880.913885   95721 tier2_compilation_cache.cc:81] Tier-2 compilation cache is disabled for world size 1.
+static: OK match=True (12.7s)
+static_compile: OK match=True (5.7s)
+sdpa: OK loss tpu=5.59708 cpu=5.59703 (1.6s)
+eager_attn: OK loss tpu=5.59599 cpu=5.59602 (1.2s)
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E1/misc.py", line 7, in tryit
+    t=time.time(); r=fn(); print(f"{label}: OK {r} ({time.time()-t:.1f}s)", flush=True)
+                     ~~^^
+  File "/root/torch_tpu/.claude/tmp/E1/misc.py", line 61, in <lambda>
+    fns=dict(static=lambda:static_cache(False), static_compile=lambda:static_cache(True), sdpa=lambda:attn_impl("sdpa"), eager_attn=lambda:attn_impl("eager"), flex=lambda:attn_impl("flex_attention"),
+                                                                                                                                                                           ~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/root/torch_tpu/.claude/tmp/E1/misc.py", line 25, in attn_impl
+    o=m(**batch("llama","tpu")); o.loss.backward()
+  File "/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.13/dist-packages/transformers/utils/generic.py", line 943, in wrapper
+    output = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.13/dist-packages/transformers/models/llama/modeling_llama.py", line 456, in forward
+    outputs: BaseModelOutputWithPast = self.model(
+                                       ~~~~~~~~~~^
+        input_ids=input_ids,
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.13/dist-packages/transformers/utils/generic.py", line 1081, in wrapper
+    output = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.13/dist-packages/transformers/utils/output_capturing.py", line 287, in wrapper
+    outputs = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.13/dist-packages/transformers/models/llama/modeling_llama.py", line 380, in forward
+    causal_mask = create_causal_mask(
+        config=self.config,
+    ...<3 lines>...
+        position_ids=position_ids,
+    )
+  File "/usr/local/lib/python3.13/dist-packages/transformers/masking_utils.py", line 962, in create_causal_mask
+    causal_mask = mask_interface(
+        batch_size=batch_size,
+    ...<10 lines>...
+        device=device,
+    )
+  File "/usr/local/lib/python3.13/dist-packages/transformers/masking_utils.py", line 685, in flex_attention_mask
+    block_mask = create_block_mask(
+                 ^^^^^^^^^^^^^^^^^
+NameError: name 'create_block_mask' is not defined. Did you mean: 'create_causal_mask'?
+flex: FAIL NameError: name 'create_block_mask' is not defined
+[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+ckpt: OK loss=5.59708 gnorm=2.5102 (0.4s)
+ignore: OK loss cpu=5.57670 tpu=5.57693 (0.5s)
+bf16gen: OK match=False (7.8s)
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00, 38.67it/s]
+Loading weights:   0%|          | 0/21 [00:00<?, ?it/s]Loading weights: 100%|██████████| 21/21 [00:00<00:00, 1498.93it/s]
+saveload: OK dev=tpu:0 same=True (0.4s)
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00, 169.98it/s]
+Loading weights:   0%|          | 0/21 [00:00<?, ?it/s]Loading weights: 100%|██████████| 21/21 [00:00<00:00, 2143.34it/s]
+devmap_auto: OK dev=cpu (0.1s)
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E1/misc.py", line 7, in tryit
+    t=time.time(); r=fn(); print(f"{label}: OK {r} ({time.time()-t:.1f}s)", flush=True)
+                     ~~^^
+  File "/root/torch_tpu/.claude/tmp/E1/misc.py", line 41, in pipeline_
+    p=T.pipeline("feature-extraction", model=m, tokenizer=None, device="tpu")
+  File "/usr/local/lib/python3.13/dist-packages/transformers/pipelines/__init__.py", line 1091, in pipeline
+    tokenizer = _resolve_tokenizer(
+        tokenizer=tokenizer,
+    ...<6 lines>...
+        model_kwargs=model_kwargs,
+    )
+  File "/usr/local/lib/python3.13/dist-packages/transformers/pipelines/__init__.py", line 550, in _resolve_tokenizer
+    return _load_pipeline_component(load_tokenizer, tokenizer, load)
+  File "/usr/local/lib/python3.13/dist-packages/transformers/pipelines/__init__.py", line 482, in _load_pipeline_component
+    return loader(component)
+  File "/usr/local/lib/python3.13/dist-packages/transformers/pipelines/__init__.py", line 528, in load
+    tokenizer = _infer_pipeline_component(
+        tokenizer,
+    ...<3 lines>...
+        "Please provide a PreTrainedTokenizer class or a path/identifier to a pretrained tokenizer.",
+    )
+  File "/usr/local/lib/python3.13/dist-packages/transformers/pipelines/__init__.py", line 505, in _infer_pipeline_component
+    raise Exception(error_message)
+Exception: Impossible to guess which tokenizer to use. Please provide a PreTrainedTokenizer class or a path/identifier to a pretrained tokenizer.
+pipeline: FAIL Exception: Impossible to guess which tokenizer to use. Please provide a PreTrainedTokenizer class or a path/identifier to a pretrained tokenizer.
+long1024: OK L=1024 loss cpu=5.55447 tpu=5.55444 maxlogitdiff=2.46e-03 (4.5s)
+long2048: OK L=2048 loss cpu=5.55323 tpu=5.55320 maxlogitdiff=2.46e-03 (8.1s)
+I0000 00:00:1794970934.093216   95218 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794970934.093615   95218 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=4104
+num_cache_hits=3478 {84.7%}
+num_compilations=626
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

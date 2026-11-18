@@ -1,0 +1,5 @@
+I0000 00:00:1794985866.663790  299010 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+fold max err 0.015598297119140625
+im2col bwd max err 0.012919902801513672
+unfold bwd max err 0.0055577754974365234
+existing fold test max err 0.0

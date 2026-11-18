@@ -1,0 +1,48 @@
+...................F
+=================================== FAILURES ===================================
+_ InstalledTorchVersionTest.test_falls_back_to_install_metadata_when_torch_not_imported _
+
+self = <_versioned_so_loader_test.InstalledTorchVersionTest testMethod=test_falls_back_to_install_metadata_when_torch_not_imported>
+
+    def test_falls_back_to_install_metadata_when_torch_not_imported(self) -> None:
+>     site_dir = pathlib.Path(self.create_tempdir().full_path)
+                              ^^^^^^^^^^^^^^^^^^^^^
+
+tests/_versioned_so_loader_test.py:146: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.13/dist-packages/absl/flags/_flagvalues.py:1414: in value
+    val = getattr(self._flagvalues, self._name)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <absl.flags._flagvalues.FlagValues object at 0x7bb94c030ad0>
+name = 'test_tmpdir'
+
+    def __getattr__(self, name: Text) -> Any:
+      """Retrieves the 'value' attribute of the flag --name."""
+      fl = self._flags()
+      if name not in fl:
+        raise AttributeError(name)
+      if name in self.__dict__['__hiddenflags']:
+        raise AttributeError(name)
+    
+      if self.__dict__['__flags_parsed'] or fl[name].present:
+        return fl[name].value
+      else:
+>       raise _exceptions.UnparsedFlagAccessError(
+            'Trying to access flag --%s before flags were parsed.' % name)
+E       absl.flags._exceptions.UnparsedFlagAccessError: Trying to access flag --test_tmpdir before flags were parsed.
+
+/usr/local/lib/python3.13/dist-packages/absl/flags/_flagvalues.py:498: UnparsedFlagAccessError
+---------------------------- Captured stdout setup -----------------------------
+Repro with --test_random_seed=1234
+=============================== warnings summary ===============================
+../../../../../../usr/local/lib/python3.13/dist-packages/torch_tpu/__init__.py:40
+  /usr/local/lib/python3.13/dist-packages/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+    _tcmalloc_check.check_tcmalloc()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/_versioned_so_loader_test.py::InstalledTorchVersionTest::test_falls_back_to_install_metadata_when_torch_not_imported
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
+1 failed, 19 passed, 1 warning in 3.37s

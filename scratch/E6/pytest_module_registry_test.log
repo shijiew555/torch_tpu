@@ -1,0 +1,52 @@
+
+==================================== ERRORS ====================================
+________________ ERROR collecting tests/module_registry_test.py ________________
+ImportError while importing test module '/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry_test.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/module_registry_test.py:46: in <module>
+    from tests import module_registry
+tests/module_registry.py:3264: in <module>
+    class TransformersProvider(BaseProvider):
+tests/module_registry.py:3273: in TransformersProvider
+    resources.files("perflab").joinpath(
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.13/importlib/resources/_common.py:46: in wrapper
+    return func(anchor)
+           ^^^^^^^^^^^^
+/usr/lib/python3.13/importlib/resources/_common.py:56: in files
+    return from_package(resolve(anchor))
+                        ^^^^^^^^^^^^^^^
+/usr/lib/python3.13/functools.py:934: in wrapper
+    return dispatch(args[0].__class__)(*args, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.13/importlib/resources/_common.py:82: in _
+    return importlib.import_module(cand)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   ModuleNotFoundError: No module named 'perflab'
+------------------------------- Captured stderr --------------------------------
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794971427.724063  113769 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794971446.670006  113769 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794971446.671692  113769 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+=============================== warnings summary ===============================
+../../../../../../usr/local/lib/python3.13/dist-packages/torch_tpu/__init__.py:40
+  /usr/local/lib/python3.13/dist-packages/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+    _tcmalloc_check.check_tcmalloc()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+ERROR tests/module_registry_test.py
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 warning, 1 error in 24.96s

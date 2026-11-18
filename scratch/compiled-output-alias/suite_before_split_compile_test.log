@@ -1,0 +1,78 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794986719.835514  315110 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794986720.933981  315110 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794986720.938852  315110 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/root/torch_tpu/.claude/tmp/compiled-output-alias/ov/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+Running tests under Python 3.13.18: /usr/bin/python3
+Repro with --test_random_seed=1234
+[ RUN      ] SplitCompileHermeticTest.test_compiled_submodule_preserves_metadata
+I0000 00:00:1794986720.963417  315110 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794986721.667634  315110 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+[       OK ] SplitCompileHermeticTest.test_compiled_submodule_preserves_metadata
+[ RUN      ] SplitCompileHermeticTest.test_is_fully_spmd_safe_across_graph_break
+[  SKIPPED ] SplitCompileHermeticTest.test_is_fully_spmd_safe_across_graph_break
+[ RUN      ] SplitCompileHermeticTest.test_is_fully_spmd_safe_passthrough_and_tensor_indexing
+/root/torch_tpu/.claude/tmp/compiled-output-alias/repo/tests/compile/split_compile_test.py:442: UserWarning: //TorchTpu/ApiStage/ExperimentalApi// spmd_safe is experimental and subject to change: torch.tpu.distributed.spmd_safe is experimental and subject to change.
+  @spmd_util.spmd_safe
+[       OK ] SplitCompileHermeticTest.test_is_fully_spmd_safe_passthrough_and_tensor_indexing
+[ RUN      ] SplitCompileHermeticTest.test_is_fully_spmd_safe_skips_subgraph_higher_order_op
+[       OK ] SplitCompileHermeticTest.test_is_fully_spmd_safe_skips_subgraph_higher_order_op
+[ RUN      ] SplitCompileHermeticTest.test_register_output_namedtuple_globals_without_codegen_repr_fn
+[       OK ] SplitCompileHermeticTest.test_register_output_namedtuple_globals_without_codegen_repr_fn
+Repro with --test_random_seed=1234
+[ RUN      ] SplitCompileTest.test_checkpointed_spmd_safe_block_is_not_split
+I0000 00:00:1794986721.842271  315292 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1794986721.842297  315292 tier2_compilation_cache.cc:81] Tier-2 compilation cache is disabled for world size 1.
+[       OK ] SplitCompileTest.test_checkpointed_spmd_safe_block_is_not_split
+[ RUN      ] SplitCompileTest.test_compiled_forward_copies_buffer_it_updates
+I1118 07:25:22.363648 136633943969920 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 07:25:22.429725 136610419041984 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] SplitCompileTest.test_compiled_forward_copies_buffer_it_updates
+[ RUN      ] SplitCompileTest.test_compiled_forward_does_not_copy_saved_weights
+I1118 07:25:22.670680 136633943969920 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 07:25:22.860685 136610419041984 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] SplitCompileTest.test_compiled_forward_does_not_copy_saved_weights
+[ RUN      ] SplitCompileTest.test_compiling_get_attr_constant_does_not_copy_it
+I1118 07:25:24.150237 136633943969920 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+/root/torch_tpu/.claude/tmp/compiled-output-alias/ov/torch_tpu/_internal/compile/fx_passes/sink_get_attr_constants.py:85: UserWarning: Attempted to insert a get_attr Node with no underlying reference in the owning GraphModule! Call GraphModule.add_submodule to add the necessary submodule, GraphModule.add_parameter to add the necessary Parameter, or nn.Module.register_buffer to add the necessary buffer
+  get_attr_node = submod.graph.get_attr(attr_name)
+[       OK ] SplitCompileTest.test_compiling_get_attr_constant_does_not_copy_it
+[ RUN      ] SplitCompileTest.test_serializing_executable_does_not_retain_sunk_constants
+I1118 07:25:24.639138 136633943969920 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] SplitCompileTest.test_serializing_executable_does_not_retain_sunk_constants
+[ RUN      ] SplitCompileTest.test_split_compile_preserves_namedtuple_output_single_field
+I1118 07:25:29.530033 136633943969920 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] SplitCompileTest.test_split_compile_preserves_namedtuple_output_single_field
+[ RUN      ] SplitCompileTest.test_split_compile_preserves_namedtuple_output_two_fields
+I1118 07:25:29.621007 136633943969920 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] SplitCompileTest.test_split_compile_preserves_namedtuple_output_two_fields
+[ RUN      ] SplitCompileTest.test_split_graph_with_direct_symint_usage
+[       OK ] SplitCompileTest.test_split_graph_with_direct_symint_usage
+[ RUN      ] SplitCompileTest.test_split_graph_with_dynamic_tensor
+[       OK ] SplitCompileTest.test_split_graph_with_dynamic_tensor
+[ RUN      ] SplitCompileTest.test_split_graph_with_embedded_constants
+/root/torch_tpu/.claude/tmp/compiled-output-alias/ov/torch_tpu/_internal/compile/fx_passes/sink_get_attr_constants.py:85: UserWarning: Attempted to insert a get_attr Node with no underlying reference in the owning GraphModule! Call GraphModule.add_submodule to add the necessary submodule, GraphModule.add_parameter to add the necessary Parameter, or nn.Module.register_buffer to add the necessary buffer
+  get_attr_node = submod.graph.get_attr(attr_name)
+[       OK ] SplitCompileTest.test_split_graph_with_embedded_constants
+[ RUN      ] SplitCompileTest.test_split_graph_with_mutated_returned_placeholder
+I1118 07:25:30.888681 136633943969920 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] SplitCompileTest.test_split_graph_with_mutated_returned_placeholder
+[ RUN      ] SplitCompileTest.test_split_graph_without_value_metadata
+I1118 07:25:30.926492 136633943969920 split_compiler.py:1104] Split graph into 3 partitions, 0 of which run on CPU
+[       OK ] SplitCompileTest.test_split_graph_without_value_metadata
+----------------------------------------------------------------------
+Ran 17 tests in 10.085s
+
+OK (skipped=1)
+I0000 00:00:1794986732.081197  315110 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794986732.081274  315110 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=61
+num_cache_hits=16 {26.2%}
+num_compilations=45
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

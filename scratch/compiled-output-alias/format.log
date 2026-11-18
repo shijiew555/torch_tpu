@@ -1,0 +1,14 @@
+nox > Running session format
+nox > Creating virtual environment (uv) using python3 in .nox/format
+nox > uv pip install clang-format ruff
+nox > ci/tools/clang_format.sh format
+INFO: Applying clang-format fixes to modified files in-place.
+INFO: Successfully formatted changes.
+nox > ci/tools/ruff_lint.sh fix
+INFO: Applying ruff fixes to modified Python files...
+All checks passed!
+INFO: Python lint fixes complete.
+nox > ci/tools/buildifier_lint.sh format
+INFO: Applying buildifier fixes and formatting to modified Bazel files...
+INFO: Bazel buildifier formatting complete.
+nox > Session format was successful in 11 seconds.

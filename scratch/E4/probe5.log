@@ -1,0 +1,35 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794976575.792262  195084 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794976576.741065  195084 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794976576.742516  195084 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/usr/local/lib/python3.13/dist-packages/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+I0000 00:00:1794976576.759897  195084 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794976577.452529  195084 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+cpu deepcopy grad kept: False
+OK save_file tpu None
+OK save bytes tpu 120
+FAIL load_file device=tpu
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E4/probe5.py", line 11, in <module>
+    try: print("OK", name, f(), flush=True)
+                           ~^^
+  File "/root/torch_tpu/.claude/tmp/E4/probe5.py", line 9, in <lambda>
+    ("load_file device=tpu", lambda: load_file((save_file({"w": x}, p), p)[1], device="tpu")["w"].device),
+                                     ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/safetensors/torch.py", line 359, in load_file
+    with safe_open(filename, framework="pt", device=device, backend=backend) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+safetensors._safetensors_rust.SafetensorError: device tpu is invalid
+OK load_file cpu then .to tpu:0
+I0000 00:00:1794976577.803777  195084 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794976577.803800  195084 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=0
+num_cache_hits=0 {NA}
+num_compilations=0
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

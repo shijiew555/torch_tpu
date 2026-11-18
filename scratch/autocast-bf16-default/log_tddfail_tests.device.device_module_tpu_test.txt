@@ -1,0 +1,137 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794982536.385323  268230 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794982537.390490  268230 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794982539.402357  268230 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/root/torch_tpu/.claude/tmp/autocast-bf16-default/ov_before/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+Running tests under Python 3.13.18: /usr/bin/python3
+Repro with --test_random_seed=1234
+[ RUN      ] TpuDeviceModuleTest.test_bound_device_index_is_valid
+I0000 00:00:1794982539.421672  268230 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794982540.135646  268230 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+[       OK ] TpuDeviceModuleTest.test_bound_device_index_is_valid
+[ RUN      ] TpuDeviceModuleTest.test_compute_window_stripe_count
+/root/torch_tpu/.claude/tmp/autocast-bf16-default/repo_after/tests/device/device_module_tpu_test.py:239: UserWarning: //TorchTpu/ApiStage/ExperimentalApi// window_num_stripes is experimental and subject to change: torch.tpu.distributed.window_num_stripes is experimental and subject to change.
+  original_stripes = tpu_dist.window_num_stripes
+/root/torch_tpu/.claude/tmp/autocast-bf16-default/repo_after/tests/device/device_module_tpu_test.py:240: UserWarning: //TorchTpu/ApiStage/ExperimentalApi// window_stripe_chunk_mb is experimental and subject to change: torch.tpu.distributed.window_stripe_chunk_mb is experimental and subject to change.
+  original_chunk_mb = tpu_dist.window_stripe_chunk_mb
+/root/torch_tpu/.claude/tmp/autocast-bf16-default/repo_after/tests/device/device_module_tpu_test.py:243: UserWarning: //TorchTpu/ApiStage/ExperimentalApi// window_num_stripes is experimental and subject to change: torch.tpu.distributed.window_num_stripes is experimental and subject to change.
+  tpu_dist.window_num_stripes = 4
+/root/torch_tpu/.claude/tmp/autocast-bf16-default/repo_after/tests/device/device_module_tpu_test.py:244: UserWarning: //TorchTpu/ApiStage/ExperimentalApi// window_stripe_chunk_mb is experimental and subject to change: torch.tpu.distributed.window_stripe_chunk_mb is experimental and subject to change.
+  tpu_dist.window_stripe_chunk_mb = 8
+[       OK ] TpuDeviceModuleTest.test_compute_window_stripe_count
+[ RUN      ] TpuDeviceModuleTest.test_device_context_manager
+/root/torch_tpu/.claude/tmp/autocast-bf16-default/repo_after/tests/device/device_module_testing.py:241: UserWarning: //TorchTpu/ApiStage/InternalApi// _DeviceContext is internal to TorchTPU and may change or be removed without notice. Use torch.accelerator.device_index instead.
+  ctx = self.device_module.device(idx)
+[       OK ] TpuDeviceModuleTest.test_device_context_manager
+[ RUN      ] TpuDeviceModuleTest.test_device_interface_exchange_device
+[       OK ] TpuDeviceModuleTest.test_device_interface_exchange_device
+[ RUN      ] TpuDeviceModuleTest.test_device_interface_maybe_exchange_device
+[       OK ] TpuDeviceModuleTest.test_device_interface_maybe_exchange_device
+[ RUN      ] TpuDeviceModuleTest.test_device_interface_registration_always_wins
+[       OK ] TpuDeviceModuleTest.test_device_interface_registration_always_wins
+[ RUN      ] TpuDeviceModuleTest.test_device_of_context_manager
+/root/torch_tpu/.claude/tmp/autocast-bf16-default/repo_after/tests/device/device_module_testing.py:285: UserWarning: //TorchTpu/ApiStage/ExperimentalApi// _DeviceOfContext is experimental and subject to change: device_of() context manager is experimental and subject to change without notice.
+  tpu_ctx = self.device_module.device_of(tpu_tensor)
+I0000 00:00:1794982540.158401  268417 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1794982574.056278  268417 tier2_compilation_cache.cc:81] Tier-2 compilation cache is disabled for world size 1.
+[       OK ] TpuDeviceModuleTest.test_device_of_context_manager
+[ RUN      ] TpuDeviceModuleTest.test_dump_on_miss
+I0000 00:00:1794982574.422703  268230 compilation_cache.cc:374] CompilationCache dump-on-miss mode set to: true
+I0000 00:00:1794982574.422752  268230 compilation_cache.cc:374] CompilationCache dump-on-miss mode set to: false
+[       OK ] TpuDeviceModuleTest.test_dump_on_miss
+[ RUN      ] TpuDeviceModuleTest.test_dynamic_attribute_memoization
+/root/torch_tpu/.claude/tmp/autocast-bf16-default/repo_after/tests/device/device_module_tpu_test.py:164: UserWarning: //TorchTpu/ApiStage/ExperimentalApi// 'Precision' is experimental and subject to change: StableHLO precision configuration.
+  p1 = self.device_module.Precision
+[       OK ] TpuDeviceModuleTest.test_dynamic_attribute_memoization
+[ RUN      ] TpuDeviceModuleTest.test_dynamo_traces_torch_tpu_without_recompilation
+/root/torch_tpu/.claude/tmp/autocast-bf16-default/repo_after/tests/device/device_module_tpu_test.py:118: UserWarning: //TorchTpu/ApiStage/InternalApi// device_count is internal to TorchTPU and may change or be removed without notice. Use torch.accelerator.device_count instead.
+  torch.tpu.device_count(),
+/root/torch_tpu/.claude/tmp/autocast-bf16-default/repo_after/tests/device/device_module_tpu_test.py:119: UserWarning: //TorchTpu/ApiStage/InternalApi// is_available is internal to TorchTPU and may change or be removed without notice. Use torch.accelerator.is_available instead.
+  torch.tpu.is_available(),
+[       OK ] TpuDeviceModuleTest.test_dynamo_traces_torch_tpu_without_recompilation
+[ RUN      ] TpuDeviceModuleTest.test_exchange_device
+[       OK ] TpuDeviceModuleTest.test_exchange_device
+[ RUN      ] TpuDeviceModuleTest.test_get_amp_supported_dtype
+/root/torch_tpu/.claude/tmp/autocast-bf16-default/repo_after/tests/device/device_module_testing.py:66: UserWarning: //TorchTpu/ApiStage/ExperimentalApi// get_amp_supported_dtype is experimental and subject to change: get_amp_supported_dtype() is experimental and may change or be removed without notice.
+  supported_dtypes = self.device_module.get_amp_supported_dtype()
+[       OK ] TpuDeviceModuleTest.test_get_amp_supported_dtype
+[ RUN      ] TpuDeviceModuleTest.test_get_autocast_dtype
+[       OK ] TpuDeviceModuleTest.test_get_autocast_dtype
+[ RUN      ] TpuDeviceModuleTest.test_get_cache_stats
+[       OK ] TpuDeviceModuleTest.test_get_cache_stats
+[ RUN      ] TpuDeviceModuleTest.test_get_compute_capability
+[       OK ] TpuDeviceModuleTest.test_get_compute_capability
+[ RUN      ] TpuDeviceModuleTest.test_get_device_properties_multi_processor_count
+/root/torch_tpu/.claude/tmp/autocast-bf16-default/repo_after/tests/device/device_module_tpu_test.py:171: UserWarning: //TorchTpu/ApiStage/ExperimentalApi// get_device_properties is experimental and subject to change: get_device_properties() is experimental and subject to change without notice.
+  props = self.device_module.get_device_properties()
+/usr/local/lib/python3.13/dist-packages/torch/jit/_script.py:365: FutureWarning: `torch.jit.script_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+[       OK ] TpuDeviceModuleTest.test_get_device_properties_multi_processor_count
+[ RUN      ] TpuDeviceModuleTest.test_get_local_device_attributes
+[       OK ] TpuDeviceModuleTest.test_get_local_device_attributes
+[ RUN      ] TpuDeviceModuleTest.test_get_multi_processor_count
+[       OK ] TpuDeviceModuleTest.test_get_multi_processor_count
+[ RUN      ] TpuDeviceModuleTest.test_get_vmem_capacity_bytes
+[       OK ] TpuDeviceModuleTest.test_get_vmem_capacity_bytes
+[ RUN      ] TpuDeviceModuleTest.test_hidden_attributes_not_in_dir
+[       OK ] TpuDeviceModuleTest.test_hidden_attributes_not_in_dir
+[ RUN      ] TpuDeviceModuleTest.test_initialized
+/root/torch_tpu/.claude/tmp/autocast-bf16-default/repo_after/tests/device/device_module_testing.py:190: UserWarning: //TorchTpu/ApiStage/ExperimentalApi// is_initialized is experimental and subject to change: is_initialized() is experimental and subject to change without notice.
+  self.assertTrue(self.device_module.is_initialized())
+[       OK ] TpuDeviceModuleTest.test_initialized
+[ RUN      ] TpuDeviceModuleTest.test_is_autocast_enabled
+[       OK ] TpuDeviceModuleTest.test_is_autocast_enabled
+[ RUN      ] TpuDeviceModuleTest.test_is_gpu
+[       OK ] TpuDeviceModuleTest.test_is_gpu
+[ RUN      ] TpuDeviceModuleTest.test_is_triton_capable
+[       OK ] TpuDeviceModuleTest.test_is_triton_capable
+[ RUN      ] TpuDeviceModuleTest.test_memory_allocation
+[       OK ] TpuDeviceModuleTest.test_memory_allocation
+[ RUN      ] TpuDeviceModuleTest.test_memory_stats
+[       OK ] TpuDeviceModuleTest.test_memory_stats
+[ RUN      ] TpuDeviceModuleTest.test_module_tpu_method
+[       OK ] TpuDeviceModuleTest.test_module_tpu_method
+[ RUN      ] TpuDeviceModuleTest.test_private_hooks_accessible0 ('_is_in_bad_fork')
+[       OK ] TpuDeviceModuleTest.test_private_hooks_accessible0 ('_is_in_bad_fork')
+[ RUN      ] TpuDeviceModuleTest.test_private_hooks_accessible1 ('_get_generator')
+[       OK ] TpuDeviceModuleTest.test_private_hooks_accessible1 ('_get_generator')
+[ RUN      ] TpuDeviceModuleTest.test_private_hooks_accessible2 ('_get_local_device_attributes')
+[       OK ] TpuDeviceModuleTest.test_private_hooks_accessible2 ('_get_local_device_attributes')
+[ RUN      ] TpuDeviceModuleTest.test_reset_memory_stats
+[       OK ] TpuDeviceModuleTest.test_reset_memory_stats
+[ RUN      ] TpuDeviceModuleTest.test_rng_validate_device_index
+[       OK ] TpuDeviceModuleTest.test_rng_validate_device_index
+[ RUN      ] TpuDeviceModuleTest.test_set_autocast_dtype
+[       OK ] TpuDeviceModuleTest.test_set_autocast_dtype
+[ RUN      ] TpuDeviceModuleTest.test_set_autocast_enabled
+[       OK ] TpuDeviceModuleTest.test_set_autocast_enabled
+[ RUN      ] TpuDeviceModuleTest.test_tensor_is_tpu_attr
+[       OK ] TpuDeviceModuleTest.test_tensor_is_tpu_attr
+[ RUN      ] TpuDeviceModuleTest.test_tensor_tpu_method
+[       OK ] TpuDeviceModuleTest.test_tensor_tpu_method
+[ RUN      ] TpuDeviceModuleTest.test_torch_save_load_no_warnings
+[       OK ] TpuDeviceModuleTest.test_torch_save_load_no_warnings
+[ RUN      ] TpuDeviceModuleTest.test_torch_tpu_exports_match_device_class_surface
+[       OK ] TpuDeviceModuleTest.test_torch_tpu_exports_match_device_class_surface
+[ RUN      ] TpuDeviceModuleTest.test_tpu_device_nodes_detected
+[       OK ] TpuDeviceModuleTest.test_tpu_device_nodes_detected
+[ RUN      ] TpuDeviceModuleTest.test_window_num_stripes
+[       OK ] TpuDeviceModuleTest.test_window_num_stripes
+[ RUN      ] TpuDeviceModuleTest.test_window_stripe_chunk_mb
+[       OK ] TpuDeviceModuleTest.test_window_stripe_chunk_mb
+----------------------------------------------------------------------
+Ran 41 tests in 36.366s
+
+OK
+I0000 00:00:1794982576.788013  268230 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794982576.788075  268230 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=9
+num_cache_hits=4 {44.4%}
+num_compilations=5
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

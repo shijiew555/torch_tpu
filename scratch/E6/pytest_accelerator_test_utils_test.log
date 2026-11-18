@@ -1,0 +1,15 @@
+...                                                                      [100%]
+=============================== warnings summary ===============================
+../../../../../../usr/local/lib/python3.13/dist-packages/torch_tpu/__init__.py:40
+  /usr/local/lib/python3.13/dist-packages/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+    _tcmalloc_check.check_tcmalloc()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+3 passed, 1 warning in 9.44s
+I0000 00:00:1794971461.991898  114002 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794971461.991929  114002 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=0
+num_cache_hits=0 {NA}
+num_compilations=0
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

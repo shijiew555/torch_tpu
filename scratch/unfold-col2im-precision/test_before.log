@@ -1,0 +1,891 @@
+WARNING: option '--remote_executor' was expanded from both option '--config=wheel_common' (source command line options) and option '--config=no_rbe' (source command line options)
+WARNING: option '--google_default_credentials' was expanded from both option '--config=wheel_common' (source command line options) and option '--config=no_rbe' (source command line options)
+INFO: Invocation ID: 1f29444f-38ce-4a4d-a191-f0b5e78f49e9
+INFO: Options provided by the client:
+  Inherited 'common' options: --isatty=0 --terminal_columns=80
+INFO: Reading rc options for 'test' from /root/torch_tpu/.claude/worktrees/unfold-col2im-precision/.bazelrc:
+  Inherited 'common' options: --announce_rc --check_visibility=false --analysis_testing_deps_limit=16000 --repo_env=HERMETIC_PYTHON_VERSION=3.14 --enable_bzlmod=true --enable_workspace=false --incompatible_autoload_externally=+@rules_cc,+@rules_java,+@rules_shell,+@com_google_protobuf --repo_env=USE_PYWRAP_RULES=1 --experimental_repo_remote_exec --test_env=PYTHONUNBUFFERED=1 --repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1 --incompatible_strict_action_env=true --enable_platform_specific_config --per_file_copt=.*[.](cc|cpp|hpp)$@-std=c++20 --per_file_copt=external/.*(onednn|llvm-project).*[.](cc|cpp|hpp)$@-std=c++17 --downloader_config=bazel_downloader.cfg --@rules_python//python/config_settings:bootstrap_impl=script --@rules_python//python/config_settings:venvs_site_packages=yes
+INFO: Reading rc options for 'test' from /root/.bazelrc:
+  Inherited 'common' options: --disk_cache=/root/.cache/bazel-disk --repository_cache=/root/.cache/bazel-repo
+INFO: Reading rc options for 'test' from /root/torch_tpu/.claude/worktrees/unfold-col2im-precision/.bazelrc:
+  Inherited 'build' options: --copt=-Werror --compilation_mode=opt --per_file_copt=.*@-Wno-#pragma-messages --per_file_copt=.*@-Wno-deprecated-declarations --per_file_copt=.*@-Wno-macro-redefined --per_file_copt=.*@-Wno-defaulted-function-deleted --per_file_copt=.*@-Wno-unused-command-line-argument --host_copt=-Wno-unused-command-line-argument --linkopt=-Wno-unused-command-line-argument --host_linkopt=-Wno-unused-command-line-argument --per_file_copt=.*@-Wno-return-type --per_file_copt=.*external/.*@-w --host_per_file_copt=.*external/.*@-w --copt=-Wno-nullability-completeness --host_copt=-Wno-nullability-completeness --copt=-Wno-deprecated-declarations --host_copt=-Wno-deprecated-declarations --copt=-Wno-unused-function --host_copt=-Wno-unused-function --copt=-Wno-unused-value --host_copt=-Wno-unused-value --repo_env=LLVM_VERSION=20 --repo_env=SYSROOT_DIST=linux_glibc_2_31 --action_env=BAZEL_CXXOPTS=-std=c++20 --disk_cache=~/.cache/bazel/bazel-disk-cache --experimental_disk_cache_gc_max_age=90d --experimental_disk_cache_gc_max_size=100G --experimental_python_import_all_repositories=true --incompatible_disallow_empty_glob=false --incompatible_default_to_explicit_init_py=true --legacy_external_runfiles=false --watchfs --@rules_python//python/config_settings:precompile=force_disabled --define=with_tpu_support=true --define WHEEL_VERSION_EXTRAS= --flag_alias=test_wheel=//:test_wheel
+INFO: Found applicable config definition build:wheel_common in file /root/torch_tpu/.claude/worktrees/unfold-col2im-precision/.bazelrc: --config=remote_execution_readonly --config=wheel_base
+INFO: Found applicable config definition common:remote_execution_readonly in file /root/torch_tpu/.claude/worktrees/unfold-col2im-precision/.bazelrc: --remote_instance_name=projects/tensorflow-testing/instances/default_instance --google_default_credentials --remote_upload_local_results=false --jobs=200 --remote_timeout=3600 --test_timeout=3600 --define=EXECUTOR=remote --remote_executor=grpcs://remotebuildexecution.googleapis.com --extra_execution_platforms=//bazel/platforms:rbe_default_platform
+INFO: Found applicable config definition build:wheel_base in file /root/torch_tpu/.claude/worktrees/unfold-col2im-precision/.bazelrc: --//:wheel_build=True
+INFO: Found applicable config definition common:no_rbe in file /root/torch_tpu/.claude/worktrees/unfold-col2im-precision/.bazelrc: --config=local --remote_cache= --remote_executor= --google_default_credentials=false
+INFO: Found applicable config definition common:local in file /root/torch_tpu/.claude/worktrees/unfold-col2im-precision/.bazelrc: --test_strategy=standalone --spawn_strategy=standalone --strategy=standalone --config=tpu_envvars
+INFO: Found applicable config definition common:tpu_envvars in file /root/torch_tpu/.claude/worktrees/unfold-col2im-precision/.bazelrc: --test_env=TPU_SKIP_MDS_QUERY --test_env=TPU_TOPOLOGY --test_env=TPU_WORKER_ID --test_env=TPU_TOPOLOGY_WRAP --test_env=TPU_CHIPS_PER_HOST_BOUNDS --test_env=TPU_ACCELERATOR_TYPE --test_env=TPU_RUNTIME_METRICS_PORTS --test_env=TPU_TOPOLOGY_ALT --test_env=TPU_HOST_BOUNDS --test_env=TPU_WORKER_HOSTNAMES --test_env=CHIPS_PER_HOST_BOUNDS --test_env=HOST_BOUNDS --test_env=VBAR_CONTROL_SERVICE_URL
+Computing main repo mapping: 
+Loading: 
+Loading: 0 packages loaded
+WARNING: This build has globally disabled target visibility checking (--nocheck_visibility).
+Analyzing: target //tests:ops_unit_test_tpu-v5lite (0 packages loaded, 0 targets configured)
+Analyzing: target //tests:ops_unit_test_tpu-v5lite (0 packages loaded, 0 targets configured)
+
+INFO: Analyzed target //tests:ops_unit_test_tpu-v5lite (0 packages loaded, 222 targets configured).
+[22,829 / 22,834] checking cached actions
+[22,834 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 39 of 50); 1s disk-cache, processwrapper-sandbox ... (50 actions, 1 running)
+[22,834 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 39 of 50); 9s disk-cache, processwrapper-sandbox ... (50 actions, 1 running)
+[22,834 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 39 of 50); 15s disk-cache, processwrapper-sandbox ... (50 actions, 2 running)
+[22,835 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 45 of 50); 1s disk-cache, processwrapper-sandbox ... (49 actions, 1 running)
+[22,835 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 45 of 50); 11s disk-cache, processwrapper-sandbox ... (49 actions, 1 running)
+[22,835 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 45 of 50); 14s disk-cache, processwrapper-sandbox ... (49 actions, 2 running)
+[22,836 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 17 of 50); 1s disk-cache, processwrapper-sandbox ... (48 actions, 1 running)
+[22,836 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 17 of 50); 12s disk-cache, processwrapper-sandbox ... (48 actions, 1 running)
+[22,836 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 17 of 50); 14s disk-cache, processwrapper-sandbox ... (48 actions, 2 running)
+[22,837 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 21 of 50); 1s disk-cache, processwrapper-sandbox ... (47 actions, 1 running)
+[22,837 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 21 of 50); 11s disk-cache, processwrapper-sandbox ... (47 actions, 1 running)
+[22,837 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 21 of 50); 14s disk-cache, processwrapper-sandbox ... (47 actions, 2 running)
+[22,838 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 32 of 50); 1s disk-cache, processwrapper-sandbox ... (46 actions, 1 running)
+[22,838 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 32 of 50); 11s disk-cache, processwrapper-sandbox ... (46 actions, 1 running)
+[22,838 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 32 of 50); 14s disk-cache, processwrapper-sandbox ... (46 actions, 2 running)
+[22,839 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 25 of 50); 1s disk-cache, processwrapper-sandbox ... (45 actions, 1 running)
+[22,839 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 25 of 50); 11s disk-cache, processwrapper-sandbox ... (45 actions, 1 running)
+[22,839 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 25 of 50); 14s disk-cache, processwrapper-sandbox ... (45 actions, 2 running)
+[22,840 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 4 of 50); 1s disk-cache, processwrapper-sandbox ... (44 actions, 1 running)
+[22,840 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 4 of 50); 11s disk-cache, processwrapper-sandbox ... (44 actions, 1 running)
+[22,840 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 4 of 50); 17s disk-cache, processwrapper-sandbox ... (44 actions, 2 running)
+FAIL: //tests:ops_unit_test_tpu-v5lite (shard 4 of 50) (Exit 1) (see /root/.cache/bazel/_bazel_root/b22706bbcc663ee80795d6c8e2a2a715/execroot/_main/bazel-out/k8-opt/testlogs/tests/ops_unit_test_tpu-v5lite/shard_4_of_50/test.log)
+INFO: From Testing //tests:ops_unit_test_tpu-v5lite (shard 4 of 50):
+==================== Test output for //tests:ops_unit_test_tpu-v5lite (shard 4 of 50):
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794988498.764691  349179 pjrt_api.cc:119] GetPjrtApi was found for TPU at /root/.cache/bazel/_bazel_root/b22706bbcc663ee80795d6c8e2a2a715/sandbox/processwrapper-sandbox/13934/execroot/_main/bazel-out/k8-opt/bin/tests/ops_unit_test_tpu-v5lite.runfiles/_main/tests/_ops_unit_test_tpu-v5lite.venv/lib/python3.14/site-packages/libtpu/libtpu.so
+I0000 00:00:1794988498.775935  349179 tpu_profiler_plugin.cc:808] PyTorch PrivateUse1ProfilerRegistry not found (expected on PyTorch < 2.12); registering the TPU profiler with Kineto directly.
+I0000 00:00:1794988501.200616  349179 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794988501.208901  349179 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/root/.cache/bazel/_bazel_root/b22706bbcc663ee80795d6c8e2a2a715/sandbox/processwrapper-sandbox/13934/execroot/_main/bazel-out/k8-opt/bin/tests/ops_unit_test_tpu-v5lite.runfiles/_main/torch_tpu_py_import_unpacked_wheel/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+Running tests under Python 3.14.10: /root/.cache/bazel/_bazel_root/b22706bbcc663ee80795d6c8e2a2a715/sandbox/processwrapper-sandbox/13934/execroot/_main/bazel-out/k8-opt/bin/tests/ops_unit_test_tpu-v5lite.runfiles/_main/tests/_ops_unit_test_tpu-v5lite.venv/bin/python3
+I1118 07:55:03.381019 137673960695616 absltest.py:2299] Randomizing test order with seed: 3643655574
+I1118 07:55:03.381129 137673960695616 absltest.py:2301] To reproduce this order, re-run with --test_randomize_ordering_seed=3643655574
+I1118 07:55:03.381983 137673960695616 absltest.py:2299] Randomizing test order with seed: 3643655574
+I1118 07:55:03.382031 137673960695616 absltest.py:2301] To reproduce this order, re-run with --test_randomize_ordering_seed=3643655574
+I1118 07:55:03.386821 137673960695616 absltest.py:2299] Randomizing test order with seed: 3643655574
+I1118 07:55:03.386882 137673960695616 absltest.py:2301] To reproduce this order, re-run with --test_randomize_ordering_seed=3643655574
+I1118 07:55:03.392108 137673960695616 absltest.py:2299] Randomizing test order with seed: 3643655574
+I1118 07:55:03.392158 137673960695616 absltest.py:2301] To reproduce this order, re-run with --test_randomize_ordering_seed=3643655574
+I1118 07:55:03.392459 137673960695616 absltest.py:2299] Randomizing test order with seed: 3643655574
+I1118 07:55:03.392503 137673960695616 absltest.py:2301] To reproduce this order, re-run with --test_randomize_ordering_seed=3643655574
+Repro with --test_random_seed=1234
+[ RUN      ] OpsUnitTest.test_unfold_backward_float32_precision
+I0000 00:00:1794988503.397962  349179 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.118.
+I0000 00:00:1794988504.075426  349179 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+I0000 00:00:1794988504.093338  349463 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1794988504.093369  349463 tier2_compilation_cache.cc:80] Tier-2 compilation cache is disabled for world size 1.
+[  FAILED  ] OpsUnitTest.test_unfold_backward_float32_precision
+======================================================================
+FAIL: test_unfold_backward_float32_precision (__main__.OpsUnitTest)
+OpsUnitTest.test_unfold_backward_float32_precision
+Tests that the float32 gradient of Tensor.unfold is not bf16-accurate.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/.cache/bazel/_bazel_root/b22706bbcc663ee80795d6c8e2a2a715/sandbox/processwrapper-sandbox/13934/execroot/_main/bazel-out/k8-opt/bin/tests/ops_unit_test_tpu-v5lite.runfiles/_main/tests/_ops_unit_test_tpu-v5lite.venv/lib/python3.14/site-packages/torch/testing/_internal/common_utils.py", line 3364, in wrapper
+    method(*args, **kwargs)
+    ~~~~~~^^^^^^^^^^^^^^^^^
+  File "/root/.cache/bazel/_bazel_root/b22706bbcc663ee80795d6c8e2a2a715/sandbox/processwrapper-sandbox/13934/execroot/_main/bazel-out/k8-opt/bin/tests/ops_unit_test_tpu-v5lite.runfiles/_main/tests/ops_unit_test.py", line 4408, in test_unfold_backward_float32_precision
+    self.assert_close_tpu_vs_cpu(test_fn)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/root/.cache/bazel/_bazel_root/b22706bbcc663ee80795d6c8e2a2a715/sandbox/processwrapper-sandbox/13934/execroot/_main/bazel-out/k8-opt/bin/tests/ops_unit_test_tpu-v5lite.runfiles/_main/torch_tpu_py_import_unpacked_wheel/tests/op_testing.py", line 6673, in assert_close_tpu_vs_cpu
+    self.assert_close(
+    ~~~~~~~~~~~~~~~~~^
+        golden_result=cpu_result,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        atol=atol,
+        ^^^^^^^^^^
+    )
+    ^
+  File "/root/.cache/bazel/_bazel_root/b22706bbcc663ee80795d6c8e2a2a715/sandbox/processwrapper-sandbox/13934/execroot/_main/bazel-out/k8-opt/bin/tests/ops_unit_test_tpu-v5lite.runfiles/_main/torch_tpu_py_import_unpacked_wheel/tests/op_testing.py", line 6589, in assert_close
+    test_utils.assert_close(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        actual=torch_tpu_result,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+        preamble=preamble or "Comparing TorchTPU to golden result",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/root/.cache/bazel/_bazel_root/b22706bbcc663ee80795d6c8e2a2a715/sandbox/processwrapper-sandbox/13934/execroot/_main/bazel-out/k8-opt/bin/tests/ops_unit_test_tpu-v5lite.runfiles/_main/torch_tpu_py_import_unpacked_wheel/torch_tpu/_internal/utils/test_utils.py", line 172, in assert_close
+    _assert_tensor_close(
+    ~~~~~~~~~~~~~~~~~~~~^
+        actual=actual,
+        ^^^^^^^^^^^^^^
+    ...<4 lines>...
+        check_value=check_value,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/root/.cache/bazel/_bazel_root/b22706bbcc663ee80795d6c8e2a2a715/sandbox/processwrapper-sandbox/13934/execroot/_main/bazel-out/k8-opt/bin/tests/ops_unit_test_tpu-v5lite.runfiles/_main/torch_tpu_py_import_unpacked_wheel/torch_tpu/_internal/utils/test_utils.py", line 740, in _assert_tensor_close
+    _raw_assert_tensor_close(
+    ~~~~~~~~~~~~~~~~~~~~~~~~^
+        actual=actual,
+        ^^^^^^^^^^^^^^
+    ...<3 lines>...
+        msg=msg_handler,
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/root/.cache/bazel/_bazel_root/b22706bbcc663ee80795d6c8e2a2a715/sandbox/processwrapper-sandbox/13934/execroot/_main/bazel-out/k8-opt/bin/tests/ops_unit_test_tpu-v5lite.runfiles/_main/torch_tpu_py_import_unpacked_wheel/torch_tpu/_internal/utils/test_utils.py", line 265, in _raw_assert_tensor_close
+    torch.testing.assert_close(  # TORCH_ASSERT_CLOSE_OK=root usage
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        actual=actual,
+        ^^^^^^^^^^^^^^
+    ...<5 lines>...
+        msg=msg,
+        ^^^^^^^^
+    )
+    ^
+  File "/root/.cache/bazel/_bazel_root/b22706bbcc663ee80795d6c8e2a2a715/sandbox/processwrapper-sandbox/13934/execroot/_main/bazel-out/k8-opt/bin/tests/ops_unit_test_tpu-v5lite.runfiles/_main/tests/_ops_unit_test_tpu-v5lite.venv/lib/python3.14/site-packages/torch/testing/_comparison.py", line 1600, in assert_close
+    raise error_metas[0].to_error(msg)
+AssertionError: Comparing TorchTPU to golden result
+Tensor-likes are not close!
+
+Mismatched elements: 60 / 60 (100.0%)
+Greatest absolute difference: 0.0055577754974365234 at index (1, 2, 0) (up to 1e-05 allowed)
+Greatest relative difference: 0.03091464564204216 at index (1, 0, 1) (up to 1.3e-06 allowed)
+    at index (1, 2, 0), expected=2.0836827754974365, actual=2.078125, relative diff=0.0026672848034650087, diff=0.0055577754974365234
+    at index (1, 0, 1), expected=0.014209166169166565, actual=0.0146484375, relative diff=0.03091464564204216, diff=0.00043927133083343506
+
+Expected tensor:
+tensor([[[-1.1256, -1.0925, -0.0933],
+         [-0.8383, -0.7504,  0.6211],
+         [-0.2460, -1.8817,  1.9415],
+         [-0.0203,  1.6459,  0.3446]],
+
+        [[-0.6826,  0.0142,  0.9340],
+         [ 0.3389, -0.6171, -0.1120],
+         [ 2.0837, -0.1226,  1.5884],
+         [-0.8073, -1.9829,  2.4417]],
+
+        [[-1.2095,  1.0499, -0.8065],
+         [-0.3504, -1.1148, -2.0668],
+         [-2.5124, -0.6280, -0.2099],
+         [ 1.4467, -0.7234, -0.1586]],
+
+        [[ 2.0302, -0.1872, -0.2267],
+         [-1.3347, -1.5032,  0.1010],
+         [ 1.0835, -0.9423,  2.2322],
+         [ 1.9762,  0.4324,  1.0445]],
+
+        [[ 1.2358,  0.5255, -0.7722],
+         [ 0.1307, -0.4794, -0.3173],
+         [-0.9911, -0.1073, -0.0195],
+         [-0.7777,  0.2133,  0.3605]]])
+
+Actual tensor:
+tensor([[[-1.1250, -1.0938, -0.0933],
+         [-0.8398, -0.7500,  0.6211],
+         [-0.2461, -1.8828,  1.9453],
+         [-0.0203,  1.6484,  0.3438]],
+
+        [[-0.6816,  0.0146,  0.9346],
+         [ 0.3388, -0.6152, -0.1133],
+         [ 2.0781, -0.1226,  1.5898],
+         [-0.8086, -1.9805,  2.4414]],
+
+        [[-1.2119,  1.0508, -0.8062],
+         [-0.3496, -1.1162, -2.0664],
+         [-2.5146, -0.6277, -0.2096],
+         [ 1.4453, -0.7227, -0.1582]],
+
+        [[ 2.0352, -0.1875, -0.2256],
+         [-1.3320, -1.5010,  0.1006],
+         [ 1.0850, -0.9414,  2.2305],
+         [ 1.9766,  0.4326,  1.0439]],
+
+        [[ 1.2344,  0.5273, -0.7734],
+         [ 0.1309, -0.4785, -0.3164],
+         [-0.9922, -0.1074, -0.0195],
+         [-0.7773,  0.2129,  0.3613]]])
+
+Tolerance Suggestions:
+  Loose check failed.
+  Optimal tight tolerances (with 1.2x safety margin):
+    - rtol >= 0.0032007418189324253 (3.3e-03)
+    - atol >= 0.002220654487609864 (2.3e-03)
+
+To execute this test, run the following from the base repo dir:
+    python ops_unit_test.py OpsUnitTest.test_unfold_backward_float32_precision
+
+This message can be suppressed by setting PYTORCH_PRINT_REPRO_ON_FAILURE=0
+
+----------------------------------------------------------------------
+Ran 1 test in 0.888s
+
+FAILED (failures=1)
+I0000 00:00:1794988505.283998  349179 compilation_cache.cc:376] Compilation cache evicted.
+I0000 00:00:1794988505.284053  349179 compilation_cache.cc:231] CompilationCache final stats: num_cache_reqs=1
+num_cache_hits=0 {0.0%}
+num_compilations=1
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+
+================================================================================
+[22,841 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 18 of 50); 1s disk-cache, processwrapper-sandbox ... (43 actions, 1 running)
+[22,841 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 18 of 50); 11s disk-cache, processwrapper-sandbox ... (43 actions, 1 running)
+[22,841 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 18 of 50); 14s disk-cache, processwrapper-sandbox ... (43 actions, 2 running)
+[22,842 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 22 of 50); 1s disk-cache, processwrapper-sandbox ... (42 actions, 1 running)
+[22,842 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 22 of 50); 11s disk-cache, processwrapper-sandbox ... (42 actions, 1 running)
+[22,842 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 22 of 50); 14s disk-cache, processwrapper-sandbox ... (42 actions, 2 running)
+[22,843 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 14 of 50); 1s disk-cache, processwrapper-sandbox ... (41 actions, 1 running)
+[22,843 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 14 of 50); 11s disk-cache, processwrapper-sandbox ... (41 actions, 1 running)
+[22,843 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 14 of 50); 14s disk-cache, processwrapper-sandbox ... (41 actions, 2 running)
+[22,844 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 30 of 50); 1s disk-cache, processwrapper-sandbox ... (40 actions, 1 running)
+[22,844 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 30 of 50); 11s disk-cache, processwrapper-sandbox ... (40 actions, 1 running)
+[22,844 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 30 of 50); 14s disk-cache, processwrapper-sandbox ... (40 actions, 2 running)
+[22,845 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 48 of 50); 1s disk-cache, processwrapper-sandbox ... (39 actions, 1 running)
+[22,845 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 48 of 50); 11s disk-cache, processwrapper-sandbox ... (39 actions, 1 running)
+[22,845 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 48 of 50); 14s disk-cache, processwrapper-sandbox ... (39 actions, 2 running)
+[22,846 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 10 of 50); 1s disk-cache, processwrapper-sandbox ... (38 actions, 1 running)
+[22,846 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 10 of 50); 12s disk-cache, processwrapper-sandbox ... (38 actions, 1 running)
+[22,846 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 10 of 50); 14s disk-cache, processwrapper-sandbox ... (38 actions, 2 running)
+[22,847 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 9 of 50); 1s disk-cache, processwrapper-sandbox ... (37 actions, 1 running)
+[22,847 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 9 of 50); 12s disk-cache, processwrapper-sandbox ... (37 actions, 1 running)
+[22,847 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 9 of 50); 14s disk-cache, processwrapper-sandbox ... (37 actions, 2 running)
+[22,848 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 24 of 50); 1s disk-cache, processwrapper-sandbox ... (36 actions, 1 running)
+[22,848 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 24 of 50); 12s disk-cache, processwrapper-sandbox ... (36 actions, 1 running)
+[22,848 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 24 of 50); 14s disk-cache, processwrapper-sandbox ... (36 actions, 2 running)
+[22,849 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 8 of 50); 1s disk-cache, processwrapper-sandbox ... (35 actions, 1 running)
+[22,849 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 8 of 50); 11s disk-cache, processwrapper-sandbox ... (35 actions, 1 running)
+[22,849 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 8 of 50); 14s disk-cache, processwrapper-sandbox ... (35 actions, 2 running)
+[22,850 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 34 of 50); 1s disk-cache, processwrapper-sandbox ... (34 actions, 1 running)
+[22,850 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 34 of 50); 11s disk-cache, processwrapper-sandbox ... (34 actions, 1 running)
+[22,850 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 34 of 50); 14s disk-cache, processwrapper-sandbox ... (34 actions, 2 running)
+[22,851 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 29 of 50); 1s disk-cache, processwrapper-sandbox ... (33 actions, 1 running)
+[22,851 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 29 of 50); 11s disk-cache, processwrapper-sandbox ... (33 actions, 1 running)
+[22,851 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 29 of 50); 14s disk-cache, processwrapper-sandbox ... (33 actions, 2 running)
+[22,852 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 42 of 50); 1s disk-cache, processwrapper-sandbox ... (32 actions, 1 running)
+[22,852 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 42 of 50); 11s disk-cache, processwrapper-sandbox ... (32 actions, 1 running)
+[22,852 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 42 of 50); 14s disk-cache, processwrapper-sandbox ... (32 actions, 2 running)
+[22,853 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 33 of 50); 1s disk-cache, processwrapper-sandbox ... (31 actions, 1 running)
+[22,853 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 33 of 50); 11s disk-cache, processwrapper-sandbox ... (31 actions, 1 running)
+[22,853 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 33 of 50); 14s disk-cache, processwrapper-sandbox ... (31 actions, 2 running)
+[22,854 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 12 of 50); 1s disk-cache, processwrapper-sandbox ... (30 actions, 1 running)
+[22,854 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 12 of 50); 12s disk-cache, processwrapper-sandbox ... (30 actions, 1 running)
+[22,854 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 12 of 50); 14s disk-cache, processwrapper-sandbox ... (30 actions, 2 running)
+[22,855 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 7 of 50); 1s disk-cache, processwrapper-sandbox ... (29 actions, 1 running)
+[22,855 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 7 of 50); 11s disk-cache, processwrapper-sandbox ... (29 actions, 1 running)
+[22,855 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 7 of 50); 14s disk-cache, processwrapper-sandbox ... (29 actions, 2 running)
+[22,856 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 31 of 50); 1s disk-cache, processwrapper-sandbox ... (28 actions, 1 running)
+[22,856 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 31 of 50); 11s disk-cache, processwrapper-sandbox ... (28 actions, 1 running)
+[22,856 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 31 of 50); 14s disk-cache, processwrapper-sandbox ... (28 actions, 2 running)
+[22,857 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 50 of 50); 1s disk-cache, processwrapper-sandbox ... (27 actions, 1 running)
+[22,857 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 50 of 50); 11s disk-cache, processwrapper-sandbox ... (27 actions, 1 running)
+[22,857 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 50 of 50); 14s disk-cache, processwrapper-sandbox ... (27 actions, 2 running)
+[22,858 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 27 of 50); 1s disk-cache, processwrapper-sandbox ... (26 actions, 1 running)
+[22,858 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 27 of 50); 11s disk-cache, processwrapper-sandbox ... (26 actions, 1 running)
+[22,858 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 27 of 50); 14s disk-cache, processwrapper-sandbox ... (26 actions, 2 running)
+[22,859 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 26 of 50); 1s disk-cache, processwrapper-sandbox ... (25 actions, 1 running)
+[22,859 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 26 of 50); 12s disk-cache, processwrapper-sandbox ... (25 actions, 1 running)
+[22,859 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 26 of 50); 15s disk-cache, processwrapper-sandbox ... (25 actions, 2 running)
+[22,860 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 44 of 50); 1s disk-cache, processwrapper-sandbox ... (24 actions, 1 running)
+[22,860 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 44 of 50); 11s disk-cache, processwrapper-sandbox ... (24 actions, 1 running)
+[22,860 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 44 of 50); 14s disk-cache, processwrapper-sandbox ... (24 actions, 2 running)
+[22,861 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 11 of 50); 1s disk-cache, processwrapper-sandbox ... (23 actions, 1 running)
+[22,861 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 11 of 50); 11s disk-cache, processwrapper-sandbox ... (23 actions, 1 running)
+[22,861 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 11 of 50); 14s disk-cache, processwrapper-sandbox ... (23 actions, 2 running)
+[22,862 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 1 of 50); 1s disk-cache, processwrapper-sandbox ... (22 actions, 1 running)
+[22,862 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 1 of 50); 11s disk-cache, processwrapper-sandbox ... (22 actions, 1 running)
+[22,862 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 1 of 50); 16s disk-cache, processwrapper-sandbox ... (22 actions, 2 running)
+[22,863 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 20 of 50); 1s disk-cache, processwrapper-sandbox ... (21 actions, 1 running)
+[22,863 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 20 of 50); 11s disk-cache, processwrapper-sandbox ... (21 actions, 1 running)
+[22,863 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 20 of 50); 14s disk-cache, processwrapper-sandbox ... (21 actions, 2 running)
+[22,864 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 15 of 50); 1s disk-cache, processwrapper-sandbox ... (20 actions, 1 running)
+[22,864 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 15 of 50); 11s disk-cache, processwrapper-sandbox ... (20 actions, 1 running)
+[22,864 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 15 of 50); 14s disk-cache, processwrapper-sandbox ... (20 actions, 2 running)
+[22,865 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 46 of 50); 1s disk-cache, processwrapper-sandbox ... (19 actions, 1 running)
+[22,865 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 46 of 50); 11s disk-cache, processwrapper-sandbox ... (19 actions, 1 running)
+[22,865 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 46 of 50); 14s disk-cache, processwrapper-sandbox ... (19 actions, 2 running)
+[22,866 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 38 of 50); 1s disk-cache, processwrapper-sandbox ... (18 actions, 1 running)
+[22,866 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 38 of 50); 12s disk-cache, processwrapper-sandbox ... (18 actions, 1 running)
+[22,866 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 38 of 50); 14s disk-cache, processwrapper-sandbox ... (18 actions, 2 running)
+[22,867 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 47 of 50); 1s disk-cache, processwrapper-sandbox ... (17 actions, 1 running)
+[22,867 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 47 of 50); 11s disk-cache, processwrapper-sandbox ... (17 actions, 1 running)
+[22,867 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 47 of 50); 14s disk-cache, processwrapper-sandbox ... (17 actions, 2 running)
+[22,868 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 35 of 50); 1s disk-cache, processwrapper-sandbox ... (16 actions, 1 running)
+[22,868 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 35 of 50); 11s disk-cache, processwrapper-sandbox ... (16 actions, 1 running)
+[22,868 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 35 of 50); 14s disk-cache, processwrapper-sandbox ... (16 actions, 2 running)
+[22,869 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 2 of 50); 1s disk-cache, processwrapper-sandbox ... (15 actions, 1 running)
+[22,869 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 2 of 50); 11s disk-cache, processwrapper-sandbox ... (15 actions, 1 running)
+[22,869 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 2 of 50); 16s disk-cache, processwrapper-sandbox ... (15 actions, 2 running)
+FAIL: //tests:ops_unit_test_tpu-v5lite (shard 2 of 50) (Exit 1) (see /root/.cache/bazel/_bazel_root/b22706bbcc663ee80795d6c8e2a2a715/execroot/_main/bazel-out/k8-opt/testlogs/tests/ops_unit_test_tpu-v5lite/shard_2_of_50/test.log)
+INFO: From Testing //tests:ops_unit_test_tpu-v5lite (shard 2 of 50):
+==================== Test output for //tests:ops_unit_test_tpu-v5lite (shard 2 of 50):
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794988927.730156  354350 pjrt_api.cc:119] GetPjrtApi was found for TPU at /root/.cache/bazel/_bazel_root/b22706bbcc663ee80795d6c8e2a2a715/sandbox/processwrapper-sandbox/13921/execroot/_main/bazel-out/k8-opt/bin/tests/ops_unit_test_tpu-v5lite.runfiles/_main/tests/_ops_unit_test_tpu-v5lite.venv/lib/python3.14/site-packages/libtpu/libtpu.so
+I0000 00:00:1794988927.741551  354350 tpu_profiler_plugin.cc:808] PyTorch PrivateUse1ProfilerRegistry not found (expected on PyTorch < 2.12); registering the TPU profiler with Kineto directly.
+I0000 00:00:1794988930.088559  354350 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794988930.096319  354350 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/root/.cache/bazel/_bazel_root/b22706bbcc663ee80795d6c8e2a2a715/sandbox/processwrapper-sandbox/13921/execroot/_main/bazel-out/k8-opt/bin/tests/ops_unit_test_tpu-v5lite.runfiles/_main/torch_tpu_py_import_unpacked_wheel/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+Running tests under Python 3.14.10: /root/.cache/bazel/_bazel_root/b22706bbcc663ee80795d6c8e2a2a715/sandbox/processwrapper-sandbox/13921/execroot/_main/bazel-out/k8-opt/bin/tests/ops_unit_test_tpu-v5lite.runfiles/_main/tests/_ops_unit_test_tpu-v5lite.venv/bin/python3
+I1118 08:02:12.223553 135011916973888 absltest.py:2299] Randomizing test order with seed: 3467840587
+I1118 08:02:12.223662 135011916973888 absltest.py:2301] To reproduce this order, re-run with --test_randomize_ordering_seed=3467840587
+I1118 08:02:12.224516 135011916973888 absltest.py:2299] Randomizing test order with seed: 3467840587
+I1118 08:02:12.224562 135011916973888 absltest.py:2301] To reproduce this order, re-run with --test_randomize_ordering_seed=3467840587
+I1118 08:02:12.229403 135011916973888 absltest.py:2299] Randomizing test order with seed: 3467840587
+I1118 08:02:12.229451 135011916973888 absltest.py:2301] To reproduce this order, re-run with --test_randomize_ordering_seed=3467840587
+I1118 08:02:12.234681 135011916973888 absltest.py:2299] Randomizing test order with seed: 3467840587
+I1118 08:02:12.234725 135011916973888 absltest.py:2301] To reproduce this order, re-run with --test_randomize_ordering_seed=3467840587
+I1118 08:02:12.234974 135011916973888 absltest.py:2299] Randomizing test order with seed: 3467840587
+I1118 08:02:12.235013 135011916973888 absltest.py:2301] To reproduce this order, re-run with --test_randomize_ordering_seed=3467840587
+Repro with --test_random_seed=1234
+[ RUN      ] OpsUnitTest.test_col2im_fold_float32_precision
+I0000 00:00:1794988932.240111  354350 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.118.
+I0000 00:00:1794988932.866212  354350 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+I0000 00:00:1794988932.881370  354614 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1794988932.881391  354614 tier2_compilation_cache.cc:80] Tier-2 compilation cache is disabled for world size 1.
+[  FAILED  ] OpsUnitTest.test_col2im_fold_float32_precision
+======================================================================
+FAIL: test_col2im_fold_float32_precision (__main__.OpsUnitTest)
+OpsUnitTest.test_col2im_fold_float32_precision
+Tests that float32 col2im does not round its input to bfloat16.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/.cache/bazel/_bazel_root/b22706bbcc663ee80795d6c8e2a2a715/sandbox/processwrapper-sandbox/13921/execroot/_main/bazel-out/k8-opt/bin/tests/ops_unit_test_tpu-v5lite.runfiles/_main/tests/_ops_unit_test_tpu-v5lite.venv/lib/python3.14/site-packages/torch/testing/_internal/common_utils.py", line 3364, in wrapper
+    method(*args, **kwargs)
+    ~~~~~~^^^^^^^^^^^^^^^^^
+  File "/root/.cache/bazel/_bazel_root/b22706bbcc663ee80795d6c8e2a2a715/sandbox/processwrapper-sandbox/13921/execroot/_main/bazel-out/k8-opt/bin/tests/ops_unit_test_tpu-v5lite.runfiles/_main/tests/ops_unit_test.py", line 4377, in test_col2im_fold_float32_precision
+    self.assert_close_tpu_vs_cpu(test_fn)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/root/.cache/bazel/_bazel_root/b22706bbcc663ee80795d6c8e2a2a715/sandbox/processwrapper-sandbox/13921/execroot/_main/bazel-out/k8-opt/bin/tests/ops_unit_test_tpu-v5lite.runfiles/_main/torch_tpu_py_import_unpacked_wheel/tests/op_testing.py", line 6673, in assert_close_tpu_vs_cpu
+    self.assert_close(
+    ~~~~~~~~~~~~~~~~~^
+        golden_result=cpu_result,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        atol=atol,
+        ^^^^^^^^^^
+    )
+    ^
+  File "/root/.cache/bazel/_bazel_root/b22706bbcc663ee80795d6c8e2a2a715/sandbox/processwrapper-sandbox/13921/execroot/_main/bazel-out/k8-opt/bin/tests/ops_unit_test_tpu-v5lite.runfiles/_main/torch_tpu_py_import_unpacked_wheel/tests/op_testing.py", line 6589, in assert_close
+    test_utils.assert_close(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        actual=torch_tpu_result,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+        preamble=preamble or "Comparing TorchTPU to golden result",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/root/.cache/bazel/_bazel_root/b22706bbcc663ee80795d6c8e2a2a715/sandbox/processwrapper-sandbox/13921/execroot/_main/bazel-out/k8-opt/bin/tests/ops_unit_test_tpu-v5lite.runfiles/_main/torch_tpu_py_import_unpacked_wheel/torch_tpu/_internal/utils/test_utils.py", line 172, in assert_close
+    _assert_tensor_close(
+    ~~~~~~~~~~~~~~~~~~~~^
+        actual=actual,
+        ^^^^^^^^^^^^^^
+    ...<4 lines>...
+        check_value=check_value,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/root/.cache/bazel/_bazel_root/b22706bbcc663ee80795d6c8e2a2a715/sandbox/processwrapper-sandbox/13921/execroot/_main/bazel-out/k8-opt/bin/tests/ops_unit_test_tpu-v5lite.runfiles/_main/torch_tpu_py_import_unpacked_wheel/torch_tpu/_internal/utils/test_utils.py", line 740, in _assert_tensor_close
+    _raw_assert_tensor_close(
+    ~~~~~~~~~~~~~~~~~~~~~~~~^
+        actual=actual,
+        ^^^^^^^^^^^^^^
+    ...<3 lines>...
+        msg=msg_handler,
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/root/.cache/bazel/_bazel_root/b22706bbcc663ee80795d6c8e2a2a715/sandbox/processwrapper-sandbox/13921/execroot/_main/bazel-out/k8-opt/bin/tests/ops_unit_test_tpu-v5lite.runfiles/_main/torch_tpu_py_import_unpacked_wheel/torch_tpu/_internal/utils/test_utils.py", line 265, in _raw_assert_tensor_close
+    torch.testing.assert_close(  # TORCH_ASSERT_CLOSE_OK=root usage
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        actual=actual,
+        ^^^^^^^^^^^^^^
+    ...<5 lines>...
+        msg=msg,
+        ^^^^^^^^
+    )
+    ^
+  File "/root/.cache/bazel/_bazel_root/b22706bbcc663ee80795d6c8e2a2a715/sandbox/processwrapper-sandbox/13921/execroot/_main/bazel-out/k8-opt/bin/tests/ops_unit_test_tpu-v5lite.runfiles/_main/tests/_ops_unit_test_tpu-v5lite.venv/lib/python3.14/site-packages/torch/testing/_comparison.py", line 1600, in assert_close
+    raise error_metas[0].to_error(msg)
+AssertionError: Comparing TorchTPU to golden result
+Tensor-likes are not close!
+
+Mismatched elements: 179 / 180 (99.4%)
+Greatest absolute difference: 0.015598297119140625 at index (1, 0, 3, 2) (up to 1e-05 allowed)
+Greatest relative difference: 0.21085363626480103 at index (1, 0, 2, 0) (up to 1.3e-06 allowed)
+    at index (1, 0, 3, 2), expected=2.6328392028808594, actual=2.6484375, relative diff=0.005924515891820192, diff=0.015598297119140625
+    at index (1, 0, 2, 0), expected=0.004032537341117859, actual=0.0048828125, relative diff=0.21085363626480103, diff=0.0008502751588821411
+
+Expected tensor:
+tensor([[[[-1.1258e+00, -1.3996e+00, -1.6032e+00, -2.1298e+00,  1.4154e+00,
+            7.9351e-01],
+          [ 1.6383e+00,  1.7414e+00, -5.7528e+00, -1.5742e+00, -5.7610e-01,
+            1.6230e+00],
+          [-9.3279e-01, -5.1613e-01,  9.8944e-01,  2.3950e+00,  1.8456e+00,
+            2.9354e+00],
+          [ 8.1766e-01,  1.4148e+00,  1.2410e+00, -1.5200e+00,  4.6120e+00,
+            4.2524e+00],
+          [-4.7312e-01, -6.4483e-02, -5.8986e-01, -1.9159e-01, -7.2584e-01,
+            2.3025e+00]],
+
+         [[-1.8817e+00,  2.7160e-02, -7.0697e-01, -5.0210e-01,  4.9047e-01,
+           -8.6537e-01],
+          [ 8.7388e-02,  9.0035e-01, -4.4250e-01, -1.6042e-01, -2.3853e+00,
+           -1.3168e+00],
+          [-1.6496e+00, -1.5258e+00,  2.0413e+00, -7.2075e-01, -2.4340e+00,
+           -1.0250e-01],
+          [-6.7415e-01, -1.4040e-01,  1.5295e+00,  1.4748e+00,  1.5459e+00,
+            6.2741e-01],
+          [ 9.6715e-01, -2.3873e+00,  2.3546e-01, -4.6567e-01, -5.6311e-01,
+           -3.5464e-01]],
+
+         [[ 1.0811e+00,  5.2606e-01,  1.7450e+00,  1.6575e+00, -1.3657e+00,
+            1.0216e+00],
+          [ 2.4246e-01,  3.8080e+00, -1.8786e+00,  2.4256e+00, -1.0393e+00,
+            1.2999e+00],
+          [-3.9501e+00, -3.0936e+00,  3.8306e-02, -2.7016e+00,  2.5538e+00,
+           -7.8740e-01],
+          [ 1.7711e-01,  1.9901e+00, -3.2740e+00,  5.1696e-01,  1.6532e+00,
+           -1.8467e+00],
+          [ 9.0682e-01,  9.1901e-01, -2.7384e-01, -3.3811e-01,  1.5368e+00,
+           -1.3271e+00]]],
+
+
+        [[[ 1.6953e+00,  1.7488e+00,  7.0634e-01, -4.3964e-01,  1.1389e+00,
+            7.9176e-01],
+          [ 1.7311e+00, -4.2341e+00,  2.3342e+00, -1.0814e+00, -2.8856e+00,
+           -1.9511e-01],
+          [ 4.0325e-03, -6.9519e-01, -2.0467e+00, -3.1674e+00,  6.4123e-01,
+            2.5352e+00],
+          [-1.3357e+00,  2.5944e+00,  2.6328e+00,  4.6164e-01, -6.3782e-01,
+            2.3706e+00],
+          [ 3.8265e-01,  6.9668e-01, -8.7896e-01,  2.9652e+00,  2.4094e+00,
+            1.3007e+00]],
+
+         [[ 8.7323e-01,  7.2242e-01,  4.6202e-01, -1.5321e+00, -1.3712e+00,
+           -1.2721e+00],
+          [-5.8776e-03, -2.7069e-01,  4.1383e+00,  3.3948e+00,  3.4477e+00,
+           -9.2349e-01],
+          [-1.4567e+00,  2.5025e+00,  5.6156e+00,  7.1784e-01, -1.6603e+00,
+            4.8155e-01],
+          [-4.9295e-01,  2.9732e+00,  2.1143e+00,  2.9823e-01, -1.0204e+00,
+            2.0014e+00],
+          [ 9.6469e-01, -1.7638e+00,  3.8357e+00,  9.8443e-01, -1.6846e+00,
+           -2.5686e-02]],
+
+         [[ 1.8024e+00, -2.6641e+00,  2.8155e+00,  3.1718e-02, -3.7686e-02,
+           -9.6455e-02],
+          [ 1.1821e+00,  2.7560e-01, -4.7293e-01, -1.5916e+00,  6.1619e-01,
+           -1.8646e+00],
+          [ 2.7285e+00,  2.7470e+00, -2.3419e+00, -4.7335e-01,  3.8404e+00,
+           -2.4535e+00],
+          [ 1.2458e+00, -2.4934e-01, -4.2348e+00,  1.6560e+00, -1.4678e+00,
+           -1.5407e+00],
+          [-7.7354e-01,  6.9620e-01, -1.3099e+00,  3.1574e+00, -6.3277e-01,
+            3.2598e-01]]]])
+
+Actual tensor:
+tensor([[[[-1.1250e+00, -1.4033e+00, -1.6016e+00, -2.1289e+00,  1.4141e+00,
+            7.9297e-01],
+          [ 1.6367e+00,  1.7344e+00, -5.7461e+00, -1.5740e+00, -5.7812e-01,
+            1.6211e+00],
+          [-9.3359e-01, -5.1758e-01,  9.8584e-01,  2.3945e+00,  1.8457e+00,
+            2.9336e+00],
+          [ 8.1934e-01,  1.4146e+00,  1.2422e+00, -1.5217e+00,  4.6103e+00,
+            4.2500e+00],
+          [-4.7266e-01, -6.4453e-02, -5.9375e-01, -1.9336e-01, -7.2656e-01,
+            2.2969e+00]],
+
+         [[-1.8828e+00,  2.6855e-02, -7.0898e-01, -5.0195e-01,  4.9048e-01,
+           -8.6719e-01],
+          [ 8.9844e-02,  9.0430e-01, -4.4043e-01, -1.6113e-01, -2.3877e+00,
+           -1.3149e+00],
+          [-1.6465e+00, -1.5256e+00,  2.0459e+00, -7.2266e-01, -2.4307e+00,
+           -1.0303e-01],
+          [-6.7383e-01, -1.3867e-01,  1.5293e+00,  1.4736e+00,  1.5488e+00,
+            6.2793e-01],
+          [ 9.6875e-01, -2.3906e+00,  2.3486e-01, -4.6484e-01, -5.6250e-01,
+           -3.5547e-01]],
+
+         [[ 1.0781e+00,  5.2637e-01,  1.7422e+00,  1.6562e+00, -1.3652e+00,
+            1.0234e+00],
+          [ 2.4219e-01,  3.8047e+00, -1.8770e+00,  2.4297e+00, -1.0410e+00,
+            1.3008e+00],
+          [-3.9453e+00, -3.0898e+00,  4.0771e-02, -2.6963e+00,  2.5508e+00,
+           -7.8711e-01],
+          [ 1.7676e-01,  1.9939e+00, -3.2744e+00,  5.1807e-01,  1.6572e+00,
+           -1.8433e+00],
+          [ 9.0625e-01,  9.1602e-01, -2.7344e-01, -3.3789e-01,  1.5410e+00,
+           -1.3281e+00]]],
+
+
+        [[[ 1.6953e+00,  1.7461e+00,  7.0703e-01, -4.4141e-01,  1.1367e+00,
+            7.9297e-01],
+          [ 1.7285e+00, -4.2354e+00,  2.3398e+00, -1.0806e+00, -2.8867e+00,
+           -1.9531e-01],
+          [ 4.8828e-03, -6.9141e-01, -2.0419e+00, -3.1592e+00,  6.4453e-01,
+            2.5391e+00],
+          [-1.3354e+00,  2.5977e+00,  2.6484e+00,  4.6338e-01, -6.3477e-01,
+            2.3672e+00],
+          [ 3.8281e-01,  6.9922e-01, -8.7695e-01,  2.9609e+00,  2.4082e+00,
+            1.2969e+00]],
+
+         [[ 8.7500e-01,  7.2119e-01,  4.6289e-01, -1.5312e+00, -1.3711e+00,
+           -1.2734e+00],
+          [-5.8594e-03, -2.7344e-01,  4.1426e+00,  3.3867e+00,  3.4492e+00,
+           -9.2383e-01],
+          [-1.4609e+00,  2.5000e+00,  5.6172e+00,  7.1094e-01, -1.6587e+00,
+            4.7852e-01],
+          [-4.9414e-01,  2.9775e+00,  2.1156e+00,  2.9297e-01, -1.0156e+00,
+            2.0029e+00],
+          [ 9.6484e-01, -1.7617e+00,  3.8281e+00,  9.8242e-01, -1.6816e+00,
+           -2.5635e-02]],
+
+         [[ 1.8047e+00, -2.6641e+00,  2.8203e+00,  3.1250e-02, -3.7109e-02,
+           -9.6680e-02],
+          [ 1.1797e+00,  2.7441e-01, -4.7461e-01, -1.5918e+00,  6.1810e-01,
+           -1.8633e+00],
+          [ 2.7334e+00,  2.7466e+00, -2.3467e+00, -4.7095e-01,  3.8457e+00,
+           -2.4561e+00],
+          [ 1.2480e+00, -2.5293e-01, -4.2357e+00,  1.6602e+00, -1.4663e+00,
+           -1.5371e+00],
+          [-7.7344e-01,  6.9775e-01, -1.3096e+00,  3.1641e+00, -6.3281e-01,
+            3.2617e-01]]]])
+
+Tolerance Suggestions:
+  Loose check failed.
+  Optimal tight tolerances (with 1.2x safety margin):
+    - rtol >= 0.007109418806316587 (7.2e-03)
+    - atol >= 0.008284449577331545 (8.3e-03)
+
+To execute this test, run the following from the base repo dir:
+    python ops_unit_test.py OpsUnitTest.test_col2im_fold_float32_precision
+
+This message can be suppressed by setting PYTORCH_PRINT_REPRO_ON_FAILURE=0
+
+----------------------------------------------------------------------
+Ran 1 test in 0.889s
+
+FAILED (failures=1)
+I0000 00:00:1794988934.126675  354350 compilation_cache.cc:376] Compilation cache evicted.
+I0000 00:00:1794988934.126727  354350 compilation_cache.cc:231] CompilationCache final stats: num_cache_reqs=1
+num_cache_hits=0 {0.0%}
+num_compilations=1
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+
+================================================================================
+[22,870 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 43 of 50); 1s disk-cache, processwrapper-sandbox ... (14 actions, 1 running)
+[22,870 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 43 of 50); 11s disk-cache, processwrapper-sandbox ... (14 actions, 1 running)
+[22,870 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 43 of 50); 15s disk-cache, processwrapper-sandbox ... (14 actions, 2 running)
+[22,871 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 28 of 50); 1s disk-cache, processwrapper-sandbox ... (13 actions, 1 running)
+[22,871 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 28 of 50); 12s disk-cache, processwrapper-sandbox ... (13 actions, 1 running)
+[22,871 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 28 of 50); 14s disk-cache, processwrapper-sandbox ... (13 actions, 2 running)
+[22,872 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 19 of 50); 1s disk-cache, processwrapper-sandbox ... (12 actions, 1 running)
+[22,872 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 19 of 50); 11s disk-cache, processwrapper-sandbox ... (12 actions, 1 running)
+[22,872 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 19 of 50); 14s disk-cache, processwrapper-sandbox ... (12 actions, 2 running)
+[22,873 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 41 of 50); 1s disk-cache, processwrapper-sandbox ... (11 actions, 1 running)
+[22,873 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 41 of 50); 12s disk-cache, processwrapper-sandbox ... (11 actions, 1 running)
+[22,873 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 41 of 50); 15s disk-cache, processwrapper-sandbox ... (11 actions, 2 running)
+[22,874 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 16 of 50); 1s disk-cache, processwrapper-sandbox ... (10 actions, 1 running)
+[22,874 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 16 of 50); 11s disk-cache, processwrapper-sandbox ... (10 actions, 1 running)
+[22,874 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 16 of 50); 14s disk-cache, processwrapper-sandbox ... (10 actions, 2 running)
+[22,875 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 23 of 50); 1s disk-cache, processwrapper-sandbox ... (9 actions, 1 running)
+[22,875 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 23 of 50); 11s disk-cache, processwrapper-sandbox ... (9 actions, 1 running)
+[22,875 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 23 of 50); 14s disk-cache, processwrapper-sandbox ... (9 actions, 2 running)
+[22,876 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 40 of 50); 1s disk-cache, processwrapper-sandbox ... (8 actions, 1 running)
+[22,876 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 40 of 50); 11s disk-cache, processwrapper-sandbox ... (8 actions, 1 running)
+[22,876 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 40 of 50); 14s disk-cache, processwrapper-sandbox ... (8 actions, 2 running)
+[22,877 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 37 of 50); 1s disk-cache, processwrapper-sandbox ... (7 actions, 1 running)
+[22,877 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 37 of 50); 11s disk-cache, processwrapper-sandbox ... (7 actions, 1 running)
+[22,877 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 37 of 50); 14s disk-cache, processwrapper-sandbox ... (7 actions, 2 running)
+[22,878 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 13 of 50); 1s disk-cache, processwrapper-sandbox ... (6 actions, 1 running)
+[22,878 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 13 of 50); 11s disk-cache, processwrapper-sandbox ... (6 actions, 1 running)
+[22,878 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 13 of 50); 14s disk-cache, processwrapper-sandbox ... (6 actions, 2 running)
+[22,879 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 6 of 50); 1s disk-cache, processwrapper-sandbox ... (5 actions, 1 running)
+[22,879 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 6 of 50); 11s disk-cache, processwrapper-sandbox ... (5 actions, 1 running)
+[22,879 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 6 of 50); 14s disk-cache, processwrapper-sandbox ... (5 actions, 2 running)
+[22,880 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 36 of 50); 1s disk-cache, processwrapper-sandbox ... (4 actions, 1 running)
+[22,880 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 36 of 50); 11s disk-cache, processwrapper-sandbox ... (4 actions, 1 running)
+[22,880 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 36 of 50); 14s disk-cache, processwrapper-sandbox ... (4 actions, 2 running)
+[22,881 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 49 of 50); 1s disk-cache, processwrapper-sandbox ... (3 actions, 1 running)
+[22,881 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 49 of 50); 11s disk-cache, processwrapper-sandbox ... (3 actions, 1 running)
+[22,881 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 49 of 50); 14s disk-cache, processwrapper-sandbox ... (3 actions, 2 running)
+[22,882 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 5 of 50); 1s disk-cache, processwrapper-sandbox ... (2 actions, 1 running)
+[22,882 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 5 of 50); 11s disk-cache, processwrapper-sandbox ... (2 actions, 1 running)
+[22,882 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 5 of 50); 14s disk-cache, processwrapper-sandbox ... (2 actions running)
+[22,883 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 3 of 50); 1s disk-cache, processwrapper-sandbox
+[22,883 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 3 of 50); 11s disk-cache, processwrapper-sandbox
+FAIL: //tests:ops_unit_test_tpu-v5lite (shard 3 of 50) (Exit 1) (see /root/.cache/bazel/_bazel_root/b22706bbcc663ee80795d6c8e2a2a715/execroot/_main/bazel-out/k8-opt/testlogs/tests/ops_unit_test_tpu-v5lite/shard_3_of_50/test.log)
+
+FAILED: //tests:ops_unit_test_tpu-v5lite (Summary)
+      /root/.cache/bazel/_bazel_root/b22706bbcc663ee80795d6c8e2a2a715/execroot/_main/bazel-out/k8-opt/testlogs/tests/ops_unit_test_tpu-v5lite/shard_4_of_50/test.log
+      /root/.cache/bazel/_bazel_root/b22706bbcc663ee80795d6c8e2a2a715/execroot/_main/bazel-out/k8-opt/testlogs/tests/ops_unit_test_tpu-v5lite/shard_2_of_50/test.log
+      /root/.cache/bazel/_bazel_root/b22706bbcc663ee80795d6c8e2a2a715/execroot/_main/bazel-out/k8-opt/testlogs/tests/ops_unit_test_tpu-v5lite/shard_3_of_50/test.log
+INFO: From Testing //tests:ops_unit_test_tpu-v5lite (shard 3 of 50):
+==================== Test output for //tests:ops_unit_test_tpu-v5lite (shard 3 of 50):
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794989137.226202  356855 pjrt_api.cc:119] GetPjrtApi was found for TPU at /root/.cache/bazel/_bazel_root/b22706bbcc663ee80795d6c8e2a2a715/sandbox/processwrapper-sandbox/13922/execroot/_main/bazel-out/k8-opt/bin/tests/ops_unit_test_tpu-v5lite.runfiles/_main/tests/_ops_unit_test_tpu-v5lite.venv/lib/python3.14/site-packages/libtpu/libtpu.so
+I0000 00:00:1794989137.238155  356855 tpu_profiler_plugin.cc:808] PyTorch PrivateUse1ProfilerRegistry not found (expected on PyTorch < 2.12); registering the TPU profiler with Kineto directly.
+I0000 00:00:1794989139.684020  356855 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794989139.692158  356855 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/root/.cache/bazel/_bazel_root/b22706bbcc663ee80795d6c8e2a2a715/sandbox/processwrapper-sandbox/13922/execroot/_main/bazel-out/k8-opt/bin/tests/ops_unit_test_tpu-v5lite.runfiles/_main/torch_tpu_py_import_unpacked_wheel/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+Running tests under Python 3.14.10: /root/.cache/bazel/_bazel_root/b22706bbcc663ee80795d6c8e2a2a715/sandbox/processwrapper-sandbox/13922/execroot/_main/bazel-out/k8-opt/bin/tests/ops_unit_test_tpu-v5lite.runfiles/_main/tests/_ops_unit_test_tpu-v5lite.venv/bin/python3
+I1118 08:05:41.810874 132433112688448 absltest.py:2299] Randomizing test order with seed: 3053223561
+I1118 08:05:41.810984 132433112688448 absltest.py:2301] To reproduce this order, re-run with --test_randomize_ordering_seed=3053223561
+I1118 08:05:41.811817 132433112688448 absltest.py:2299] Randomizing test order with seed: 3053223561
+I1118 08:05:41.811862 132433112688448 absltest.py:2301] To reproduce this order, re-run with --test_randomize_ordering_seed=3053223561
+I1118 08:05:41.816610 132433112688448 absltest.py:2299] Randomizing test order with seed: 3053223561
+I1118 08:05:41.816658 132433112688448 absltest.py:2301] To reproduce this order, re-run with --test_randomize_ordering_seed=3053223561
+I1118 08:05:41.821784 132433112688448 absltest.py:2299] Randomizing test order with seed: 3053223561
+I1118 08:05:41.821828 132433112688448 absltest.py:2301] To reproduce this order, re-run with --test_randomize_ordering_seed=3053223561
+I1118 08:05:41.822084 132433112688448 absltest.py:2299] Randomizing test order with seed: 3053223561
+I1118 08:05:41.822124 132433112688448 absltest.py:2301] To reproduce this order, re-run with --test_randomize_ordering_seed=3053223561
+Repro with --test_random_seed=1234
+[ RUN      ] OpsUnitTest.test_im2col_backward_float32_precision
+I0000 00:00:1794989141.827243  356855 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.118.
+I0000 00:00:1794989142.467828  356855 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+I0000 00:00:1794989142.483991  357127 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1794989142.484017  357127 tier2_compilation_cache.cc:80] Tier-2 compilation cache is disabled for world size 1.
+[  FAILED  ] OpsUnitTest.test_im2col_backward_float32_precision
+======================================================================
+FAIL: test_im2col_backward_float32_precision (__main__.OpsUnitTest)
+OpsUnitTest.test_im2col_backward_float32_precision
+Tests that the float32 gradient of F.unfold is not bfloat16-accurate.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/.cache/bazel/_bazel_root/b22706bbcc663ee80795d6c8e2a2a715/sandbox/processwrapper-sandbox/13922/execroot/_main/bazel-out/k8-opt/bin/tests/ops_unit_test_tpu-v5lite.runfiles/_main/tests/_ops_unit_test_tpu-v5lite.venv/lib/python3.14/site-packages/torch/testing/_internal/common_utils.py", line 3364, in wrapper
+    method(*args, **kwargs)
+    ~~~~~~^^^^^^^^^^^^^^^^^
+  File "/root/.cache/bazel/_bazel_root/b22706bbcc663ee80795d6c8e2a2a715/sandbox/processwrapper-sandbox/13922/execroot/_main/bazel-out/k8-opt/bin/tests/ops_unit_test_tpu-v5lite.runfiles/_main/tests/ops_unit_test.py", line 4395, in test_im2col_backward_float32_precision
+    self.assert_close_tpu_vs_cpu(test_fn)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/root/.cache/bazel/_bazel_root/b22706bbcc663ee80795d6c8e2a2a715/sandbox/processwrapper-sandbox/13922/execroot/_main/bazel-out/k8-opt/bin/tests/ops_unit_test_tpu-v5lite.runfiles/_main/torch_tpu_py_import_unpacked_wheel/tests/op_testing.py", line 6673, in assert_close_tpu_vs_cpu
+    self.assert_close(
+    ~~~~~~~~~~~~~~~~~^
+        golden_result=cpu_result,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        atol=atol,
+        ^^^^^^^^^^
+    )
+    ^
+  File "/root/.cache/bazel/_bazel_root/b22706bbcc663ee80795d6c8e2a2a715/sandbox/processwrapper-sandbox/13922/execroot/_main/bazel-out/k8-opt/bin/tests/ops_unit_test_tpu-v5lite.runfiles/_main/torch_tpu_py_import_unpacked_wheel/tests/op_testing.py", line 6589, in assert_close
+    test_utils.assert_close(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        actual=torch_tpu_result,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+        preamble=preamble or "Comparing TorchTPU to golden result",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/root/.cache/bazel/_bazel_root/b22706bbcc663ee80795d6c8e2a2a715/sandbox/processwrapper-sandbox/13922/execroot/_main/bazel-out/k8-opt/bin/tests/ops_unit_test_tpu-v5lite.runfiles/_main/torch_tpu_py_import_unpacked_wheel/torch_tpu/_internal/utils/test_utils.py", line 172, in assert_close
+    _assert_tensor_close(
+    ~~~~~~~~~~~~~~~~~~~~^
+        actual=actual,
+        ^^^^^^^^^^^^^^
+    ...<4 lines>...
+        check_value=check_value,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/root/.cache/bazel/_bazel_root/b22706bbcc663ee80795d6c8e2a2a715/sandbox/processwrapper-sandbox/13922/execroot/_main/bazel-out/k8-opt/bin/tests/ops_unit_test_tpu-v5lite.runfiles/_main/torch_tpu_py_import_unpacked_wheel/torch_tpu/_internal/utils/test_utils.py", line 740, in _assert_tensor_close
+    _raw_assert_tensor_close(
+    ~~~~~~~~~~~~~~~~~~~~~~~~^
+        actual=actual,
+        ^^^^^^^^^^^^^^
+    ...<3 lines>...
+        msg=msg_handler,
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/root/.cache/bazel/_bazel_root/b22706bbcc663ee80795d6c8e2a2a715/sandbox/processwrapper-sandbox/13922/execroot/_main/bazel-out/k8-opt/bin/tests/ops_unit_test_tpu-v5lite.runfiles/_main/torch_tpu_py_import_unpacked_wheel/torch_tpu/_internal/utils/test_utils.py", line 265, in _raw_assert_tensor_close
+    torch.testing.assert_close(  # TORCH_ASSERT_CLOSE_OK=root usage
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        actual=actual,
+        ^^^^^^^^^^^^^^
+    ...<5 lines>...
+        msg=msg,
+        ^^^^^^^^
+    )
+    ^
+  File "/root/.cache/bazel/_bazel_root/b22706bbcc663ee80795d6c8e2a2a715/sandbox/processwrapper-sandbox/13922/execroot/_main/bazel-out/k8-opt/bin/tests/ops_unit_test_tpu-v5lite.runfiles/_main/tests/_ops_unit_test_tpu-v5lite.venv/lib/python3.14/site-packages/torch/testing/_comparison.py", line 1600, in assert_close
+    raise error_metas[0].to_error(msg)
+AssertionError: Comparing TorchTPU to golden result
+Tensor-likes are not close!
+
+Mismatched elements: 252 / 252 (100.0%)
+Greatest absolute difference: 0.012919902801513672 at index (0, 0, 2, 3) (up to 1e-05 allowed)
+Greatest relative difference: 0.2066689431667328 at index (1, 0, 4, 0) (up to 1.3e-06 allowed)
+    at index (0, 0, 2, 3), expected=5.423603534698486, actual=5.4365234375, relative diff=0.0023821620270609856, diff=0.012919902801513672
+    at index (1, 0, 4, 0), expected=0.025897741317749023, actual=0.03125, relative diff=0.2066689431667328, diff=0.0053522586822509766
+
+Expected tensor:
+tensor([[[[ 2.0372e+00,  1.2018e+00, -6.7361e-01, -1.5809e-01, -5.6808e-01,
+           -4.6226e-01, -1.1980e+00],
+          [-5.3528e-01,  1.6984e+00,  2.0170e+00,  1.2146e+00, -4.8803e+00,
+            3.2437e+00,  2.3192e+00],
+          [ 1.5844e+00,  1.5044e+00,  3.2925e+00,  5.4236e+00,  6.4963e+00,
+           -1.9581e+00,  2.1021e+00],
+          [ 3.7784e+00,  6.2665e-01, -2.0395e+00, -1.3596e+00, -4.4198e-01,
+            4.5091e-01, -9.7591e-01],
+          [-8.3314e-01,  1.4272e+00, -1.3709e+00, -1.8609e+00,  2.4381e+00,
+            1.3537e+00,  1.2949e+00],
+          [-2.2318e+00, -2.7848e+00, -9.6271e-01,  4.1194e-01, -7.2291e-01,
+            2.2570e+00,  1.2516e+00]],
+
+         [[-1.1991e+00,  6.1838e-02,  2.4491e+00, -1.7732e+00,  2.4641e-01,
+           -2.1130e+00,  1.6156e+00],
+          [-2.2567e+00, -9.1223e-01, -2.6280e-01, -3.5875e+00, -3.2378e+00,
+            2.1563e+00,  2.8610e-02],
+          [ 5.6109e-01,  2.6565e+00,  5.4382e+00, -2.7186e+00,  1.1849e+00,
+            1.7703e-01, -1.6789e+00],
+          [ 8.7624e-02,  2.8368e+00, -6.2682e+00, -3.4091e+00,  1.4807e+00,
+           -3.8876e+00, -2.0903e+00],
+          [-1.1229e-01, -5.6684e-03,  2.4469e+00,  3.8850e+00,  1.8800e+00,
+           -1.2920e+00,  1.1946e+00],
+          [-1.5686e+00, -5.2108e-02,  8.7485e-01, -1.5869e+00, -4.0442e+00,
+           -1.9253e-01, -7.4956e-01]],
+
+         [[ 2.1706e-01,  9.3202e-01, -1.2066e+00, -3.7090e+00,  4.9870e-01,
+           -2.2833e+00,  9.5440e-01],
+          [ 8.1441e-01, -8.4662e-01, -2.8454e+00, -3.9713e-01, -2.5040e+00,
+            2.7556e+00,  1.0564e+00],
+          [-4.1449e-01,  1.7928e+00,  3.9480e-01,  3.3634e+00, -1.3864e+00,
+           -2.7009e+00,  8.8645e-01],
+          [-6.8512e-01,  3.4975e+00,  2.1617e+00,  6.1409e+00,  1.2150e+00,
+           -2.8081e+00,  6.1665e-01],
+          [ 3.2980e-01,  2.0796e+00,  4.1473e+00, -2.9647e+00, -4.7282e+00,
+           -1.9520e+00,  3.4799e-01],
+          [-4.0975e-01, -4.2014e-01,  4.7299e-01, -1.9322e-01,  4.1399e-01,
+           -6.2639e-02,  9.9808e-01]]],
+
+
+        [[[-8.4993e-01, -1.5732e+00,  5.4199e-01, -5.6427e-01,  1.3152e+00,
+            8.2424e-01,  1.5435e+00],
+          [ 4.2805e-01, -1.7330e+00, -3.5319e-02, -1.2704e+00, -2.8642e+00,
+            9.5599e-01,  1.2881e+00],
+          [-2.3668e-01,  3.0567e+00,  2.2954e+00,  5.0456e+00, -3.2211e+00,
+           -2.8274e+00, -2.9439e+00],
+          [ 1.0938e+00,  1.0498e+00, -2.0107e+00, -3.7089e-01,  1.2016e+00,
+           -1.6528e+00,  9.1953e-01],
+          [ 2.5898e-02, -2.3139e+00, -4.6154e+00, -6.1211e-01,  5.8092e+00,
+            1.4778e+00, -2.8427e-01],
+          [-4.3334e-01,  6.1471e-01,  2.1069e+00, -9.3381e-01,  1.0906e+00,
+            1.1959e+00,  4.5213e-01]],
+
+         [[-7.4666e-01, -5.4553e-02, -6.4268e-01, -1.9391e+00, -2.5333e+00,
+           -1.7031e+00,  2.7499e-01],
+          [ 7.7394e-01, -1.2083e+00, -6.9146e-01,  1.4932e+00, -1.3612e+00,
+           -2.1805e+00,  6.0491e-01],
+          [ 8.9241e-01,  1.7813e+00, -3.8231e-01,  1.1410e+00,  4.1789e-01,
+            1.4736e+00, -2.3042e-01],
+          [-2.8879e+00, -1.6294e+00,  8.1871e-01, -1.6730e+00, -1.7269e+00,
+           -2.5946e+00, -2.1203e+00],
+          [ 1.9954e-02,  1.1208e+00,  3.5322e+00,  1.6352e+00, -3.1212e+00,
+            1.5785e+00,  2.5095e+00],
+          [ 2.7018e-01,  1.0026e+00, -1.0463e+00,  1.4631e+00, -3.6156e-01,
+           -7.0526e-01, -1.1659e+00]],
+
+         [[-5.4809e-01, -1.0804e+00,  1.0980e-01,  3.1191e+00,  3.6105e+00,
+           -3.2192e-01,  1.0616e+00],
+          [-1.3946e-01,  2.0402e+00,  1.4366e+00,  3.8533e+00,  4.6238e+00,
+           -2.6986e+00,  3.3177e-01],
+          [ 8.5683e-01,  3.3105e+00,  3.2307e+00, -1.7266e+00, -3.4299e+00,
+           -1.8165e+00, -6.0126e-01],
+          [-2.9696e+00, -9.1572e-01, -2.4214e+00,  2.9076e+00, -2.0883e+00,
+            2.9353e-01,  1.8537e+00],
+          [-1.7121e-01, -1.4463e+00,  2.5861e+00, -1.9578e+00,  5.4783e-01,
+            2.6298e+00, -1.6849e+00],
+          [-2.3390e-01,  1.9864e-01, -2.3413e+00, -7.8187e-01, -2.9817e-02,
+            5.9708e-01, -2.4556e+00]]]])
+
+Actual tensor:
+tensor([[[[ 2.0312,  1.2031, -0.6758, -0.1572, -0.5664, -0.4648, -1.1953],
+          [-0.5352,  1.6924,  2.0142,  1.2227, -4.8691,  3.2441,  2.3203],
+          [ 1.5820,  1.5098,  3.2988,  5.4365,  6.5022, -1.9512,  2.0957],
+          [ 3.7710,  0.6230, -2.0469, -1.3577, -0.4469,  0.4507, -0.9766],
+          [-0.8359,  1.4297, -1.3711, -1.8550,  2.4492,  1.3550,  1.2930],
+          [-2.2344, -2.7891, -0.9648,  0.4116, -0.7214,  2.2578,  1.2500]],
+
+         [[-1.1953,  0.0618,  2.4509, -1.7773,  0.2467, -2.1172,  1.6172],
+          [-2.2522, -0.9141, -0.2617, -3.5924, -3.2344,  2.1567,  0.0283],
+          [ 0.5654,  2.6582,  5.4371, -2.7180,  1.1836,  0.1777, -1.6816],
+          [ 0.0859,  2.8340, -6.2681, -3.4131,  1.4847, -3.8870, -2.0879],
+          [-0.1094, -0.0068,  2.4458,  3.8877,  1.8838, -1.2969,  1.1953],
+          [-1.5703, -0.0518,  0.8755, -1.5840, -4.0430, -0.1914, -0.7500]],
+
+         [[ 0.2168,  0.9316, -1.2031, -3.7075,  0.4980, -2.2852,  0.9531],
+          [ 0.8145, -0.8438, -2.8340, -0.3936, -2.5059,  2.7598,  1.0566],
+          [-0.4141,  1.7891,  0.3889,  3.3613, -1.3843, -2.6978,  0.8882],
+          [-0.6836,  3.4941,  2.1604,  6.1328,  1.2147, -2.8096,  0.6152],
+          [ 0.3291,  2.0822,  4.1428, -2.9551, -4.7295, -1.9531,  0.3496],
+          [-0.4102, -0.4209,  0.4741, -0.1931,  0.4150, -0.0626,  1.0000]]],
+
+
+        [[[-0.8516, -1.5703,  0.5352, -0.5645,  1.3164,  0.8281,  1.5469],
+          [ 0.4277, -1.7383, -0.0356, -1.2676, -2.8637,  0.9543,  1.2849],
+          [-0.2412,  3.0601,  2.2888,  5.0425, -3.2168, -2.8311, -2.9375],
+          [ 1.0942,  1.0527, -2.0078, -0.3702,  1.1909, -1.6497,  0.9219],
+          [ 0.0312, -2.3152, -4.6230, -0.6152,  5.8027,  1.4736, -0.2842],
+          [-0.4336,  0.6152,  2.1088, -0.9341,  1.0922,  1.1985,  0.4512]],
+
+         [[-0.7461, -0.0547, -0.6445, -1.9336, -2.5371, -1.6992,  0.2754],
+          [ 0.7759, -1.2109, -0.6904,  1.4917, -1.3594, -2.1782,  0.6016],
+          [ 0.8961,  1.7859, -0.3838,  1.1440,  0.4158,  1.4763, -0.2324],
+          [-2.8945, -1.6326,  0.8165, -1.6780, -1.7268, -2.5879, -2.1172],
+          [ 0.0205,  1.1235,  3.5339,  1.6348, -3.1204,  1.5742,  2.5156],
+          [ 0.2695,  1.0029, -1.0498,  1.4639, -0.3613, -0.7053, -1.1641]],
+
+         [[-0.5469, -1.0801,  0.1094,  3.1133,  3.6084, -0.3223,  1.0625],
+          [-0.1387,  2.0430,  1.4346,  3.8486,  4.6152, -2.6943,  0.3326],
+          [ 0.8555,  3.3062,  3.2285, -1.7227, -3.4199, -1.8142, -0.6025],
+          [-2.9636, -0.9170, -2.4220,  2.9043, -2.0861,  0.2964,  1.8555],
+          [-0.1719, -1.4497,  2.5898, -1.9514,  0.5449,  2.6289, -1.6875],
+          [-0.2344,  0.1953, -2.3457, -0.7852, -0.0303,  0.5996, -2.4531]]]])
+
+Tolerance Suggestions:
+  Loose check failed.
+  Optimal tight tolerances (with 1.2x safety margin):
+    - rtol >= 0.01067779277361259 (1.1e-02)
+    - atol >= 0.008204698562622072 (8.3e-03)
+
+To execute this test, run the following from the base repo dir:
+    python ops_unit_test.py OpsUnitTest.test_im2col_backward_float32_precision
+
+This message can be suppressed by setting PYTORCH_PRINT_REPRO_ON_FAILURE=0
+
+----------------------------------------------------------------------
+Ran 1 test in 1.027s
+
+FAILED (failures=1)
+I0000 00:00:1794989143.853338  356855 compilation_cache.cc:376] Compilation cache evicted.
+I0000 00:00:1794989143.853396  356855 compilation_cache.cc:231] CompilationCache final stats: num_cache_reqs=2
+num_cache_hits=0 {0.0%}
+num_compilations=2
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+
+================================================================================
+INFO: Found 1 test target...
+Target //tests:ops_unit_test_tpu-v5lite up-to-date:
+  bazel-bin/tests/ops_unit_test_tpu-v5lite
+INFO: Elapsed time: 747.822s, Critical Path: 745.14s
+INFO: 51 processes: 2355 action cache hit, 1 internal, 50 processwrapper-sandbox.
+INFO: Build completed, 1 test FAILED, 51 total actions
+//tests:ops_unit_test_tpu-v5lite                                         FAILED in 3 out of 50 in 16.7s
+  Stats over 50 runs: max = 16.7s, min = 14.2s, avg = 14.5s, dev = 0.6s
+  /root/.cache/bazel/_bazel_root/b22706bbcc663ee80795d6c8e2a2a715/execroot/_main/bazel-out/k8-opt/testlogs/tests/ops_unit_test_tpu-v5lite/shard_4_of_50/test.log
+  /root/.cache/bazel/_bazel_root/b22706bbcc663ee80795d6c8e2a2a715/execroot/_main/bazel-out/k8-opt/testlogs/tests/ops_unit_test_tpu-v5lite/shard_2_of_50/test.log
+  /root/.cache/bazel/_bazel_root/b22706bbcc663ee80795d6c8e2a2a715/execroot/_main/bazel-out/k8-opt/testlogs/tests/ops_unit_test_tpu-v5lite/shard_3_of_50/test.log
+
+Executed 1 out of 1 test: 1 fails locally.
+There were tests whose specified size is too big. Use the --test_verbose_timeout_warnings command line option to see which ones these are.
+rc=3

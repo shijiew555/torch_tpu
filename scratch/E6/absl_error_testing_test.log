@@ -1,0 +1,66 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794972025.251043  132285 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794972026.223940  132285 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794972026.225426  132285 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/usr/local/lib/python3.13/dist-packages/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+Running tests under Python 3.13.18: /usr/bin/python3
+Repro with --test_random_seed=1234
+[ RUN      ] ErrorTestBaseTest.test_gpu_crashes_or_raises_forward_error
+I0000 00:00:1794972026.248650  132285 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794972027.024749  132285 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+[       OK ] ErrorTestBaseTest.test_gpu_crashes_or_raises_forward_error
+[ RUN      ] ErrorTestBaseTest.test_gpu_crashes_or_raises_forward_success
+[       OK ] ErrorTestBaseTest.test_gpu_crashes_or_raises_forward_success
+[ RUN      ] ErrorTestBaseTest.test_gpu_crashes_or_raises_subprocess_arbitrary_error
+[       OK ] ErrorTestBaseTest.test_gpu_crashes_or_raises_subprocess_arbitrary_error
+[ RUN      ] ErrorTestBaseTest.test_gpu_crashes_or_raises_subprocess_crash
+[       OK ] ErrorTestBaseTest.test_gpu_crashes_or_raises_subprocess_crash
+[ RUN      ] ErrorTestBaseTest.test_gpu_crashes_or_raises_subprocess_no_exception_raised
+[       OK ] ErrorTestBaseTest.test_gpu_crashes_or_raises_subprocess_no_exception_raised
+[ RUN      ] ErrorTestBaseTest.test_subprocess_crash
+[       OK ] ErrorTestBaseTest.test_subprocess_crash
+[ RUN      ] ErrorTestBaseTest.test_subprocess_error
+[       OK ] ErrorTestBaseTest.test_subprocess_error
+[ RUN      ] ErrorTestBaseTest.test_subprocess_failure
+[       OK ] ErrorTestBaseTest.test_subprocess_failure
+[ RUN      ] ErrorTestBaseTest.test_subprocess_no_payload
+[       OK ] ErrorTestBaseTest.test_subprocess_no_payload
+[ RUN      ] ErrorTestBaseTest.test_subprocess_success
+[       OK ] ErrorTestBaseTest.test_subprocess_success
+Repro with --test_random_seed=1234
+[ RUN      ] ErrorTestingTest.test_append_error_test_failure_protocol
+[       OK ] ErrorTestingTest.test_append_error_test_failure_protocol
+[ RUN      ] ErrorTestingTest.test_assert_raises_message_raises_no_exception_raised_error
+[       OK ] ErrorTestingTest.test_assert_raises_message_raises_no_exception_raised_error
+[ RUN      ] ErrorTestingTest.test_gpu_crashes_or_raises_sets_attribute
+[       OK ] ErrorTestingTest.test_gpu_crashes_or_raises_sets_attribute
+[ RUN      ] ErrorTestingTest.test_gpu_crashes_or_raises_validation
+[       OK ] ErrorTestingTest.test_gpu_crashes_or_raises_validation
+[ RUN      ] ErrorTestingTest.test_gpu_crashes_or_raises_works_for_parameterized_tests
+[       OK ] ErrorTestingTest.test_gpu_crashes_or_raises_works_for_parameterized_tests
+[ RUN      ] ErrorTestingTest.test_standalone_method_in_parameterized_test_enforces_decorator
+[       OK ] ErrorTestingTest.test_standalone_method_in_parameterized_test_enforces_decorator
+[ RUN      ] ErrorTestingTest.test_tpu_only_error_test_base_enforces_decorator
+[       OK ] ErrorTestingTest.test_tpu_only_error_test_base_enforces_decorator
+[ RUN      ] ErrorTestingTest.test_tpu_only_error_test_base_rejects_gpu_crashes_or_raises
+[       OK ] ErrorTestingTest.test_tpu_only_error_test_base_rejects_gpu_crashes_or_raises
+[ RUN      ] ErrorTestingTest.test_why_tpu_only_validation
+[       OK ] ErrorTestingTest.test_why_tpu_only_validation
+[ RUN      ] ErrorTestingTest.test_why_tpu_only_works_for_parameterized_tests
+[       OK ] ErrorTestingTest.test_why_tpu_only_works_for_parameterized_tests
+----------------------------------------------------------------------
+Ran 20 tests in 0.848s
+
+OK
+I0000 00:00:1794972027.094023  132285 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794972027.094057  132285 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=0
+num_cache_hits=0 {NA}
+num_compilations=0
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

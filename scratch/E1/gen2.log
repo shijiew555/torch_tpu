@@ -1,0 +1,39 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794971805.978969  122803 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794971806.975769  122803 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794971806.977329  122803 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/usr/local/lib/python3.13/dist-packages/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+I0000 00:00:1794971808.615739  122803 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794971809.563273  122803 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+I0000 00:00:1794971812.420652  123108 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1794971812.420692  123108 tier2_compilation_cache.cc:81] Tier-2 compilation cache is disabled for world size 1.
+mistral generate match=True t=3.1s
+gemma2 generate match=True t=2.9s
+gemma3 generate match=True t=0.9s
+[transformers] Model config: eos_token_id must be `None` or an integer within the vocabulary (between 0 and 255), got 32000. This may result in unexpected behavior.
+phi3 generate match=True t=2.7s
+mixtral generate match=False t=1.5s
+ cpu [[58, 50, 107, 157, 193, 136, 162, 246, 212, 36, 147, 30, 31, 218, 121, 180, 83, 83, 83, 83, 83, 83, 83, 83, 83, 83, 83, 83, 33, 52], [0, 0, 0, 250, 140, 207, 47, 156, 137, 154, 110, 162, 63, 26, 56, 164, 255, 119, 9, 147, 110, 52, 63, 26, 149, 169, 201, 169, 134, 74]] 
+ tpu [[58, 50, 107, 157, 193, 136, 162, 246, 212, 36, 147, 30, 31, 218, 121, 180, 83, 83, 83, 83, 83, 83, 83, 83, 83, 83, 83, 83, 33, 52], [0, 0, 0, 250, 140, 207, 47, 156, 137, 154, 110, 162, 63, 26, 56, 164, 255, 119, 9, 147, 110, 52, 122, 21, 169, 201, 169, 134, 166, 43]]
+qwen3moe generate match=False t=0.8s
+[transformers] Model config: bos_token_id must be `None` or an integer within the vocabulary (between 0 and 255), got 50256. This may result in unexpected behavior.
+[transformers] Model config: eos_token_id must be `None` or an integer within the vocabulary (between 0 and 255), got 50256. This may result in unexpected behavior.
+[transformers] Passing `generation_config` together with generation-related arguments=({'suppress_tokens', 'begin_suppress_tokens'}) is deprecated and will be removed in future versions. Please pass either a `generation_config` object OR all generation parameters explicitly, but not both.
+[transformers] Both `max_new_tokens` (=20) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=20) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+ cpu [[58, 50, 107, 157, 193, 136, 162, 246, 212, 36, 211, 125, 30, 114, 46, 65, 232, 179, 164, 92, 132, 130, 228, 30, 6, 224, 207, 132, 130, 228], [0, 0, 0, 250, 140, 207, 47, 156, 137, 154, 168, 70, 40, 179, 207, 160, 209, 165, 253, 179, 207, 160, 235, 227, 103, 118, 51, 202, 171, 139]] 
+ tpu [[58, 50, 107, 157, 193, 136, 162, 246, 212, 36, 211, 125, 30, 114, 46, 65, 232, 179, 164, 92, 132, 130, 228, 30, 6, 224, 207, 132, 130, 228], [0, 0, 0, 250, 140, 207, 47, 156, 137, 154, 168, 70, 40, 179, 207, 160, 209, 165, 253, 179, 231, 43, 96, 168, 146, 30, 128, 29, 15, 15]]
+whisper generate match=True t=2.0s
+bart generate match=True t=2.4s
+I0000 00:00:1794971899.356996  122803 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794971899.357474  122803 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=24046
+num_cache_hits=22954 {95.4%}
+num_compilations=1092
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

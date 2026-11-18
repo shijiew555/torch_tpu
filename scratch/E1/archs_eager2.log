@@ -1,0 +1,32 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794971456.378555  114063 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794971461.872550  114063 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794971461.874572  114063 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/usr/local/lib/python3.13/dist-packages/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+I0000 00:00:1794971463.737366  114063 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794971464.589358  114063 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+I0000 00:00:1794971483.285785  114622 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1794971483.285822  114622 tier2_compilation_cache.cc:81] Tier-2 compilation cache is disabled for world size 1.
+roberta eager loss cpu=1.10678 tpu=1.10685 worst_rel_grad_norm_diff=5.06e-03(roberta.encoder.layer.1.output.dense.weight) grad_none_mismatch=0 t=0.9s
+/usr/local/lib/python3.13/dist-packages/torch/jit/_script.py:1491: FutureWarning: `torch.jit.script` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+deberta eager loss cpu=1.08931 tpu=1.08923 worst_rel_grad_norm_diff=5.96e-03(deberta.encoder.layer.0.attention.self.value_proj.weight) grad_none_mismatch=0 t=2.2s
+vit eager loss cpu=2.17891 tpu=2.17885 worst_rel_grad_norm_diff=6.66e-03(vit.layers.1.layernorm_after.weight) grad_none_mismatch=0 t=0.3s
+[transformers] Model config: bos_token_id must be `None` or an integer within the vocabulary (between 0 and 255), got 49406. This may result in unexpected behavior.
+[transformers] Model config: eos_token_id must be `None` or an integer within the vocabulary (between 0 and 255), got 49407. This may result in unexpected behavior.
+clip eager loss cpu=0.77723 tpu=0.77619 worst_rel_grad_norm_diff=1.32e-02(text_model.final_layer_norm.bias) grad_none_mismatch=0 t=0.7s
+bart eager loss cpu=5.59043 tpu=5.59048 worst_rel_grad_norm_diff=4.34e-03(model.decoder.layers.1.self_attn.v_proj.weight) grad_none_mismatch=0 t=0.5s
+resnet eager loss cpu=2.48661 tpu=2.48771 worst_rel_grad_norm_diff=5.54e-01(resnet.encoder.stages.0.layers.0.layer.0.normalization.weight) grad_none_mismatch=0 t=1.0s
+convnext eager loss cpu=2.43056 tpu=2.43063 worst_rel_grad_norm_diff=7.78e-03(convnext.embeddings.patch_embeddings.bias) grad_none_mismatch=0 t=0.8s
+I0000 00:00:1794971514.616894  114063 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794971514.617561  114063 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=1024
+num_cache_hits=610 {59.5%}
+num_compilations=414
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

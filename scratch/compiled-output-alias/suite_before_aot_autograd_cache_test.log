@@ -1,0 +1,97 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794986682.094734  313297 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794986683.113734  313297 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794986683.118735  313297 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/root/torch_tpu/.claude/tmp/compiled-output-alias/ov/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+Running tests under Python 3.13.18: /usr/bin/python3
+Repro with --test_random_seed=1234
+[ RUN      ] AotAutogradCacheTest.test_fallback_key_entry_stays_in_memory
+[  SKIPPED ] AotAutogradCacheTest.test_fallback_key_entry_stays_in_memory
+Repro with --test_random_seed=1234
+[ RUN      ] ParentAotAutogradCacheTest.test_fallback_entries_not_persisted_across_process_starts
+I1118 07:24:43.374380 133720592916608 subprocess_test_utils.py:226] Running subtest FALLBACK in subprocess for isolation.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794986685.349322  313365 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794986686.402278  313365 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794986686.407492  313365 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+Running tests under Python 3.13.18: /usr/bin/python3
+faulthandler.register(SIGTERM) failed UnsupportedOperation('QueueWriter does not have a fileno'); ignoring.
+Repro with --test_random_seed=1234
+[ RUN      ] __mp_main__.AotAutogradCacheTest.test_fallback_key_entry_stays_in_memory
+I0000 00:00:1794986686.431814  313365 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794986687.152271  313365 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+I1118 07:24:47.334981 138230838071424 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 07:24:47.334981 138230838071424 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[W1118 07:24:47.434568032 precision_context.cc:84] Warning: //TorchTpu/Performance// TPU is using HIGHEST precision as requested, but performance may be significantly lower. Consider using torch.set_float32_matmul_precision('medium') for better performance. (function operator())
+[W1118 07:24:47.462313300 env_vars.h:456] Warning: //TorchTpu/ApiStage/ExperimentalApi// the TORCH_TPU_TIER2_COMPILATION_CACHE environment variable is an experimental feature and may change or be removed without notice. (function operator())
+I0000 00:00:1794986687.393518  313558 tier2_compilation_cache.cc:98] Tier-2 compilation cache is enabled with name 'aot_autograd_cache_test_b07ea05b06fd4b3981618f0195af4dba' as requested by the TORCH_TPU_TIER2_COMPILATION_CACHE environment variable.
+I0000 00:00:1794986687.393533  313558 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1794986687.393560  313605 compilation_cache_utils.cc:101] Tier-2 cache uses TorchTPU binary fingerprint: 648655169b685cf4
+  based on TorchTPU binary version 6 and PjRt version:
+TFRT TPU v5 lite
+Built on Oct 7 2026 00:47:01 (1791359221) cl/994787025
+C API version: 0.116
+[       OK ] __mp_main__.AotAutogradCacheTest.test_fallback_key_entry_stays_in_memory
+----------------------------------------------------------------------
+Ran 1 test in 1.423s
+
+OK
+I0000 00:00:1794986688.853500  313365 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794986688.853573  313365 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=1
+num_cache_hits=0 {0.0%}
+num_compilations=1
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+
+I1118 07:24:50.046335 133720592916608 subprocess_test_utils.py:226] Running subtest FALLBACK in subprocess for isolation.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794986692.036633  313651 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794986693.053389  313651 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794986693.058161  313651 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+Running tests under Python 3.13.18: /usr/bin/python3
+faulthandler.register(SIGTERM) failed UnsupportedOperation('QueueWriter does not have a fileno'); ignoring.
+Repro with --test_random_seed=1234
+[ RUN      ] __mp_main__.AotAutogradCacheTest.test_fallback_key_entry_stays_in_memory
+I0000 00:00:1794986693.082252  313651 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794986693.722924  313651 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+I1118 07:24:53.872742 132219846733952 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 07:24:53.872742 132219846733952 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[W1118 07:24:53.970454453 precision_context.cc:84] Warning: //TorchTpu/Performance// TPU is using HIGHEST precision as requested, but performance may be significantly lower. Consider using torch.set_float32_matmul_precision('medium') for better performance. (function operator())
+[W1118 07:24:53.998215071 env_vars.h:456] Warning: //TorchTpu/ApiStage/ExperimentalApi// the TORCH_TPU_TIER2_COMPILATION_CACHE environment variable is an experimental feature and may change or be removed without notice. (function operator())
+I0000 00:00:1794986693.929417  313862 tier2_compilation_cache.cc:98] Tier-2 compilation cache is enabled with name 'aot_autograd_cache_test_b07ea05b06fd4b3981618f0195af4dba' as requested by the TORCH_TPU_TIER2_COMPILATION_CACHE environment variable.
+I0000 00:00:1794986693.929431  313862 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1794986693.929455  313909 compilation_cache_utils.cc:101] Tier-2 cache uses TorchTPU binary fingerprint: 648655169b685cf4
+  based on TorchTPU binary version 6 and PjRt version:
+TFRT TPU v5 lite
+Built on Oct 7 2026 00:47:01 (1791359221) cl/994787025
+C API version: 0.116
+[       OK ] __mp_main__.AotAutogradCacheTest.test_fallback_key_entry_stays_in_memory
+----------------------------------------------------------------------
+Ran 1 test in 0.872s
+
+OK
+I0000 00:00:1794986694.952482  313651 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794986694.952557  313651 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=1
+num_cache_hits=0 {0.0%}
+num_compilations=0
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+
+[       OK ] ParentAotAutogradCacheTest.test_fallback_entries_not_persisted_across_process_starts
+----------------------------------------------------------------------
+Ran 2 tests in 12.995s
+
+OK (skipped=1)

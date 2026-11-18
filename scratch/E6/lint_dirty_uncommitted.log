@@ -1,0 +1,23 @@
+nox > Running session lint
+nox > Creating virtual environment (uv) using python3 in .nox/lint
+nox > uv pip install clang-format google-re2 ruff
+nox > ci/tools/clang_format.sh lint
+INFO: Running clang-format check...
+INFO: clang-format check passed successfully.
+nox > ci/tools/ruff_lint.sh lint
+INFO: Running ruff check on modified Python files...
+INFO: No modified Python files found in git diff against upstream/main.
+INFO: ruff check passed successfully.
+nox > ci/tools/buildifier_lint.sh lint
+INFO: Running buildifier check on modified Bazel files against upstream/main...
+tests/BUILD:3290: native-cc-library: Function "cc_library" is not global anymore and needs to be loaded from "@rules_cc//cc:cc_library.bzl". (https://github.com/bazelbuild/buildtools/blob/main/WARNINGS.md#native-cc-library)
+tests/BUILD # reformat
+=================================================================
+ERROR: Bazel BUILD/bzl style issues found in modified files.
+=================================================================
+To fix automatically:
+1. Run the formatter directly via nox: nox -e format
+   (or run: ci/tools/buildifier_lint.sh format)
+=================================================================
+nox > Command ci/tools/buildifier_lint.sh lint failed with exit code 1
+nox > Session lint failed.

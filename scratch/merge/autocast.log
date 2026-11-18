@@ -1,0 +1,26 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794978552.399219  233677 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794978553.348862  233677 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794978553.350349  233677 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/usr/local/lib/python3.13/dist-packages/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+I0000 00:00:1794978553.358030  233677 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794978566.031960  233677 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+I0000 00:00:1794978566.044652  233963 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1794978566.044687  233963 tier2_compilation_cache.cc:81] Tier-2 compilation cache is disabled for world size 1.
+torch.tpu._get_autocast_dtype(): torch.bfloat16
+torch.get_autocast_dtype('tpu'): torch.float16
+mm dtype under torch.autocast('tpu'): torch.float16
+mm dtype under torch.autocast('cpu'): torch.bfloat16
+300x300 sum of 4 under autocast('tpu'): inf
+I0000 00:00:1794978567.550562  233677 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794978572.587890  233677 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=12
+num_cache_hits=6 {50.0%}
+num_compilations=6
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

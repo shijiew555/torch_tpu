@@ -1,0 +1,90 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794974201.140260  163732 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794974229.393949  163732 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794974229.402712  163732 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/root/torch_tpu/.claude/tmp/E6/overlay_main/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+torch_tpu file: /root/torch_tpu/.claude/tmp/E6/overlay_main/torch_tpu/__init__.py
+I0000 00:00:1794974229.431505  163732 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794974230.470916  163732 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+===== cond_tensor_pred 
+     return super().__call__(pred, true_fn, false_fn, operands)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/_ops.py", line 549, in __call__
+    return self.dispatch(dispatch_key_set.highestPriorityTypeId(), *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/_ops.py", line 537, in dispatch
+    return kernel(*args, **kwargs)
+  File "/usr/local/lib/python3.13/dist-packages/torch/_higher_order_ops/cond.py", line 309, in cond_op_dense
+    if pred:
+       ^^^^
+torch._dynamo.exc.BackendCompilerFailed: backend='tpu' raised:
+RuntimeError: local_scalar_dense(): cannot materialize a tensor during a stream-isolated copy, materialization requires an active stream
+
+While executing %cond : [num_users=1] = call_function[target=torch.ops.higher_order.cond](args = (%gt_scalar, %true_graph_0, %false_graph_0, (%arg0_1,)), kwargs = {})
+Original traceback:
+  File "/root/torch_tpu/.claude/tmp/E2/sweep3.py", line 51, in f
+    return torch.cond(x.sum() > 0, lambda t: t.sin(), lambda t: t.cos(), (x,))
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Use tlparse to see full graph. (https://github.com/pytorch/tlparse?tab=readme-ov-file#tlparse-parse-structured-pt2-logs)
+
+While executing %submod_0 : [num_users=1] = call_module[target=submod_0](args = (%arg0_1,), kwargs = {})
+Original traceback:
+None
+Use tlparse to see full graph. (https://github.com/pytorch/tlparse?tab=readme-ov-file#tlparse-parse-structured-pt2-logs)
+cond_tensor_pred ERR BackendCompilerFailed: backend='tpu' raised:
+RuntimeError: local_scalar_dense(): cannot materialize a tensor during a stream-isolated copy, materialization requires an active stream
+
+While executing %cond : [num_users=1] = call_function[target=torch.ops.higher_order.cond](args = (%gt_scalar, %true_graph_0, %false_graph_0,
+===== int_item_shape 
+     return x[:k].sum()
+     ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/fx/interpreter.py", line 294, in run_node
+    return getattr(self, n.op)(n.target, args, kwargs)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/fx/interpreter.py", line 377, in call_function
+    return target(*args, **kwargs)
+  File "/usr/local/lib/python3.13/dist-packages/torch/_ops.py", line 916, in __call__
+    return self._op(*args, **kwargs)
+           ~~~~~~~~^^^^^^^^^^^^^^^^^
+torch._dynamo.exc.BackendCompilerFailed: backend='tpu' raised:
+RuntimeError: local_scalar_dense(): cannot Materialize() a placeholder tensor or a tensor that depends on a placeholder. 
+Placeholder tensors should only appear in compiled mode, which should never try to materialize tensors
+
+While executing %_local_scalar_dense_default : [num_users=1] = call_function[target=torch.ops.aten._local_scalar_dense.default](args = (%arg0_1,), kwargs = {})
+Original traceback:
+  File "/root/torch_tpu/.claude/tmp/E2/sweep3.py", line 104, in f
+    k = n.item()
+
+Use tlparse to see full graph. (https://github.com/pytorch/tlparse?tab=readme-ov-file#tlparse-parse-structured-pt2-logs)
+
+While executing %submod_0 : [num_users=1] = call_module[target=submod_0](args = (%arg0_1, %arg1_1), kwargs = {})
+Original traceback:
+None
+Use tlparse to see full graph. (https://github.com/pytorch/tlparse?tab=readme-ov-file#tlparse-parse-structured-pt2-logs)
+int_item_shape ERR BackendCompilerFailed: backend='tpu' raised:
+RuntimeError: local_scalar_dense(): cannot Materialize() a placeholder tensor or a tensor that depends on a placeholder. 
+Placeholder tensors should only appear in compiled mode, which should never try to materialize tensors
+
+While executing %_local_scalar_dense_default : [num_
+
+SUMMARY
+cond_tensor_pred                    ERR BackendCompilerFailed: backend='tpu' raised:
+RuntimeError: local_scalar_dense(): cannot materialize a tensor during a stream-isolated copy, materialization requires an active stream
+
+While executi
+int_item_shape                      ERR BackendCompilerFailed: backend='tpu' raised:
+RuntimeError: local_scalar_dense(): cannot Materialize() a placeholder tensor or a tensor that depends on a placeholder. 
+Placeholder tensors should on
+I0000 00:00:1794974235.488923  163732 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794974235.488972  163732 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=0
+num_cache_hits=0 {NA}
+num_compilations=0
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

@@ -1,0 +1,50 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794975916.838136  179831 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794975917.881084  179831 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794975917.882608  179831 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/usr/local/lib/python3.13/dist-packages/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+FAIL Stream('tpu') -> RuntimeError expected device index to be >= 0, got -1
+I0000 00:00:1794975917.890421  179831 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794975918.578946  179831 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+OK   Stream('tpu:0') -> torch.Stream device_type=tpu, device_index=0, stream_id=1
+FAIL Stream(device=current_accelerator()) -> RuntimeError expected device index to be >= 0, got -1
+OK   accelerator.current_stream('tpu') -> torch.Stream device_type=tpu, device_index=0, stream_id=0
+OK   accelerator.synchronize('tpu') -> None
+I0000 00:00:1794975918.590659  180025 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1794975918.590691  180025 tier2_compilation_cache.cc:81] Tier-2 compilation cache is disabled for world size 1.
+OK   stream ctx -> [2.0, 2.0, 2.0]
+OK   D2H non_blocking + sync -> (True, True)
+OK   D2H non_blocking + event -> True
+/root/torch_tpu/.claude/tmp/E4/probe3.py:30: DeprecationWarning: The argument 'device' of Tensor.pin_memory() is deprecated. Please do not pass this argument. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/native/Memory.cpp:46.)
+  y = x.to(d, non_blocking=True); x.fill_(5); torch.accelerator.synchronize(); return y.cpu()[0,0].item()
+/root/torch_tpu/.claude/tmp/E4/probe3.py:30: DeprecationWarning: The argument 'device' of Tensor.is_pinned() is deprecated. Please do not pass this argument. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/native/Memory.cpp:31.)
+  y = x.to(d, non_blocking=True); x.fill_(5); torch.accelerator.synchronize(); return y.cpu()[0,0].item()
+OK   H2D non_blocking then mutate src (CUDA unpinned => 1.0) -> 1.0
+OK   H2D pinned nb, sync, mutate -> 1.0
+/root/torch_tpu/.claude/tmp/E4/probe3.py:37: DeprecationWarning: The argument 'device' of Tensor.pin_memory() is deprecated. Please do not pass this argument. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/native/Memory.cpp:46.)
+  z = torch.empty(1000, device=d); z.copy_(torch.arange(1000.), non_blocking=True); return torch.equal(z.cpu(), torch.arange(1000.))
+/root/torch_tpu/.claude/tmp/E4/probe3.py:37: DeprecationWarning: The argument 'device' of Tensor.is_pinned() is deprecated. Please do not pass this argument. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/native/Memory.cpp:31.)
+  z = torch.empty(1000, device=d); z.copy_(torch.arange(1000.), non_blocking=True); return torch.equal(z.cpu(), torch.arange(1000.))
+OK   copy_ non_blocking -> True
+OK   DataLoader nw=0 pin -> (2512.0, True)
+/root/torch_tpu/.claude/tmp/E4/probe3.py:45: DeprecationWarning: The argument 'device' of Tensor.pin_memory() is deprecated. Please do not pass this argument. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/native/Memory.cpp:46.)
+  a = a.to(d, non_blocking=True); b = b.to(d, non_blocking=True)
+/root/torch_tpu/.claude/tmp/E4/probe3.py:45: DeprecationWarning: The argument 'device' of Tensor.is_pinned() is deprecated. Please do not pass this argument. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/native/Memory.cpp:31.)
+  a = a.to(d, non_blocking=True); b = b.to(d, non_blocking=True)
+OK   DataLoader nw=2 pin=False -> (2512.0, False)
+OK   DataLoader nw=2 pin=True -> (2512.0, True)
+/usr/local/lib/python3.13/dist-packages/torch/utils/data/dataloader.py:1102: UserWarning: pin_memory_device is deprecated, the current accelerator will be used as the device,ignore pin_memory_device='tpu'.
+  super().__init__(loader)
+OK   DataLoader pin_memory_device=tpu -> 2016.0
+I0000 00:00:1794975923.811206  179831 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794975923.811279  179831 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=47
+num_cache_hits=39 {82.9%}
+num_compilations=8
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

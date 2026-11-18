@@ -1,0 +1,275 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794986756.451532  316799 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794986757.515280  316799 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794986757.520503  316799 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/root/torch_tpu/.claude/tmp/compiled-output-alias/ov/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+Running tests under Python 3.13.18: /usr/bin/python3
+Repro with --test_random_seed=1234
+[ RUN      ] FunctionTest.test_addcdiv_c64
+[  SKIPPED ] FunctionTest.test_addcdiv_c64
+[ RUN      ] FunctionTest.test_compile_duplicate_inputs
+I0000 00:00:1794986757.550698  316799 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794986758.291809  316799 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+I1118 07:25:58.391771 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I0000 00:00:1794986758.407658  316799 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1794986758.407684  316799 tier2_compilation_cache.cc:81] Tier-2 compilation cache is disabled for world size 1.
+I1118 07:25:58.854035 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] FunctionTest.test_compile_duplicate_inputs
+[ RUN      ] FunctionTest.test_compiled_backward_uses_boxed_calling_convention
+I1118 07:25:58.954898 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 07:25:59.013722 137486659479232 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] FunctionTest.test_compiled_backward_uses_boxed_calling_convention
+[ RUN      ] FunctionTest.test_compiled_executable_is_picklable
+[       OK ] FunctionTest.test_compiled_executable_is_picklable
+[ RUN      ] FunctionTest.test_compiled_fn_reused_across_views_with_different_offsets
+I1118 07:25:59.347394 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 07:25:59.463882 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 07:25:59.704605 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 07:25:59.805000 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 07:25:59.840504 137486659479232 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 07:25:59.933408 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 07:25:59.968616 137486659479232 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 07:26:00.033300 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 07:26:00.067492 137486659479232 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] FunctionTest.test_compiled_fn_reused_across_views_with_different_offsets
+[ RUN      ] FunctionTest.test_cpu_tensor_copy_to_tpu
+[  SKIPPED ] FunctionTest.test_cpu_tensor_copy_to_tpu
+[ RUN      ] FunctionTest.test_data_dependent_dynamic_op
+I1118 07:26:00.297800 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 07:26:00.381067 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] FunctionTest.test_data_dependent_dynamic_op
+[ RUN      ] FunctionTest.test_default_behavior_without_name
+I1118 07:26:00.495492 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] FunctionTest.test_default_behavior_without_name
+[ RUN      ] FunctionTest.test_different_storage_offsets
+I1118 07:26:00.573068 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 07:26:00.667325 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] FunctionTest.test_different_storage_offsets
+[ RUN      ] FunctionTest.test_embedded_empty_constants
+I1118 07:26:00.779741 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+/root/torch_tpu/.claude/tmp/compiled-output-alias/ov/torch_tpu/_internal/compile/fx_passes/sink_get_attr_constants.py:85: UserWarning: Attempted to insert a get_attr Node with no underlying reference in the owning GraphModule! Call GraphModule.add_submodule to add the necessary submodule, GraphModule.add_parameter to add the necessary Parameter, or nn.Module.register_buffer to add the necessary buffer
+  get_attr_node = submod.graph.get_attr(attr_name)
+[       OK ] FunctionTest.test_embedded_empty_constants
+[ RUN      ] FunctionTest.test_embedded_non_scalar_tensor
+I1118 07:26:00.885515 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+/root/torch_tpu/.claude/tmp/compiled-output-alias/ov/torch_tpu/_internal/compile/fx_passes/sink_get_attr_constants.py:85: UserWarning: Attempted to insert a get_attr Node with no underlying reference in the owning GraphModule! Call GraphModule.add_submodule to add the necessary submodule, GraphModule.add_parameter to add the necessary Parameter, or nn.Module.register_buffer to add the necessary buffer
+  get_attr_node = submod.graph.get_attr(attr_name)
+[       OK ] FunctionTest.test_embedded_non_scalar_tensor
+[ RUN      ] FunctionTest.test_embedded_scalar_tensor_constants
+I1118 07:26:01.031141 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+/root/torch_tpu/.claude/tmp/compiled-output-alias/ov/torch_tpu/_internal/compile/fx_passes/sink_get_attr_constants.py:85: UserWarning: Attempted to insert a get_attr Node with no underlying reference in the owning GraphModule! Call GraphModule.add_submodule to add the necessary submodule, GraphModule.add_parameter to add the necessary Parameter, or nn.Module.register_buffer to add the necessary buffer
+  get_attr_node = submod.graph.get_attr(attr_name)
+[       OK ] FunctionTest.test_embedded_scalar_tensor_constants
+[ RUN      ] FunctionTest.test_empty_size_zero_tensor
+I1118 07:26:01.132632 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] FunctionTest.test_empty_size_zero_tensor
+[ RUN      ] FunctionTest.test_executable_boxed_calling_convention
+[       OK ] FunctionTest.test_executable_boxed_calling_convention
+[ RUN      ] FunctionTest.test_executable_boxed_single_input
+[       OK ] FunctionTest.test_executable_boxed_single_input
+[ RUN      ] FunctionTest.test_fx_graph_generates_more_than_one_graph_to_compile
+I1118 07:26:01.355620 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 07:26:01.449888 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] FunctionTest.test_fx_graph_generates_more_than_one_graph_to_compile
+[ RUN      ] FunctionTest.test_hlo_naming_default_fallback_on_exception
+[       OK ] FunctionTest.test_hlo_naming_default_fallback_on_exception
+[ RUN      ] FunctionTest.test_hlo_naming_default_with_graph_break
+I1118 07:26:01.548954 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 07:26:01.610374 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] FunctionTest.test_hlo_naming_default_with_graph_break
+[ RUN      ] FunctionTest.test_hlo_naming_default_without_options
+I1118 07:26:01.679052 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 07:26:01.715925 137486659479232 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] FunctionTest.test_hlo_naming_default_without_options
+[ RUN      ] FunctionTest.test_hlo_naming_ignores_name_in_options
+I1118 07:26:01.756845 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] FunctionTest.test_hlo_naming_ignores_name_in_options
+[ RUN      ] FunctionTest.test_hlo_naming_sanitization_pressure_test
+[  SKIPPED ] FunctionTest.test_hlo_naming_sanitization_pressure_test
+[ RUN      ] FunctionTest.test_hlo_naming_with_custom_name
+[  SKIPPED ] FunctionTest.test_hlo_naming_with_custom_name
+[ RUN      ] FunctionTest.test_hlo_naming_with_empty_name
+[  SKIPPED ] FunctionTest.test_hlo_naming_with_empty_name
+[ RUN      ] FunctionTest.test_hlo_naming_with_graph_break_custom_name
+[  SKIPPED ] FunctionTest.test_hlo_naming_with_graph_break_custom_name
+[ RUN      ] FunctionTest.test_inplace_updates
+I1118 07:26:01.813958 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] FunctionTest.test_inplace_updates
+[ RUN      ] FunctionTest.test_input_baked_into_graph
+I1118 07:26:01.907532 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] FunctionTest.test_input_baked_into_graph
+[ RUN      ] FunctionTest.test_input_has_view
+I1118 07:26:02.126251 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] FunctionTest.test_input_has_view
+[ RUN      ] FunctionTest.test_input_is_view
+I1118 07:26:02.245610 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] FunctionTest.test_input_is_view
+[ RUN      ] FunctionTest.test_lerp_scalar_weight_does_not_promote_to_float64
+I1118 07:26:02.345072 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 07:26:02.463075 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 07:26:02.577605 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] FunctionTest.test_lerp_scalar_weight_does_not_promote_to_float64
+[ RUN      ] FunctionTest.test_mixed_eager_compiled_mode
+I1118 07:26:02.724558 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] FunctionTest.test_mixed_eager_compiled_mode
+[ RUN      ] FunctionTest.test_mlir_generates_one_more_input
+I1118 07:26:02.794830 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] FunctionTest.test_mlir_generates_one_more_input
+[ RUN      ] FunctionTest.test_module_with_integer_input
+I1118 07:26:02.852026 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] FunctionTest.test_module_with_integer_input
+[ RUN      ] FunctionTest.test_multi_output_aten_op
+I1118 07:26:02.995249 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] FunctionTest.test_multi_output_aten_op
+[ RUN      ] FunctionTest.test_nested_compile_region_cross_model_reuse
+I1118 07:26:03.140172 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 07:26:03.287499 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] FunctionTest.test_nested_compile_region_cross_model_reuse
+[ RUN      ] FunctionTest.test_nested_compile_region_different_shapes
+I1118 07:26:03.424559 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] FunctionTest.test_nested_compile_region_different_shapes
+[ RUN      ] FunctionTest.test_nested_compile_region_hierarchical
+I1118 07:26:03.657967 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] FunctionTest.test_nested_compile_region_hierarchical
+[ RUN      ] FunctionTest.test_nested_compile_region_missing_argument_error
+[       OK ] FunctionTest.test_nested_compile_region_missing_argument_error
+[ RUN      ] FunctionTest.test_nested_compile_region_module_forward
+I1118 07:26:03.935002 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 07:26:04.048767 137486659479232 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] FunctionTest.test_nested_compile_region_module_forward
+[ RUN      ] FunctionTest.test_nested_compile_region_multi_tensor_outputs
+I1118 07:26:04.212965 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] FunctionTest.test_nested_compile_region_multi_tensor_outputs
+[ RUN      ] FunctionTest.test_nested_compile_region_multiple_functions
+I1118 07:26:04.462446 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 07:26:04.611319 137486659479232 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] FunctionTest.test_nested_compile_region_multiple_functions
+[ RUN      ] FunctionTest.test_nested_compile_region_positional_and_kwargs
+I1118 07:26:04.817812 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] FunctionTest.test_nested_compile_region_positional_and_kwargs
+[ RUN      ] FunctionTest.test_nested_compile_region_positional_vs_keyword_cache_reuse
+I1118 07:26:04.988875 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] FunctionTest.test_nested_compile_region_positional_vs_keyword_cache_reuse
+[ RUN      ] FunctionTest.test_nested_compile_region_simple
+I1118 07:26:05.214047 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 07:26:05.336429 137486659479232 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] FunctionTest.test_nested_compile_region_simple
+[ RUN      ] FunctionTest.test_nested_compile_region_training_backward_reuse
+I1118 07:26:05.542533 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 07:26:05.670274 137486659479232 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] FunctionTest.test_nested_compile_region_training_backward_reuse
+[ RUN      ] FunctionTest.test_nested_compile_region_with_bfloat16_constants
+I1118 07:26:05.847291 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] FunctionTest.test_nested_compile_region_with_bfloat16_constants
+[ RUN      ] FunctionTest.test_nested_compile_region_with_constants
+I1118 07:26:06.007999 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] FunctionTest.test_nested_compile_region_with_constants
+[ RUN      ] FunctionTest.test_output_is_broadcast_view
+I1118 07:26:06.121807 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] FunctionTest.test_output_is_broadcast_view
+[ RUN      ] FunctionTest.test_output_is_non_overlapping_view
+I1118 07:26:06.201641 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] FunctionTest.test_output_is_non_overlapping_view
+[ RUN      ] FunctionTest.test_output_is_overlapping_view
+I1118 07:26:06.306938 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] FunctionTest.test_output_is_overlapping_view
+[ RUN      ] FunctionTest.test_sanitize_module_name
+[       OK ] FunctionTest.test_sanitize_module_name
+[ RUN      ] FunctionTest.test_shared_storage_overlapping_views
+I1118 07:26:06.418381 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] FunctionTest.test_shared_storage_overlapping_views
+[ RUN      ] FunctionTest.test_shared_storage_slice_inputs
+I1118 07:26:06.522724 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] FunctionTest.test_shared_storage_slice_inputs
+[ RUN      ] FunctionTest.test_shared_storage_transpose_inputs
+/root/torch_tpu/.claude/tmp/compiled-output-alias/repo/tests/compile/small_graph_test.py:1423: UserWarning: //TorchTpu/Performance// TPU is using HIGHEST precision as requested, but performance may be significantly lower. Consider using torch.set_float32_matmul_precision('medium') for better performance. (Triggered internally at csrc/ops/precision_context.cc:84.)
+  return a.matmul(b)
+I1118 07:26:06.651519 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] FunctionTest.test_shared_storage_transpose_inputs
+[ RUN      ] FunctionTest.test_simple_handle_input_flip
+I1118 07:26:06.741889 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] FunctionTest.test_simple_handle_input_flip
+[ RUN      ] FunctionTest.test_super_simple
+I1118 07:26:06.827210 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] FunctionTest.test_super_simple
+[ RUN      ] FunctionTest.test_swin_cpu_attention_mask_pattern
+[  SKIPPED ] FunctionTest.test_swin_cpu_attention_mask_pattern
+[ RUN      ] FunctionTest.test_to_copy
+I1118 07:26:06.921425 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+/root/torch_tpu/.claude/tmp/compiled-output-alias/ov/torch_tpu/_internal/compile/fx_passes/sink_get_attr_constants.py:85: UserWarning: Attempted to insert a get_attr Node with no underlying reference in the owning GraphModule! Call GraphModule.add_submodule to add the necessary submodule, GraphModule.add_parameter to add the necessary Parameter, or nn.Module.register_buffer to add the necessary buffer
+  get_attr_node = submod.graph.get_attr(attr_name)
+[       OK ] FunctionTest.test_to_copy
+[ RUN      ] FunctionTest.test_trace_artifacts_logged_when_tracing_enabled
+I1118 07:26:07.017809 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] FunctionTest.test_trace_artifacts_logged_when_tracing_enabled
+[ RUN      ] FunctionTest.test_zero_sized_inputs
+I1118 07:26:07.135337 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] FunctionTest.test_zero_sized_inputs
+[ RUN      ] FunctionTest.test_zero_sized_slice_input
+I1118 07:26:07.286159 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] FunctionTest.test_zero_sized_slice_input
+[ RUN      ] FunctionTest.test_zero_sized_tensor_in_body
+I1118 07:26:07.370578 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] FunctionTest.test_zero_sized_tensor_in_body
+Repro with --test_random_seed=1234
+[ RUN      ] ModuleTest.test_adam_optimizer
+I1118 07:26:07.510009 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 07:26:07.582267 137486659479232 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] ModuleTest.test_adam_optimizer
+[ RUN      ] ModuleTest.test_geqrf_empty
+I1118 07:26:07.879110 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 07:26:07.955096 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 07:26:08.236607 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] ModuleTest.test_geqrf_empty
+[ RUN      ] ModuleTest.test_masked_fill_inplace_overflow_tensor_value
+I1118 07:26:08.350940 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] ModuleTest.test_masked_fill_inplace_overflow_tensor_value
+[ RUN      ] ModuleTest.test_module_const_control_flow
+I1118 07:26:08.446211 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 07:26:08.542859 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] ModuleTest.test_module_const_control_flow
+[ RUN      ] ModuleTest.test_module_no_tensor_consts
+I1118 07:26:08.634300 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] ModuleTest.test_module_no_tensor_consts
+[ RUN      ] ModuleTest.test_module_with_buffer
+I1118 07:26:08.740628 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] ModuleTest.test_module_with_buffer
+[ RUN      ] ModuleTest.test_module_with_constants
+I1118 07:26:08.882078 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] ModuleTest.test_module_with_constants
+[ RUN      ] ModuleTest.test_module_with_non_tensor_consts
+I1118 07:26:08.983944 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] ModuleTest.test_module_with_non_tensor_consts
+[ RUN      ] ModuleTest.test_nested_module_with_constants
+I1118 07:26:09.105442 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] ModuleTest.test_nested_module_with_constants
+[ RUN      ] ModuleTest.test_simple_module_compile
+I1118 07:26:09.258418 137510594646144 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] ModuleTest.test_simple_module_compile
+Repro with --test_random_seed=1234
+[ RUN      ] NoOpCompiledArtifactTest.test_boxed_call_survives_dynamo_disable
+[       OK ] NoOpCompiledArtifactTest.test_boxed_call_survives_dynamo_disable
+[ RUN      ] NoOpCompiledArtifactTest.test_call_reconstructs_output
+[       OK ] NoOpCompiledArtifactTest.test_call_reconstructs_output
+[ RUN      ] NoOpCompiledArtifactTest.test_picklable_for_dynamo_cache
+[       OK ] NoOpCompiledArtifactTest.test_picklable_for_dynamo_cache
+Repro with --test_random_seed=1234
+[ RUN      ] NoOutputGraphTest.test_no_output_graph_runs_as_noop
+I1118 07:26:09.352232 137510594646144 split_compiler.py:1104] Split graph into 0 partitions, 0 of which run on CPU
+[       OK ] NoOutputGraphTest.test_no_output_graph_runs_as_noop
+----------------------------------------------------------------------
+Ran 75 tests in 11.827s
+
+OK (skipped=7)
+I0000 00:00:1794986770.439470  316799 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794986770.439810  316799 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=321
+num_cache_hits=108 {33.6%}
+num_compilations=213
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

@@ -1,0 +1,195 @@
+Another command (pid=301021) is running. Waiting for it to complete on the server (server_pid=295731)...
+WARNING: option '--remote_executor' was expanded from both option '--config=wheel_common' (source command line options) and option '--config=no_rbe' (source command line options)
+WARNING: option '--google_default_credentials' was expanded from both option '--config=wheel_common' (source command line options) and option '--config=no_rbe' (source command line options)
+INFO: Invocation ID: eb0c0cd9-f477-46f0-a6bd-8764495d250e
+INFO: Options provided by the client:
+  Inherited 'common' options: --isatty=0 --terminal_columns=80
+INFO: Reading rc options for 'test' from /root/torch_tpu/.claude/worktrees/unfold-col2im-precision/.bazelrc:
+  Inherited 'common' options: --announce_rc --check_visibility=false --analysis_testing_deps_limit=16000 --repo_env=HERMETIC_PYTHON_VERSION=3.14 --enable_bzlmod=true --enable_workspace=false --incompatible_autoload_externally=+@rules_cc,+@rules_java,+@rules_shell,+@com_google_protobuf --repo_env=USE_PYWRAP_RULES=1 --experimental_repo_remote_exec --test_env=PYTHONUNBUFFERED=1 --repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1 --incompatible_strict_action_env=true --enable_platform_specific_config --per_file_copt=.*[.](cc|cpp|hpp)$@-std=c++20 --per_file_copt=external/.*(onednn|llvm-project).*[.](cc|cpp|hpp)$@-std=c++17 --downloader_config=bazel_downloader.cfg --@rules_python//python/config_settings:bootstrap_impl=script --@rules_python//python/config_settings:venvs_site_packages=yes
+INFO: Reading rc options for 'test' from /root/.bazelrc:
+  Inherited 'common' options: --disk_cache=/root/.cache/bazel-disk --repository_cache=/root/.cache/bazel-repo
+INFO: Reading rc options for 'test' from /root/torch_tpu/.claude/worktrees/unfold-col2im-precision/.bazelrc:
+  Inherited 'build' options: --copt=-Werror --compilation_mode=opt --per_file_copt=.*@-Wno-#pragma-messages --per_file_copt=.*@-Wno-deprecated-declarations --per_file_copt=.*@-Wno-macro-redefined --per_file_copt=.*@-Wno-defaulted-function-deleted --per_file_copt=.*@-Wno-unused-command-line-argument --host_copt=-Wno-unused-command-line-argument --linkopt=-Wno-unused-command-line-argument --host_linkopt=-Wno-unused-command-line-argument --per_file_copt=.*@-Wno-return-type --per_file_copt=.*external/.*@-w --host_per_file_copt=.*external/.*@-w --copt=-Wno-nullability-completeness --host_copt=-Wno-nullability-completeness --copt=-Wno-deprecated-declarations --host_copt=-Wno-deprecated-declarations --copt=-Wno-unused-function --host_copt=-Wno-unused-function --copt=-Wno-unused-value --host_copt=-Wno-unused-value --repo_env=LLVM_VERSION=20 --repo_env=SYSROOT_DIST=linux_glibc_2_31 --action_env=BAZEL_CXXOPTS=-std=c++20 --disk_cache=~/.cache/bazel/bazel-disk-cache --experimental_disk_cache_gc_max_age=90d --experimental_disk_cache_gc_max_size=100G --experimental_python_import_all_repositories=true --incompatible_disallow_empty_glob=false --incompatible_default_to_explicit_init_py=true --legacy_external_runfiles=false --watchfs --@rules_python//python/config_settings:precompile=force_disabled --define=with_tpu_support=true --define WHEEL_VERSION_EXTRAS= --flag_alias=test_wheel=//:test_wheel
+INFO: Found applicable config definition build:wheel_common in file /root/torch_tpu/.claude/worktrees/unfold-col2im-precision/.bazelrc: --config=remote_execution_readonly --config=wheel_base
+INFO: Found applicable config definition common:remote_execution_readonly in file /root/torch_tpu/.claude/worktrees/unfold-col2im-precision/.bazelrc: --remote_instance_name=projects/tensorflow-testing/instances/default_instance --google_default_credentials --remote_upload_local_results=false --jobs=200 --remote_timeout=3600 --test_timeout=3600 --define=EXECUTOR=remote --remote_executor=grpcs://remotebuildexecution.googleapis.com --extra_execution_platforms=//bazel/platforms:rbe_default_platform
+INFO: Found applicable config definition build:wheel_base in file /root/torch_tpu/.claude/worktrees/unfold-col2im-precision/.bazelrc: --//:wheel_build=True
+INFO: Found applicable config definition common:no_rbe in file /root/torch_tpu/.claude/worktrees/unfold-col2im-precision/.bazelrc: --config=local --remote_cache= --remote_executor= --google_default_credentials=false
+INFO: Found applicable config definition common:local in file /root/torch_tpu/.claude/worktrees/unfold-col2im-precision/.bazelrc: --test_strategy=standalone --spawn_strategy=standalone --strategy=standalone --config=tpu_envvars
+INFO: Found applicable config definition common:tpu_envvars in file /root/torch_tpu/.claude/worktrees/unfold-col2im-precision/.bazelrc: --test_env=TPU_SKIP_MDS_QUERY --test_env=TPU_TOPOLOGY --test_env=TPU_WORKER_ID --test_env=TPU_TOPOLOGY_WRAP --test_env=TPU_CHIPS_PER_HOST_BOUNDS --test_env=TPU_ACCELERATOR_TYPE --test_env=TPU_RUNTIME_METRICS_PORTS --test_env=TPU_TOPOLOGY_ALT --test_env=TPU_HOST_BOUNDS --test_env=TPU_WORKER_HOSTNAMES --test_env=CHIPS_PER_HOST_BOUNDS --test_env=HOST_BOUNDS --test_env=VBAR_CONTROL_SERVICE_URL
+INFO: Checking for file changes...
+Computing main repo mapping: 
+Loading: 
+Loading: 0 packages loaded
+WARNING: This build has globally disabled target visibility checking (--nocheck_visibility).
+Analyzing: target //tests:ops_unit_test_tpu-v5lite (0 packages loaded)
+Analyzing: target //tests:ops_unit_test_tpu-v5lite (0 packages loaded, 0 targets configured)
+Analyzing: target //tests:ops_unit_test_tpu-v5lite (0 packages loaded, 0 targets configured)
+
+Analyzing: target //tests:ops_unit_test_tpu-v5lite (1 packages loaded, 3788 targets configured)
+
+INFO: Analyzed target //tests:ops_unit_test_tpu-v5lite (1 packages loaded, 5819 targets configured, 102 aspect applications).
+[1 / 1] no actions running
+[7,547 / 18,586] checking cached actions
+[22,834 / 22,884] [Prepa] Testing //tests:ops_unit_test_tpu-v5lite (shard 2 of 50) ... (5 actions, 0 running)
+[22,834 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 10 of 50); 1s disk-cache, processwrapper-sandbox ... (50 actions, 1 running)
+[22,834 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 10 of 50); 10s disk-cache, processwrapper-sandbox ... (50 actions, 1 running)
+[22,834 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 10 of 50); 40s disk-cache, processwrapper-sandbox ... (50 actions, 1 running)
+[22,834 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 10 of 50); 84s disk-cache, processwrapper-sandbox ... (50 actions, 2 running)
+[22,835 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 44 of 50); 1s disk-cache, processwrapper-sandbox ... (49 actions, 1 running)
+[22,835 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 44 of 50); 11s disk-cache, processwrapper-sandbox ... (49 actions, 1 running)
+[22,835 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 44 of 50); 14s disk-cache, processwrapper-sandbox ... (49 actions, 2 running)
+[22,836 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 39 of 50); 1s disk-cache, processwrapper-sandbox ... (48 actions, 1 running)
+[22,836 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 39 of 50); 11s disk-cache, processwrapper-sandbox ... (48 actions, 1 running)
+[22,836 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 39 of 50); 14s disk-cache, processwrapper-sandbox ... (48 actions, 2 running)
+[22,837 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 34 of 50); 1s disk-cache, processwrapper-sandbox ... (47 actions, 1 running)
+[22,837 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 34 of 50); 12s disk-cache, processwrapper-sandbox ... (47 actions, 1 running)
+[22,837 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 34 of 50); 14s disk-cache, processwrapper-sandbox ... (47 actions, 2 running)
+[22,838 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 16 of 50); 1s disk-cache, processwrapper-sandbox ... (46 actions, 1 running)
+[22,838 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 16 of 50); 12s disk-cache, processwrapper-sandbox ... (46 actions, 1 running)
+[22,838 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 16 of 50); 14s disk-cache, processwrapper-sandbox ... (46 actions, 2 running)
+[22,839 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 20 of 50); 1s disk-cache, processwrapper-sandbox ... (45 actions, 1 running)
+[22,839 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 20 of 50); 11s disk-cache, processwrapper-sandbox ... (45 actions, 1 running)
+[22,839 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 20 of 50); 14s disk-cache, processwrapper-sandbox ... (45 actions, 2 running)
+[22,840 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 19 of 50); 1s disk-cache, processwrapper-sandbox ... (44 actions, 1 running)
+[22,840 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 19 of 50); 11s disk-cache, processwrapper-sandbox ... (44 actions, 1 running)
+[22,840 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 19 of 50); 14s disk-cache, processwrapper-sandbox ... (44 actions, 2 running)
+[22,841 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 37 of 50); 1s disk-cache, processwrapper-sandbox ... (43 actions, 1 running)
+[22,841 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 37 of 50); 11s disk-cache, processwrapper-sandbox ... (43 actions, 1 running)
+[22,841 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 37 of 50); 14s disk-cache, processwrapper-sandbox ... (43 actions, 2 running)
+[22,842 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 35 of 50); 1s disk-cache, processwrapper-sandbox ... (42 actions, 1 running)
+[22,842 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 35 of 50); 11s disk-cache, processwrapper-sandbox ... (42 actions, 1 running)
+[22,842 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 35 of 50); 14s disk-cache, processwrapper-sandbox ... (42 actions, 2 running)
+[22,843 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 2 of 50); 1s disk-cache, processwrapper-sandbox ... (41 actions, 1 running)
+[22,843 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 2 of 50); 11s disk-cache, processwrapper-sandbox ... (41 actions, 1 running)
+[22,843 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 2 of 50); 16s disk-cache, processwrapper-sandbox ... (41 actions, 2 running)
+[22,844 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 3 of 50); 1s disk-cache, processwrapper-sandbox ... (40 actions, 1 running)
+[22,844 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 3 of 50); 11s disk-cache, processwrapper-sandbox ... (40 actions, 1 running)
+[22,844 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 3 of 50); 17s disk-cache, processwrapper-sandbox ... (40 actions, 2 running)
+[22,845 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 47 of 50); 1s disk-cache, processwrapper-sandbox ... (39 actions, 1 running)
+[22,845 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 47 of 50); 11s disk-cache, processwrapper-sandbox ... (39 actions, 1 running)
+[22,845 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 47 of 50); 14s disk-cache, processwrapper-sandbox ... (39 actions, 2 running)
+[22,846 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 4 of 50); 1s disk-cache, processwrapper-sandbox ... (38 actions, 1 running)
+[22,846 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 4 of 50); 11s disk-cache, processwrapper-sandbox ... (38 actions, 1 running)
+[22,846 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 4 of 50); 16s disk-cache, processwrapper-sandbox ... (38 actions, 2 running)
+[22,847 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 41 of 50); 1s disk-cache, processwrapper-sandbox ... (37 actions, 1 running)
+[22,847 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 41 of 50); 11s disk-cache, processwrapper-sandbox ... (37 actions, 1 running)
+[22,847 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 41 of 50); 14s disk-cache, processwrapper-sandbox ... (37 actions, 2 running)
+[22,848 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 36 of 50); 1s disk-cache, processwrapper-sandbox ... (36 actions, 1 running)
+[22,848 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 36 of 50); 11s disk-cache, processwrapper-sandbox ... (36 actions, 1 running)
+[22,848 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 36 of 50); 14s disk-cache, processwrapper-sandbox ... (36 actions, 2 running)
+[22,849 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 1 of 50); 1s disk-cache, processwrapper-sandbox ... (35 actions, 1 running)
+[22,849 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 1 of 50); 11s disk-cache, processwrapper-sandbox ... (35 actions, 1 running)
+[22,849 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 1 of 50); 16s disk-cache, processwrapper-sandbox ... (35 actions, 2 running)
+[22,850 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 15 of 50); 1s disk-cache, processwrapper-sandbox ... (34 actions, 1 running)
+[22,850 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 15 of 50); 11s disk-cache, processwrapper-sandbox ... (34 actions, 1 running)
+[22,850 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 15 of 50); 16s disk-cache, processwrapper-sandbox ... (34 actions, 2 running)
+[22,851 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 27 of 50); 1s disk-cache, processwrapper-sandbox ... (33 actions, 1 running)
+[22,851 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 27 of 50); 11s disk-cache, processwrapper-sandbox ... (33 actions, 1 running)
+[22,851 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 27 of 50); 14s disk-cache, processwrapper-sandbox ... (33 actions, 2 running)
+[22,852 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 48 of 50); 1s disk-cache, processwrapper-sandbox ... (32 actions, 1 running)
+[22,852 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 48 of 50); 11s disk-cache, processwrapper-sandbox ... (32 actions, 1 running)
+[22,852 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 48 of 50); 14s disk-cache, processwrapper-sandbox ... (32 actions, 2 running)
+[22,853 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 29 of 50); 1s disk-cache, processwrapper-sandbox ... (31 actions, 1 running)
+[22,853 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 29 of 50); 11s disk-cache, processwrapper-sandbox ... (31 actions, 1 running)
+[22,853 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 29 of 50); 14s disk-cache, processwrapper-sandbox ... (31 actions, 2 running)
+[22,854 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 28 of 50); 1s disk-cache, processwrapper-sandbox ... (30 actions, 1 running)
+[22,854 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 28 of 50); 11s disk-cache, processwrapper-sandbox ... (30 actions, 1 running)
+[22,854 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 28 of 50); 14s disk-cache, processwrapper-sandbox ... (30 actions, 2 running)
+[22,855 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 5 of 50); 1s disk-cache, processwrapper-sandbox ... (29 actions, 1 running)
+[22,855 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 5 of 50); 11s disk-cache, processwrapper-sandbox ... (29 actions, 1 running)
+[22,855 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 5 of 50); 16s disk-cache, processwrapper-sandbox ... (29 actions, 2 running)
+[22,856 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 30 of 50); 1s disk-cache, processwrapper-sandbox ... (28 actions, 1 running)
+[22,856 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 30 of 50); 11s disk-cache, processwrapper-sandbox ... (28 actions, 1 running)
+[22,856 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 30 of 50); 14s disk-cache, processwrapper-sandbox ... (28 actions, 2 running)
+[22,857 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 45 of 50); 1s disk-cache, processwrapper-sandbox ... (27 actions, 1 running)
+[22,857 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 45 of 50); 12s disk-cache, processwrapper-sandbox ... (27 actions, 1 running)
+[22,857 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 45 of 50); 14s disk-cache, processwrapper-sandbox ... (27 actions, 2 running)
+[22,858 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 49 of 50); 1s disk-cache, processwrapper-sandbox ... (26 actions, 1 running)
+[22,858 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 49 of 50); 12s disk-cache, processwrapper-sandbox ... (26 actions, 1 running)
+[22,858 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 49 of 50); 14s disk-cache, processwrapper-sandbox ... (26 actions, 2 running)
+[22,859 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 11 of 50); 1s disk-cache, processwrapper-sandbox ... (25 actions, 1 running)
+[22,859 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 11 of 50); 11s disk-cache, processwrapper-sandbox ... (25 actions, 1 running)
+[22,859 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 11 of 50); 16s disk-cache, processwrapper-sandbox ... (25 actions, 2 running)
+[22,860 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 8 of 50); 1s disk-cache, processwrapper-sandbox ... (24 actions, 1 running)
+[22,860 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 8 of 50); 11s disk-cache, processwrapper-sandbox ... (24 actions, 1 running)
+[22,860 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 8 of 50); 15s disk-cache, processwrapper-sandbox ... (24 actions, 2 running)
+[22,861 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 31 of 50); 1s disk-cache, processwrapper-sandbox ... (23 actions, 1 running)
+[22,861 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 31 of 50); 11s disk-cache, processwrapper-sandbox ... (23 actions, 1 running)
+[22,861 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 31 of 50); 15s disk-cache, processwrapper-sandbox ... (23 actions, 2 running)
+[22,862 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 46 of 50); 1s disk-cache, processwrapper-sandbox ... (22 actions, 1 running)
+[22,862 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 46 of 50); 11s disk-cache, processwrapper-sandbox ... (22 actions, 1 running)
+[22,862 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 46 of 50); 14s disk-cache, processwrapper-sandbox ... (22 actions, 2 running)
+[22,863 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 43 of 50); 1s disk-cache, processwrapper-sandbox ... (21 actions, 1 running)
+[22,863 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 43 of 50); 11s disk-cache, processwrapper-sandbox ... (21 actions, 1 running)
+[22,863 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 43 of 50); 14s disk-cache, processwrapper-sandbox ... (21 actions, 2 running)
+[22,864 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 24 of 50); 1s disk-cache, processwrapper-sandbox ... (20 actions, 1 running)
+[22,864 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 24 of 50); 11s disk-cache, processwrapper-sandbox ... (20 actions, 1 running)
+[22,864 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 24 of 50); 14s disk-cache, processwrapper-sandbox ... (20 actions, 2 running)
+[22,865 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 23 of 50); 1s disk-cache, processwrapper-sandbox ... (19 actions, 1 running)
+[22,865 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 23 of 50); 12s disk-cache, processwrapper-sandbox ... (19 actions, 1 running)
+[22,865 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 23 of 50); 14s disk-cache, processwrapper-sandbox ... (19 actions, 2 running)
+[22,866 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 38 of 50); 1s disk-cache, processwrapper-sandbox ... (18 actions, 1 running)
+[22,866 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 38 of 50); 11s disk-cache, processwrapper-sandbox ... (18 actions, 1 running)
+[22,866 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 38 of 50); 14s disk-cache, processwrapper-sandbox ... (18 actions, 2 running)
+[22,867 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 26 of 50); 1s disk-cache, processwrapper-sandbox ... (17 actions, 1 running)
+[22,867 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 26 of 50); 11s disk-cache, processwrapper-sandbox ... (17 actions, 1 running)
+[22,867 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 26 of 50); 14s disk-cache, processwrapper-sandbox ... (17 actions, 2 running)
+[22,868 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 33 of 50); 1s disk-cache, processwrapper-sandbox ... (16 actions, 1 running)
+[22,868 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 33 of 50); 11s disk-cache, processwrapper-sandbox ... (16 actions, 1 running)
+[22,868 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 33 of 50); 14s disk-cache, processwrapper-sandbox ... (16 actions, 2 running)
+[22,869 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 21 of 50); 1s disk-cache, processwrapper-sandbox ... (15 actions, 1 running)
+[22,869 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 21 of 50); 11s disk-cache, processwrapper-sandbox ... (15 actions, 1 running)
+[22,869 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 21 of 50); 14s disk-cache, processwrapper-sandbox ... (15 actions, 2 running)
+[22,870 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 18 of 50); 1s disk-cache, processwrapper-sandbox ... (14 actions, 1 running)
+[22,870 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 18 of 50); 12s disk-cache, processwrapper-sandbox ... (14 actions, 1 running)
+[22,870 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 18 of 50); 14s disk-cache, processwrapper-sandbox ... (14 actions, 2 running)
+[22,871 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 32 of 50); 1s disk-cache, processwrapper-sandbox ... (13 actions, 1 running)
+[22,871 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 32 of 50); 11s disk-cache, processwrapper-sandbox ... (13 actions, 1 running)
+[22,871 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 32 of 50); 14s disk-cache, processwrapper-sandbox ... (13 actions, 2 running)
+[22,872 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 12 of 50); 1s disk-cache, processwrapper-sandbox ... (12 actions, 1 running)
+[22,872 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 12 of 50); 12s disk-cache, processwrapper-sandbox ... (12 actions, 1 running)
+[22,872 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 12 of 50); 16s disk-cache, processwrapper-sandbox ... (12 actions, 2 running)
+[22,873 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 9 of 50); 1s disk-cache, processwrapper-sandbox ... (11 actions, 1 running)
+[22,873 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 9 of 50); 11s disk-cache, processwrapper-sandbox ... (11 actions, 1 running)
+[22,873 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 9 of 50); 16s disk-cache, processwrapper-sandbox ... (11 actions, 2 running)
+[22,874 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 6 of 50); 1s disk-cache, processwrapper-sandbox ... (10 actions, 1 running)
+[22,874 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 6 of 50); 11s disk-cache, processwrapper-sandbox ... (10 actions, 1 running)
+[22,874 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 6 of 50); 16s disk-cache, processwrapper-sandbox ... (10 actions, 2 running)
+[22,875 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 13 of 50); 1s disk-cache, processwrapper-sandbox ... (9 actions, 1 running)
+[22,875 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 13 of 50); 11s disk-cache, processwrapper-sandbox ... (9 actions, 1 running)
+[22,875 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 13 of 50); 17s disk-cache, processwrapper-sandbox ... (9 actions, 2 running)
+[22,876 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 22 of 50); 1s disk-cache, processwrapper-sandbox ... (8 actions, 1 running)
+[22,876 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 22 of 50); 11s disk-cache, processwrapper-sandbox ... (8 actions, 1 running)
+[22,876 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 22 of 50); 14s disk-cache, processwrapper-sandbox ... (8 actions, 2 running)
+[22,877 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 17 of 50); 1s disk-cache, processwrapper-sandbox ... (7 actions, 1 running)
+[22,877 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 17 of 50); 12s disk-cache, processwrapper-sandbox ... (7 actions, 1 running)
+[22,877 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 17 of 50); 14s disk-cache, processwrapper-sandbox ... (7 actions, 2 running)
+[22,878 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 50 of 50); 1s disk-cache, processwrapper-sandbox ... (6 actions, 1 running)
+[22,878 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 50 of 50); 11s disk-cache, processwrapper-sandbox ... (6 actions, 1 running)
+[22,878 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 50 of 50); 14s disk-cache, processwrapper-sandbox ... (6 actions, 2 running)
+[22,879 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 25 of 50); 1s disk-cache, processwrapper-sandbox ... (5 actions, 1 running)
+[22,879 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 25 of 50); 11s disk-cache, processwrapper-sandbox ... (5 actions, 1 running)
+[22,879 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 25 of 50); 14s disk-cache, processwrapper-sandbox ... (5 actions, 2 running)
+[22,880 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 7 of 50); 1s disk-cache, processwrapper-sandbox ... (4 actions, 1 running)
+[22,880 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 7 of 50); 11s disk-cache, processwrapper-sandbox ... (4 actions, 1 running)
+[22,880 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 7 of 50); 16s disk-cache, processwrapper-sandbox ... (4 actions, 2 running)
+[22,881 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 14 of 50); 1s disk-cache, processwrapper-sandbox ... (3 actions, 1 running)
+[22,881 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 14 of 50); 11s disk-cache, processwrapper-sandbox ... (3 actions, 1 running)
+[22,881 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 14 of 50); 16s disk-cache, processwrapper-sandbox ... (3 actions, 2 running)
+[22,882 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 42 of 50); 1s disk-cache, processwrapper-sandbox ... (2 actions, 1 running)
+[22,882 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 42 of 50); 11s disk-cache, processwrapper-sandbox ... (2 actions, 1 running)
+[22,882 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 42 of 50); 14s disk-cache, processwrapper-sandbox ... (2 actions running)
+[22,883 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 40 of 50); 1s disk-cache, processwrapper-sandbox
+[22,883 / 22,884] Testing //tests:ops_unit_test_tpu-v5lite (shard 40 of 50); 11s disk-cache, processwrapper-sandbox
+[22,883 / 22,884] 1 / 1 tests; Testing //tests:ops_unit_test_tpu-v5lite (shard 40 of 50); 15s disk-cache, processwrapper-sandbox
+INFO: Found 1 test target...
+Target //tests:ops_unit_test_tpu-v5lite up-to-date:
+  bazel-bin/tests/ops_unit_test_tpu-v5lite
+INFO: Elapsed time: 863.290s, Critical Path: 840.12s
+INFO: 51 processes: 9281 action cache hit, 1 internal, 50 processwrapper-sandbox.
+INFO: Build completed successfully, 51 total actions
+//tests:ops_unit_test_tpu-v5lite                                         PASSED in 83.1s
+  Stats over 50 runs: max = 83.1s, min = 14.2s, avg = 16.3s, dev = 9.6s
+
+Executed 1 out of 1 test: 1 test passes.
+There were tests whose specified size is too big. Use the --test_verbose_timeout_warnings command line option to see which ones these are.

@@ -1,0 +1,75 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794982527.220617  267923 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794982528.275936  267923 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794982531.336232  267923 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/root/torch_tpu/.claude/tmp/autocast-bf16-default/ov_before/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+Running tests under Python 3.13.18: /usr/bin/python3
+Repro with --test_random_seed=1234
+[ RUN      ] AmpTest.test_autocast_dtype_defaults_to_bfloat16
+I0000 00:00:1794982531.354701  267923 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794982532.044345  267923 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+[  FAILED  ] AmpTest.test_autocast_dtype_defaults_to_bfloat16
+[ RUN      ] AmpTest.test_autocast_is_available
+[       OK ] AmpTest.test_autocast_is_available
+[ RUN      ] AmpTest.test_autocast_without_dtype_uses_bfloat16
+[  FAILED  ] AmpTest.test_autocast_without_dtype_uses_bfloat16
+I0000 00:00:1794982532.060021  268119 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1794982532.060054  268119 tier2_compilation_cache.cc:81] Tier-2 compilation cache is disabled for world size 1.
+[ RUN      ] AmpTest.test_autocast_works
+/root/torch_tpu/.claude/tmp/autocast-bf16-default/repo_after/tests/amp_test.py:90: UserWarning: //TorchTpu/ApiStage/ExperimentalApi// set_eager_mode is experimental and subject to change: Context manager for setting the eager mode.
+  with execution_mode.set_eager_mode(EagerMode._INTERNAL_COMPILE_FX_GRAPH):
+[  FAILED  ] AmpTest.test_autocast_works
+[ RUN      ] AmpTest.test_bfloat16_is_preferred
+[       OK ] AmpTest.test_bfloat16_is_preferred
+======================================================================
+FAIL: test_autocast_dtype_defaults_to_bfloat16 (__main__.AmpTest)
+AmpTest.test_autocast_dtype_defaults_to_bfloat16
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/autocast-bf16-default/repo_after/tests/amp_test.py", line 37, in test_autocast_dtype_defaults_to_bfloat16
+    self.assertEqual(torch.get_autocast_dtype("tpu"), torch.bfloat16)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: torch.float16 != torch.bfloat16
+
+======================================================================
+FAIL: test_autocast_without_dtype_uses_bfloat16 (__main__.AmpTest)
+AmpTest.test_autocast_without_dtype_uses_bfloat16
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/autocast-bf16-default/repo_after/tests/amp_test.py", line 44, in test_autocast_without_dtype_uses_bfloat16
+    self.assertEqual(y.dtype, torch.bfloat16)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: torch.float16 != torch.bfloat16
+
+======================================================================
+FAIL: test_autocast_works (__main__.AmpTest)
+AmpTest.test_autocast_works
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/autocast-bf16-default/repo_after/tests/amp_test.py", line 185, in test_autocast_works
+    self.assertIn(
+    ~~~~~~~~~~~~~^
+        normalized_mlir_text.strip(),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        [expected_mlir.strip(), expected_mlir_reduced.strip()],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+AssertionError: 'module @tt_jit_amp_test_test_autocast_works {\n  func.func @main(%arg0: tensor<10xi64>, %arg1: tensor<10x10xf32>, %arg2: tensor<10x10xf32>, %arg3: tensor<10x10xf32>, %arg4: tensor<10xf32>) -> tensor<f32> {\n    %cst = stablehlo.constant dense<-1.000000e+00> : tensor<10x10xbf16>\n    %c = stablehlo.constant dense<0> : tensor<i64>\n    %cst_0 = stablehlo.constant dense<1.000000e+02> : tensor<f32>\n    %cst_1 = stablehlo.constant dense<0.000000e+00> : tensor<f32>\n    %cst_2 = stablehlo.constant dense<0x7FC00000> : tensor<10x10xf32>\n    %0 = "stablehlo.gather"(%arg2, %arg0) <{dimension_numbers = #stablehlo.gather<offset_dims = [1], collapsed_slice_dims = [0], start_index_map = [0], index_vector_dim = 1>, indices_are_sorted = false, slice_sizes = array<i64: 1, 10>}> : (tensor<10x10xf32>, tensor<10xi64>) -> tensor<10x10xf32>\n    %1 = stablehlo.convert %0 : (tensor<10x10xf32>) -> tensor<10x10xbf16>\n    %2 = stablehlo.convert %arg3 : (tensor<10x10xf32>) -> tensor<10x10xbf16>\n    %3 = stablehlo.convert %arg4 : (tensor<10xf32>) -> tensor<10xbf16>\n    %4 = stablehlo.dot_general %1, %2, contracting_dims = [1] x [1], precision = [DEFAULT, DEFAULT] : (tensor<10x10xbf16>, tensor<10x10xbf16>) -> tensor<10x10xbf16>\n    %5 = stablehlo.broadcast_in_dim %3, dims = [1] : (tensor<10xbf16>) -> tensor<10x10xbf16>\n    %6 = stablehlo.add %4, %5 : tensor<10x10xbf16>\n    %7 = stablehlo.multiply %6, %cst : tensor<10x10xbf16>\n    %8 = stablehlo.convert %7 : (tensor<10x10xbf16>) -> tensor<10x10xf32>\n    %9 = stablehlo.subtract %8, %arg1 : tensor<10x10xf32>\n    %10 = stablehlo.multiply %9, %9 : tensor<10x10xf32>\n    %11 = stablehlo.reduce(%10 init: %cst_1) applies stablehlo.add across dimensions = [0, 1] : (tensor<10x10xf32>, tensor<f32>) -> tensor<f32>\n    %12 = stablehlo.divide %11, %cst_0 : tensor<f32>\n    %13 = stablehlo.reshape %12 : (tensor<f32>) -> tensor<1x1xf32>\n    %14 = stablehlo.dynamic_update_slice %cst_2, %13, %c, %c : (tensor<10x10xf32>, tensor<1x1xf32>, tensor<i64>, tensor<i64>) -> tensor<10x10xf32>\n    %15 = stablehlo.slice %14 [0:1, 0:1] : (tensor<10x10xf32>) -> tensor<1x1xf32>\n    %16 = stablehlo.reshape %15 : (tensor<1x1xf32>) -> tensor<f32>\n    return %16 : tensor<f32>\n  }\n}' not found in ['module @tt_jit_amp_test_test_autocast_works {\n  func.func @main(%arg0: tensor<10xi64>, %arg1: tensor<10x10xf32>, %arg2: tensor<10x10xf32>, %arg3: tensor<10x10xf32>, %arg4: tensor<10xf32>) -> tensor<f32> {\n    %cst = stablehlo.constant dense<-1.000000e+00> : tensor<10x10xbf16>\n    %c = stablehlo.constant dense<0> : tensor<i64>\n    %cst_0 = stablehlo.constant dense<1.000000e+02> : tensor<f32>\n    %cst_1 = stablehlo.constant dense<0.000000e+00> : tensor<f32>\n    %cst_2 = stablehlo.constant dense<0x7FC00000> : tensor<10x10xf32>\n    %0 = "stablehlo.gather"(%arg2, %arg0) <{dimension_numbers = #stablehlo.gather<offset_dims = [1], collapsed_slice_dims = [0], start_index_map = [0], index_vector_dim = 1>, indices_are_sorted = false, slice_sizes = array<i64: 1, 10>}> : (tensor<10x10xf32>, tensor<10xi64>) -> tensor<10x10xf32>\n    %1 = stablehlo.convert %0 : (tensor<10x10xf32>) -> tensor<10x10xbf16>\n    %2 = stablehlo.convert %arg3 : (tensor<10x10xf32>) -> tensor<10x10xbf16>\n    %3 = stablehlo.convert %arg4 : (tensor<10xf32>) -> tensor<10xbf16>\n    %4 = stablehlo.dot_general %1, %2, contracting_dims = [1] x [1], precision = [DEFAULT, DEFAULT] : (tensor<10x10xbf16>, tensor<10x10xbf16>) -> tensor<10x10xf32>\n    %5 = stablehlo.convert %3 : (tensor<10xbf16>) -> tensor<10xf32>\n    %6 = stablehlo.broadcast_in_dim %5, dims = [1] : (tensor<10xf32>) -> tensor<10x10xf32>\n    %7 = stablehlo.add %4, %6 : tensor<10x10xf32>\n    %8 = stablehlo.convert %7 : (tensor<10x10xf32>) -> tensor<10x10xbf16>\n    %9 = stablehlo.multiply %8, %cst : tensor<10x10xbf16>\n    %10 = stablehlo.convert %9 : (tensor<10x10xbf16>) -> tensor<10x10xf32>\n    %11 = stablehlo.subtract %10, %arg1 : tensor<10x10xf32>\n    %12 = stablehlo.multiply %11, %11 : tensor<10x10xf32>\n    %13 = stablehlo.reduce(%12 init: %cst_1) applies stablehlo.add across dimensions = [0, 1] : (tensor<10x10xf32>, tensor<f32>) -> tensor<f32>\n    %14 = stablehlo.divide %13, %cst_0 : tensor<f32>\n    %15 = stablehlo.reshape %14 : (tensor<f32>) -> tensor<1x1xf32>\n    %16 = stablehlo.dynamic_update_slice %cst_2, %15, %c, %c : (tensor<10x10xf32>, tensor<1x1xf32>, tensor<i64>, tensor<i64>) -> tensor<10x10xf32>\n    %17 = stablehlo.slice %16 [0:1, 0:1] : (tensor<10x10xf32>) -> tensor<1x1xf32>\n    %18 = stablehlo.reshape %17 : (tensor<1x1xf32>) -> tensor<f32>\n    return %18 : tensor<f32>\n  }\n}', 'module @tt_jit_amp_test_test_autocast_works {\n  func.func @main(%arg0: tensor<10xi64>, %arg1: tensor<10x10xf32>, %arg2: tensor<10x10xf32>, %arg3: tensor<10x10xf32>, %arg4: tensor<10xf32>) -> tensor<f32> {\n    %cst = stablehlo.constant dense<-1.000000e+00> : tensor<10x10xbf16>\n    %cst_0 = stablehlo.constant dense<1.000000e+02> : tensor<f32>\n    %cst_1 = stablehlo.constant dense<0.000000e+00> : tensor<f32>\n    %0 = "stablehlo.gather"(%arg2, %arg0) <{dimension_numbers = #stablehlo.gather<offset_dims = [1], collapsed_slice_dims = [0], start_index_map = [0], index_vector_dim = 1>, indices_are_sorted = false, slice_sizes = array<i64: 1, 10>}> : (tensor<10x10xf32>, tensor<10xi64>) -> tensor<10x10xf32>\n    %1 = stablehlo.convert %0 : (tensor<10x10xf32>) -> tensor<10x10xbf16>\n    %2 = stablehlo.convert %arg3 : (tensor<10x10xf32>) -> tensor<10x10xbf16>\n    %3 = stablehlo.convert %arg4 : (tensor<10xf32>) -> tensor<10xbf16>\n    %4 = stablehlo.dot_general %1, %2, contracting_dims = [1] x [1], precision = [DEFAULT, DEFAULT] : (tensor<10x10xbf16>, tensor<10x10xbf16>) -> tensor<10x10xf32>\n    %5 = stablehlo.convert %3 : (tensor<10xbf16>) -> tensor<10xf32>\n    %6 = stablehlo.broadcast_in_dim %5, dims = [1] : (tensor<10xf32>) -> tensor<10x10xf32>\n    %7 = stablehlo.add %4, %6 : tensor<10x10xf32>\n    %8 = stablehlo.convert %7 : (tensor<10x10xf32>) -> tensor<10x10xbf16>\n    %9 = stablehlo.multiply %8, %cst : tensor<10x10xbf16>\n    %10 = stablehlo.convert %9 : (tensor<10x10xbf16>) -> tensor<10x10xf32>\n    %11 = stablehlo.subtract %10, %arg1 : tensor<10x10xf32>\n    %12 = stablehlo.multiply %11, %11 : tensor<10x10xf32>\n    %13 = stablehlo.reduce(%12 init: %cst_1) applies stablehlo.add across dimensions = [0, 1] : (tensor<10x10xf32>, tensor<f32>) -> tensor<f32>\n    %14 = stablehlo.divide %13, %cst_0 : tensor<f32>\n    return %14 : tensor<f32>\n  }\n}']
+
+----------------------------------------------------------------------
+Ran 5 tests in 1.063s
+
+FAILED (failures=3)
+I0000 00:00:1794982533.417365  267923 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794982533.417417  267923 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=4
+num_cache_hits=1 {25.0%}
+num_compilations=3
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

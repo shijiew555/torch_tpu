@@ -1,0 +1,109 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794986773.692302  318023 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794986774.765871  318023 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794986774.770630  318023 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/root/torch_tpu/.claude/tmp/compiled-output-alias/ov/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+Running tests under Python 3.13.18: /usr/bin/python3
+Repro with --test_random_seed=1234
+[ RUN      ] CloneMutatedReturnedPlaceholdersTest.test_apply_on_graph_directly
+I0000 00:00:1794986774.787582  318023 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794986775.531454  318023 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+[       OK ] CloneMutatedReturnedPlaceholdersTest.test_apply_on_graph_directly
+[ RUN      ] CloneMutatedReturnedPlaceholdersTest.test_clone_takes_custom_metadata_shared_by_its_users_disjoint
+[       OK ] CloneMutatedReturnedPlaceholdersTest.test_clone_takes_custom_metadata_shared_by_its_users_disjoint
+[ RUN      ] CloneMutatedReturnedPlaceholdersTest.test_clone_takes_custom_metadata_shared_by_its_users_partially_unannotated
+[       OK ] CloneMutatedReturnedPlaceholdersTest.test_clone_takes_custom_metadata_shared_by_its_users_partially_unannotated
+[ RUN      ] CloneMutatedReturnedPlaceholdersTest.test_clone_takes_custom_metadata_shared_by_its_users_same
+[       OK ] CloneMutatedReturnedPlaceholdersTest.test_clone_takes_custom_metadata_shared_by_its_users_same
+[ RUN      ] CloneMutatedReturnedPlaceholdersTest.test_clone_takes_custom_metadata_shared_by_its_users_shared_subset
+[       OK ] CloneMutatedReturnedPlaceholdersTest.test_clone_takes_custom_metadata_shared_by_its_users_shared_subset
+[ RUN      ] CloneMutatedReturnedPlaceholdersTest.test_clones_mutated_returned_placeholder
+[       OK ] CloneMutatedReturnedPlaceholdersTest.test_clones_mutated_returned_placeholder
+[ RUN      ] CloneMutatedReturnedPlaceholdersTest.test_compute_placeholder_not_returned_not_cloned
+[       OK ] CloneMutatedReturnedPlaceholdersTest.test_compute_placeholder_not_returned_not_cloned
+[ RUN      ] CloneMutatedReturnedPlaceholdersTest.test_input_that_aot_autograd_updates_is_cloned_plain_tensor
+[       OK ] CloneMutatedReturnedPlaceholdersTest.test_input_that_aot_autograd_updates_is_cloned_plain_tensor
+[ RUN      ] CloneMutatedReturnedPlaceholdersTest.test_input_that_aot_autograd_updates_is_cloned_tensor_subclass
+[       OK ] CloneMutatedReturnedPlaceholdersTest.test_input_that_aot_autograd_updates_is_cloned_tensor_subclass
+[ RUN      ] CloneMutatedReturnedPlaceholdersTest.test_multiple_mutated_returned_placeholders
+[       OK ] CloneMutatedReturnedPlaceholdersTest.test_multiple_mutated_returned_placeholders
+[ RUN      ] CloneMutatedReturnedPlaceholdersTest.test_passthrough_placeholder_not_cloned
+[       OK ] CloneMutatedReturnedPlaceholdersTest.test_passthrough_placeholder_not_cloned
+[ RUN      ] CloneMutatedReturnedPlaceholdersTest.test_read_only_returned_placeholder_not_cloned_mm
+[       OK ] CloneMutatedReturnedPlaceholdersTest.test_read_only_returned_placeholder_not_cloned_mm
+[ RUN      ] CloneMutatedReturnedPlaceholdersTest.test_read_only_returned_placeholder_not_cloned_out_source
+[       OK ] CloneMutatedReturnedPlaceholdersTest.test_read_only_returned_placeholder_not_cloned_out_source
+[ RUN      ] CloneMutatedReturnedPlaceholdersTest.test_read_only_returned_placeholder_not_cloned_split
+[       OK ] CloneMutatedReturnedPlaceholdersTest.test_read_only_returned_placeholder_not_cloned_split
+[ RUN      ] CloneMutatedReturnedPlaceholdersTest.test_read_only_returned_placeholder_not_cloned_write_to_new_tensor
+[       OK ] CloneMutatedReturnedPlaceholdersTest.test_read_only_returned_placeholder_not_cloned_write_to_new_tensor
+[ RUN      ] CloneMutatedReturnedPlaceholdersTest.test_recompiles_graph_module
+[       OK ] CloneMutatedReturnedPlaceholdersTest.test_recompiles_graph_module
+[ RUN      ] CloneMutatedReturnedPlaceholdersTest.test_set_source_is_not_written_aten_set__source_Tensor
+[       OK ] CloneMutatedReturnedPlaceholdersTest.test_set_source_is_not_written_aten_set__source_Tensor
+[ RUN      ] CloneMutatedReturnedPlaceholdersTest.test_set_source_is_not_written_aten_set__source_Tensor_storage_offset
+[       OK ] CloneMutatedReturnedPlaceholdersTest.test_set_source_is_not_written_aten_set__source_Tensor_storage_offset
+[ RUN      ] CloneMutatedReturnedPlaceholdersTest.test_symint_placeholder_not_cloned
+[       OK ] CloneMutatedReturnedPlaceholdersTest.test_symint_placeholder_not_cloned
+[ RUN      ] CloneMutatedReturnedPlaceholdersTest.test_unannotated_alias_op_does_not_write_aten__unsafe_view_default
+[       OK ] CloneMutatedReturnedPlaceholdersTest.test_unannotated_alias_op_does_not_write_aten__unsafe_view_default
+[ RUN      ] CloneMutatedReturnedPlaceholdersTest.test_unannotated_alias_op_does_not_write_aten_lift_default
+[       OK ] CloneMutatedReturnedPlaceholdersTest.test_unannotated_alias_op_does_not_write_aten_lift_default
+[ RUN      ] CloneMutatedReturnedPlaceholdersTest.test_unannotated_alias_op_does_not_write_aten_set_source_Tensor
+[       OK ] CloneMutatedReturnedPlaceholdersTest.test_unannotated_alias_op_does_not_write_aten_set_source_Tensor
+[ RUN      ] CloneMutatedReturnedPlaceholdersTest.test_unannotated_alias_op_does_not_write_aten_unsafe_chunk_default
+[       OK ] CloneMutatedReturnedPlaceholdersTest.test_unannotated_alias_op_does_not_write_aten_unsafe_chunk_default
+[ RUN      ] CloneMutatedReturnedPlaceholdersTest.test_unannotated_alias_op_does_not_write_aten_unsafe_split_Tensor
+[       OK ] CloneMutatedReturnedPlaceholdersTest.test_unannotated_alias_op_does_not_write_aten_unsafe_split_Tensor
+[ RUN      ] CloneMutatedReturnedPlaceholdersTest.test_unannotated_alias_op_does_not_write_aten_unsafe_split_with_sizes_default
+[       OK ] CloneMutatedReturnedPlaceholdersTest.test_unannotated_alias_op_does_not_write_aten_unsafe_split_with_sizes_default
+[ RUN      ] CloneMutatedReturnedPlaceholdersTest.test_write_after_set_source_is_cloned0 (op=<OpOverload(op='aten.set_', overload='source_Tensor')>, write_self=True)
+[       OK ] CloneMutatedReturnedPlaceholdersTest.test_write_after_set_source_is_cloned0 (op=<OpOverload(op='aten.set_', overload='source_Tensor')>, write_self=True)
+[ RUN      ] CloneMutatedReturnedPlaceholdersTest.test_write_after_set_source_is_cloned1 (op=<OpOverload(op='aten.set_', overload='source_Tensor')>, write_self=False)
+[       OK ] CloneMutatedReturnedPlaceholdersTest.test_write_after_set_source_is_cloned1 (op=<OpOverload(op='aten.set_', overload='source_Tensor')>, write_self=False)
+[ RUN      ] CloneMutatedReturnedPlaceholdersTest.test_write_after_set_source_is_cloned2 (op=<OpOverload(op='aten.set_', overload='source_Tensor_storage_offset')>, write_self=True)
+[       OK ] CloneMutatedReturnedPlaceholdersTest.test_write_after_set_source_is_cloned2 (op=<OpOverload(op='aten.set_', overload='source_Tensor_storage_offset')>, write_self=True)
+[ RUN      ] CloneMutatedReturnedPlaceholdersTest.test_write_after_set_source_is_cloned3 (op=<OpOverload(op='aten.set_', overload='source_Tensor_storage_offset')>, write_self=False)
+[       OK ] CloneMutatedReturnedPlaceholdersTest.test_write_after_set_source_is_cloned3 (op=<OpOverload(op='aten.set_', overload='source_Tensor_storage_offset')>, write_self=False)
+[ RUN      ] CloneMutatedReturnedPlaceholdersTest.test_write_through_unannotated_alias_is_cloned_aten__unsafe_view_default
+[       OK ] CloneMutatedReturnedPlaceholdersTest.test_write_through_unannotated_alias_is_cloned_aten__unsafe_view_default
+[ RUN      ] CloneMutatedReturnedPlaceholdersTest.test_write_through_unannotated_alias_is_cloned_aten_lift_default
+[       OK ] CloneMutatedReturnedPlaceholdersTest.test_write_through_unannotated_alias_is_cloned_aten_lift_default
+[ RUN      ] CloneMutatedReturnedPlaceholdersTest.test_write_through_unannotated_alias_is_cloned_aten_set_source_Tensor
+[       OK ] CloneMutatedReturnedPlaceholdersTest.test_write_through_unannotated_alias_is_cloned_aten_set_source_Tensor
+[ RUN      ] CloneMutatedReturnedPlaceholdersTest.test_write_through_unannotated_alias_is_cloned_aten_unsafe_chunk_default
+[       OK ] CloneMutatedReturnedPlaceholdersTest.test_write_through_unannotated_alias_is_cloned_aten_unsafe_chunk_default
+[ RUN      ] CloneMutatedReturnedPlaceholdersTest.test_write_through_unannotated_alias_is_cloned_aten_unsafe_split_Tensor
+[       OK ] CloneMutatedReturnedPlaceholdersTest.test_write_through_unannotated_alias_is_cloned_aten_unsafe_split_Tensor
+[ RUN      ] CloneMutatedReturnedPlaceholdersTest.test_write_through_unannotated_alias_is_cloned_aten_unsafe_split_with_sizes_default
+[       OK ] CloneMutatedReturnedPlaceholdersTest.test_write_through_unannotated_alias_is_cloned_aten_unsafe_split_with_sizes_default
+[ RUN      ] CloneMutatedReturnedPlaceholdersTest.test_write_to_set_placeholder_writes_new_source_aten_set__source_Tensor
+[       OK ] CloneMutatedReturnedPlaceholdersTest.test_write_to_set_placeholder_writes_new_source_aten_set__source_Tensor
+[ RUN      ] CloneMutatedReturnedPlaceholdersTest.test_write_to_set_placeholder_writes_new_source_aten_set__source_Tensor_storage_offset
+[       OK ] CloneMutatedReturnedPlaceholdersTest.test_write_to_set_placeholder_writes_new_source_aten_set__source_Tensor_storage_offset
+[ RUN      ] CloneMutatedReturnedPlaceholdersTest.test_written_returned_placeholder_is_cloned_in_place
+[       OK ] CloneMutatedReturnedPlaceholdersTest.test_written_returned_placeholder_is_cloned_in_place
+[ RUN      ] CloneMutatedReturnedPlaceholdersTest.test_written_returned_placeholder_is_cloned_out_kwarg
+[       OK ] CloneMutatedReturnedPlaceholdersTest.test_written_returned_placeholder_is_cloned_out_kwarg
+[ RUN      ] CloneMutatedReturnedPlaceholdersTest.test_written_returned_placeholder_is_cloned_schemaless_target
+[       OK ] CloneMutatedReturnedPlaceholdersTest.test_written_returned_placeholder_is_cloned_schemaless_target
+[ RUN      ] CloneMutatedReturnedPlaceholdersTest.test_written_returned_placeholder_is_cloned_through_split
+[       OK ] CloneMutatedReturnedPlaceholdersTest.test_written_returned_placeholder_is_cloned_through_split
+[ RUN      ] CloneMutatedReturnedPlaceholdersTest.test_written_returned_placeholder_is_cloned_through_view
+[       OK ] CloneMutatedReturnedPlaceholdersTest.test_written_returned_placeholder_is_cloned_through_view
+----------------------------------------------------------------------
+Ran 42 tests in 0.936s
+
+OK
+I0000 00:00:1794986775.721542  318023 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794986775.721574  318023 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=0
+num_cache_hits=0 {NA}
+num_compilations=0
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

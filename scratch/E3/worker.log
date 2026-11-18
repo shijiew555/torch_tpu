@@ -1,0 +1,163 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794975977.986047  180566 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794975979.015029  180566 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794975979.016586  180566 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/usr/local/lib/python3.13/dist-packages/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+I0000 00:00:1794975999.349010  180566 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794975999.994359  180566 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+/usr/local/lib/python3.13/dist-packages/torch/testing/_internal/opinfo/core.py:1263: UserWarning: //TorchTpu/Performance// TPU is using HIGHEST precision as requested, but performance may be significantly lower. Consider using torch.set_float32_matmul_precision('medium') for better performance. (Triggered internally at csrc/ops/precision_context.cc:84.)
+  return self.op(*args, **kwargs)
+I0000 00:00:1794976000.012015  180915 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1794976000.216242  180915 tier2_compilation_cache.cc:81] Tier-2 compilation cache is disabled for world size 1.
+/usr/local/lib/python3.13/dist-packages/torch/testing/_internal/opinfo/core.py:1263: UserWarning: Using torch.cross without specifying the dim arg is deprecated.
+Please either pass the dim explicitly or simply use torch.linalg.cross.
+The default value of dim will change to agree with that of linalg.cross in a future release. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/native/Cross.cpp:63.)
+  return self.op(*args, **kwargs)
+/usr/local/lib/python3.13/dist-packages/torch/testing/_internal/opinfo/core.py:1263: UserWarning: Using padding='same' with even kernel lengths and odd dilation may require a zero-padded copy of the input be created (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/native/Convolution.cpp:1104.)
+  return self.op(*args, **kwargs)
+/usr/local/lib/python3.13/dist-packages/torch/testing/_internal/opinfo/core.py:1263: UserWarning: //TorchTpu/Correctness// Unlike PyTorch on CUDA or CPU, TorchTPU doesn't by default check that the indices for take() are in range. Set the TORCH_TPU_ENABLE_DEBUG_CHECKS environment variable to "1" to enable this check, which incurs a performance penalty. (Triggered internally at csrc/ops/take/take_aten_kernels.cc:131.)
+  return self.op(*args, **kwargs)
+/usr/local/lib/python3.13/dist-packages/torch/testing/_internal/opinfo/core.py:1263: UserWarning: The reduce argument of torch.scatter with Tensor src is deprecated and will be removed in a future PyTorch release. Use torch.scatter_reduce instead for more reduction options. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/native/TensorAdvancedIndexing.cpp:225.)
+  return self.op(*args, **kwargs)
+/usr/local/lib/python3.13/dist-packages/torch/testing/_internal/opinfo/core.py:1263: UserWarning: //TorchTpu/Correctness// Bounds computed from input data are not validated by default on TorchTPU (unlike CUDA/CPU) to prevent an expensive CPU transfer. Set the TORCH_TPU_ENABLE_DEBUG_CHECKS environment variable to "1" to enable this check, which incurs a performance penalty. (Triggered internally at csrc/ops/histc/histc_aten_kernels.cc:213.)
+  return self.op(*args, **kwargs)
+I0000 00:00:1794976201.193488  180566 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794976201.193792  180566 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=2054
+num_cache_hits=942 {45.8%}
+num_compilations=1109
+num_unbounded_dynamic_hits=2
+peak_compilation_memory_bytes=unknown
+
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794976277.091568  188724 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794976278.100363  188724 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794976278.101858  188724 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/usr/local/lib/python3.13/dist-packages/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+I0000 00:00:1794976295.353702  188724 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794976296.064251  188724 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+I0000 00:00:1794976296.091042  189075 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1794976296.091077  189075 tier2_compilation_cache.cc:81] Tier-2 compilation cache is disabled for world size 1.
+/usr/local/lib/python3.13/dist-packages/torch/testing/_internal/opinfo/core.py:1263: UserWarning: std(): degrees of freedom is <= 0. Correction should be strictly less than the reduction factor (input numel divided by output numel). (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/native/ReduceOps.cpp:1913.)
+  return self.op(*args, **kwargs)
+/usr/local/lib/python3.13/dist-packages/torch/testing/_internal/opinfo/core.py:1263: UserWarning: //TorchTpu/Correctness// std(): degrees of freedom (i.e., reduction size - correction) should be positive, got reduction size = 0, correction = 1, and degrees of freedom = -1 (Triggered internally at csrc/ops/reductions/std_aten_kernels.cc:129.)
+  return self.op(*args, **kwargs)
+/usr/local/lib/python3.13/dist-packages/torch/testing/_internal/opinfo/core.py:1263: UserWarning: //TorchTpu/Correctness// std(): degrees of freedom (i.e., reduction size - correction) should be positive, got reduction size = 0, correction = 0, and degrees of freedom = 0 (Triggered internally at csrc/ops/reductions/std_aten_kernels.cc:129.)
+  return self.op(*args, **kwargs)
+/usr/local/lib/python3.13/dist-packages/torch/testing/_internal/opinfo/core.py:1263: UserWarning: var(): degrees of freedom is <= 0. Correction should be strictly less than the reduction factor (input numel divided by output numel). (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/native/ReduceOps.cpp:1913.)
+  return self.op(*args, **kwargs)
+/usr/local/lib/python3.13/dist-packages/torch/testing/_internal/opinfo/core.py:1263: UserWarning: //TorchTpu/Correctness// var(): degrees of freedom (i.e., reduction size - correction) should be positive, got reduction size = 0, correction = 1, and degrees of freedom = -1 (Triggered internally at csrc/ops/reductions/var_aten_kernels.cc:151.)
+  return self.op(*args, **kwargs)
+/usr/local/lib/python3.13/dist-packages/torch/testing/_internal/opinfo/core.py:1263: UserWarning: //TorchTpu/Correctness// var(): degrees of freedom (i.e., reduction size - correction) should be positive, got reduction size = 0, correction = 0, and degrees of freedom = 0 (Triggered internally at csrc/ops/reductions/var_aten_kernels.cc:151.)
+  return self.op(*args, **kwargs)
+/usr/local/lib/python3.13/dist-packages/torch/testing/_internal/opinfo/core.py:1263: UserWarning: reduction: 'mean' divides the total loss by both the batch size and the support size.'batchmean' divides only by the batch size, and aligns with the KL div math definition.'mean' will be changed to behave the same as 'batchmean' in the next major release.
+  return self.op(*args, **kwargs)
+/usr/local/lib/python3.13/dist-packages/torch/testing/_internal/opinfo/core.py:1263: UserWarning: //TorchTpu/Performance// TPU is using HIGHEST precision as requested, but performance may be significantly lower. Consider using torch.set_float32_matmul_precision('medium') for better performance. (Triggered internally at csrc/ops/precision_context.cc:84.)
+  return self.op(*args, **kwargs)
+/usr/local/lib/python3.13/dist-packages/torch/testing/_internal/opinfo/core.py:1263: UserWarning: Using torch.cross without specifying the dim arg is deprecated.
+Please either pass the dim explicitly or simply use torch.linalg.cross.
+The default value of dim will change to agree with that of linalg.cross in a future release. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/native/Cross.cpp:63.)
+  return self.op(*args, **kwargs)
+/usr/local/lib/python3.13/dist-packages/torch/testing/_internal/opinfo/core.py:1263: UserWarning: Using padding='same' with even kernel lengths and odd dilation may require a zero-padded copy of the input be created (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/native/Convolution.cpp:1104.)
+  return self.op(*args, **kwargs)
+/usr/local/lib/python3.13/dist-packages/torch/testing/_internal/opinfo/core.py:1263: UserWarning: //TorchTpu/Correctness// Unlike PyTorch on CUDA or CPU, TorchTPU doesn't by default check that the indices for take() are in range. Set the TORCH_TPU_ENABLE_DEBUG_CHECKS environment variable to "1" to enable this check, which incurs a performance penalty. (Triggered internally at csrc/ops/take/take_aten_kernels.cc:131.)
+  return self.op(*args, **kwargs)
+/usr/local/lib/python3.13/dist-packages/torch/testing/_internal/opinfo/core.py:1263: UserWarning: The reduce argument of torch.scatter with Tensor src is deprecated and will be removed in a future PyTorch release. Use torch.scatter_reduce instead for more reduction options. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/native/TensorAdvancedIndexing.cpp:225.)
+  return self.op(*args, **kwargs)
+I0000 00:00:1794976497.136105  188724 compilation_cache.cc:356] Compilation cache evicted.
+https://symbolize.stripped_domain/r/?trace=7b5138d43028,7b5138ce432f,7b50d054944f,7b50cfdcebcb,7b50cfdd0d82,7b50cfdd0712,7b50d03c362e,7b5138d3bb83,7b5138dc8ecb&map= 
+timeout: the monitored command dumped core
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794976580.622348  195317 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794976581.549451  195317 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794976581.550852  195317 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/usr/local/lib/python3.13/dist-packages/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+I0000 00:00:1794976582.913039  195317 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794976583.600471  195317 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+I0000 00:00:1794976583.662526  195563 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1794976583.662549  195563 tier2_compilation_cache.cc:81] Tier-2 compilation cache is disabled for world size 1.
+/usr/local/lib/python3.13/dist-packages/torch/testing/_internal/opinfo/core.py:1263: UserWarning: //TorchTpu/Performance// TPU is using HIGHEST precision as requested, but performance may be significantly lower. Consider using torch.set_float32_matmul_precision('medium') for better performance. (Triggered internally at csrc/ops/precision_context.cc:84.)
+  return self.op(*args, **kwargs)
+/usr/local/lib/python3.13/dist-packages/torch/testing/_internal/opinfo/core.py:1263: UserWarning: Using torch.cross without specifying the dim arg is deprecated.
+Please either pass the dim explicitly or simply use torch.linalg.cross.
+The default value of dim will change to agree with that of linalg.cross in a future release. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/native/Cross.cpp:63.)
+  return self.op(*args, **kwargs)
+/usr/local/lib/python3.13/dist-packages/torch/testing/_internal/opinfo/core.py:1263: UserWarning: Using padding='same' with even kernel lengths and odd dilation may require a zero-padded copy of the input be created (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/native/Convolution.cpp:1104.)
+  return self.op(*args, **kwargs)
+/usr/local/lib/python3.13/dist-packages/torch/testing/_internal/opinfo/core.py:1263: UserWarning: //TorchTpu/Correctness// Unlike PyTorch on CUDA or CPU, TorchTPU doesn't by default check that the indices for take() are in range. Set the TORCH_TPU_ENABLE_DEBUG_CHECKS environment variable to "1" to enable this check, which incurs a performance penalty. (Triggered internally at csrc/ops/take/take_aten_kernels.cc:131.)
+  return self.op(*args, **kwargs)
+/usr/local/lib/python3.13/dist-packages/torch/testing/_internal/opinfo/core.py:1263: UserWarning: The reduce argument of torch.scatter with Tensor src is deprecated and will be removed in a future PyTorch release. Use torch.scatter_reduce instead for more reduction options. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/native/TensorAdvancedIndexing.cpp:225.)
+  return self.op(*args, **kwargs)
+I0000 00:00:1794976792.822505  195317 compilation_cache.cc:356] Compilation cache evicted.
+https://symbolize.stripped_domain/r/?trace=7daace233028,7daace1d432f,7daa65b4944f,7daa653cebcb,7daa653d0d82,7daa653d0712,7daa659c362e,7daace22bb83,7daace2b8ecb&map= 
+*** SIGTERM received by PID 195317 (TID 203086) on cpu 5, si_code=0, from PID 195315; stack trace: ***
+I0000 00:00:1794976861.248249  195317 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=2470
+num_cache_hits=1206 {48.8%}
+num_compilations=1261
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+
+PC: @     0x7daace233028  (unknown)  pthread_sigmask
+    @     0x7daa65b00137       1888  FailureSignalHandler()
+    @     0x7daace1d4330  (unknown)  (unknown)
+    @     0x7daa65b49450        304  base::subtle::percpu::AtomicFetchAddSlow()
+    @     0x7daa653cebcc        800  eventmanager::EventManager2::Worker::Poll<>()
+    @     0x7daa653d0d83        192  eventmanager::EventManager2::Worker::Run<>()
+    @     0x7daa653d0713         80  absl::internal_any_invocable::LocalInvoker<>()
+    @     0x7daa659c362f        272  Thread::ThreadBody()
+    @     0x7daace22bb84        176  (unknown)
+    @     0x7daace2b8ecc  (unknown)  (unknown)
+https://symbolize.stripped_domain/r/?trace=7daace233028,7daa65b00136,7daace1d432f,7daa65b4944f,7daa653cebcb,7daa653d0d82,7daa653d0712,7daa659c362e,7daace22bb83,7daace2b8ecb&map= 
+E1118 04:41:01.337799  203086 coredump_hook.cc:250] RAW: Remote crash gathering disabled for SIGTERM.
+E1118 04:41:02.633662  203086 process_state.cc:794] RAW: Raising signal 15 with default behavior
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794976944.225485  204388 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794976945.163576  204388 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794976945.164984  204388 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/usr/local/lib/python3.13/dist-packages/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+I0000 00:00:1794976946.524086  204388 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794976947.280925  204388 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+I0000 00:00:1794976947.317495  204620 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1794976947.317515  204620 tier2_compilation_cache.cc:81] Tier-2 compilation cache is disabled for world size 1.
+/usr/local/lib/python3.13/dist-packages/torch/testing/_internal/opinfo/core.py:1263: UserWarning: std(): degrees of freedom is <= 0. Correction should be strictly less than the reduction factor (input numel divided by output numel). (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/native/ReduceOps.cpp:1913.)
+  return self.op(*args, **kwargs)
+/usr/local/lib/python3.13/dist-packages/torch/testing/_internal/opinfo/core.py:1263: UserWarning: //TorchTpu/Correctness// std(): degrees of freedom (i.e., reduction size - correction) should be positive, got reduction size = 0, correction = 1, and degrees of freedom = -1 (Triggered internally at csrc/ops/reductions/std_aten_kernels.cc:129.)
+  return self.op(*args, **kwargs)
+/usr/local/lib/python3.13/dist-packages/torch/testing/_internal/opinfo/core.py:1263: UserWarning: //TorchTpu/Correctness// std(): degrees of freedom (i.e., reduction size - correction) should be positive, got reduction size = 0, correction = 0, and degrees of freedom = 0 (Triggered internally at csrc/ops/reductions/std_aten_kernels.cc:129.)
+  return self.op(*args, **kwargs)
+/usr/local/lib/python3.13/dist-packages/torch/testing/_internal/opinfo/core.py:1263: UserWarning: var(): degrees of freedom is <= 0. Correction should be strictly less than the reduction factor (input numel divided by output numel). (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/native/ReduceOps.cpp:1913.)
+  return self.op(*args, **kwargs)
+/usr/local/lib/python3.13/dist-packages/torch/testing/_internal/opinfo/core.py:1263: UserWarning: //TorchTpu/Correctness// var(): degrees of freedom (i.e., reduction size - correction) should be positive, got reduction size = 0, correction = 1, and degrees of freedom = -1 (Triggered internally at csrc/ops/reductions/var_aten_kernels.cc:151.)
+  return self.op(*args, **kwargs)
+/usr/local/lib/python3.13/dist-packages/torch/testing/_internal/opinfo/core.py:1263: UserWarning: //TorchTpu/Correctness// var(): degrees of freedom (i.e., reduction size - correction) should be positive, got reduction size = 0, correction = 0, and degrees of freedom = 0 (Triggered internally at csrc/ops/reductions/var_aten_kernels.cc:151.)
+  return self.op(*args, **kwargs)
+/usr/local/lib/python3.13/dist-packages/torch/testing/_internal/opinfo/core.py:1263: UserWarning: reduction: 'mean' divides the total loss by both the batch size and the support size.'batchmean' divides only by the batch size, and aligns with the KL div math definition.'mean' will be changed to behave the same as 'batchmean' in the next major release.
+  return self.op(*args, **kwargs)
+/usr/local/lib/python3.13/dist-packages/torch/testing/_internal/opinfo/core.py:1263: UserWarning: //TorchTpu/Performance// TPU is using HIGHEST precision as requested, but performance may be significantly lower. Consider using torch.set_float32_matmul_precision('medium') for better performance. (Triggered internally at csrc/ops/precision_context.cc:84.)
+  return self.op(*args, **kwargs)
+I0000 00:00:1794976966.990880  204388 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794976966.991317  204388 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=1322
+num_cache_hits=835 {63.1%}
+num_compilations=487
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

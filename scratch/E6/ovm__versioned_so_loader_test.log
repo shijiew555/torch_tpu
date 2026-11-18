@@ -1,0 +1,103 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794972456.081708  138404 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794972457.069100  138404 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794972457.073876  138404 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/root/torch_tpu/.claude/tmp/E6/overlay_main/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+Running tests under Python 3.13.18: /usr/bin/python3
+Repro with --test_random_seed=1234
+[ RUN      ] DiscoverBuiltSuffixesTest.test_finds_versioned_glues_recursively_and_ignores_others
+I0000 00:00:1794972457.087011  138404 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794972457.896312  138404 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+[       OK ] DiscoverBuiltSuffixesTest.test_finds_versioned_glues_recursively_and_ignores_others
+[ RUN      ] DiscoverBuiltSuffixesTest.test_no_versioned_glues_returns_empty
+[       OK ] DiscoverBuiltSuffixesTest.test_no_versioned_glues_returns_empty
+Repro with --test_random_seed=1234
+[ RUN      ] InstalledTorchVersionTest.test_falls_back_to_install_metadata_when_torch_not_imported
+[       OK ] InstalledTorchVersionTest.test_falls_back_to_install_metadata_when_torch_not_imported
+[ RUN      ] InstalledTorchVersionTest.test_prefers_the_imported_torch_over_install_metadata
+[       OK ] InstalledTorchVersionTest.test_prefers_the_imported_torch_over_install_metadata
+[ RUN      ] InstalledTorchVersionTest.test_returns_none_when_torch_not_imported_or_installed
+[       OK ] InstalledTorchVersionTest.test_returns_none_when_torch_not_imported_or_installed
+Repro with --test_random_seed=1234
+[ RUN      ] PathEntryFinderAndHookTest.test_directories_outside_package_dir_use_default_finder
+[       OK ] PathEntryFinderAndHookTest.test_directories_outside_package_dir_use_default_finder
+[ RUN      ] PathEntryFinderAndHookTest.test_extension_proxy_loader_passes_unversioned_spec_name_to_create_module
+[       OK ] PathEntryFinderAndHookTest.test_extension_proxy_loader_passes_unversioned_spec_name_to_create_module
+[ RUN      ] PathEntryFinderAndHookTest.test_find_spec_routes_unversioned_name_to_resolved_glue
+[       OK ] PathEntryFinderAndHookTest.test_find_spec_routes_unversioned_name_to_resolved_glue
+[ RUN      ] PathEntryFinderAndHookTest.test_install_hook_evicts_cached_file_finder_for_package_dir
+[       OK ] PathEntryFinderAndHookTest.test_install_hook_evicts_cached_file_finder_for_package_dir
+[ RUN      ] PathEntryFinderAndHookTest.test_install_hook_is_idempotent_for_same_package_dir
+[       OK ] PathEntryFinderAndHookTest.test_install_hook_is_idempotent_for_same_package_dir
+[ RUN      ] PathEntryFinderAndHookTest.test_install_hook_is_noop_when_no_versioned_glues_exist
+[       OK ] PathEntryFinderAndHookTest.test_install_hook_is_noop_when_no_versioned_glues_exist
+[ RUN      ] PathEntryFinderAndHookTest.test_invalidate_caches_refreshes_underlying_file_finder
+[       OK ] PathEntryFinderAndHookTest.test_invalidate_caches_refreshes_underlying_file_finder
+[ RUN      ] PathEntryFinderAndHookTest.test_non_directory_path_entry_falls_through_to_zipimporter
+[       OK ] PathEntryFinderAndHookTest.test_non_directory_path_entry_falls_through_to_zipimporter
+[ RUN      ] PathEntryFinderAndHookTest.test_package_takes_precedence_over_versioned_glue
+[       OK ] PathEntryFinderAndHookTest.test_package_takes_precedence_over_versioned_glue
+[ RUN      ] PathEntryFinderAndHookTest.test_pure_python_module_imports_normally
+[       OK ] PathEntryFinderAndHookTest.test_pure_python_module_imports_normally
+[ RUN      ] PathEntryFinderAndHookTest.test_version_suffixed_glue_names_are_hidden_from_import0 ('fake_tt._internal.env_2_12_0')
+[       OK ] PathEntryFinderAndHookTest.test_version_suffixed_glue_names_are_hidden_from_import0 ('fake_tt._internal.env_2_12_0')
+[ RUN      ] PathEntryFinderAndHookTest.test_version_suffixed_glue_names_are_hidden_from_import1 ('fake_tt._internal.env_2_11_0')
+[       OK ] PathEntryFinderAndHookTest.test_version_suffixed_glue_names_are_hidden_from_import1 ('fake_tt._internal.env_2_11_0')
+[ RUN      ] PathEntryFinderAndHookTest.test_walk_packages_discovers_all_subpackages_and_unversioned_modules
+[       OK ] PathEntryFinderAndHookTest.test_walk_packages_discovers_all_subpackages_and_unversioned_modules
+Repro with --test_random_seed=1234
+[ RUN      ] ResolveSuffixTest.test_raises_import_error_release_older_than_every_glue
+[       OK ] ResolveSuffixTest.test_raises_import_error_release_older_than_every_glue
+[ RUN      ] ResolveSuffixTest.test_raises_import_error_undetectable_running_version
+[       OK ] ResolveSuffixTest.test_raises_import_error_undetectable_running_version
+[ RUN      ] ResolveSuffixTest.test_resolution_comparison_is_numeric_below_the_running_version
+[       OK ] ResolveSuffixTest.test_resolution_comparison_is_numeric_below_the_running_version
+[ RUN      ] ResolveSuffixTest.test_resolution_comparison_is_numeric_not_lexicographic
+[       OK ] ResolveSuffixTest.test_resolution_comparison_is_numeric_not_lexicographic
+[ RUN      ] ResolveSuffixTest.test_resolution_exact_match_is_chosen
+[       OK ] ResolveSuffixTest.test_resolution_exact_match_is_chosen
+[ RUN      ] ResolveSuffixTest.test_resolution_no_built_glues_and_no_version_disables_dispatch
+[       OK ] ResolveSuffixTest.test_resolution_no_built_glues_and_no_version_disables_dispatch
+[ RUN      ] ResolveSuffixTest.test_resolution_no_built_glues_disables_dispatch
+[       OK ] ResolveSuffixTest.test_resolution_no_built_glues_disables_dispatch
+[ RUN      ] ResolveSuffixTest.test_resolution_release_between_glues_gets_the_newest_older_glue
+[       OK ] ResolveSuffixTest.test_resolution_release_between_glues_gets_the_newest_older_glue
+[ RUN      ] ResolveSuffixTest.test_resolution_release_newer_than_every_glue_gets_the_newest
+[       OK ] ResolveSuffixTest.test_resolution_release_newer_than_every_glue_gets_the_newest
+Repro with --test_random_seed=1234
+[ RUN      ] VersionSuffixTest.test_version_suffix0 ('2.13.0', '2_13_0')
+[       OK ] VersionSuffixTest.test_version_suffix0 ('2.13.0', '2_13_0')
+[ RUN      ] VersionSuffixTest.test_version_suffix1 ('2.13.0+cpu', '2_13_0')
+[       OK ] VersionSuffixTest.test_version_suffix1 ('2.13.0+cpu', '2_13_0')
+[ RUN      ] VersionSuffixTest.test_version_suffix2 ('2.14.0.dev20260711+cpu', '2_14_0')
+[       OK ] VersionSuffixTest.test_version_suffix2 ('2.14.0.dev20260711+cpu', '2_14_0')
+[ RUN      ] VersionSuffixTest.test_version_suffix3 ('2.14.0a0', '2_14_0')
+[       OK ] VersionSuffixTest.test_version_suffix3 ('2.14.0a0', '2_14_0')
+[ RUN      ] VersionSuffixTest.test_version_suffix4 ('2.14.0a0+gitfdcd20c', '2_14_0')
+[       OK ] VersionSuffixTest.test_version_suffix4 ('2.14.0a0+gitfdcd20c', '2_14_0')
+[ RUN      ] VersionSuffixTest.test_version_suffix5 ('2.14.0rc1', '2_14_0')
+[       OK ] VersionSuffixTest.test_version_suffix5 ('2.14.0rc1', '2_14_0')
+[ RUN      ] VersionSuffixTest.test_version_suffix6 ('2.11.10', '2_11_10')
+[       OK ] VersionSuffixTest.test_version_suffix6 ('2.11.10', '2_11_10')
+[ RUN      ] VersionSuffixTest.test_version_suffix7 ('2.13', None)
+[       OK ] VersionSuffixTest.test_version_suffix7 ('2.13', None)
+[ RUN      ] VersionSuffixTest.test_version_suffix8 ('main', None)
+[       OK ] VersionSuffixTest.test_version_suffix8 ('main', None)
+[ RUN      ] VersionSuffixTest.test_version_suffix9 ('2.13.0garbage', None)
+[       OK ] VersionSuffixTest.test_version_suffix9 ('2.13.0garbage', None)
+----------------------------------------------------------------------
+Ran 37 tests in 4.743s
+
+OK
+I0000 00:00:1794972461.828018  138404 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794972461.828039  138404 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=0
+num_cache_hits=0 {NA}
+num_compilations=0
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

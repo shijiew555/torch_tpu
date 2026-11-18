@@ -1,0 +1,73 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794989173.031655  358868 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794989174.020201  358868 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794989174.024740  358868 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/root/torch_tpu/.claude/tmp/compiled-output-alias/ov/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+Running tests under Python 3.13.18: /usr/bin/python3
+Repro with --test_random_seed=1234
+[ RUN      ] ActivationCheckpointingTest.test_activation_checkpointing
+I0000 00:00:1794989174.045945  358868 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794989174.753319  358868 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+/root/torch_tpu/.claude/tmp/compiled-output-alias/repo/tests/compile/activation_checkpointing_test.py:373: UserWarning: //TorchTpu/ApiStage/ExperimentalApi// the XLA_FLAGS environment variable is an experimental feature and may change or be removed without notice. (Triggered internally at ./csrc/common/env_vars.h:456.)
+  x = torch.randn(*input_shape, device=device, requires_grad=True)
+I0000 00:00:1794989174.771383  359045 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1794989174.771409  359045 tier2_compilation_cache.cc:81] Tier-2 compilation cache is disabled for world size 1.
+I1118 08:06:15.267577 137046258983040 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 08:06:15.493045 137027016357568 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] ActivationCheckpointingTest.test_activation_checkpointing
+[ RUN      ] ActivationCheckpointingTest.test_activation_checkpointing_fused_step
+I1118 08:06:16.450779 137046258983040 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 08:06:17.271531 137046258983040 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] ActivationCheckpointingTest.test_activation_checkpointing_fused_step
+[ RUN      ] ActivationCheckpointingTest.test_activation_checkpointing_shared_weights_fused_step
+I1118 08:06:17.965054 137046258983040 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] ActivationCheckpointingTest.test_activation_checkpointing_shared_weights_fused_step
+[ RUN      ] ActivationCheckpointingTest.test_graph_without_backward_checkpoints_remains_unmodified
+[       OK ] ActivationCheckpointingTest.test_graph_without_backward_checkpoints_remains_unmodified
+[ RUN      ] ActivationCheckpointingTest.test_interleaved_regions_share_one_barrier
+[       OK ] ActivationCheckpointingTest.test_interleaved_regions_share_one_barrier
+[ RUN      ] ActivationCheckpointingTest.test_missing_val_metadata_raises
+[       OK ] ActivationCheckpointingTest.test_missing_val_metadata_raises
+[ RUN      ] ActivationCheckpointingTest.test_region_grouping_and_shared_weights
+[       OK ] ActivationCheckpointingTest.test_region_grouping_and_shared_weights
+[ RUN      ] ActivationCheckpointingTest.test_selective_activation_checkpointing_with_layernorm_fused_step
+W1118 08:06:18.619000 358868 torch/_logging/_internal.py:1394] [0/0] 
+W1118 08:06:18.619000 358868 torch/_logging/_internal.py:1394] [0/0] Detected that context_fn is passed to torch.utils.checkpoint under torch.compile.
+W1118 08:06:18.619000 358868 torch/_logging/_internal.py:1394] [0/0] Please make sure the checkpointed region does not contain in-place ops (e.g. torch.relu_).
+W1118 08:06:18.619000 358868 torch/_logging/_internal.py:1394] [0/0] 
+I1118 08:06:18.787568 137046258983040 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] ActivationCheckpointingTest.test_selective_activation_checkpointing_with_layernorm_fused_step
+[ RUN      ] ActivationCheckpointingTest.test_selective_activation_checkpointing_with_layernorm_on_tpu
+I1118 08:06:19.587385 137046258983040 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 08:06:19.813080 137027016357568 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] ActivationCheckpointingTest.test_selective_activation_checkpointing_with_layernorm_on_tpu
+[ RUN      ] ActivationCheckpointingTest.test_three_d_activation_checkpointing_on_tpu
+I1118 08:06:20.317545 137046258983040 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 08:06:20.526411 137027016357568 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 08:06:21.174177 137046258983040 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 08:06:22.102898 137046258983040 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] ActivationCheckpointingTest.test_three_d_activation_checkpointing_on_tpu
+[ RUN      ] ActivationCheckpointingTest.test_three_d_barrier_inputs_flattened_to_2d_and_idempotent
+[       OK ] ActivationCheckpointingTest.test_three_d_barrier_inputs_flattened_to_2d_and_idempotent
+[ RUN      ] ActivationCheckpointingTest.test_three_d_linear_checkpoint_saves_boundary_and_places_barriers
+[       OK ] ActivationCheckpointingTest.test_three_d_linear_checkpoint_saves_boundary_and_places_barriers
+[ RUN      ] ActivationCheckpointingTest.test_tuple_getitems_and_barrier_input_filtering
+[       OK ] ActivationCheckpointingTest.test_tuple_getitems_and_barrier_input_filtering
+[ RUN      ] ActivationCheckpointingTest.test_two_layer_variadic_barriers_and_idempotency
+[       OK ] ActivationCheckpointingTest.test_two_layer_variadic_barriers_and_idempotency
+----------------------------------------------------------------------
+Ran 14 tests in 9.748s
+
+OK
+I0000 00:00:1794989184.883741  358868 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794989184.883979  358868 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=2084
+num_cache_hits=1878 {90.1%}
+num_compilations=206
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

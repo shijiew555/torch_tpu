@@ -1,0 +1,78 @@
+=== repro_unique.py
+cpu: tensor([1, 2, 3])
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E3/repro_unique.py", line 4, in <module>
+    print("tpu:", torch.unique(x.to("tpu"), sorted=False).cpu())
+                  ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/_jit_internal.py", line 637, in fn
+    return if_false(*args, **kwargs)
+  File "/usr/local/lib/python3.13/dist-packages/torch/_jit_internal.py", line 637, in fn
+    return if_false(*args, **kwargs)
+  File "/usr/local/lib/python3.13/dist-packages/torch/functional.py", line 1102, in _return_output
+    output, _, _ = _unique_impl(input, sorted, return_inverse, return_counts, dim)
+                   ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/functional.py", line 973, in _unique_impl
+    output, inverse_indices, counts = torch._unique2(
+                                      ~~~~~~~~~~~~~~^
+        input,
+        ^^^^^^
+    ...<2 lines>...
+        return_counts=return_counts,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+RuntimeError: unique2(): sorted=False is not yet supported
+num_cache_hits=0 {NA}
+num_compilations=0
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+
+=== repro_trilinear.py
+cpu shape: (1, 2, 8, 8, 8)
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E3/repro_trilinear.py", line 6, in <module>
+    out = F.interpolate(x.to("tpu"), scale_factor=2, mode="trilinear", align_corners=False)
+  File "/usr/local/lib/python3.13/dist-packages/torch/nn/functional.py", line 5294, in interpolate
+    return torch._C._nn.upsample_trilinear3d(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        input,
+        ^^^^^^
+    ...<3 lines>...
+        scale_factors,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+RuntimeError: operator 'aten::upsample_trilinear3d.out' is not implemented for TPU. Please file a feature request
+num_cache_hits=0 {NA}
+num_compilations=0
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+
+=== repro_kthvalue.py
+cpu: torch.return_types.kthvalue(
+values=tensor([4., 3.]),
+indices=tensor([2, 2]))
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E3/repro_kthvalue.py", line 4, in <module>
+    print("tpu:", torch.kthvalue(x.to("tpu"), 2, dim=1))
+                  ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: operator 'aten::kthvalue.values' is not implemented for TPU. Please file a feature request
+num_cache_hits=0 {NA}
+num_compilations=0
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+
+=== repro_pad.py
+cpu: tensor([[[[ 1.,  2.,  3.,  3.,  3.],
+          [ 5.,  6.,  7.,  7.,  7.],
+          [ 9., 10., 11., 11., 11.],
+          [13., 14., 15., 15., 15.]]]])
+tpu: tensor([[[[ 1.,  2.,  3.,  3.,  3.],
+          [ 5.,  6.,  7.,  7.,  7.],
+          [ 9., 10., 11., 11., 11.],
+          [13., 14., 15., 15., 15.]]]])
+num_cache_hits=0 {0.0%}
+num_compilations=1
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

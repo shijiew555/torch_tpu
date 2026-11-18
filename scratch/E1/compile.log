@@ -1,0 +1,57 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794970106.074927   55477 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794970107.003388   55477 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794970107.004831   55477 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/usr/local/lib/python3.13/dist-packages/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+I0000 00:00:1794970108.295966   55477 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794970109.094630   55477 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+/usr/local/lib/python3.13/dist-packages/torch_tpu/_internal/compile/fx_passes/sink_get_attr_constants.py:84: UserWarning: Attempted to insert a get_attr Node with no underlying reference in the owning GraphModule! Call GraphModule.add_submodule to add the necessary submodule, GraphModule.add_parameter to add the necessary Parameter, or nn.Module.register_buffer to add the necessary buffer
+  get_attr_node = submod.graph.get_attr(attr_name)
+I0000 00:00:1794970113.611437   55477 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1794970113.611475   55477 tier2_compilation_cache.cc:81] Tier-2 compilation cache is disabled for world size 1.
+llama compile=True cpu=['5.59703', '5.32817', '5.12534'] tpu=['5.59708', '5.32827', '5.12525'] maxlogitdiff=6.99e-03 t=5.1s
+[transformers] Model config: bos_token_id must be `None` or an integer within the vocabulary (between 0 and 255), got 50256. This may result in unexpected behavior.
+[transformers] Model config: eos_token_id must be `None` or an integer within the vocabulary (between 0 and 255), got 50256. This may result in unexpected behavior.
+[transformers] `loss_type=None` was set in the config but it is unrecognized. Using the default loss: `ForCausalLMLoss`.
+/usr/local/lib/python3.13/dist-packages/torch_tpu/_internal/compile/fx_passes/sink_get_attr_constants.py:84: UserWarning: Attempted to insert a get_attr Node with no underlying reference in the owning GraphModule! Call GraphModule.add_submodule to add the necessary submodule, GraphModule.add_parameter to add the necessary Parameter, or nn.Module.register_buffer to add the necessary buffer
+  get_attr_node = submod.graph.get_attr(attr_name)
+gpt2 compile=True cpu=['5.52695', '5.09390', '4.83015'] tpu=['5.52675', '5.09384', '4.83019'] maxlogitdiff=6.31e-03 t=3.8s
+bert compile=True cpu=['5.50798', '5.31794', '5.14644'] tpu=['5.50805', '5.31804', '5.14660'] maxlogitdiff=5.57e-03 t=2.5s
+/usr/local/lib/python3.13/dist-packages/torch/_dynamo/utils.py:4415: UserWarning: //TorchTpu/Performance// TorchTPU only supports FLASH_ATTENTION SDPBackend for scaled_dot_product_attention when these conditions are met:
+- inputs have static shapes
+- dropout_p is in [0.0, 1.0) (current: 0)
+- inputs are float32 or bfloat16 (current: Float)
+- inputs have the same rank (query: 4, key: 4, value: 4)
+- query rank is at least 4 (current: 4)
+- batch size is at least 1
+- Head dimension (dim - 1) is less than 128 or divisible by 128
+(query shape: [2, 4, 16, 16])
+- attn_mask does not require gradient (current: 1) (Triggered internally at csrc/ops/scaled_dot_product_attention/scaled_dot_product_attention_aten_kernels.cc:264.)
+  return node.target(*args, **kwargs)  # type: ignore[operator]
+/usr/local/lib/python3.13/dist-packages/torch/_dynamo/utils.py:4415: UserWarning: //TorchTpu/Performance// TorchTPU only supports SHLO optimized MATH SDPBackend when these conditions are met:
+- dropout_p is 0.0 (current: 0)
+- inputs are not complex (current: Float)
+- inputs have the same rank (query: 4, key: 4, value: 4)
+- attn_mask does not require gradient (current: 1) (Triggered internally at csrc/ops/scaled_dot_product_attention/scaled_dot_product_attention_aten_kernels.cc:289.)
+  return node.target(*args, **kwargs)  # type: ignore[operator]
+/usr/local/lib/python3.13/dist-packages/torch_tpu/_internal/compile/fx_passes/sink_get_attr_constants.py:84: UserWarning: Attempted to insert a get_attr Node with no underlying reference in the owning GraphModule! Call GraphModule.add_submodule to add the necessary submodule, GraphModule.add_parameter to add the necessary Parameter, or nn.Module.register_buffer to add the necessary buffer
+  get_attr_node = submod.graph.get_attr(attr_name)
+t5 compile=True cpu=['5.93226', '4.90903', '4.26602'] tpu=['5.93386', '4.90660', '4.26411'] maxlogitdiff=7.36e-02 t=8.4s
+/usr/local/lib/python3.13/dist-packages/torch_tpu/_internal/compile/fx_passes/sink_get_attr_constants.py:84: UserWarning: Attempted to insert a get_attr Node with no underlying reference in the owning GraphModule! Call GraphModule.add_submodule to add the necessary submodule, GraphModule.add_parameter to add the necessary Parameter, or nn.Module.register_buffer to add the necessary buffer
+  get_attr_node = submod.graph.get_attr(attr_name)
+qwen2 compile=True cpu=['5.54081', '5.28842', '5.09846'] tpu=['5.54084', '5.28849', '5.09835'] maxlogitdiff=5.55e-03 t=6.1s
+/usr/local/lib/python3.13/dist-packages/torch_tpu/_internal/compile/fx_passes/sink_get_attr_constants.py:84: UserWarning: Attempted to insert a get_attr Node with no underlying reference in the owning GraphModule! Call GraphModule.add_submodule to add the necessary submodule, GraphModule.add_parameter to add the necessary Parameter, or nn.Module.register_buffer to add the necessary buffer
+  get_attr_node = submod.graph.get_attr(attr_name)
+gemma compile=True cpu=['5.59770', '5.48439', '5.36925'] tpu=['5.59771', '5.48432', '5.36924'] maxlogitdiff=5.87e-03 t=7.0s
+I0000 00:00:1794970147.779214   55477 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794970147.779399   55477 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=645
+num_cache_hits=563 {87.2%}
+num_compilations=82
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

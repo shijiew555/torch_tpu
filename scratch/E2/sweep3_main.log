@@ -1,0 +1,146 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794974169.887524  163131 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794974171.114626  163131 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794974171.119544  163131 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/root/torch_tpu/.claude/tmp/E6/overlay_main/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+torch_tpu file: /root/torch_tpu/.claude/tmp/E6/overlay_main/torch_tpu/__init__.py
+I0000 00:00:1794974171.136110  163131 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794974171.871361  163131 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+I0000 00:00:1794974172.183910  163324 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1794974172.183947  163324 tier2_compilation_cache.cc:81] Tier-2 compilation cache is disabled for world size 1.
+===== alias_outputs_inference 
+ Traceback (most recent call last):
+  File "<string>", line 26, in deco
+RuntimeError: Boolean value of Tensor with more than one value is ambiguous
+alias_outputs_inference ERR RuntimeError: Boolean value of Tensor with more than one value is ambiguous
+alias_outputs_training OK
+alias_two_views_of_intermediate MISMATCH no shared storage
+/usr/local/lib/python3.13/dist-packages/torch/_dynamo/variables/higher_order_ops.py:2416: UserWarning: Pred is a Python constant. When used with torch.cond, it specializes on one of the branches. If you want torch.cond to preserve two branches, please make the predicate a boolean tensor or a SymBool.
+  warnings.warn(
+cond_static_pred OK
+===== cond_tensor_pred 
+   File "/usr/local/lib/python3.13/dist-packages/torch/_ops.py", line 549, in __call__
+    return self.dispatch(dispatch_key_set.highestPriorityTypeId(), *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/_ops.py", line 537, in dispatch
+    return kernel(*args, **kwargs)
+  File "/usr/local/lib/python3.13/dist-packages/torch/_higher_order_ops/cond.py", line 309, in cond_op_dense
+    if pred:
+       ^^^^
+torch._dynamo.exc.BackendCompilerFailed: backend='tpu' raised:
+RuntimeError: local_scalar_dense(): cannot materialize a tensor during a stream-isolated copy, materialization requires an active stream
+
+While executing %cond : [num_users=1] = call_function[target=torch.ops.higher_order.cond](args = (%gt_scalar, %true_graph_0, %false_graph_0, (%arg0_1,)), kwargs = {})
+Original traceback:
+  File "/root/torch_tpu/.claude/tmp/E2/sweep3.py", line 51, in f
+    return torch.cond(x.sum() > 0, lambda t: t.sin(), lambda t: t.cos(), (x,))
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Use tlparse to see full graph. (https://github.com/pytorch/tlparse?tab=readme-ov-file#tlparse-parse-structured-pt2-logs)
+
+While executing %submod_0 : [num_users=1] = call_module[target=submod_0](args = (%arg0_1,), kwargs = {})
+Original traceback:
+None
+Use tlparse to see full graph. (https://github.com/pytorch/tlparse?tab=readme-ov-file#tlparse-parse-structured-pt2-logs)
+
+Set TORCHDYNAMO_VERBOSE=1 for the internal stack trace (please do this especially if you're reporting a bug to PyTorch). For even more developer context, set TORCH_LOGS="+dynamo"
+cond_tensor_pred ERR BackendCompilerFailed: backend='tpu' raised:
+RuntimeError: local_scalar_dense(): cannot materialize a tensor during a stream-isolated copy, materialization requires an active stream
+
+While executing %cond : [num_users=1] = call_function[target=torch.ops.higher_order.cond](args = (%gt_scalar, %true_graph_0, %false_graph_0,
+cond_eager_tpu OK
+===== while_loop_compiled 
+     ^
+  File "/usr/local/lib/python3.13/dist-packages/torch/_ops.py", line 549, in __call__
+    return self.dispatch(dispatch_key_set.highestPriorityTypeId(), *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/_ops.py", line 537, in dispatch
+    return kernel(*args, **kwargs)
+  File "/usr/local/lib/python3.13/dist-packages/torch/_higher_order_ops/while_loop.py", line 292, in while_loop_dense
+    if not should_loop:
+           ^^^^^^^^^^^
+torch._dynamo.exc.BackendCompilerFailed: backend='tpu' raised:
+RuntimeError: local_scalar_dense(): cannot materialize a tensor during a stream-isolated copy, materialization requires an active stream
+
+While executing %while_loop : [num_users=2] = call_function[target=torch.ops.higher_order.while_loop](args = (%while_loop_cond_graph_0, %while_loop_body_graph_0, (%arg0_1, %arg1_1), ()), kwargs = {})
+Original traceback:
+  File "/root/torch_tpu/.claude/tmp/E2/sweep3.py", line 68, in f
+    return while_loop(lambda i, x: i < 3, lambda i, x: (i + 1, x * 2), (i, x))
+
+Use tlparse to see full graph. (https://github.com/pytorch/tlparse?tab=readme-ov-file#tlparse-parse-structured-pt2-logs)
+
+While executing %submod_0 : [num_users=2] = call_module[target=submod_0](args = (%arg0_1, %arg1_1), kwargs = {})
+Original traceback:
+None
+Use tlparse to see full graph. (https://github.com/pytorch/tlparse?tab=readme-ov-file#tlparse-parse-structured-pt2-logs)
+
+Set TORCHDYNAMO_VERBOSE=1 for the internal stack trace (please do this especially if you're reporting a bug to PyTorch). For even more developer context, set TORCH_LOGS="+dynamo"
+while_loop_compiled ERR BackendCompilerFailed: backend='tpu' raised:
+RuntimeError: local_scalar_dense(): cannot materialize a tensor during a stream-isolated copy, materialization requires an active stream
+
+While executing %while_loop : [num_users=2] = call_function[target=torch.ops.higher_order.while_loop](args = (%while_loop_cond_graph_0, %whi
+compiler_disable_inside OK
+item_capture_scalar OK
+===== int_item_shape 
+   File "/usr/local/lib/python3.13/dist-packages/torch/fx/interpreter.py", line 294, in run_node
+    return getattr(self, n.op)(n.target, args, kwargs)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/fx/interpreter.py", line 377, in call_function
+    return target(*args, **kwargs)
+  File "/usr/local/lib/python3.13/dist-packages/torch/_ops.py", line 916, in __call__
+    return self._op(*args, **kwargs)
+           ~~~~~~~~^^^^^^^^^^^^^^^^^
+torch._dynamo.exc.BackendCompilerFailed: backend='tpu' raised:
+RuntimeError: local_scalar_dense(): cannot Materialize() a placeholder tensor or a tensor that depends on a placeholder. 
+Placeholder tensors should only appear in compiled mode, which should never try to materialize tensors
+
+While executing %_local_scalar_dense_default : [num_users=1] = call_function[target=torch.ops.aten._local_scalar_dense.default](args = (%arg0_1,), kwargs = {})
+Original traceback:
+  File "/root/torch_tpu/.claude/tmp/E2/sweep3.py", line 104, in f
+    k = n.item()
+
+Use tlparse to see full graph. (https://github.com/pytorch/tlparse?tab=readme-ov-file#tlparse-parse-structured-pt2-logs)
+
+While executing %submod_0 : [num_users=1] = call_module[target=submod_0](args = (%arg0_1, %arg1_1), kwargs = {})
+Original traceback:
+None
+Use tlparse to see full graph. (https://github.com/pytorch/tlparse?tab=readme-ov-file#tlparse-parse-structured-pt2-logs)
+
+Set TORCHDYNAMO_VERBOSE=1 for the internal stack trace (please do this especially if you're reporting a bug to PyTorch). For even more developer context, set TORCH_LOGS="+dynamo"
+int_item_shape ERR BackendCompilerFailed: backend='tpu' raised:
+RuntimeError: local_scalar_dense(): cannot Materialize() a placeholder tensor or a tensor that depends on a placeholder. 
+Placeholder tensors should only appear in compiled mode, which should never try to materialize tensors
+
+While executing %_local_scalar_dense_default : [num_
+
+SUMMARY
+alias_outputs_inference             ERR RuntimeError: Boolean value of Tensor with more than one value is ambiguous
+alias_outputs_training              OK
+alias_two_views_of_intermediate     MISMATCH no shared storage
+cond_static_pred                    OK
+cond_tensor_pred                    ERR BackendCompilerFailed: backend='tpu' raised:
+RuntimeError: local_scalar_dense(): cannot materialize a tensor during a stream-isolated copy, materialization requires an active stream
+
+While executi
+cond_eager_tpu                      OK
+while_loop_compiled                 ERR BackendCompilerFailed: backend='tpu' raised:
+RuntimeError: local_scalar_dense(): cannot materialize a tensor during a stream-isolated copy, materialization requires an active stream
+
+While executi
+compiler_disable_inside             OK
+item_capture_scalar                 OK
+int_item_shape                      ERR BackendCompilerFailed: backend='tpu' raised:
+RuntimeError: local_scalar_dense(): cannot Materialize() a placeholder tensor or a tensor that depends on a placeholder. 
+Placeholder tensors should on
+I0000 00:00:1794974185.731724  163131 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794974185.731783  163131 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=10
+num_cache_hits=0 {0.0%}
+num_compilations=10
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

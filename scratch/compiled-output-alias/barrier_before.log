@@ -1,0 +1,102 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794989330.863455  362002 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794989331.872160  362002 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794989331.876930  362002 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/root/torch_tpu/.claude/tmp/compiled-output-alias/ov/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+Running tests under Python 3.13.18: /usr/bin/python3
+Repro with --test_random_seed=1234
+[ RUN      ] CompileApiTest.test_optimization_barrier_gradients_pass_through_one_barrier
+I0000 00:00:1794989331.903047  362002 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794989332.592651  362002 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+I0000 00:00:1794989332.602571  362215 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1794989332.602604  362215 tier2_compilation_cache.cc:81] Tier-2 compilation cache is disabled for world size 1.
+I1118 08:08:53.145618 136196883288192 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[  FAILED  ] CompileApiTest.test_optimization_barrier_gradients_pass_through_one_barrier
+[ RUN      ] CompileApiTest.test_optimization_barrier_compiled_autograd_is_traceable
+/root/torch_tpu/.claude/tmp/compiled-output-alias/repo/tests/compile/compile_api_test.py:1120: UserWarning: //TorchTpu/ApiStage/ExperimentalApi// optimization_barrier is experimental and subject to change: torch.tpu.ops.optimization_barrier is experimental and subject to change.
+  a_fenced, frozen_fenced = torch.tpu.ops.optimization_barrier(
+[  FAILED  ] CompileApiTest.test_optimization_barrier_compiled_autograd_is_traceable
+======================================================================
+ERROR: test_optimization_barrier_gradients_pass_through_one_barrier (__main__.CompileApiTest)
+CompileApiTest.test_optimization_barrier_gradients_pass_through_one_barrier
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/compiled-output-alias/repo/tests/compile/compile_api_test.py", line 1101, in test_optimization_barrier_gradients_pass_through_one_barrier
+    compiled_fn(a, b).backward()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/_tensor.py", line 623, in backward
+    torch.autograd.backward(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        self, gradient, retain_graph, create_graph, inputs=inputs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/usr/local/lib/python3.13/dist-packages/torch/autograd/__init__.py", line 395, in backward
+    _engine_run_backward(
+    ~~~~~~~~~~~~~~~~~~~~^
+        tensors,
+        ^^^^^^^^
+    ...<5 lines>...
+        accumulate_grad=True,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/usr/local/lib/python3.13/dist-packages/torch/autograd/graph.py", line 1072, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        t_outputs, *args, **kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )  # Calls into the C++ engine to run the backward pass
+    ^
+RuntimeError: element 0 of tensors does not require grad and does not have a grad_fn
+
+======================================================================
+ERROR: test_optimization_barrier_compiled_autograd_is_traceable (__main__.CompileApiTest)
+CompileApiTest.test_optimization_barrier_compiled_autograd_is_traceable
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/compiled-output-alias/repo/tests/compile/compile_api_test.py", line 1123, in test_optimization_barrier_compiled_autograd_is_traceable
+    (a_fenced + frozen_fenced).sum().backward()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/_tensor.py", line 623, in backward
+    torch.autograd.backward(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        self, gradient, retain_graph, create_graph, inputs=inputs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/usr/local/lib/python3.13/dist-packages/torch/autograd/__init__.py", line 395, in backward
+    _engine_run_backward(
+    ~~~~~~~~~~~~~~~~~~~~^
+        tensors,
+        ^^^^^^^^
+    ...<5 lines>...
+        accumulate_grad=True,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/usr/local/lib/python3.13/dist-packages/torch/autograd/graph.py", line 1072, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        t_outputs, *args, **kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )  # Calls into the C++ engine to run the backward pass
+    ^
+RuntimeError: element 0 of tensors does not require grad and does not have a grad_fn
+
+----------------------------------------------------------------------
+Ran 2 tests in 1.371s
+
+FAILED (errors=2)
+I0000 00:00:1794989334.275004  362002 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794989334.275056  362002 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=9
+num_cache_hits=3 {33.3%}
+num_compilations=6
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

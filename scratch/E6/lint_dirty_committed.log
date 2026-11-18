@@ -1,0 +1,52 @@
+nox > Running session lint
+nox > Creating virtual environment (uv) using python3 in .nox/lint
+nox > uv pip install clang-format google-re2 ruff
+nox > ci/tools/clang_format.sh lint
+INFO: Running clang-format check...
+INFO: clang-format check passed successfully.
+nox > ci/tools/ruff_lint.sh lint
+INFO: Running ruff check on modified Python files...
+unused-import: `os` imported but unused
+  --> src/torch_tpu/_internal/__init__.py:17:8
+   |
+15 | """Internal-only utilities for torch_tpu. Users must not use these directly."""
+16 |
+17 | import os
+   |        ^^
+18 | x=1;y = 2
+   |
+help: Remove unused import: `os`
+   |
+16 |
+   - import os
+17 | x=1;y = 2
+   |
+note: This is an unsafe fix and may change runtime behavior
+
+missing-whitespace-around-operator: [*] Missing whitespace around operator
+  --> src/torch_tpu/_internal/__init__.py:18:2
+   |
+17 | import os
+18 | x=1;y = 2
+   |  ^
+help: Add missing whitespace
+   |
+17 | import os
+   - x=1;y = 2
+18 + x = 1;y = 2
+   |
+
+Found 2 errors.
+[*] 1 fixable with `--fix` (1 unsafe fix available with `--fix --unsafe-fixes`).
+=================================================================
+ERROR: Python linting issues found in modified files.
+=================================================================
+To fix automatically:
+1. Install nox locally: pip install nox
+2. Run the autofixer in the root of the repository: nox -s format
+
+To suppress specific ruff warnings when legitimate:
+Add a trailing comment on the affected line, e.g. # ruff: ignore[line-too-long]
+=================================================================
+nox > Command ci/tools/ruff_lint.sh lint failed with exit code 1
+nox > Session lint failed.

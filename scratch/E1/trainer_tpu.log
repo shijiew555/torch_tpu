@@ -1,0 +1,50 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794972298.295224  136596 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794972300.066695  136596 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794972300.069235  136596 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/usr/local/lib/python3.13/dist-packages/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+I0000 00:00:1794972303.896132  136596 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794972304.940580  136596 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+[transformers] The speedups for torchdynamo mostly come with GPU Ampere or higher and which is not detected here.
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E1/peft_ac.py", line 6, in tryit
+    t=time.time(); r=fn(); print(f"{label}: OK {r} ({time.time()-t:.1f}s)", flush=True)
+                     ~~^^
+  File "/root/torch_tpu/.claude/tmp/E1/peft_ac.py", line 38, in trainer_bf16_compile
+    tr=T.Trainer(model=build("llama"),args=args,train_dataset=DS(),eval_dataset=DS())
+  File "/usr/local/lib/python3.13/dist-packages/transformers/trainer.py", line 426, in __init__
+    self.create_accelerator_and_postprocess()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/lib/python3.13/dist-packages/transformers/trainer.py", line 854, in create_accelerator_and_postprocess
+    args = self._build_accelerator_args(
+        dataloader_config=dataloader_config,
+        fsdp_plugin=fsdp_plugin,
+        gradient_accumulation_plugin=gradient_accumulation_plugin,
+    )
+  File "/usr/local/lib/python3.13/dist-packages/transformers/trainer.py", line 796, in _build_accelerator_args
+    dynamo_plugin = TorchDynamoPlugin(
+        backend=self.args.torch_compile_backend, mode=self.args.torch_compile_mode
+    )
+  File "<string>", line 10, in __init__
+  File "/root/torch_tpu/.claude/tmp/E1/acc116/accelerate/utils/dataclasses.py", line 1016, in __post_init__
+    self.backend = DynamoBackend(self.backend.upper())
+                   ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/enum.py", line 728, in __call__
+    return cls.__new__(cls, value)
+           ~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3.13/enum.py", line 1205, in __new__
+    raise ve_exc
+ValueError: 'TPU' is not a valid DynamoBackend
+trainer_bf16_compile: FAIL ValueError: 'TPU' is not a valid DynamoBackend
+I0000 00:00:1794972377.665438  136596 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794972377.665477  136596 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=0
+num_cache_hits=0 {NA}
+num_compilations=0
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

@@ -1,0 +1,334 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794989154.852587  357580 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794989155.954845  357580 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794989155.959644  357580 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/root/torch_tpu/.claude/tmp/compiled-output-alias/ov/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+Running tests under Python 3.13.18: /usr/bin/python3
+Repro with --test_random_seed=1234
+[ RUN      ] CompileApiTest.test_assign_constant_tensor
+I0000 00:00:1794989155.986162  357580 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794989156.668800  357580 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+I0000 00:00:1794989156.681257  357771 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1794989156.681285  357771 tier2_compilation_cache.cc:81] Tier-2 compilation cache is disabled for world size 1.
+[       OK ] CompileApiTest.test_assign_constant_tensor
+[ RUN      ] CompileApiTest.test_assign_constant_tensor_non_contiguous
+[       OK ] CompileApiTest.test_assign_constant_tensor_non_contiguous
+[ RUN      ] CompileApiTest.test_async_traverse_and_compile_basic
+/root/torch_tpu/.claude/tmp/compiled-output-alias/repo/tests/compile/compile_api_test.py:75: UserWarning: //TorchTpu/ApiStage/ExperimentalApi// set_eager_mode is experimental and subject to change: Context manager for setting the eager mode.
+  return execution_mode.set_eager_mode(EagerMode._INTERNAL_COMPILE_FX_GRAPH)
+[       OK ] CompileApiTest.test_async_traverse_and_compile_basic
+[ RUN      ] CompileApiTest.test_async_traverse_and_compile_concurrent_distinct_graphs
+[       OK ] CompileApiTest.test_async_traverse_and_compile_concurrent_distinct_graphs
+[ RUN      ] CompileApiTest.test_async_traverse_and_compile_concurrent_get_on_shared_result
+[       OK ] CompileApiTest.test_async_traverse_and_compile_concurrent_get_on_shared_result
+[ RUN      ] CompileApiTest.test_async_traverse_and_compile_concurrent_shared_cache_entry
+[       OK ] CompileApiTest.test_async_traverse_and_compile_concurrent_shared_cache_entry
+[ RUN      ] CompileApiTest.test_async_traverse_and_compile_concurrent_with_eager_execution
+[       OK ] CompileApiTest.test_async_traverse_and_compile_concurrent_with_eager_execution
+[ RUN      ] CompileApiTest.test_async_traverse_and_compile_deduplicated_args
+[       OK ] CompileApiTest.test_async_traverse_and_compile_deduplicated_args
+[ RUN      ] CompileApiTest.test_async_traverse_and_compile_multiple_get_calls
+[       OK ] CompileApiTest.test_async_traverse_and_compile_multiple_get_calls
+[ RUN      ] CompileApiTest.test_async_traverse_and_compile_view_output
+[       OK ] CompileApiTest.test_async_traverse_and_compile_view_output
+[ RUN      ] CompileApiTest.test_async_traverse_and_compile_with_build_mlir_module
+[       OK ] CompileApiTest.test_async_traverse_and_compile_with_build_mlir_module
+[ RUN      ] CompileApiTest.test_build_mlir
+[       OK ] CompileApiTest.test_build_mlir
+[ RUN      ] CompileApiTest.test_compilation_cache_with_forced_layouts
+I0000 00:00:1794989157.813164  357580 compilation_cache.cc:362] CompilationCache allow-cache mode set to: true
+I0000 00:00:1794989158.863084  357580 compilation_cache.cc:356] Compilation cache evicted.
+[       OK ] CompileApiTest.test_compilation_cache_with_forced_layouts
+[ RUN      ] CompileApiTest.test_compile_backend_defaults_to_torch_default_if_no_tpu_tensor
+I0000 00:00:1794989159.908102  357580 compilation_cache.cc:356] Compilation cache evicted.
+[       OK ] CompileApiTest.test_compile_backend_defaults_to_torch_default_if_no_tpu_tensor
+[ RUN      ] CompileApiTest.test_compile_backend_defaults_to_tpu
+I1118 08:06:00.215329 139592313663616 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] CompileApiTest.test_compile_backend_defaults_to_tpu
+[ RUN      ] CompileApiTest.test_compile_default_backend_no_recompilations
+I1118 08:06:00.325397 139592313663616 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] CompileApiTest.test_compile_default_backend_no_recompilations
+[ RUN      ] CompileApiTest.test_compile_explicit_backend_is_respected
+[       OK ] CompileApiTest.test_compile_explicit_backend_is_respected
+[ RUN      ] CompileApiTest.test_compile_explicit_dynamic_overrides_preserved
+I1118 08:06:00.695365 139592313663616 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] CompileApiTest.test_compile_explicit_dynamic_overrides_preserved
+[ RUN      ] CompileApiTest.test_compile_inductor_backend_on_tpu_raises
+[       OK ] CompileApiTest.test_compile_inductor_backend_on_tpu_raises
+[ RUN      ] CompileApiTest.test_compile_inductor_backend_succeeds_on_cpu
+[       OK ] CompileApiTest.test_compile_inductor_backend_succeeds_on_cpu
+[ RUN      ] CompileApiTest.test_compile_inductor_backend_succeeds_on_tpu_with_pallas_option
+[       OK ] CompileApiTest.test_compile_inductor_backend_succeeds_on_tpu_with_pallas_option
+[ RUN      ] CompileApiTest.test_compile_mode_None_None
+[       OK ] CompileApiTest.test_compile_mode_None_None
+[ RUN      ] CompileApiTest.test_compile_mode_None_default
+[       OK ] CompileApiTest.test_compile_mode_None_default
+[ RUN      ] CompileApiTest.test_compile_mode_None_foo-bar
+[       OK ] CompileApiTest.test_compile_mode_None_foo-bar
+[ RUN      ] CompileApiTest.test_compile_mode_None_max-autotune
+[       OK ] CompileApiTest.test_compile_mode_None_max-autotune
+[ RUN      ] CompileApiTest.test_compile_mode_None_max-autotune-no-cudagraphs
+[       OK ] CompileApiTest.test_compile_mode_None_max-autotune-no-cudagraphs
+[ RUN      ] CompileApiTest.test_compile_mode_None_reduce-overhead
+[       OK ] CompileApiTest.test_compile_mode_None_reduce-overhead
+[ RUN      ] CompileApiTest.test_compile_mode_tpu_None
+[       OK ] CompileApiTest.test_compile_mode_tpu_None
+[ RUN      ] CompileApiTest.test_compile_mode_tpu_default
+[       OK ] CompileApiTest.test_compile_mode_tpu_default
+[ RUN      ] CompileApiTest.test_compile_mode_tpu_foo-bar
+[       OK ] CompileApiTest.test_compile_mode_tpu_foo-bar
+[ RUN      ] CompileApiTest.test_compile_mode_tpu_max-autotune
+[       OK ] CompileApiTest.test_compile_mode_tpu_max-autotune
+[ RUN      ] CompileApiTest.test_compile_mode_tpu_max-autotune-no-cudagraphs
+[       OK ] CompileApiTest.test_compile_mode_tpu_max-autotune-no-cudagraphs
+[ RUN      ] CompileApiTest.test_compile_mode_tpu_reduce-overhead
+[       OK ] CompileApiTest.test_compile_mode_tpu_reduce-overhead
+[ RUN      ] CompileApiTest.test_compile_non_tpu_backend_does_not_set_dynamic_false
+[       OK ] CompileApiTest.test_compile_non_tpu_backend_does_not_set_dynamic_false
+[ RUN      ] CompileApiTest.test_compile_preserves_dispatch_order
+[       OK ] CompileApiTest.test_compile_preserves_dispatch_order
+[ RUN      ] CompileApiTest.test_compile_tpu_defaults_dynamic_to_false_bare_decorator
+[       OK ] CompileApiTest.test_compile_tpu_defaults_dynamic_to_false_bare_decorator
+[ RUN      ] CompileApiTest.test_compile_tpu_defaults_dynamic_to_false_decorator_with_parens
+[       OK ] CompileApiTest.test_compile_tpu_defaults_dynamic_to_false_decorator_with_parens
+[ RUN      ] CompileApiTest.test_compile_tpu_defaults_dynamic_to_false_decorator_with_tpu_backend_instance
+[       OK ] CompileApiTest.test_compile_tpu_defaults_dynamic_to_false_decorator_with_tpu_backend_instance
+[ RUN      ] CompileApiTest.test_compile_tpu_defaults_dynamic_to_false_decorator_with_tpu_backend_str
+[       OK ] CompileApiTest.test_compile_tpu_defaults_dynamic_to_false_decorator_with_tpu_backend_str
+[ RUN      ] CompileApiTest.test_compile_tpu_defaults_dynamic_to_false_direct_call_backend_instance
+[       OK ] CompileApiTest.test_compile_tpu_defaults_dynamic_to_false_direct_call_backend_instance
+[ RUN      ] CompileApiTest.test_compile_tpu_defaults_dynamic_to_false_direct_call_backend_none
+[       OK ] CompileApiTest.test_compile_tpu_defaults_dynamic_to_false_direct_call_backend_none
+[ RUN      ] CompileApiTest.test_compile_tpu_defaults_dynamic_to_false_direct_call_backend_str
+[       OK ] CompileApiTest.test_compile_tpu_defaults_dynamic_to_false_direct_call_backend_str
+[ RUN      ] CompileApiTest.test_compile_tpu_defaults_dynamic_to_false_direct_call_default_backend
+[       OK ] CompileApiTest.test_compile_tpu_defaults_dynamic_to_false_direct_call_default_backend
+[ RUN      ] CompileApiTest.test_compile_tpu_defaults_dynamic_to_false_direct_call_lookup_backend
+[       OK ] CompileApiTest.test_compile_tpu_defaults_dynamic_to_false_direct_call_lookup_backend
+[ RUN      ] CompileApiTest.test_compile_tpu_defaults_dynamic_to_false_direct_call_model_kwarg
+[       OK ] CompileApiTest.test_compile_tpu_defaults_dynamic_to_false_direct_call_model_kwarg
+[ RUN      ] CompileApiTest.test_compile_with_tiled_argument_layouts
+/root/torch_tpu/.claude/tmp/compiled-output-alias/repo/tests/compile/compile_api_test.py:314: UserWarning: //TorchTpu/ApiStage/ExperimentalApi// TpuLayout is experimental and subject to change: On-device layout of TPU tensors.
+  layout = annotations.TpuLayout(minor_to_major=[1, 0], tiles=[[8, 128]])
+/root/torch_tpu/.claude/tmp/compiled-output-alias/repo/tests/compile/compile_api_test.py:315: UserWarning: //TorchTpu/ApiStage/ExperimentalApi// LayoutContext is experimental and subject to change: Context manager for setting the layout hint for TPU tensors.
+  with annotations.LayoutContext(layout):
+[       OK ] CompileApiTest.test_compile_with_tiled_argument_layouts
+[ RUN      ] CompileApiTest.test_compiled_module_output_to_eager_op_dynamic_intermediate_dim
+[       OK ] CompileApiTest.test_compiled_module_output_to_eager_op_dynamic_intermediate_dim
+[ RUN      ] CompileApiTest.test_compiled_module_output_to_eager_op_dynamic_major_dim
+[       OK ] CompileApiTest.test_compiled_module_output_to_eager_op_dynamic_major_dim
+[ RUN      ] CompileApiTest.test_compiled_module_output_to_eager_op_dynamic_minor_dim
+[       OK ] CompileApiTest.test_compiled_module_output_to_eager_op_dynamic_minor_dim
+[ RUN      ] CompileApiTest.test_dynamic_placeholder
+[       OK ] CompileApiTest.test_dynamic_placeholder
+[ RUN      ] CompileApiTest.test_dynamic_view_writeback
+[       OK ] CompileApiTest.test_dynamic_view_writeback
+[ RUN      ] CompileApiTest.test_eager_module_inputs_different_layouts
+[       OK ] CompileApiTest.test_eager_module_inputs_different_layouts
+[ RUN      ] CompileApiTest.test_executable_layouts
+[       OK ] CompileApiTest.test_executable_layouts
+[ RUN      ] CompileApiTest.test_execute_with_output_shapes
+[       OK ] CompileApiTest.test_execute_with_output_shapes
+[ RUN      ] CompileApiTest.test_execute_with_smaller_output_shapes
+[       OK ] CompileApiTest.test_execute_with_smaller_output_shapes
+[ RUN      ] CompileApiTest.test_extra_input_to_build_mlir
+[       OK ] CompileApiTest.test_extra_input_to_build_mlir
+[ RUN      ] CompileApiTest.test_force_strides_broadcast
+[       OK ] CompileApiTest.test_force_strides_broadcast
+[ RUN      ] CompileApiTest.test_force_strides_no_op
+[       OK ] CompileApiTest.test_force_strides_no_op
+[ RUN      ] CompileApiTest.test_force_strides_one_dimension_overlap
+[       OK ] CompileApiTest.test_force_strides_one_dimension_overlap
+[ RUN      ] CompileApiTest.test_force_strides_permute
+[       OK ] CompileApiTest.test_force_strides_permute
+[ RUN      ] CompileApiTest.test_force_strides_slice
+[       OK ] CompileApiTest.test_force_strides_slice
+[ RUN      ] CompileApiTest.test_force_strides_two_dimension_overlap
+[       OK ] CompileApiTest.test_force_strides_two_dimension_overlap
+[ RUN      ] CompileApiTest.test_get_default_layout
+[       OK ] CompileApiTest.test_get_default_layout
+[ RUN      ] CompileApiTest.test_get_dynamic_pad_module
+[       OK ] CompileApiTest.test_get_dynamic_pad_module
+[ RUN      ] CompileApiTest.test_get_or_compile_pad_module
+[       OK ] CompileApiTest.test_get_or_compile_pad_module
+[ RUN      ] CompileApiTest.test_get_or_compile_slice_module
+[       OK ] CompileApiTest.test_get_or_compile_slice_module
+[ RUN      ] CompileApiTest.test_global_compile_decorator_backend_defaults_to_torch_default_if_no_tpu_tensor
+I0000 00:00:1794989164.127865  357580 compilation_cache.cc:356] Compilation cache evicted.
+[       OK ] CompileApiTest.test_global_compile_decorator_backend_defaults_to_torch_default_if_no_tpu_tensor
+[ RUN      ] CompileApiTest.test_global_compile_decorator_backend_defaults_to_tpu
+I1118 08:06:04.201966 139592313663616 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] CompileApiTest.test_global_compile_decorator_backend_defaults_to_tpu
+[ RUN      ] CompileApiTest.test_is_constant_tensor
+[       OK ] CompileApiTest.test_is_constant_tensor
+[ RUN      ] CompileApiTest.test_is_device_shape_dynamic
+I1118 08:06:04.326849 139592313663616 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] CompileApiTest.test_is_device_shape_dynamic
+[ RUN      ] CompileApiTest.test_layout_context_auto_extracted_in_static_compile
+[       OK ] CompileApiTest.test_layout_context_auto_extracted_in_static_compile
+[ RUN      ] CompileApiTest.test_make_constant_bool_tensor
+[       OK ] CompileApiTest.test_make_constant_bool_tensor
+[ RUN      ] CompileApiTest.test_make_constant_complex_tensor
+[       OK ] CompileApiTest.test_make_constant_complex_tensor
+[ RUN      ] CompileApiTest.test_make_constant_tensor
+[       OK ] CompileApiTest.test_make_constant_tensor
+[ RUN      ] CompileApiTest.test_make_constant_tensor_slice
+[       OK ] CompileApiTest.test_make_constant_tensor_slice
+[ RUN      ] CompileApiTest.test_make_constant_tensor_strided_slice
+[       OK ] CompileApiTest.test_make_constant_tensor_strided_slice
+[ RUN      ] CompileApiTest.test_nn_module_compile_defaults_dynamic_to_false
+I1118 08:06:04.631179 139592313663616 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] CompileApiTest.test_nn_module_compile_defaults_dynamic_to_false
+[ RUN      ] CompileApiTest.test_optimization_barrier
+/root/torch_tpu/.claude/tmp/compiled-output-alias/repo/tests/compile/compile_api_test.py:1077: UserWarning: //TorchTpu/ApiStage/ExperimentalApi// optimization_barrier is experimental and subject to change: torch.tpu.ops.optimization_barrier is experimental and subject to change.
+  results = torch.tpu.ops.optimization_barrier(inputs)
+[       OK ] CompileApiTest.test_optimization_barrier
+[ RUN      ] CompileApiTest.test_optimization_barrier_compiled_autograd_is_traceable
+[  FAILED  ] CompileApiTest.test_optimization_barrier_compiled_autograd_is_traceable
+[ RUN      ] CompileApiTest.test_optimization_barrier_gradients_pass_through_one_barrier
+I1118 08:06:04.828327 139592313663616 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[  FAILED  ] CompileApiTest.test_optimization_barrier_gradients_pass_through_one_barrier
+[ RUN      ] CompileApiTest.test_optimization_barrier_on_non_contiguous_tensor
+[       OK ] CompileApiTest.test_optimization_barrier_on_non_contiguous_tensor
+[ RUN      ] CompileApiTest.test_static_compiler_async_with_mutable_custom_op
+[       OK ] CompileApiTest.test_static_compiler_async_with_mutable_custom_op
+[ RUN      ] CompileApiTest.test_static_compiler_auto_buffer_donation_with_mutable_custom_op
+[       OK ] CompileApiTest.test_static_compiler_auto_buffer_donation_with_mutable_custom_op
+[ RUN      ] CompileApiTest.test_static_compiler_buffer_donation
+[       OK ] CompileApiTest.test_static_compiler_buffer_donation
+[ RUN      ] CompileApiTest.test_static_compiler_buffer_donation_changes_cache_key
+I0000 00:00:1794989167.114803  357580 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794989168.170872  357580 compilation_cache.cc:356] Compilation cache evicted.
+[       OK ] CompileApiTest.test_static_compiler_buffer_donation_changes_cache_key
+[ RUN      ] CompileApiTest.test_static_compiler_chained_mutations_on_same_tensor
+[       OK ] CompileApiTest.test_static_compiler_chained_mutations_on_same_tensor
+[ RUN      ] CompileApiTest.test_static_compiler_clone_preserved_when_mutated_tensor_read_downstream
+[       OK ] CompileApiTest.test_static_compiler_clone_preserved_when_mutated_tensor_read_downstream
+[ RUN      ] CompileApiTest.test_static_compiler_custom_op_with_multiple_mutated_args
+[       OK ] CompileApiTest.test_static_compiler_custom_op_with_multiple_mutated_args
+[ RUN      ] CompileApiTest.test_static_compiler_intermediate_mutation_not_donated
+[       OK ] CompileApiTest.test_static_compiler_intermediate_mutation_not_donated
+[ RUN      ] CompileApiTest.test_static_compiler_mixed_mutable_and_immutable_arguments
+[       OK ] CompileApiTest.test_static_compiler_mixed_mutable_and_immutable_arguments
+[ RUN      ] CompileApiTest.test_static_compiler_multiple_mutating_ops
+[       OK ] CompileApiTest.test_static_compiler_multiple_mutating_ops
+[ RUN      ] CompileApiTest.test_static_compiler_none_args
+[       OK ] CompileApiTest.test_static_compiler_none_args
+[ RUN      ] CompileApiTest.test_static_compiler_pure_functional_graph_no_donation
+[       OK ] CompileApiTest.test_static_compiler_pure_functional_graph_no_donation
+[ RUN      ] CompileApiTest.test_static_compiler_scalar
+[       OK ] CompileApiTest.test_static_compiler_scalar
+[ RUN      ] CompileApiTest.test_storage_aware_placeholders_disabled_fallback
+[       OK ] CompileApiTest.test_storage_aware_placeholders_disabled_fallback
+[ RUN      ] CompileApiTest.test_storage_aware_placeholders_dynamic_bounds_fallback
+[       OK ] CompileApiTest.test_storage_aware_placeholders_dynamic_bounds_fallback
+[ RUN      ] CompileApiTest.test_storage_aware_placeholders_mixed_dtypes_fallback
+[       OK ] CompileApiTest.test_storage_aware_placeholders_mixed_dtypes_fallback
+[ RUN      ] CompileApiTest.test_storage_aware_placeholders_slices
+[       OK ] CompileApiTest.test_storage_aware_placeholders_slices
+[ RUN      ] CompileApiTest.test_storage_aware_placeholders_transpose
+[       OK ] CompileApiTest.test_storage_aware_placeholders_transpose
+[ RUN      ] CompileApiTest.test_traverse_and_compile_duplicate_inputs_deduplicated
+[       OK ] CompileApiTest.test_traverse_and_compile_duplicate_inputs_deduplicated
+[ RUN      ] CompileApiTest.test_traverse_and_compile_shared_base_conflicting_layouts_ignored
+W0000 00:00:1794989168.753842  357580 compiled_mode.cc:463] Ignoring conflicting layouts for arguments sharing base buffer 0
+[       OK ] CompileApiTest.test_traverse_and_compile_shared_base_conflicting_layouts_ignored
+[ RUN      ] CompileApiTest.test_traverse_and_compile_shared_base_takes_full_view_layout
+[       OK ] CompileApiTest.test_traverse_and_compile_shared_base_takes_full_view_layout
+[ RUN      ] CompileApiTest.test_traverse_and_compile_shared_storage_deduplication
+I1118 08:06:08.857380 139592313663616 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] CompileApiTest.test_traverse_and_compile_shared_storage_deduplication
+[ RUN      ] CompileApiTest.test_traverse_and_compile_skip_middle_layout
+[       OK ] CompileApiTest.test_traverse_and_compile_skip_middle_layout
+[ RUN      ] CompileApiTest.test_traverse_and_compile_with_argument_layouts
+[       OK ] CompileApiTest.test_traverse_and_compile_with_argument_layouts
+[ RUN      ] CompileApiTest.test_traverse_and_compile_with_forced_layout
+E0000 00:00:1794989169.105011  357772 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INVALID_ARGUMENT: failed to enqueue execution for task_name=anonymous: expected argument 0 to have on-device layout {0,1:T(4,128)}, which the program was compiled for, got {1,0:T(2,128)} (a tensor's layout can change after compilation, e.g. through copy_()) [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+[       OK ] CompileApiTest.test_traverse_and_compile_with_forced_layout
+======================================================================
+ERROR: test_optimization_barrier_compiled_autograd_is_traceable (__main__.CompileApiTest)
+CompileApiTest.test_optimization_barrier_compiled_autograd_is_traceable
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/compiled-output-alias/repo/tests/compile/compile_api_test.py", line 1123, in test_optimization_barrier_compiled_autograd_is_traceable
+    (a_fenced + frozen_fenced).sum().backward()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/_tensor.py", line 623, in backward
+    torch.autograd.backward(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        self, gradient, retain_graph, create_graph, inputs=inputs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/usr/local/lib/python3.13/dist-packages/torch/autograd/__init__.py", line 395, in backward
+    _engine_run_backward(
+    ~~~~~~~~~~~~~~~~~~~~^
+        tensors,
+        ^^^^^^^^
+    ...<5 lines>...
+        accumulate_grad=True,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/usr/local/lib/python3.13/dist-packages/torch/autograd/graph.py", line 1072, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        t_outputs, *args, **kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )  # Calls into the C++ engine to run the backward pass
+    ^
+RuntimeError: element 0 of tensors does not require grad and does not have a grad_fn
+
+======================================================================
+ERROR: test_optimization_barrier_gradients_pass_through_one_barrier (__main__.CompileApiTest)
+CompileApiTest.test_optimization_barrier_gradients_pass_through_one_barrier
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/compiled-output-alias/repo/tests/compile/compile_api_test.py", line 1101, in test_optimization_barrier_gradients_pass_through_one_barrier
+    compiled_fn(a, b).backward()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/_tensor.py", line 623, in backward
+    torch.autograd.backward(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        self, gradient, retain_graph, create_graph, inputs=inputs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/usr/local/lib/python3.13/dist-packages/torch/autograd/__init__.py", line 395, in backward
+    _engine_run_backward(
+    ~~~~~~~~~~~~~~~~~~~~^
+        tensors,
+        ^^^^^^^^
+    ...<5 lines>...
+        accumulate_grad=True,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/usr/local/lib/python3.13/dist-packages/torch/autograd/graph.py", line 1072, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        t_outputs, *args, **kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )  # Calls into the C++ engine to run the backward pass
+    ^
+RuntimeError: element 0 of tensors does not require grad and does not have a grad_fn
+
+----------------------------------------------------------------------
+Ran 106 tests in 13.123s
+
+FAILED (errors=2)
+I0000 00:00:1794989170.125981  357580 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794989170.126081  357580 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=669
+num_cache_hits=452 {67.5%}
+num_compilations=217
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

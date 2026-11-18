@@ -1,0 +1,3 @@
+tddfail2 tests.amp_test exit=1 Ran 6 tests in 1.096s FAILED (failures=4) 
+fix2 tests.amp_test exit=1 Ran 6 tests in 1.152s FAILED (failures=1) 
+fix2 tests.device.device_module_tpu_test exit=0 Ran 41 tests in 30.498s OK 

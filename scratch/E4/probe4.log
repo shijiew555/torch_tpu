@@ -1,0 +1,59 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794976212.325481  187489 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794976222.351377  187489 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794976222.353062  187489 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/usr/local/lib/python3.13/dist-packages/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+I0000 00:00:1794976222.362297  187489 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794976222.984871  187489 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+FAIL numpy() on tpu -> TypeError can't convert tpu:0 device type tensor to numpy. Use Tensor.cpu() to copy the tensor to host memory first.
+FAIL np.asarray -> TypeError can't convert tpu:0 device type tensor to numpy. Use Tensor.cpu() to copy the tensor to host memory first.
+/root/torch_tpu/.claude/tmp/E4/probe4.py:11: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  t("torch.tensor(tpu)", lambda: torch.tensor(xt).device)
+OK   torch.tensor(tpu) -> tpu:0
+OK   as_tensor np device -> [1.0, 1.0, 1.0]
+OK   to copy=True -> True
+OK   to(other) -> tpu:0
+I0000 00:00:1794976257.856296  188067 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1794976257.856329  188067 tier2_compilation_cache.cc:81] Tier-2 compilation cache is disabled for world size 1.
+OK   channels_last -> True
+OK   channels_last is_contiguous -> True
+OK   0-dim cpu -> tensor(66.)
+OK   bf16 tolist -> [[0.0, 1.0, 2.0, 3.0], [4.0, 5.0, 6.0, 7.0], [8.0, 9.0, 10.0, 11.0]]
+OK   half item -> 1.0
+OK   repr large -> 456
+OK   repr int -> tensor([1, 2], device='tpu:0')
+OK   bool if -> True
+OK   deepcopy tensor -> True
+OK   deepcopy module -> (device(type='tpu', index=0), True, device(type='tpu', index=0))
+OK   deepcopy module w/ grad -> False
+OK   pickle -> True
+OK   save full module -> tpu:0
+OK   save shared storage view -> [5.0, 6.0, 7.0, 8.0]
+OK   load mmap map_location tpu -> (device(type='tpu', index=0), True)
+OK   map_location dict -> cpu
+OK   map_location device obj -> tpu:0
+OK   save bf16 -> torch.bfloat16
+FAIL safetensors save/load device=tpu -> RuntimeError 
+FAIL safetensors safe_open device tpu:0 -> SafetensorError device tpu:0 is invalid
+OK   module.to(d, dtype) -> (torch.bfloat16, device(type='tpu', index=0))
+OK   share_memory_ -> tpu:0
+OK   stack -> torch.Size([2, 3, 4])
+FAIL cat cpu+tpu error -> RuntimeError cat(): expected tensor to be on tpu, got cpu
+OK   cpu scalar tensor op -> 2.0
+FAIL equal across devices -> RuntimeError equal(): expected tensor to be on tpu, got cpu
+FAIL allclose across -> AssertionError The values for attribute 'device' do not match: tpu:0 != cpu.
+OK   tpu index with cpu idx -> [[0.0, 1.0, 2.0, 3.0], [8.0, 9.0, 10.0, 11.0]]
+FAIL cpu index with tpu idx -> RuntimeError indices should be either on cpu or on the same device as the indexed tensor (cpu)
+OK   tpu setitem cpu value -> [1.0, 1.0, 1.0, 1.0]
+I0000 00:00:1794976273.699072  187489 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794976273.699147  187489 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=101
+num_cache_hits=2 {1.9%}
+num_compilations=99
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

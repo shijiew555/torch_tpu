@@ -1,0 +1,27 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794986211.602746  306646 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794986212.653827  306646 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794986212.658627  306646 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/root/torch_tpu/.claude/tmp/compiled-output-alias/ov/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+I0000 00:00:1794986212.680366  306646 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794986213.374019  306646 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+I0000 00:00:1794986213.478285  306852 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1794986213.478312  306852 tier2_compilation_cache.cc:81] Tier-2 compilation cache is disabled for world size 1.
+torch_tpu: /root/torch_tpu/.claude/tmp/compiled-output-alias/ov/torch_tpu/__init__.py
+cpu backend=None      requires_grad=False shared=True  b[0,:3]=[100.0, 102.0, 104.0] c[0,:3]=[108.0, 110.0, 112.0]
+cpu backend=aot_eager requires_grad=False shared=True  b[0,:3]=[100.0, 102.0, 104.0] c[0,:3]=[108.0, 110.0, 112.0]
+tpu backend=None      requires_grad=False shared=True  b[0,:3]=[100.0, 102.0, 104.0] c[0,:3]=[108.0, 110.0, 112.0]
+tpu backend=tpu       requires_grad=False shared=True  b[0,:3]=[100.0, 102.0, 104.0] c[0,:3]=[108.0, 110.0, 112.0]
+tpu backend=tpu       requires_grad=True  shared=True  b[0,:3]=[100.0, 102.0, 104.0] c[0,:3]=[108.0, 110.0, 112.0]
+I0000 00:00:1794986215.213339  306646 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794986215.213418  306646 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=12
+num_cache_hits=7 {58.3%}
+num_compilations=5
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

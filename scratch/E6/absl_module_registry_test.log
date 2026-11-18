@@ -1,0 +1,1479 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794971908.923399  128225 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794971909.789075  128225 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794971909.790572  128225 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/usr/local/lib/python3.13/dist-packages/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+Running tests under Python 3.13.18: /usr/bin/python3
+Repro with --test_random_seed=1234
+[ RUN      ] ModuleRegistryTest.test_base_provider_cloud_bucket_path
+I0000 00:00:1794971931.171136  128225 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+W0000 00:00:1794971931.258669  128225 device_gen_impl.cc:799] FAILED_PRECONDITION: skipping seeding the TPU generators because TPU initialization failed. The error will be raised when the TPU is used: [TorchTPU] Failed to acquire a TPU device node '/dev/vfio/0' because it is already opened by another process on this host.
+
+Colliding process(es):
+  - PID 122803 (python3 gen2.py mistral,gemma2,gemma3,phi3,mixtral,qwen3moe,whisper,bart)
+
+
+Remediation:
+When running multiple processes on a single TPU host, each process must be allocated a distinct device. Please set the TPU_VISIBLE_DEVICES environment variable for each process, e.g.:
+  Process 0: export TPU_VISIBLE_DEVICES=0
+  Process 1: export TPU_VISIBLE_DEVICES=1
+=== Source Location Trace: === 
+csrc/common/status_builder.cc:97
+
+[       OK ] ModuleRegistryTest.test_base_provider_cloud_bucket_path
+[ RUN      ] ModuleRegistryTest.test_base_provider_fetch_gcs_file
+[  FAILED  ] ModuleRegistryTest.test_base_provider_fetch_gcs_file
+[ RUN      ] ModuleRegistryTest.test_clear_config_cache
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+[       OK ] ModuleRegistryTest.test_clear_config_cache
+[ RUN      ] ModuleRegistryTest.test_concurrent_cache_access
+[       OK ] ModuleRegistryTest.test_concurrent_cache_access
+[ RUN      ] ModuleRegistryTest.test_concurrent_preprocessor_cache_access
+[  FAILED  ] ModuleRegistryTest.test_concurrent_preprocessor_cache_access
+[ RUN      ] ModuleRegistryTest.test_config_wrapper_dict
+[       OK ] ModuleRegistryTest.test_config_wrapper_dict
+[ RUN      ] ModuleRegistryTest.test_config_wrapper_object
+[       OK ] ModuleRegistryTest.test_config_wrapper_object
+[ RUN      ] ModuleRegistryTest.test_default_dtype_leaves_default_dtype_for_none_and_non_floating
+[       OK ] ModuleRegistryTest.test_default_dtype_leaves_default_dtype_for_none_and_non_floating
+[ RUN      ] ModuleRegistryTest.test_default_dtype_restores_default_dtype_on_error
+[       OK ] ModuleRegistryTest.test_default_dtype_restores_default_dtype_on_error
+[ RUN      ] ModuleRegistryTest.test_default_dtype_sets_and_restores_default_dtype
+[       OK ] ModuleRegistryTest.test_default_dtype_sets_and_restores_default_dtype
+[ RUN      ] ModuleRegistryTest.test_determine_modality_vision_and_multimodal
+[       OK ] ModuleRegistryTest.test_determine_modality_vision_and_multimodal
+[ RUN      ] ModuleRegistryTest.test_diffusers_concurrent_cache_access
+[  FAILED  ] ModuleRegistryTest.test_diffusers_concurrent_cache_access
+[ RUN      ] ModuleRegistryTest.test_diffusers_config_cache_avoids_repeated_load
+[  FAILED  ] ModuleRegistryTest.test_diffusers_config_cache_avoids_repeated_load
+[ RUN      ] ModuleRegistryTest.test_diffusers_config_caching_and_hook_isolation
+[  FAILED  ] ModuleRegistryTest.test_diffusers_config_caching_and_hook_isolation
+[ RUN      ] ModuleRegistryTest.test_diffusers_dynamic_subfolder_resolution_via_model_index
+[  FAILED  ] ModuleRegistryTest.test_diffusers_dynamic_subfolder_resolution_via_model_index
+[ RUN      ] ModuleRegistryTest.test_diffusers_get_module_spec_pretrained
+[  FAILED  ] ModuleRegistryTest.test_diffusers_get_module_spec_pretrained
+[ RUN      ] ModuleRegistryTest.test_diffusers_get_module_spec_random_weights
+[  FAILED  ] ModuleRegistryTest.test_diffusers_get_module_spec_random_weights
+[ RUN      ] ModuleRegistryTest.test_diffusers_module_factory_casts_to_dtype
+[  FAILED  ] ModuleRegistryTest.test_diffusers_module_factory_casts_to_dtype
+[ RUN      ] ModuleRegistryTest.test_diffusers_video_latent_and_cross_attention_dim_fallbacks
+[  FAILED  ] ModuleRegistryTest.test_diffusers_video_latent_and_cross_attention_dim_fallbacks
+[ RUN      ] ModuleRegistryTest.test_diffusers_with_modify_config_hook
+[  FAILED  ] ModuleRegistryTest.test_diffusers_with_modify_config_hook
+[ RUN      ] ModuleRegistryTest.test_diffusers_with_modify_config_hook_and_load_weights_raises
+[  FAILED  ] ModuleRegistryTest.test_diffusers_with_modify_config_hook_and_load_weights_raises
+[ RUN      ] ModuleRegistryTest.test_download_gcs_blob_api_error
+W1118 03:19:01.998559 137841122304128 module_registry.py:712] Failed to download gs://torchtpu-test/weights/transformers/error/config.json: None Permission denied
+[       OK ] ModuleRegistryTest.test_download_gcs_blob_api_error
+[ RUN      ] ModuleRegistryTest.test_download_gcs_blob_not_found
+I1118 03:19:02.005628 137841122304128 module_registry.py:709] GCS blob gs://torchtpu-test/weights/transformers/missing/config.json does not exist.
+[       OK ] ModuleRegistryTest.test_download_gcs_blob_not_found
+[ RUN      ] ModuleRegistryTest.test_download_gcs_blob_success
+I1118 03:19:02.015836 137841122304128 module_registry.py:701] Successfully downloaded gs://torchtpu-test/weights/transformers/test/config.json to /tmp/tmp34lquqxt/sub/config.json
+[       OK ] ModuleRegistryTest.test_download_gcs_blob_success
+[ RUN      ] ModuleRegistryTest.test_empty_base_path
+[  FAILED  ] ModuleRegistryTest.test_empty_base_path
+[ RUN      ] ModuleRegistryTest.test_extract_diffusers_subfolder_candidates
+[       OK ] ModuleRegistryTest.test_extract_diffusers_subfolder_candidates
+[ RUN      ] ModuleRegistryTest.test_five_stage_transformers_pipeline
+[       OK ] ModuleRegistryTest.test_five_stage_transformers_pipeline
+[ RUN      ] ModuleRegistryTest.test_gemma4_vision_inputs_and_qwen_omni_audio_inputs
+[       OK ] ModuleRegistryTest.test_gemma4_vision_inputs_and_qwen_omni_audio_inputs
+[ RUN      ] ModuleRegistryTest.test_get_module_spec_missing_model_name_raises
+[       OK ] ModuleRegistryTest.test_get_module_spec_missing_model_name_raises
+[ RUN      ] ModuleRegistryTest.test_get_module_spec_qualified_name
+[  FAILED  ] ModuleRegistryTest.test_get_module_spec_qualified_name
+[ RUN      ] ModuleRegistryTest.test_get_module_spec_with_redundant_provider_prefix
+[  FAILED  ] ModuleRegistryTest.test_get_module_spec_with_redundant_provider_prefix
+[ RUN      ] ModuleRegistryTest.test_hybrid_rope_configs_with_empty_rope_parameters
+[       OK ] ModuleRegistryTest.test_hybrid_rope_configs_with_empty_rope_parameters
+[ RUN      ] ModuleRegistryTest.test_hybrid_rope_configs_with_flat_rope_scaling_and_null_rope_theta
+[       OK ] ModuleRegistryTest.test_hybrid_rope_configs_with_flat_rope_scaling_and_null_rope_theta
+[ RUN      ] ModuleRegistryTest.test_in_tree_config_priority_when_load_weights_false
+[       OK ] ModuleRegistryTest.test_in_tree_config_priority_when_load_weights_false
+[ RUN      ] ModuleRegistryTest.test_list_all_modules
+[  FAILED  ] ModuleRegistryTest.test_list_all_modules
+[ RUN      ] ModuleRegistryTest.test_load_and_sanitize_transformers_config_returns_wrapper
+[       OK ] ModuleRegistryTest.test_load_and_sanitize_transformers_config_returns_wrapper
+[ RUN      ] ModuleRegistryTest.test_modernbert_dict_default_theta_and_custom_global_local_rope_theta
+[       OK ] ModuleRegistryTest.test_modernbert_dict_default_theta_and_custom_global_local_rope_theta
+[ RUN      ] ModuleRegistryTest.test_module_spec_modality_attributes
+[  FAILED  ] ModuleRegistryTest.test_module_spec_modality_attributes
+[ RUN      ] ModuleRegistryTest.test_nested_rope_parameters_round_trip_and_wrapper_sanitize
+[       OK ] ModuleRegistryTest.test_nested_rope_parameters_round_trip_and_wrapper_sanitize
+[ RUN      ] ModuleRegistryTest.test_nested_rope_parameters_with_scalar_top_level_rope_theta
+[       OK ] ModuleRegistryTest.test_nested_rope_parameters_with_scalar_top_level_rope_theta
+[ RUN      ] ModuleRegistryTest.test_nested_rope_scaling_promoted_to_rope_parameters
+[       OK ] ModuleRegistryTest.test_nested_rope_scaling_promoted_to_rope_parameters
+[ RUN      ] ModuleRegistryTest.test_non_existent_path
+[       OK ] ModuleRegistryTest.test_non_existent_path
+[ RUN      ] ModuleRegistryTest.test_non_hybrid_rope_scaling_and_custom_converter_configs
+[       OK ] ModuleRegistryTest.test_non_hybrid_rope_scaling_and_custom_converter_configs
+[ RUN      ] ModuleRegistryTest.test_parse_image_size
+[       OK ] ModuleRegistryTest.test_parse_image_size
+[ RUN      ] ModuleRegistryTest.test_resolve_diffusers_model_class
+[  FAILED  ] ModuleRegistryTest.test_resolve_diffusers_model_class
+[ RUN      ] ModuleRegistryTest.test_retry_transient_io
+[       OK ] ModuleRegistryTest.test_retry_transient_io
+[ RUN      ] ModuleRegistryTest.test_safe_int
+[       OK ] ModuleRegistryTest.test_safe_int
+[ RUN      ] ModuleRegistryTest.test_sanitize_transformers_config_dict
+[       OK ] ModuleRegistryTest.test_sanitize_transformers_config_dict
+[ RUN      ] ModuleRegistryTest.test_sanitize_xlstm_and_qwen_omni_configs
+[       OK ] ModuleRegistryTest.test_sanitize_xlstm_and_qwen_omni_configs
+[ RUN      ] ModuleRegistryTest.test_sentence_transformers_alias
+[       OK ] ModuleRegistryTest.test_sentence_transformers_alias
+[ RUN      ] ModuleRegistryTest.test_timm_get_module_spec
+[  FAILED  ] ModuleRegistryTest.test_timm_get_module_spec
+[ RUN      ] ModuleRegistryTest.test_timm_get_module_spec_pretrained
+[  FAILED  ] ModuleRegistryTest.test_timm_get_module_spec_pretrained
+[ RUN      ] ModuleRegistryTest.test_timm_get_module_spec_pretrained_is_deterministic
+[  FAILED  ] ModuleRegistryTest.test_timm_get_module_spec_pretrained_is_deterministic
+[ RUN      ] ModuleRegistryTest.test_timm_list_modules
+[  FAILED  ] ModuleRegistryTest.test_timm_list_modules
+[ RUN      ] ModuleRegistryTest.test_timm_module_factory_casts_to_dtype
+[  FAILED  ] ModuleRegistryTest.test_timm_module_factory_casts_to_dtype
+[ RUN      ] ModuleRegistryTest.test_timm_preprocessor_loads_image_correctly
+[  FAILED  ] ModuleRegistryTest.test_timm_preprocessor_loads_image_correctly
+[ RUN      ] ModuleRegistryTest.test_timm_with_modify_config_hook
+[  FAILED  ] ModuleRegistryTest.test_timm_with_modify_config_hook
+[ RUN      ] ModuleRegistryTest.test_timm_with_modify_config_hook_and_invalid_config
+[  FAILED  ] ModuleRegistryTest.test_timm_with_modify_config_hook_and_invalid_config
+[ RUN      ] ModuleRegistryTest.test_torchvision_get_module_spec
+[       OK ] ModuleRegistryTest.test_torchvision_get_module_spec
+[ RUN      ] ModuleRegistryTest.test_torchvision_get_module_spec_pretrained
+[  FAILED  ] ModuleRegistryTest.test_torchvision_get_module_spec_pretrained
+[ RUN      ] ModuleRegistryTest.test_torchvision_list_modules
+[       OK ] ModuleRegistryTest.test_torchvision_list_modules
+[ RUN      ] ModuleRegistryTest.test_torchvision_module_factory_casts_to_dtype
+[       OK ] ModuleRegistryTest.test_torchvision_module_factory_casts_to_dtype
+[ RUN      ] ModuleRegistryTest.test_torchvision_weights_backbone_none
+[       OK ] ModuleRegistryTest.test_torchvision_weights_backbone_none
+[ RUN      ] ModuleRegistryTest.test_torchvision_with_modify_config_hook_raises
+[       OK ] ModuleRegistryTest.test_torchvision_with_modify_config_hook_raises
+[ RUN      ] ModuleRegistryTest.test_torchvision_without_weights_backbone_parameter
+[       OK ] ModuleRegistryTest.test_torchvision_without_weights_backbone_parameter
+[ RUN      ] ModuleRegistryTest.test_transformers_audio_3d_codecs_tensor_generation
+[       OK ] ModuleRegistryTest.test_transformers_audio_3d_codecs_tensor_generation
+[ RUN      ] ModuleRegistryTest.test_transformers_audio_clap_dynamic_spec_size
+[       OK ] ModuleRegistryTest.test_transformers_audio_clap_dynamic_spec_size
+[ RUN      ] ModuleRegistryTest.test_transformers_audio_glmasr_tensor_generation
+[       OK ] ModuleRegistryTest.test_transformers_audio_glmasr_tensor_generation
+[ RUN      ] ModuleRegistryTest.test_transformers_audio_kyutai_stt_tensor_generation
+[       OK ] ModuleRegistryTest.test_transformers_audio_kyutai_stt_tensor_generation
+[ RUN      ] ModuleRegistryTest.test_transformers_audio_moshi_tensor_generation
+[       OK ] ModuleRegistryTest.test_transformers_audio_moshi_tensor_generation
+[ RUN      ] ModuleRegistryTest.test_transformers_audio_parakeet_tensor_generation
+[       OK ] ModuleRegistryTest.test_transformers_audio_parakeet_tensor_generation
+[ RUN      ] ModuleRegistryTest.test_transformers_audio_seq2seq_get_module_spec
+[       OK ] ModuleRegistryTest.test_transformers_audio_seq2seq_get_module_spec
+[ RUN      ] ModuleRegistryTest.test_transformers_audio_voxtral_realtime_tensor_generation
+[       OK ] ModuleRegistryTest.test_transformers_audio_voxtral_realtime_tensor_generation
+[ RUN      ] ModuleRegistryTest.test_transformers_causal_lm_architecture_casing_resolution
+[       OK ] ModuleRegistryTest.test_transformers_causal_lm_architecture_casing_resolution
+[ RUN      ] ModuleRegistryTest.test_transformers_causal_lm_missing_architectures_resolution
+[       OK ] ModuleRegistryTest.test_transformers_causal_lm_missing_architectures_resolution
+[ RUN      ] ModuleRegistryTest.test_transformers_clip_get_module_spec
+[       OK ] ModuleRegistryTest.test_transformers_clip_get_module_spec
+[ RUN      ] ModuleRegistryTest.test_transformers_composite_model_constructed_in_target_dtype
+[       OK ] ModuleRegistryTest.test_transformers_composite_model_constructed_in_target_dtype
+[ RUN      ] ModuleRegistryTest.test_transformers_composite_model_constructs_in_dtype
+[       OK ] ModuleRegistryTest.test_transformers_composite_model_constructs_in_dtype
+[ RUN      ] ModuleRegistryTest.test_transformers_config_cache_avoids_repeated_load
+[       OK ] ModuleRegistryTest.test_transformers_config_cache_avoids_repeated_load
+[ RUN      ] ModuleRegistryTest.test_transformers_config_cache_load_weights_true_then_false_backbone
+[  FAILED  ] ModuleRegistryTest.test_transformers_config_cache_load_weights_true_then_false_backbone
+[ RUN      ] ModuleRegistryTest.test_transformers_config_caching_and_hook_isolation
+[       OK ] ModuleRegistryTest.test_transformers_config_caching_and_hook_isolation
+[ RUN      ] ModuleRegistryTest.test_transformers_config_without_dtype_constructs_in_default_dtype
+[       OK ] ModuleRegistryTest.test_transformers_config_without_dtype_constructs_in_default_dtype
+[ RUN      ] ModuleRegistryTest.test_transformers_constructs_class_without_from_config_in_dtype
+[       OK ] ModuleRegistryTest.test_transformers_constructs_class_without_from_config_in_dtype
+[ RUN      ] ModuleRegistryTest.test_transformers_constructs_in_dtype_on_meta_device
+[       OK ] ModuleRegistryTest.test_transformers_constructs_in_dtype_on_meta_device
+[ RUN      ] ModuleRegistryTest.test_transformers_dinov2_get_module_spec
+[       OK ] ModuleRegistryTest.test_transformers_dinov2_get_module_spec
+[ RUN      ] ModuleRegistryTest.test_transformers_dtype_leaves_module_spec_config_unchanged
+[       OK ] ModuleRegistryTest.test_transformers_dtype_leaves_module_spec_config_unchanged
+[ RUN      ] ModuleRegistryTest.test_transformers_dtype_overrides_config_dtype
+[       OK ] ModuleRegistryTest.test_transformers_dtype_overrides_config_dtype
+[ RUN      ] ModuleRegistryTest.test_transformers_encoder_decoder_get_module_spec
+W1118 03:19:46.746835 137841122304128 module_registry.py:712] Failed to download gs://torchtpu-test/weights/transformers/Ayham/bert_gpt2_summarization_cnndm/config.json: ("Failed to retrieve http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/?recursive=true from the Google Compute Engine metadata service. Status: 404 Response:\nb''", <google.auth.transport.requests._Response object at 0x7d5ba19a3ed0>)
+[  FAILED  ] ModuleRegistryTest.test_transformers_encoder_decoder_get_module_spec
+[ RUN      ] ModuleRegistryTest.test_transformers_gemma4_assistant_get_module_spec
+W1118 03:19:46.952823 137841122304128 module_registry.py:712] Failed to download gs://torchtpu-test/weights/transformers/google/gemma-4-31B-it-assistant/config.json: ("Failed to retrieve http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/?recursive=true from the Google Compute Engine metadata service. Status: 404 Response:\nb''", <google.auth.transport.requests._Response object at 0x7d5c0a0a84d0>)
+[  FAILED  ] ModuleRegistryTest.test_transformers_gemma4_assistant_get_module_spec
+[ RUN      ] ModuleRegistryTest.test_transformers_gemma4_get_module_spec
+[       OK ] ModuleRegistryTest.test_transformers_gemma4_get_module_spec
+[ RUN      ] ModuleRegistryTest.test_transformers_gemma4_unified_assistant_get_module_spec
+W1118 03:19:47.241696 137841122304128 module_registry.py:712] Failed to download gs://torchtpu-test/weights/transformers/google/gemma-4-12B-it-assistant/config.json: ("Failed to retrieve http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/?recursive=true from the Google Compute Engine metadata service. Status: 404 Response:\nb''", <google.auth.transport.requests._Response object at 0x7d5c5ad66c50>)
+[  FAILED  ] ModuleRegistryTest.test_transformers_gemma4_unified_assistant_get_module_spec
+[ RUN      ] ModuleRegistryTest.test_transformers_get_max_seq_len_bounds
+[       OK ] ModuleRegistryTest.test_transformers_get_max_seq_len_bounds
+[ RUN      ] ModuleRegistryTest.test_transformers_get_module_spec
+[  FAILED  ] ModuleRegistryTest.test_transformers_get_module_spec
+[ RUN      ] ModuleRegistryTest.test_transformers_get_module_spec_fallback_to_gcs
+[  FAILED  ] ModuleRegistryTest.test_transformers_get_module_spec_fallback_to_gcs
+[ RUN      ] ModuleRegistryTest.test_transformers_get_module_spec_gcs_failure_raises
+[  FAILED  ] ModuleRegistryTest.test_transformers_get_module_spec_gcs_failure_raises
+[ RUN      ] ModuleRegistryTest.test_transformers_get_module_spec_pretrained_using_sample_inputs
+[  FAILED  ] ModuleRegistryTest.test_transformers_get_module_spec_pretrained_using_sample_inputs
+[ RUN      ] ModuleRegistryTest.test_transformers_get_module_spec_pretrained_using_tokenizer
+[  FAILED  ] ModuleRegistryTest.test_transformers_get_module_spec_pretrained_using_tokenizer
+[ RUN      ] ModuleRegistryTest.test_transformers_get_module_spec_uses_cached_gcs_config
+[  FAILED  ] ModuleRegistryTest.test_transformers_get_module_spec_uses_cached_gcs_config
+[ RUN      ] ModuleRegistryTest.test_transformers_git_get_module_spec
+W1118 03:20:21.266954 137841122304128 module_registry.py:712] Failed to download gs://torchtpu-test/weights/transformers/microsoft/git-base-vqav2/config.json: ("Failed to retrieve http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/?recursive=true from the Google Compute Engine metadata service. Status: 404 Response:\nb''", <google.auth.transport.requests._Response object at 0x7d5ba1c198b0>)
+[  FAILED  ] ModuleRegistryTest.test_transformers_git_get_module_spec
+[ RUN      ] ModuleRegistryTest.test_transformers_glm_ocr_generate_inputs
+[       OK ] ModuleRegistryTest.test_transformers_glm_ocr_generate_inputs
+[ RUN      ] ModuleRegistryTest.test_transformers_glm_ocr_get_module_spec
+W1118 03:20:21.495069 137841122304128 module_registry.py:712] Failed to download gs://torchtpu-test/weights/transformers/zai-org/GLM-OCR/config.json: ("Failed to retrieve http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/?recursive=true from the Google Compute Engine metadata service. Status: 404 Response:\nb''", <google.auth.transport.requests._Response object at 0x7d5c5ad3c940>)
+[  FAILED  ] ModuleRegistryTest.test_transformers_glm_ocr_get_module_spec
+[ RUN      ] ModuleRegistryTest.test_transformers_initializes_random_weights_in_bfloat16
+[       OK ] ModuleRegistryTest.test_transformers_initializes_random_weights_in_bfloat16
+[ RUN      ] ModuleRegistryTest.test_transformers_kosmos2_generate_inputs
+[       OK ] ModuleRegistryTest.test_transformers_kosmos2_generate_inputs
+[ RUN      ] ModuleRegistryTest.test_transformers_kosmos2_get_module_spec
+W1118 03:20:21.754303 137841122304128 module_registry.py:712] Failed to download gs://torchtpu-test/weights/transformers/microsoft/kosmos-2-patch14-224/config.json: ("Failed to retrieve http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/?recursive=true from the Google Compute Engine metadata service. Status: 404 Response:\nb''", <google.auth.transport.requests._Response object at 0x7d5c5ad99ff0>)
+[  FAILED  ] ModuleRegistryTest.test_transformers_kosmos2_get_module_spec
+[ RUN      ] ModuleRegistryTest.test_transformers_list_modules
+[       OK ] ModuleRegistryTest.test_transformers_list_modules
+[ RUN      ] ModuleRegistryTest.test_transformers_llava_get_module_spec
+[       OK ] ModuleRegistryTest.test_transformers_llava_get_module_spec
+[ RUN      ] ModuleRegistryTest.test_transformers_mllama_get_module_spec
+[       OK ] ModuleRegistryTest.test_transformers_mllama_get_module_spec
+[ RUN      ] ModuleRegistryTest.test_transformers_model_and_inputs_dtype_alignment
+[       OK ] ModuleRegistryTest.test_transformers_model_and_inputs_dtype_alignment
+[ RUN      ] ModuleRegistryTest.test_transformers_model_specific_kwargs
+[       OK ] ModuleRegistryTest.test_transformers_model_specific_kwargs
+[ RUN      ] ModuleRegistryTest.test_transformers_modify_config_hook_and_load_weights_raises
+[  FAILED  ] ModuleRegistryTest.test_transformers_modify_config_hook_and_load_weights_raises
+[ RUN      ] ModuleRegistryTest.test_transformers_module_factory_leaves_sub_config_dtype_unchanged
+[       OK ] ModuleRegistryTest.test_transformers_module_factory_leaves_sub_config_dtype_unchanged
+[ RUN      ] ModuleRegistryTest.test_transformers_multimodal_clvp_tensor_generation
+[       OK ] ModuleRegistryTest.test_transformers_multimodal_clvp_tensor_generation
+[ RUN      ] ModuleRegistryTest.test_transformers_non_floating_dtype_raises
+[       OK ] ModuleRegistryTest.test_transformers_non_floating_dtype_raises
+[ RUN      ] ModuleRegistryTest.test_transformers_preprocessor_cache_and_text_modality_priority
+[  FAILED  ] ModuleRegistryTest.test_transformers_preprocessor_cache_and_text_modality_priority
+[ RUN      ] ModuleRegistryTest.test_transformers_preprocessor_deterministic_file_selection
+[       OK ] ModuleRegistryTest.test_transformers_preprocessor_deterministic_file_selection
+[ RUN      ] ModuleRegistryTest.test_transformers_pretrained_loads_in_dtype
+[       OK ] ModuleRegistryTest.test_transformers_pretrained_loads_in_dtype
+[ RUN      ] ModuleRegistryTest.test_transformers_qwen3_5_moe_get_module_spec
+[       OK ] ModuleRegistryTest.test_transformers_qwen3_5_moe_get_module_spec
+[ RUN      ] ModuleRegistryTest.test_transformers_segformer_get_module_spec
+[       OK ] ModuleRegistryTest.test_transformers_segformer_get_module_spec
+[ RUN      ] ModuleRegistryTest.test_transformers_sequence_length_clamping
+[       OK ] ModuleRegistryTest.test_transformers_sequence_length_clamping
+[ RUN      ] ModuleRegistryTest.test_transformers_tapas_disables_relative_position_embeddings
+[       OK ] ModuleRegistryTest.test_transformers_tapas_disables_relative_position_embeddings
+[ RUN      ] ModuleRegistryTest.test_transformers_tapas_get_module_spec
+W1118 03:20:27.795275 137841122304128 module_registry.py:712] Failed to download gs://torchtpu-test/weights/transformers/Anonymous/ReasonBERT-TAPAS/config.json: ("Failed to retrieve http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/?recursive=true from the Google Compute Engine metadata service. Status: 404 Response:\nb''", <google.auth.transport.requests._Response object at 0x7d5c5ab57a70>)
+[  FAILED  ] ModuleRegistryTest.test_transformers_tapas_get_module_spec
+[ RUN      ] ModuleRegistryTest.test_transformers_timeseries_tensor_generation
+[       OK ] ModuleRegistryTest.test_transformers_timeseries_tensor_generation
+[ RUN      ] ModuleRegistryTest.test_transformers_video_5d_tensor_generation
+[       OK ] ModuleRegistryTest.test_transformers_video_5d_tensor_generation
+[ RUN      ] ModuleRegistryTest.test_transformers_videomae_classification_no_mask
+[       OK ] ModuleRegistryTest.test_transformers_videomae_classification_no_mask
+[ RUN      ] ModuleRegistryTest.test_transformers_vision_get_module_spec
+[  FAILED  ] ModuleRegistryTest.test_transformers_vision_get_module_spec
+[ RUN      ] ModuleRegistryTest.test_transformers_with_modify_config_hook
+[       OK ] ModuleRegistryTest.test_transformers_with_modify_config_hook
+[ RUN      ] ModuleRegistryTest.test_weights_are_not_cached
+[       OK ] ModuleRegistryTest.test_weights_are_not_cached
+[ RUN      ] ModuleRegistryTest.test_xlstm_and_musicgen_melody_decoder_inputs
+[       OK ] ModuleRegistryTest.test_xlstm_and_musicgen_melody_decoder_inputs
+======================================================================
+ERROR: test_base_provider_fetch_gcs_file (__main__.ModuleRegistryTest)
+ModuleRegistryTest.test_base_provider_fetch_gcs_file
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry_test.py", line 893, in test_base_provider_fetch_gcs_file
+    with mock.patch(
+         ~~~~~~~~~~^
+        "torch_tpu.tests.module_registry._download_gcs_blob",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        side_effect=fake_download,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ):
+    ^
+  File "/usr/lib/python3.13/unittest/mock.py", line 1487, in __enter__
+    self.target = self.getter()
+                  ~~~~~~~~~~~^^
+  File "/usr/lib/python3.13/pkgutil.py", line 528, in resolve_name
+    result = getattr(result, p)
+AttributeError: module 'torch_tpu' has no attribute 'tests'
+
+======================================================================
+ERROR: test_diffusers_concurrent_cache_access (__main__.ModuleRegistryTest)
+ModuleRegistryTest.test_diffusers_concurrent_cache_access
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry_test.py", line 2577, in test_diffusers_concurrent_cache_access
+    original_load_config = module_registry.auto_model.AutoModel.load_config
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'tests.module_registry' has no attribute 'auto_model'
+
+======================================================================
+ERROR: test_diffusers_config_cache_avoids_repeated_load (__main__.ModuleRegistryTest)
+ModuleRegistryTest.test_diffusers_config_cache_avoids_repeated_load
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry_test.py", line 2477, in test_diffusers_config_cache_avoids_repeated_load
+    spec1 = self.module_registry.get_module_spec(
+        "diffusers", model_name, subfolder="unet"
+    )
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4586, in get_module_spec
+    provider = self._get_provider(canonical_source)
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4526, in _get_provider
+    raise ValueError(f"Source '{source}' not supported.")
+ValueError: Source 'diffusers' not supported.
+
+======================================================================
+ERROR: test_diffusers_config_caching_and_hook_isolation (__main__.ModuleRegistryTest)
+ModuleRegistryTest.test_diffusers_config_caching_and_hook_isolation
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry_test.py", line 2448, in test_diffusers_config_caching_and_hook_isolation
+    spec1 = self.module_registry.get_module_spec(
+        "diffusers", model_name, subfolder="unet"
+    )
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4586, in get_module_spec
+    provider = self._get_provider(canonical_source)
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4526, in _get_provider
+    raise ValueError(f"Source '{source}' not supported.")
+ValueError: Source 'diffusers' not supported.
+
+======================================================================
+ERROR: test_diffusers_dynamic_subfolder_resolution_via_model_index (__main__.ModuleRegistryTest)
+ModuleRegistryTest.test_diffusers_dynamic_subfolder_resolution_via_model_index
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry_test.py", line 1601, in test_diffusers_dynamic_subfolder_resolution_via_model_index
+    with mock.patch(
+         ~~~~~~~~~~^
+        "torch_tpu.tests.module_registry._download_gcs_blob",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        side_effect=fake_download,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ):
+    ^
+  File "/usr/lib/python3.13/unittest/mock.py", line 1487, in __enter__
+    self.target = self.getter()
+                  ~~~~~~~~~~~^^
+  File "/usr/lib/python3.13/pkgutil.py", line 528, in resolve_name
+    result = getattr(result, p)
+AttributeError: module 'torch_tpu' has no attribute 'tests'
+
+======================================================================
+ERROR: test_diffusers_get_module_spec_pretrained (__main__.ModuleRegistryTest)
+ModuleRegistryTest.test_diffusers_get_module_spec_pretrained
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry_test.py", line 548, in test_diffusers_get_module_spec_pretrained
+    module_spec = self.module_registry.get_module_spec(
+        "diffusers",
+    ...<2 lines>...
+        subfolder="unet",
+    )
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4586, in get_module_spec
+    provider = self._get_provider(canonical_source)
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4526, in _get_provider
+    raise ValueError(f"Source '{source}' not supported.")
+ValueError: Source 'diffusers' not supported.
+
+======================================================================
+ERROR: test_diffusers_get_module_spec_random_weights (__main__.ModuleRegistryTest)
+ModuleRegistryTest.test_diffusers_get_module_spec_random_weights
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry_test.py", line 524, in test_diffusers_get_module_spec_random_weights
+    module_spec = self.module_registry.get_module_spec(
+        "diffusers",
+    ...<2 lines>...
+        subfolder="unet",
+    )
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4586, in get_module_spec
+    provider = self._get_provider(canonical_source)
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4526, in _get_provider
+    raise ValueError(f"Source '{source}' not supported.")
+ValueError: Source 'diffusers' not supported.
+
+======================================================================
+ERROR: test_diffusers_module_factory_casts_to_dtype (__main__.ModuleRegistryTest)
+ModuleRegistryTest.test_diffusers_module_factory_casts_to_dtype
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry_test.py", line 1366, in test_diffusers_module_factory_casts_to_dtype
+    module_spec = self.module_registry.get_module_spec(
+        "diffusers",
+    ...<2 lines>...
+        modify_config_hook=tiny_unet_config,
+    )
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4586, in get_module_spec
+    provider = self._get_provider(canonical_source)
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4526, in _get_provider
+    raise ValueError(f"Source '{source}' not supported.")
+ValueError: Source 'diffusers' not supported.
+
+======================================================================
+ERROR: test_diffusers_video_latent_and_cross_attention_dim_fallbacks (__main__.ModuleRegistryTest)
+ModuleRegistryTest.test_diffusers_video_latent_and_cross_attention_dim_fallbacks
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry_test.py", line 1620, in test_diffusers_video_latent_and_cross_attention_dim_fallbacks
+    spec_3d = self.module_registry.get_module_spec(
+        "diffusers",
+    ...<3 lines>...
+        modify_config_hook=modify_3d,
+    )
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4586, in get_module_spec
+    provider = self._get_provider(canonical_source)
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4526, in _get_provider
+    raise ValueError(f"Source '{source}' not supported.")
+ValueError: Source 'diffusers' not supported.
+
+======================================================================
+ERROR: test_diffusers_with_modify_config_hook (__main__.ModuleRegistryTest)
+ModuleRegistryTest.test_diffusers_with_modify_config_hook
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry_test.py", line 450, in test_diffusers_with_modify_config_hook
+    module_spec = self.module_registry.get_module_spec(
+        "diffusers",
+    ...<3 lines>...
+        modify_config_hook=modify_config,
+    )
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4586, in get_module_spec
+    provider = self._get_provider(canonical_source)
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4526, in _get_provider
+    raise ValueError(f"Source '{source}' not supported.")
+ValueError: Source 'diffusers' not supported.
+
+======================================================================
+ERROR: test_diffusers_with_modify_config_hook_and_load_weights_raises (__main__.ModuleRegistryTest)
+ModuleRegistryTest.test_diffusers_with_modify_config_hook_and_load_weights_raises
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry_test.py", line 465, in test_diffusers_with_modify_config_hook_and_load_weights_raises
+    self.module_registry.get_module_spec(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        "diffusers",
+        ^^^^^^^^^^^^
+    ...<3 lines>...
+        modify_config_hook=modify_config,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4586, in get_module_spec
+    provider = self._get_provider(canonical_source)
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4526, in _get_provider
+    raise ValueError(f"Source '{source}' not supported.")
+ValueError: Source 'diffusers' not supported.
+
+======================================================================
+ERROR: test_empty_base_path (__main__.ModuleRegistryTest)
+ModuleRegistryTest.test_empty_base_path
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry_test.py", line 125, in test_empty_base_path
+    self.assertEqual(registry.list_modules("timm"), [])
+                     ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4541, in list_modules
+    return self._get_provider(source).list_modules()
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4526, in _get_provider
+    raise ValueError(f"Source '{source}' not supported.")
+ValueError: Source 'timm' not supported.
+
+======================================================================
+ERROR: test_get_module_spec_qualified_name (__main__.ModuleRegistryTest)
+ModuleRegistryTest.test_get_module_spec_qualified_name
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry_test.py", line 235, in test_get_module_spec_qualified_name
+    module_spec = self.module_registry.get_module_spec(
+        "timm/mobilenetv3_small_050"
+    )
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4586, in get_module_spec
+    provider = self._get_provider(canonical_source)
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4526, in _get_provider
+    raise ValueError(f"Source '{source}' not supported.")
+ValueError: Source 'timm' not supported.
+
+======================================================================
+ERROR: test_get_module_spec_with_redundant_provider_prefix (__main__.ModuleRegistryTest)
+ModuleRegistryTest.test_get_module_spec_with_redundant_provider_prefix
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry_test.py", line 248, in test_get_module_spec_with_redundant_provider_prefix
+    module_spec = self.module_registry.get_module_spec(
+        "timm", "timm/mobilenetv3_small_050"
+    )
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4586, in get_module_spec
+    provider = self._get_provider(canonical_source)
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4526, in _get_provider
+    raise ValueError(f"Source '{source}' not supported.")
+ValueError: Source 'timm' not supported.
+
+======================================================================
+ERROR: test_module_spec_modality_attributes (__main__.ModuleRegistryTest)
+ModuleRegistryTest.test_module_spec_modality_attributes
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry_test.py", line 1441, in test_module_spec_modality_attributes
+    timm_spec = self.module_registry.get_module_spec(
+        "timm", "mobilenetv3_small_050"
+    )
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4586, in get_module_spec
+    provider = self._get_provider(canonical_source)
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4526, in _get_provider
+    raise ValueError(f"Source '{source}' not supported.")
+ValueError: Source 'timm' not supported.
+
+======================================================================
+ERROR: test_resolve_diffusers_model_class (__main__.ModuleRegistryTest)
+ModuleRegistryTest.test_resolve_diffusers_model_class
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry_test.py", line 2801, in test_resolve_diffusers_model_class
+    cls_name, model_cls = module_registry._resolve_diffusers_model_class(
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        "stabilityai/stable-diffusion-xl-base-1.0",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        {"_class_name": "UNet2DConditionModel"},
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3611, in _resolve_diffusers_model_class
+    model_cls = getattr(diffusers, class_name, None)
+                        ^^^^^^^^^
+NameError: name 'diffusers' is not defined
+
+======================================================================
+ERROR: test_timm_get_module_spec (__main__.ModuleRegistryTest)
+ModuleRegistryTest.test_timm_get_module_spec
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry_test.py", line 222, in test_timm_get_module_spec
+    module_spec = self.module_registry.get_module_spec(
+        "timm", "mobilenetv3_small_050"
+    )
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4586, in get_module_spec
+    provider = self._get_provider(canonical_source)
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4526, in _get_provider
+    raise ValueError(f"Source '{source}' not supported.")
+ValueError: Source 'timm' not supported.
+
+======================================================================
+ERROR: test_timm_get_module_spec_pretrained (__main__.ModuleRegistryTest)
+ModuleRegistryTest.test_timm_get_module_spec_pretrained
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry_test.py", line 269, in test_timm_get_module_spec_pretrained
+    module_spec = self.module_registry.get_module_spec(
+        "timm", "convnext_small.in12k_ft_in1k", load_weights=True
+    )
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4586, in get_module_spec
+    provider = self._get_provider(canonical_source)
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4526, in _get_provider
+    raise ValueError(f"Source '{source}' not supported.")
+ValueError: Source 'timm' not supported.
+
+======================================================================
+ERROR: test_timm_get_module_spec_pretrained_is_deterministic (__main__.ModuleRegistryTest)
+ModuleRegistryTest.test_timm_get_module_spec_pretrained_is_deterministic
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry_test.py", line 284, in test_timm_get_module_spec_pretrained_is_deterministic
+    module_spec_1 = self.module_registry.get_module_spec(
+        "timm", model_name, load_weights=True
+    )
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4586, in get_module_spec
+    provider = self._get_provider(canonical_source)
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4526, in _get_provider
+    raise ValueError(f"Source '{source}' not supported.")
+ValueError: Source 'timm' not supported.
+
+======================================================================
+ERROR: test_timm_list_modules (__main__.ModuleRegistryTest)
+ModuleRegistryTest.test_timm_list_modules
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry_test.py", line 171, in test_timm_list_modules
+    modules = registry.list_modules("timm")
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4541, in list_modules
+    return self._get_provider(source).list_modules()
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4526, in _get_provider
+    raise ValueError(f"Source '{source}' not supported.")
+ValueError: Source 'timm' not supported.
+
+======================================================================
+ERROR: test_timm_module_factory_casts_to_dtype (__main__.ModuleRegistryTest)
+ModuleRegistryTest.test_timm_module_factory_casts_to_dtype
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry_test.py", line 1345, in test_timm_module_factory_casts_to_dtype
+    module_spec = self.module_registry.get_module_spec(
+        "timm", "mobilenetv3_small_050"
+    )
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4586, in get_module_spec
+    provider = self._get_provider(canonical_source)
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4526, in _get_provider
+    raise ValueError(f"Source '{source}' not supported.")
+ValueError: Source 'timm' not supported.
+
+======================================================================
+ERROR: test_timm_preprocessor_loads_image_correctly (__main__.ModuleRegistryTest)
+ModuleRegistryTest.test_timm_preprocessor_loads_image_correctly
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry_test.py", line 302, in test_timm_preprocessor_loads_image_correctly
+    module_spec = self.module_registry.get_module_spec(
+        "timm", "convnext_small.in12k_ft_in1k"
+    )
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4586, in get_module_spec
+    provider = self._get_provider(canonical_source)
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4526, in _get_provider
+    raise ValueError(f"Source '{source}' not supported.")
+ValueError: Source 'timm' not supported.
+
+======================================================================
+ERROR: test_timm_with_modify_config_hook (__main__.ModuleRegistryTest)
+ModuleRegistryTest.test_timm_with_modify_config_hook
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry_test.py", line 423, in test_timm_with_modify_config_hook
+    module_spec = self.module_registry.get_module_spec(
+        "timm",
+    ...<2 lines>...
+        modify_config_hook=modify_config,
+    )
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4586, in get_module_spec
+    provider = self._get_provider(canonical_source)
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4526, in _get_provider
+    raise ValueError(f"Source '{source}' not supported.")
+ValueError: Source 'timm' not supported.
+
+======================================================================
+ERROR: test_timm_with_modify_config_hook_and_invalid_config (__main__.ModuleRegistryTest)
+ModuleRegistryTest.test_timm_with_modify_config_hook_and_invalid_config
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry_test.py", line 437, in test_timm_with_modify_config_hook_and_invalid_config
+    module_spec = self.module_registry.get_module_spec(
+        "timm",
+    ...<2 lines>...
+        modify_config_hook=modify_config,
+    )
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4586, in get_module_spec
+    provider = self._get_provider(canonical_source)
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4526, in _get_provider
+    raise ValueError(f"Source '{source}' not supported.")
+ValueError: Source 'timm' not supported.
+
+======================================================================
+ERROR: test_torchvision_get_module_spec_pretrained (__main__.ModuleRegistryTest)
+ModuleRegistryTest.test_torchvision_get_module_spec_pretrained
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry_test.py", line 209, in test_torchvision_get_module_spec_pretrained
+    module_spec = self.module_registry.get_module_spec(
+        "torchvision", "resnet50", load_weights=True
+    )
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4587, in get_module_spec
+    return provider.get_module_spec(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        name,
+        ^^^^^
+    ...<2 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 1166, in get_module_spec
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: load_weights cannot be set to True for resnet50 when no cache directory is available.
+
+======================================================================
+ERROR: test_transformers_config_cache_load_weights_true_then_false_backbone (__main__.ModuleRegistryTest)
+ModuleRegistryTest.test_transformers_config_cache_load_weights_true_then_false_backbone
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry_test.py", line 2630, in test_transformers_config_cache_load_weights_true_then_false_backbone
+    spec_pretrained = self.module_registry.get_module_spec(
+        "transformers", model_name, load_weights=True
+    )
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4587, in get_module_spec
+    return provider.get_module_spec(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        name,
+        ^^^^^
+    ...<2 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3459, in get_module_spec
+    config, model_dir_or_repo_id = self._load_config_and_model_dir(
+                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        name, load_weights=load_weights
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3421, in _load_config_and_model_dir
+    entry = module_cache.CONFIG_CACHE.get(
+        "transformers",
+    ...<3 lines>...
+        loader=_loader,
+    )
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_cache.py", line 164, in get
+    return self.get_or_load(
+           ~~~~~~~~~~~~~~~~^
+        key, loader, deepcopy_on_put=True, deepcopy_on_get=True
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_cache.py", line 106, in get_or_load
+    fresh_entry = loader()
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3410, in _loader
+    with self._resolve_transformers_config_path(
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        name, load_weights=load_weights
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ) as (cfg_path, model_dir_or_repo_id):
+    ^
+  File "/usr/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3386, in _resolve_transformers_config_path
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: load_weights cannot be set to True for facebook/detr-resnet-50 when falling back to local configuration resources or GCS.
+
+======================================================================
+ERROR: test_transformers_encoder_decoder_get_module_spec (__main__.ModuleRegistryTest)
+ModuleRegistryTest.test_transformers_encoder_decoder_get_module_spec
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry_test.py", line 625, in test_transformers_encoder_decoder_get_module_spec
+    module_spec = self.module_registry.get_module_spec(
+        "transformers", "Ayham/bert_gpt2_summarization_cnndm"
+    )
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4587, in get_module_spec
+    return provider.get_module_spec(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        name,
+        ^^^^^
+    ...<2 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3459, in get_module_spec
+    config, model_dir_or_repo_id = self._load_config_and_model_dir(
+                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        name, load_weights=load_weights
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3421, in _load_config_and_model_dir
+    entry = module_cache.CONFIG_CACHE.get(
+        "transformers",
+    ...<3 lines>...
+        loader=_loader,
+    )
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_cache.py", line 164, in get
+    return self.get_or_load(
+           ~~~~~~~~~~~~~~~~^
+        key, loader, deepcopy_on_put=True, deepcopy_on_get=True
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_cache.py", line 106, in get_or_load
+    fresh_entry = loader()
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3410, in _loader
+    with self._resolve_transformers_config_path(
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        name, load_weights=load_weights
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ) as (cfg_path, model_dir_or_repo_id):
+    ^
+  File "/usr/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3398, in _resolve_transformers_config_path
+    raise ValueError(
+    ...<3 lines>...
+    )
+ValueError: Model config for 'Ayham/bert_gpt2_summarization_cnndm' is missing in local resources (/root/torch_tpu/.claude/tmp/E6/up_repo/perflab/huggingface_transformers/model_configs/Ayham/bert_gpt2_summarization_cnndm/config.json) and could not be loaded from cache or GCS.
+
+======================================================================
+ERROR: test_transformers_gemma4_assistant_get_module_spec (__main__.ModuleRegistryTest)
+ModuleRegistryTest.test_transformers_gemma4_assistant_get_module_spec
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry_test.py", line 824, in test_transformers_gemma4_assistant_get_module_spec
+    module_spec = self.module_registry.get_module_spec(
+        "transformers",
+    ...<2 lines>...
+        modify_config_hook=modify_config,
+    )
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4587, in get_module_spec
+    return provider.get_module_spec(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        name,
+        ^^^^^
+    ...<2 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3459, in get_module_spec
+    config, model_dir_or_repo_id = self._load_config_and_model_dir(
+                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        name, load_weights=load_weights
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3421, in _load_config_and_model_dir
+    entry = module_cache.CONFIG_CACHE.get(
+        "transformers",
+    ...<3 lines>...
+        loader=_loader,
+    )
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_cache.py", line 164, in get
+    return self.get_or_load(
+           ~~~~~~~~~~~~~~~~^
+        key, loader, deepcopy_on_put=True, deepcopy_on_get=True
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_cache.py", line 106, in get_or_load
+    fresh_entry = loader()
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3410, in _loader
+    with self._resolve_transformers_config_path(
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        name, load_weights=load_weights
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ) as (cfg_path, model_dir_or_repo_id):
+    ^
+  File "/usr/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3398, in _resolve_transformers_config_path
+    raise ValueError(
+    ...<3 lines>...
+    )
+ValueError: Model config for 'google/gemma-4-31B-it-assistant' is missing in local resources (/root/torch_tpu/.claude/tmp/E6/up_repo/perflab/huggingface_transformers/model_configs/google/gemma-4-31B-it-assistant/config.json) and could not be loaded from cache or GCS.
+
+======================================================================
+ERROR: test_transformers_gemma4_unified_assistant_get_module_spec (__main__.ModuleRegistryTest)
+ModuleRegistryTest.test_transformers_gemma4_unified_assistant_get_module_spec
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry_test.py", line 794, in test_transformers_gemma4_unified_assistant_get_module_spec
+    module_spec = self.module_registry.get_module_spec(
+        "transformers",
+    ...<2 lines>...
+        modify_config_hook=modify_config,
+    )
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4587, in get_module_spec
+    return provider.get_module_spec(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        name,
+        ^^^^^
+    ...<2 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3459, in get_module_spec
+    config, model_dir_or_repo_id = self._load_config_and_model_dir(
+                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        name, load_weights=load_weights
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3421, in _load_config_and_model_dir
+    entry = module_cache.CONFIG_CACHE.get(
+        "transformers",
+    ...<3 lines>...
+        loader=_loader,
+    )
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_cache.py", line 164, in get
+    return self.get_or_load(
+           ~~~~~~~~~~~~~~~~^
+        key, loader, deepcopy_on_put=True, deepcopy_on_get=True
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_cache.py", line 106, in get_or_load
+    fresh_entry = loader()
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3410, in _loader
+    with self._resolve_transformers_config_path(
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        name, load_weights=load_weights
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ) as (cfg_path, model_dir_or_repo_id):
+    ^
+  File "/usr/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3398, in _resolve_transformers_config_path
+    raise ValueError(
+    ...<3 lines>...
+    )
+ValueError: Model config for 'google/gemma-4-12B-it-assistant' is missing in local resources (/root/torch_tpu/.claude/tmp/E6/up_repo/perflab/huggingface_transformers/model_configs/google/gemma-4-12B-it-assistant/config.json) and could not be loaded from cache or GCS.
+
+======================================================================
+ERROR: test_transformers_get_module_spec_fallback_to_gcs (__main__.ModuleRegistryTest)
+ModuleRegistryTest.test_transformers_get_module_spec_fallback_to_gcs
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry_test.py", line 1011, in test_transformers_get_module_spec_fallback_to_gcs
+    with mock.patch(
+         ~~~~~~~~~~^
+        "torch_tpu.tests.module_registry._download_gcs_blob",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        side_effect=fake_download,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ) as mock_dl:
+    ^
+  File "/usr/lib/python3.13/unittest/mock.py", line 1487, in __enter__
+    self.target = self.getter()
+                  ~~~~~~~~~~~^^
+  File "/usr/lib/python3.13/pkgutil.py", line 528, in resolve_name
+    result = getattr(result, p)
+AttributeError: module 'torch_tpu' has no attribute 'tests'
+
+======================================================================
+ERROR: test_transformers_get_module_spec_gcs_failure_raises (__main__.ModuleRegistryTest)
+ModuleRegistryTest.test_transformers_get_module_spec_gcs_failure_raises
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry_test.py", line 1425, in test_transformers_get_module_spec_gcs_failure_raises
+    with mock.patch(
+         ~~~~~~~~~~^
+        "torch_tpu.tests.module_registry._download_gcs_blob",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        return_value=False,
+        ^^^^^^^^^^^^^^^^^^^
+    ):
+    ^
+  File "/usr/lib/python3.13/unittest/mock.py", line 1487, in __enter__
+    self.target = self.getter()
+                  ~~~~~~~~~~~^^
+  File "/usr/lib/python3.13/pkgutil.py", line 528, in resolve_name
+    result = getattr(result, p)
+AttributeError: module 'torch_tpu' has no attribute 'tests'
+
+======================================================================
+ERROR: test_transformers_get_module_spec_pretrained_using_sample_inputs (__main__.ModuleRegistryTest)
+ModuleRegistryTest.test_transformers_get_module_spec_pretrained_using_sample_inputs
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry_test.py", line 474, in test_transformers_get_module_spec_pretrained_using_sample_inputs
+    module_spec = self.module_registry.get_module_spec(
+        "transformers", "google/gemma-3-270m", load_weights=True
+    )
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4587, in get_module_spec
+    return provider.get_module_spec(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        name,
+        ^^^^^
+    ...<2 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3459, in get_module_spec
+    config, model_dir_or_repo_id = self._load_config_and_model_dir(
+                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        name, load_weights=load_weights
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3421, in _load_config_and_model_dir
+    entry = module_cache.CONFIG_CACHE.get(
+        "transformers",
+    ...<3 lines>...
+        loader=_loader,
+    )
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_cache.py", line 164, in get
+    return self.get_or_load(
+           ~~~~~~~~~~~~~~~~^
+        key, loader, deepcopy_on_put=True, deepcopy_on_get=True
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_cache.py", line 106, in get_or_load
+    fresh_entry = loader()
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3410, in _loader
+    with self._resolve_transformers_config_path(
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        name, load_weights=load_weights
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ) as (cfg_path, model_dir_or_repo_id):
+    ^
+  File "/usr/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3386, in _resolve_transformers_config_path
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: load_weights cannot be set to True for google/gemma-3-270m when falling back to local configuration resources or GCS.
+
+======================================================================
+ERROR: test_transformers_get_module_spec_pretrained_using_tokenizer (__main__.ModuleRegistryTest)
+ModuleRegistryTest.test_transformers_get_module_spec_pretrained_using_tokenizer
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry_test.py", line 490, in test_transformers_get_module_spec_pretrained_using_tokenizer
+    module_spec = self.module_registry.get_module_spec(
+        "transformers", "google/gemma-3-270m", load_weights=True
+    )
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4587, in get_module_spec
+    return provider.get_module_spec(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        name,
+        ^^^^^
+    ...<2 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3459, in get_module_spec
+    config, model_dir_or_repo_id = self._load_config_and_model_dir(
+                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        name, load_weights=load_weights
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3421, in _load_config_and_model_dir
+    entry = module_cache.CONFIG_CACHE.get(
+        "transformers",
+    ...<3 lines>...
+        loader=_loader,
+    )
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_cache.py", line 164, in get
+    return self.get_or_load(
+           ~~~~~~~~~~~~~~~~^
+        key, loader, deepcopy_on_put=True, deepcopy_on_get=True
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_cache.py", line 106, in get_or_load
+    fresh_entry = loader()
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3410, in _loader
+    with self._resolve_transformers_config_path(
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        name, load_weights=load_weights
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ) as (cfg_path, model_dir_or_repo_id):
+    ^
+  File "/usr/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3386, in _resolve_transformers_config_path
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: load_weights cannot be set to True for google/gemma-3-270m when falling back to local configuration resources or GCS.
+
+======================================================================
+ERROR: test_transformers_get_module_spec_uses_cached_gcs_config (__main__.ModuleRegistryTest)
+ModuleRegistryTest.test_transformers_get_module_spec_uses_cached_gcs_config
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry_test.py", line 1411, in test_transformers_get_module_spec_uses_cached_gcs_config
+    with mock.patch(
+         ~~~~~~~~~~^
+        "torch_tpu.tests.module_registry._download_gcs_blob"
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ) as mock_dl:
+    ^
+  File "/usr/lib/python3.13/unittest/mock.py", line 1487, in __enter__
+    self.target = self.getter()
+                  ~~~~~~~~~~~^^
+  File "/usr/lib/python3.13/pkgutil.py", line 528, in resolve_name
+    result = getattr(result, p)
+AttributeError: module 'torch_tpu' has no attribute 'tests'
+
+======================================================================
+ERROR: test_transformers_git_get_module_spec (__main__.ModuleRegistryTest)
+ModuleRegistryTest.test_transformers_git_get_module_spec
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry_test.py", line 652, in test_transformers_git_get_module_spec
+    module_spec = self.module_registry.get_module_spec(
+        "transformers", "microsoft/git-base-vqav2"
+    )
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4587, in get_module_spec
+    return provider.get_module_spec(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        name,
+        ^^^^^
+    ...<2 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3459, in get_module_spec
+    config, model_dir_or_repo_id = self._load_config_and_model_dir(
+                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        name, load_weights=load_weights
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3421, in _load_config_and_model_dir
+    entry = module_cache.CONFIG_CACHE.get(
+        "transformers",
+    ...<3 lines>...
+        loader=_loader,
+    )
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_cache.py", line 164, in get
+    return self.get_or_load(
+           ~~~~~~~~~~~~~~~~^
+        key, loader, deepcopy_on_put=True, deepcopy_on_get=True
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_cache.py", line 106, in get_or_load
+    fresh_entry = loader()
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3410, in _loader
+    with self._resolve_transformers_config_path(
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        name, load_weights=load_weights
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ) as (cfg_path, model_dir_or_repo_id):
+    ^
+  File "/usr/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3398, in _resolve_transformers_config_path
+    raise ValueError(
+    ...<3 lines>...
+    )
+ValueError: Model config for 'microsoft/git-base-vqav2' is missing in local resources (/root/torch_tpu/.claude/tmp/E6/up_repo/perflab/huggingface_transformers/model_configs/microsoft/git-base-vqav2/config.json) and could not be loaded from cache or GCS.
+
+======================================================================
+ERROR: test_transformers_glm_ocr_get_module_spec (__main__.ModuleRegistryTest)
+ModuleRegistryTest.test_transformers_glm_ocr_get_module_spec
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry_test.py", line 677, in test_transformers_glm_ocr_get_module_spec
+    spec = self.module_registry.get_module_spec(
+        "transformers", "zai-org/GLM-OCR"
+    )
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4587, in get_module_spec
+    return provider.get_module_spec(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        name,
+        ^^^^^
+    ...<2 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3459, in get_module_spec
+    config, model_dir_or_repo_id = self._load_config_and_model_dir(
+                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        name, load_weights=load_weights
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3421, in _load_config_and_model_dir
+    entry = module_cache.CONFIG_CACHE.get(
+        "transformers",
+    ...<3 lines>...
+        loader=_loader,
+    )
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_cache.py", line 164, in get
+    return self.get_or_load(
+           ~~~~~~~~~~~~~~~~^
+        key, loader, deepcopy_on_put=True, deepcopy_on_get=True
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_cache.py", line 106, in get_or_load
+    fresh_entry = loader()
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3410, in _loader
+    with self._resolve_transformers_config_path(
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        name, load_weights=load_weights
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ) as (cfg_path, model_dir_or_repo_id):
+    ^
+  File "/usr/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3398, in _resolve_transformers_config_path
+    raise ValueError(
+    ...<3 lines>...
+    )
+ValueError: Model config for 'zai-org/GLM-OCR' is missing in local resources (/root/torch_tpu/.claude/tmp/E6/up_repo/perflab/huggingface_transformers/model_configs/zai-org/GLM-OCR/config.json) and could not be loaded from cache or GCS.
+
+======================================================================
+ERROR: test_transformers_kosmos2_get_module_spec (__main__.ModuleRegistryTest)
+ModuleRegistryTest.test_transformers_kosmos2_get_module_spec
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry_test.py", line 688, in test_transformers_kosmos2_get_module_spec
+    spec = self.module_registry.get_module_spec(
+        "transformers", "microsoft/kosmos-2-patch14-224"
+    )
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4587, in get_module_spec
+    return provider.get_module_spec(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        name,
+        ^^^^^
+    ...<2 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3459, in get_module_spec
+    config, model_dir_or_repo_id = self._load_config_and_model_dir(
+                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        name, load_weights=load_weights
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3421, in _load_config_and_model_dir
+    entry = module_cache.CONFIG_CACHE.get(
+        "transformers",
+    ...<3 lines>...
+        loader=_loader,
+    )
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_cache.py", line 164, in get
+    return self.get_or_load(
+           ~~~~~~~~~~~~~~~~^
+        key, loader, deepcopy_on_put=True, deepcopy_on_get=True
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_cache.py", line 106, in get_or_load
+    fresh_entry = loader()
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3410, in _loader
+    with self._resolve_transformers_config_path(
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        name, load_weights=load_weights
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ) as (cfg_path, model_dir_or_repo_id):
+    ^
+  File "/usr/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3398, in _resolve_transformers_config_path
+    raise ValueError(
+    ...<3 lines>...
+    )
+ValueError: Model config for 'microsoft/kosmos-2-patch14-224' is missing in local resources (/root/torch_tpu/.claude/tmp/E6/up_repo/perflab/huggingface_transformers/model_configs/microsoft/kosmos-2-patch14-224/config.json) and could not be loaded from cache or GCS.
+
+======================================================================
+ERROR: test_transformers_modify_config_hook_and_load_weights_raises (__main__.ModuleRegistryTest)
+ModuleRegistryTest.test_transformers_modify_config_hook_and_load_weights_raises
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry_test.py", line 400, in test_transformers_modify_config_hook_and_load_weights_raises
+    self.module_registry.get_module_spec(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        "transformers",
+        ^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        modify_config_hook=modify_config,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4587, in get_module_spec
+    return provider.get_module_spec(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        name,
+        ^^^^^
+    ...<2 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3459, in get_module_spec
+    config, model_dir_or_repo_id = self._load_config_and_model_dir(
+                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        name, load_weights=load_weights
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3421, in _load_config_and_model_dir
+    entry = module_cache.CONFIG_CACHE.get(
+        "transformers",
+    ...<3 lines>...
+        loader=_loader,
+    )
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_cache.py", line 164, in get
+    return self.get_or_load(
+           ~~~~~~~~~~~~~~~~^
+        key, loader, deepcopy_on_put=True, deepcopy_on_get=True
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_cache.py", line 106, in get_or_load
+    fresh_entry = loader()
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3410, in _loader
+    with self._resolve_transformers_config_path(
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        name, load_weights=load_weights
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ) as (cfg_path, model_dir_or_repo_id):
+    ^
+  File "/usr/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3386, in _resolve_transformers_config_path
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: load_weights cannot be set to True for google/gemma-3-270m when falling back to local configuration resources or GCS.
+
+======================================================================
+ERROR: test_transformers_tapas_get_module_spec (__main__.ModuleRegistryTest)
+ModuleRegistryTest.test_transformers_tapas_get_module_spec
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry_test.py", line 774, in test_transformers_tapas_get_module_spec
+    module_spec = self.module_registry.get_module_spec(
+        "transformers", "Anonymous/ReasonBERT-TAPAS"
+    )
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 4587, in get_module_spec
+    return provider.get_module_spec(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        name,
+        ^^^^^
+    ...<2 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3459, in get_module_spec
+    config, model_dir_or_repo_id = self._load_config_and_model_dir(
+                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        name, load_weights=load_weights
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3421, in _load_config_and_model_dir
+    entry = module_cache.CONFIG_CACHE.get(
+        "transformers",
+    ...<3 lines>...
+        loader=_loader,
+    )
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_cache.py", line 164, in get
+    return self.get_or_load(
+           ~~~~~~~~~~~~~~~~^
+        key, loader, deepcopy_on_put=True, deepcopy_on_get=True
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_cache.py", line 106, in get_or_load
+    fresh_entry = loader()
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3410, in _loader
+    with self._resolve_transformers_config_path(
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        name, load_weights=load_weights
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ) as (cfg_path, model_dir_or_repo_id):
+    ^
+  File "/usr/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3398, in _resolve_transformers_config_path
+    raise ValueError(
+    ...<3 lines>...
+    )
+ValueError: Model config for 'Anonymous/ReasonBERT-TAPAS' is missing in local resources (/root/torch_tpu/.claude/tmp/E6/up_repo/perflab/huggingface_transformers/model_configs/Anonymous/ReasonBERT-TAPAS/config.json) and could not be loaded from cache or GCS.
+
+======================================================================
+ERROR: test_transformers_vision_get_module_spec (__main__.ModuleRegistryTest)
+ModuleRegistryTest.test_transformers_vision_get_module_spec
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry_test.py", line 578, in test_transformers_vision_get_module_spec
+    model = module_spec.module_factory()
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3530, in model_fn
+    return _instantiate_transformers_model(
+        resolved_cls, config, config_dtype if dtype is None else dtype
+    )
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry.py", line 3246, in _instantiate_transformers_model
+    model = model_cls._from_config(target_cfg, **from_config_kwargs)
+  File "/usr/local/lib/python3.13/dist-packages/transformers/modeling_utils.py", line 1452, in _from_config
+    model = cls(config, **kwargs)
+  File "/usr/local/lib/python3.13/dist-packages/transformers/models/detr/modeling_detr.py", line 1314, in __init__
+    self.model = DetrModel(config)
+                 ~~~~~~~~~^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/transformers/models/detr/modeling_detr.py", line 1119, in __init__
+    self.backbone = DetrConvEncoder(config)
+                    ~~~~~~~~~~~~~~~^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/transformers/models/detr/modeling_detr.py", line 255, in __init__
+    backbone = load_backbone(config)
+  File "/usr/local/lib/python3.13/dist-packages/transformers/backbone_utils.py", line 386, in load_backbone
+    backbone = AutoBackbone.from_config(config=backbone_config)
+  File "/usr/local/lib/python3.13/dist-packages/transformers/models/auto/auto_factory.py", line 248, in from_config
+    return model_class._from_config(config, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/transformers/modeling_utils.py", line 1452, in _from_config
+    model = cls(config, **kwargs)
+  File "/usr/local/lib/python3.13/dist-packages/transformers/models/timm_backbone/modeling_timm_backbone.py", line 49, in __init__
+    requires_backends(self, "timm")
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/transformers/utils/import_utils.py", line 2423, in requires_backends
+    raise ImportError("".join(failed))
+ImportError: 
+TimmBackbone requires the timm library but it was not found in your environment. You can install it with pip:
+`pip install timm`. Please note that you may need to restart your runtime after installation.
+
+
+======================================================================
+FAIL: test_concurrent_preprocessor_cache_access (__main__.ModuleRegistryTest)
+ModuleRegistryTest.test_concurrent_preprocessor_cache_access
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry_test.py", line 2795, in test_concurrent_preprocessor_cache_access
+    self.assertEqual(call_count[0], 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_list_all_modules (__main__.ModuleRegistryTest)
+ModuleRegistryTest.test_list_all_modules
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry_test.py", line 151, in test_list_all_modules
+    self.assertIn("timm/convnext_small.in12k_ft_in1k", modules)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'timm/convnext_small.in12k_ft_in1k' not found in ['torchvision/resnet50', 'transformers/openai/gpt-oss-120b', 'transformers/meta-llama/Llama-3.2-3B', 'transformers/google/gemma-3-270m']
+
+======================================================================
+FAIL: test_transformers_get_module_spec (__main__.ModuleRegistryTest)
+ModuleRegistryTest.test_transformers_get_module_spec
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry_test.py", line 332, in test_transformers_get_module_spec
+    self.assertIsNotNone(tokenizer)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+AssertionError: unexpectedly None
+
+======================================================================
+FAIL: test_transformers_preprocessor_cache_and_text_modality_priority (__main__.ModuleRegistryTest)
+ModuleRegistryTest.test_transformers_preprocessor_cache_and_text_modality_priority
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E6/up_repo/tests/module_registry_test.py", line 2670, in test_transformers_preprocessor_cache_and_text_modality_priority
+    self.assertIs(p1, fake_tokenizer)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+AssertionError: None is not <MagicMock name='FakeTokenizer' id='137832506321824'>
+
+----------------------------------------------------------------------
+Ran 128 tests in 114.721s
+
+FAILED (failures=4, errors=40)

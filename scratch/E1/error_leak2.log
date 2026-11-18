@@ -1,0 +1,23 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794972670.103052  142182 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794972671.008099  142182 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794972671.009484  142182 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/usr/local/lib/python3.13/dist-packages/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+I0000 00:00:1794972671.017410  142182 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794972671.751747  142182 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+I0000 00:00:1794972671.764263  142363 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1794972671.764288  142363 tier2_compilation_cache.cc:81] Tier-2 compilation cache is disabled for world size 1.
+unrelated .to('tpu') + .cpu(): [[0.0, 2.0, 4.0], [6.0, 8.0, 10.0]]
+second unrelated op: [2.0, 2.0, 2.0]
+I0000 00:00:1794972673.172891  142182 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794972673.172941  142182 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=6
+num_cache_hits=0 {0.0%}
+num_compilations=6
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

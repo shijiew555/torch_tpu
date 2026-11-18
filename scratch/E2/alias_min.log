@@ -1,0 +1,39 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794973866.351637  159633 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794973867.356901  159633 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794973867.358512  159633 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/usr/local/lib/python3.13/dist-packages/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+view_replay_for_aliased_outputs True
+I0000 00:00:1794973867.366958  159633 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794973868.457351  159633 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+I1118 03:51:08.707000 159633 torch/_functorch/_aot_autograd/aot_autograd_result.py:439] [0/0] [__aot_graphs] Forward graph (from cache)
+I1118 03:51:08.707000 159633 torch/_functorch/_aot_autograd/aot_autograd_result.py:439] [0/0] [__aot_graphs] 
+I1118 03:51:08.707000 159633 torch/_functorch/_aot_autograd/aot_autograd_result.py:439] [0/0] [__aot_graphs] class <lambda>(torch.nn.Module):
+I1118 03:51:08.707000 159633 torch/_functorch/_aot_autograd/aot_autograd_result.py:439] [0/0] [__aot_graphs]     def forward(
+I1118 03:51:08.707000 159633 torch/_functorch/_aot_autograd/aot_autograd_result.py:439] [0/0] [__aot_graphs]         self,
+I1118 03:51:08.707000 159633 torch/_functorch/_aot_autograd/aot_autograd_result.py:439] [0/0] [__aot_graphs]         arg0_1: "f32[4, 4][4, 1]tpu:0",  # PlainAOTInput(idx=0)
+I1118 03:51:08.707000 159633 torch/_functorch/_aot_autograd/aot_autograd_result.py:439] [0/0] [__aot_graphs]     ):
+I1118 03:51:08.707000 159633 torch/_functorch/_aot_autograd/aot_autograd_result.py:439] [0/0] [__aot_graphs]         # File: /root/torch_tpu/.claude/tmp/E2/alias_outputs.py:13 in f, code: y = x * 2
+I1118 03:51:08.707000 159633 torch/_functorch/_aot_autograd/aot_autograd_result.py:439] [0/0] [__aot_graphs]         mul: "f32[4, 4][4, 1]tpu:0" = torch.ops.aten.mul.Tensor(arg0_1, 2);  arg0_1 = None
+I1118 03:51:08.707000 159633 torch/_functorch/_aot_autograd/aot_autograd_result.py:439] [0/0] [__aot_graphs] 
+I1118 03:51:08.707000 159633 torch/_functorch/_aot_autograd/aot_autograd_result.py:439] [0/0] [__aot_graphs]         # File: /root/torch_tpu/.claude/tmp/E2/alias_outputs.py:14 in f, code: return y, y.view(2, 8)
+I1118 03:51:08.707000 159633 torch/_functorch/_aot_autograd/aot_autograd_result.py:439] [0/0] [__aot_graphs]         view: "f32[2, 8][8, 1]tpu:0" = torch.ops.aten.view.default(mul, [2, 8])
+I1118 03:51:08.707000 159633 torch/_functorch/_aot_autograd/aot_autograd_result.py:439] [0/0] [__aot_graphs]         return (
+I1118 03:51:08.707000 159633 torch/_functorch/_aot_autograd/aot_autograd_result.py:439] [0/0] [__aot_graphs]             mul,  # PlainAOTOutput(idx=0)
+I1118 03:51:08.707000 159633 torch/_functorch/_aot_autograd/aot_autograd_result.py:439] [0/0] [__aot_graphs]             view,  # PlainAOTOutput(idx=1)
+I1118 03:51:08.707000 159633 torch/_functorch/_aot_autograd/aot_autograd_result.py:439] [0/0] [__aot_graphs]         )
+I1118 03:51:08.707000 159633 torch/_functorch/_aot_autograd/aot_autograd_result.py:439] [0/0] [__aot_graphs] 
+a base False b base False b._base is a False
+ptrs 843768128 848581200
+I0000 00:00:1794973868.762367  159633 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794973868.762416  159633 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=0
+num_cache_hits=0 {NA}
+num_compilations=0
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

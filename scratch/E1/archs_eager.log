@@ -1,0 +1,43 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794971363.146086  108812 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794971364.107763  108812 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794971364.109318  108812 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/usr/local/lib/python3.13/dist-packages/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+I0000 00:00:1794971365.523934  108812 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794971366.353093  108812 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+I0000 00:00:1794971367.869244  109624 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1794971367.869285  109624 tier2_compilation_cache.cc:81] Tier-2 compilation cache is disabled for world size 1.
+mistral eager loss cpu=5.58608 tpu=5.58595 max_rel_grad_diff=8.59e-03 grad_none_mismatch=0 t=1.0s
+gemma2 eager loss cpu=5.53310 tpu=5.53319 max_rel_grad_diff=1.35e-02 grad_none_mismatch=0 t=0.3s
+gemma3 eager loss cpu=5.56447 tpu=5.56452 max_rel_grad_diff=1.42e-02 grad_none_mismatch=0 t=0.4s
+[transformers] Model config: eos_token_id must be `None` or an integer within the vocabulary (between 0 and 255), got 32000. This may result in unexpected behavior.
+phi3 eager loss cpu=5.59587 tpu=5.59569 max_rel_grad_diff=9.66e-03 grad_none_mismatch=0 t=0.2s
+mixtral eager loss cpu=5.53015 tpu=5.53019 max_rel_grad_diff=8.71e-03 grad_none_mismatch=0 t=1.4s
+qwen3moe eager loss cpu=5.55507 tpu=5.55510 max_rel_grad_diff=1.16e-02 grad_none_mismatch=0 t=0.3s
+qwen3 eager loss cpu=5.57348 tpu=5.57352 max_rel_grad_diff=1.20e-02 grad_none_mismatch=0 t=0.0s
+roberta eager loss cpu=1.10678 tpu=1.10685 max_rel_grad_diff=4.70e+03 grad_none_mismatch=0 t=0.3s
+/usr/local/lib/python3.13/dist-packages/torch/jit/_script.py:1491: FutureWarning: `torch.jit.script` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+deberta eager loss cpu=1.08931 tpu=1.08923 max_rel_grad_diff=3.25e+03 grad_none_mismatch=0 t=2.0s
+vit eager loss cpu=2.17891 tpu=2.17885 max_rel_grad_diff=2.62e+03 grad_none_mismatch=0 t=0.3s
+[transformers] Model config: bos_token_id must be `None` or an integer within the vocabulary (between 0 and 255), got 49406. This may result in unexpected behavior.
+[transformers] Model config: eos_token_id must be `None` or an integer within the vocabulary (between 0 and 255), got 49407. This may result in unexpected behavior.
+clip eager loss cpu=0.77723 tpu=0.77619 max_rel_grad_diff=5.30e+03 grad_none_mismatch=0 t=1.1s
+[transformers] Model config: bos_token_id must be `None` or an integer within the vocabulary (between 0 and 255), got 50256. This may result in unexpected behavior.
+[transformers] Model config: eos_token_id must be `None` or an integer within the vocabulary (between 0 and 255), got 50256. This may result in unexpected behavior.
+whisper eager loss cpu=5.49303 tpu=5.49293 max_rel_grad_diff=1.13e-02 grad_none_mismatch=0 t=0.6s
+bart eager loss cpu=5.59043 tpu=5.59048 max_rel_grad_diff=7.44e+03 grad_none_mismatch=0 t=0.3s
+convnext eager loss cpu=2.43056 tpu=2.43063 max_rel_grad_diff=1.33e-02 grad_none_mismatch=0 t=0.9s
+resnet eager loss cpu=2.48661 tpu=2.48771 max_rel_grad_diff=9.70e-01 grad_none_mismatch=0 t=1.6s
+I0000 00:00:1794971425.498787  108812 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794971425.500229  108812 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=3792
+num_cache_hits=3052 {80.4%}
+num_compilations=740
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

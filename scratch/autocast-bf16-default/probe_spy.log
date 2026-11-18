@@ -1,0 +1,7 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+enter_autocast thread=MainThread args=('tpu', None, True, None) tls=torch.bfloat16
+enter_autocast thread=MainThread args=('tpu', None, True, None) tls=torch.bfloat16
+enter_autocast thread=MainThread args=('tpu', None, True, None) tls=torch.bfloat16
+enter_autocast thread=MainThread args=('tpu', None, True, None) tls=torch.bfloat16
+compile1 torch.bfloat16
+

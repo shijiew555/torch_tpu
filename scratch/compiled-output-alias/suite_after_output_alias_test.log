@@ -1,0 +1,63 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794986844.574083  320774 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794986845.605964  320774 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794986845.610874  320774 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/root/torch_tpu/.claude/tmp/compiled-output-alias/ov/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+Running tests under Python 3.13.18: /usr/bin/python3
+Repro with --test_random_seed=1234
+[ RUN      ] OutputAliasTest.test_compiled_outputs_alias_like_eager0 (fn=<function _views_and_slice at 0x7ae98df10ea0>, requires_grad=False)
+I0000 00:00:1794986845.628078  320774 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794986846.333014  320774 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+I1118 07:27:26.583498 135143533510784 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I0000 00:00:1794986846.598217  320774 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1794986846.598247  320774 tier2_compilation_cache.cc:81] Tier-2 compilation cache is disabled for world size 1.
+[       OK ] OutputAliasTest.test_compiled_outputs_alias_like_eager0 (fn=<function _views_and_slice at 0x7ae98df10ea0>, requires_grad=False)
+[ RUN      ] OutputAliasTest.test_compiled_outputs_alias_like_eager1 (fn=<function _views_and_slice at 0x7ae98df10ea0>, requires_grad=True)
+I1118 07:27:27.122519 135143533510784 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] OutputAliasTest.test_compiled_outputs_alias_like_eager1 (fn=<function _views_and_slice at 0x7ae98df10ea0>, requires_grad=True)
+[ RUN      ] OutputAliasTest.test_compiled_outputs_alias_like_eager10 (fn=<function _independent at 0x7ae908514fe0>, requires_grad=False)
+I1118 07:27:27.182407 135143533510784 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] OutputAliasTest.test_compiled_outputs_alias_like_eager10 (fn=<function _independent at 0x7ae908514fe0>, requires_grad=False)
+[ RUN      ] OutputAliasTest.test_compiled_outputs_alias_like_eager11 (fn=<function _independent at 0x7ae908514fe0>, requires_grad=True)
+I1118 07:27:27.276209 135143533510784 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] OutputAliasTest.test_compiled_outputs_alias_like_eager11 (fn=<function _independent at 0x7ae908514fe0>, requires_grad=True)
+[ RUN      ] OutputAliasTest.test_compiled_outputs_alias_like_eager2 (fn=<function _transpose at 0x7ae908514860>, requires_grad=False)
+I1118 07:27:27.335966 135143533510784 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] OutputAliasTest.test_compiled_outputs_alias_like_eager2 (fn=<function _transpose at 0x7ae908514860>, requires_grad=False)
+[ RUN      ] OutputAliasTest.test_compiled_outputs_alias_like_eager3 (fn=<function _transpose at 0x7ae908514860>, requires_grad=True)
+I1118 07:27:27.421482 135143533510784 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] OutputAliasTest.test_compiled_outputs_alias_like_eager3 (fn=<function _transpose at 0x7ae908514860>, requires_grad=True)
+[ RUN      ] OutputAliasTest.test_compiled_outputs_alias_like_eager4 (fn=<function _views_only at 0x7ae908514540>, requires_grad=False)
+I1118 07:27:27.631504 135143533510784 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] OutputAliasTest.test_compiled_outputs_alias_like_eager4 (fn=<function _views_only at 0x7ae908514540>, requires_grad=False)
+[ RUN      ] OutputAliasTest.test_compiled_outputs_alias_like_eager5 (fn=<function _views_only at 0x7ae908514540>, requires_grad=True)
+I1118 07:27:27.778363 135143533510784 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] OutputAliasTest.test_compiled_outputs_alias_like_eager5 (fn=<function _views_only at 0x7ae908514540>, requires_grad=True)
+[ RUN      ] OutputAliasTest.test_compiled_outputs_alias_like_eager6 (fn=<function _split at 0x7ae9085147c0>, requires_grad=False)
+I1118 07:27:27.919609 135143533510784 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] OutputAliasTest.test_compiled_outputs_alias_like_eager6 (fn=<function _split at 0x7ae9085147c0>, requires_grad=False)
+[ RUN      ] OutputAliasTest.test_compiled_outputs_alias_like_eager7 (fn=<function _split at 0x7ae9085147c0>, requires_grad=True)
+I1118 07:27:28.115890 135143533510784 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] OutputAliasTest.test_compiled_outputs_alias_like_eager7 (fn=<function _split at 0x7ae9085147c0>, requires_grad=True)
+[ RUN      ] OutputAliasTest.test_compiled_outputs_alias_like_eager8 (fn=<function _duplicate at 0x7ae908514f40>, requires_grad=False)
+I1118 07:27:28.174218 135143533510784 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] OutputAliasTest.test_compiled_outputs_alias_like_eager8 (fn=<function _duplicate at 0x7ae908514f40>, requires_grad=False)
+[ RUN      ] OutputAliasTest.test_compiled_outputs_alias_like_eager9 (fn=<function _duplicate at 0x7ae908514f40>, requires_grad=True)
+I1118 07:27:28.235366 135143533510784 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] OutputAliasTest.test_compiled_outputs_alias_like_eager9 (fn=<function _duplicate at 0x7ae908514f40>, requires_grad=True)
+----------------------------------------------------------------------
+Ran 12 tests in 2.642s
+
+OK
+I0000 00:00:1794986849.271897  320774 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794986849.271964  320774 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=38
+num_cache_hits=20 {52.6%}
+num_compilations=18
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

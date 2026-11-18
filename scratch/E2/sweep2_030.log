@@ -1,0 +1,100 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794974042.869824  161337 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794974052.876815  161337 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794974055.031107  161337 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/usr/local/lib/python3.13/dist-packages/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+torch_tpu file: /usr/local/lib/python3.13/dist-packages/torch_tpu/__init__.py
+I0000 00:00:1794974055.045843  161337 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794974055.952222  161337 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+I0000 00:00:1794974073.956536  161337 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1794974073.956569  161337 tier2_compilation_cache.cc:81] Tier-2 compilation cache is disabled for world size 1.
+mutate_then_return_view_of_input OK
+return_view_then_mutate_output OK
+noncontig_input_inplace OK
+slice_input_inplace OK
+ema_param_update_no_grad OK
+dropout_train_compiled_stats OK
+rand_seed_reproducible OK
+===== torch_cond 
+   File "/usr/local/lib/python3.13/dist-packages/torch/_ops.py", line 549, in __call__
+    return self.dispatch(dispatch_key_set.highestPriorityTypeId(), *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/_ops.py", line 537, in dispatch
+    return kernel(*args, **kwargs)
+  File "/usr/local/lib/python3.13/dist-packages/torch/_higher_order_ops/cond.py", line 309, in cond_op_dense
+    if pred:
+       ^^^^
+torch._dynamo.exc.BackendCompilerFailed: backend='tpu' raised:
+RuntimeError: local_scalar_dense(): cannot materialize a tensor during a stream-isolated copy, materialization requires an active stream
+
+While executing %cond : [num_users=1] = call_function[target=torch.ops.higher_order.cond](args = (%gt_scalar, %true_graph_0, %false_graph_0, (%arg0_1,)), kwargs = {})
+Original traceback:
+  File "/root/torch_tpu/.claude/tmp/E2/sweep2.py", line 148, in f
+    return torch.cond(x.sum() > 0, lambda t: t + 1, lambda t: t - 1, (x,))
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Use tlparse to see full graph. (https://github.com/pytorch/tlparse?tab=readme-ov-file#tlparse-parse-structured-pt2-logs)
+
+While executing %submod_0 : [num_users=1] = call_module[target=submod_0](args = (%arg0_1,), kwargs = {})
+Original traceback:
+None
+Use tlparse to see full graph. (https://github.com/pytorch/tlparse?tab=readme-ov-file#tlparse-parse-structured-pt2-logs)
+
+Set TORCHDYNAMO_VERBOSE=1 for the internal stack trace (please do this especially if you're reporting a bug to PyTorch). For even more developer context, set TORCH_LOGS="+dynamo"
+torch_cond ERR BackendCompilerFailed: backend='tpu' raised:
+RuntimeError: local_scalar_dense(): cannot materialize a tensor during a stream-isolated copy, materialization requires an active stream
+
+While executing %cond : [num_users=1] = call_function[target=torch.ops.higher_order.cond](args = (%gt_scalar, %true_graph_0, %false_graph_0,
+nonzero_graph_break OK
+bool_mask_index OK
+dtype_recompile OK
+mark_dynamic_backward OK
+mark_dynamic_view_reshape OK
+mark_dynamic_inplace_input OK
+mark_dynamic_return_slice_alias OK
+python_scalar_args_recompile OK
+kwargs_and_none_inputs OK
+compile_module_method_and_hooks OK
+grad_accumulation_two_backwards OK
+complex_ops OK
+sdpa_compiled_backward OK
+autocast_bf16_inside_compile OK
+
+SUMMARY
+mutate_then_return_view_of_input    OK
+return_view_then_mutate_output      OK
+noncontig_input_inplace             OK
+slice_input_inplace                 OK
+ema_param_update_no_grad            OK
+dropout_train_compiled_stats        OK
+rand_seed_reproducible              OK
+torch_cond                          ERR BackendCompilerFailed: backend='tpu' raised:
+RuntimeError: local_scalar_dense(): cannot materialize a tensor during a stream-isolated copy, materialization requires an active stream
+
+While executi
+nonzero_graph_break                 OK
+bool_mask_index                     OK
+dtype_recompile                     OK
+mark_dynamic_backward               OK
+mark_dynamic_view_reshape           OK
+mark_dynamic_inplace_input          OK
+mark_dynamic_return_slice_alias     OK
+python_scalar_args_recompile        OK
+kwargs_and_none_inputs              OK
+compile_module_method_and_hooks     OK
+grad_accumulation_two_backwards     OK
+complex_ops                         OK
+sdpa_compiled_backward              OK
+autocast_bf16_inside_compile        OK
+I0000 00:00:1794974138.597418  161337 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794974138.597519  161337 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=81
+num_cache_hits=9 {11.1%}
+num_compilations=72
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

@@ -1,0 +1,128 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794986805.427390  319252 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794986806.524605  319252 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794986806.531450  319252 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/root/torch_tpu/.claude/tmp/compiled-output-alias/ov/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+Running tests under Python 3.13.18: /usr/bin/python3
+Repro with --test_random_seed=1234
+[ RUN      ] CacheTest.test_persistent_cache_tier2
+[  SKIPPED ] CacheTest.test_persistent_cache_tier2
+[ RUN      ] CacheTest.test_persistent_cache_tier3
+[  SKIPPED ] CacheTest.test_persistent_cache_tier3
+Repro with --test_random_seed=1234
+[ RUN      ] ParentCacheTest.test_cache_tier2
+I1118 07:26:46.548930 136699657216128 subprocess_test_utils.py:226] Running subtest TIER2 in subprocess for isolation.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794986808.622721  319352 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794986809.693622  319352 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794986809.701217  319352 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+Running tests under Python 3.13.18: /usr/bin/python3
+faulthandler.register(SIGTERM) failed UnsupportedOperation('QueueWriter does not have a fileno'); ignoring.
+Repro with --test_random_seed=1234
+[ RUN      ] __mp_main__.CacheTest.test_persistent_cache_tier2
+I0000 00:00:1794986809.728884  319352 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794986810.547379  319352 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+I0000 00:00:1794986810.558164  319645 tier2_compilation_cache.cc:98] Tier-2 compilation cache is enabled with name 'compile_cache_test_3a0a740dcd6545749424ce67c844517a' as requested by the TORCH_TPU_TIER2_COMPILATION_CACHE environment variable.
+I0000 00:00:1794986810.558221  319645 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1794986810.558253  319693 compilation_cache_utils.cc:101] Tier-2 cache uses TorchTPU binary fingerprint: 648655169b685cf4
+  based on TorchTPU binary version 6 and PjRt version:
+TFRT TPU v5 lite
+Built on Oct 7 2026 00:47:01 (1791359221) cl/994787025
+C API version: 0.116
+/root/torch_tpu/.claude/tmp/compiled-output-alias/repo/tests/compile/cache_test.py:148: UserWarning: //TorchTpu/ApiStage/ExperimentalApi// the TORCH_TPU_TIER2_COMPILATION_CACHE environment variable is an experimental feature and may change or be removed without notice. (Triggered internally at ./csrc/common/env_vars.h:456.)
+  _ = arg.cpu()
+/root/torch_tpu/.claude/tmp/compiled-output-alias/repo/tests/compile/cache_test.py:149: UserWarning: //TorchTpu/ApiStage/InternalApi// get_rng_state is internal to TorchTPU and may change or be removed without notice. Use torch.accelerator.random.get_rng_state instead.
+  _ = torch.tpu.get_rng_state().cpu()
+I0000 00:00:1794986811.965050  319352 compilation_cache.cc:356] Compilation cache evicted.
+I1118 07:26:51.965536 134971546591360 cache_test.py:157] Initial caches: {PosixPath('/dev/shm/torch_tpu_cache/compile_cache_test_3a0a740dcd6545749424ce67c844517a/648655169b685cf4/a6671d5af1195de6_d45b2250203f605b_736547350e2abcc7.bin')}
+I1118 07:26:51.965536 134971546591360 cache_test.py:157] Initial caches: {PosixPath('/dev/shm/torch_tpu_cache/compile_cache_test_3a0a740dcd6545749424ce67c844517a/648655169b685cf4/a6671d5af1195de6_d45b2250203f605b_736547350e2abcc7.bin')}
+I1118 07:26:52.047638 134971546591360 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 07:26:52.047638 134971546591360 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 07:26:52.119168 134971546591360 cache_test.py:170] Caches after first compile: {PosixPath('/dev/shm/torch_tpu_cache/compile_cache_test_3a0a740dcd6545749424ce67c844517a/648655169b685cf4/91b849c35d3a83be_763f9ec309637157_149e52f8215b63fe.bin'), PosixPath('/dev/shm/torch_tpu_cache/compile_cache_test_3a0a740dcd6545749424ce67c844517a/648655169b685cf4/a6671d5af1195de6_d45b2250203f605b_736547350e2abcc7.bin')}
+I0000 00:00:1794986813.119804  319352 compilation_cache.cc:356] Compilation cache evicted.
+I1118 07:26:52.119168 134971546591360 cache_test.py:170] Caches after first compile: {PosixPath('/dev/shm/torch_tpu_cache/compile_cache_test_3a0a740dcd6545749424ce67c844517a/648655169b685cf4/91b849c35d3a83be_763f9ec309637157_149e52f8215b63fe.bin'), PosixPath('/dev/shm/torch_tpu_cache/compile_cache_test_3a0a740dcd6545749424ce67c844517a/648655169b685cf4/a6671d5af1195de6_d45b2250203f605b_736547350e2abcc7.bin')}
+I1118 07:26:53.151161 134971546591360 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 07:26:53.151161 134971546591360 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 07:26:53.192717 134971546591360 cache_test.py:186] Caches after second compile: {PosixPath('/dev/shm/torch_tpu_cache/compile_cache_test_3a0a740dcd6545749424ce67c844517a/648655169b685cf4/91b849c35d3a83be_763f9ec309637157_149e52f8215b63fe.bin'), PosixPath('/dev/shm/torch_tpu_cache/compile_cache_test_3a0a740dcd6545749424ce67c844517a/648655169b685cf4/a6671d5af1195de6_d45b2250203f605b_736547350e2abcc7.bin')}
+I1118 07:26:53.192717 134971546591360 cache_test.py:186] Caches after second compile: {PosixPath('/dev/shm/torch_tpu_cache/compile_cache_test_3a0a740dcd6545749424ce67c844517a/648655169b685cf4/91b849c35d3a83be_763f9ec309637157_149e52f8215b63fe.bin'), PosixPath('/dev/shm/torch_tpu_cache/compile_cache_test_3a0a740dcd6545749424ce67c844517a/648655169b685cf4/a6671d5af1195de6_d45b2250203f605b_736547350e2abcc7.bin')}
+[       OK ] __mp_main__.CacheTest.test_persistent_cache_tier2
+----------------------------------------------------------------------
+Ran 1 test in 3.470s
+
+OK
+I0000 00:00:1794986814.198868  319352 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794986814.198941  319352 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=8
+num_cache_hits=3 {37.5%}
+num_compilations=2
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+
+[       OK ] ParentCacheTest.test_cache_tier2
+[ RUN      ] ParentCacheTest.test_cache_tier3
+I1118 07:26:55.503440 136699657216128 subprocess_test_utils.py:226] Running subtest TIER3 in subprocess for isolation.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794986817.618258  319824 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794986818.761051  319824 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794986818.765879  319824 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+Running tests under Python 3.13.18: /usr/bin/python3
+faulthandler.register(SIGTERM) failed UnsupportedOperation('QueueWriter does not have a fileno'); ignoring.
+Repro with --test_random_seed=1234
+[ RUN      ] __mp_main__.CacheTest.test_persistent_cache_tier3
+I0000 00:00:1794986818.785034  319824 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794986819.552995  319824 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+I0000 00:00:1794986819.565348  320032 tier2_compilation_cache.cc:98] Tier-2 compilation cache is enabled with name 'compile_cache_test_fd5fb662ede140ffb954f54a253d4554' as requested by the TORCH_TPU_TIER2_COMPILATION_CACHE environment variable.
+I0000 00:00:1794986819.565390  320032 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: /tmp/absl_testing/ParentCacheTest/test_cache_tier3/tmp5bbxdmww
+I0000 00:00:1794986819.566023  320079 compilation_cache_utils.cc:101] Tier-2 cache uses TorchTPU binary fingerprint: 648655169b685cf4
+  based on TorchTPU binary version 6 and PjRt version:
+TFRT TPU v5 lite
+Built on Oct 7 2026 00:47:01 (1791359221) cl/994787025
+C API version: 0.116
+I0000 00:00:1794986819.566140  320079 tier3_compilation_cache.cc:60] Tier-3 compilation cache path for this process: /tmp/absl_testing/ParentCacheTest/test_cache_tier3/tmp5bbxdmww/648655169b685cf4
+/root/torch_tpu/.claude/tmp/compiled-output-alias/repo/tests/compile/cache_test.py:148: UserWarning: //TorchTpu/ApiStage/ExperimentalApi// the TORCH_TPU_TIER2_COMPILATION_CACHE environment variable is an experimental feature and may change or be removed without notice. (Triggered internally at ./csrc/common/env_vars.h:456.)
+  _ = arg.cpu()
+/root/torch_tpu/.claude/tmp/compiled-output-alias/repo/tests/compile/cache_test.py:148: UserWarning: //TorchTpu/ApiStage/ExperimentalApi// the TORCH_TPU_TIER3_COMPILATION_CACHE_ROOT environment variable is an experimental feature and may change or be removed without notice. (Triggered internally at ./csrc/common/env_vars.h:456.)
+  _ = arg.cpu()
+/root/torch_tpu/.claude/tmp/compiled-output-alias/repo/tests/compile/cache_test.py:149: UserWarning: //TorchTpu/ApiStage/InternalApi// get_rng_state is internal to TorchTPU and may change or be removed without notice. Use torch.accelerator.random.get_rng_state instead.
+  _ = torch.tpu.get_rng_state().cpu()
+I0000 00:00:1794986820.952740  319824 compilation_cache.cc:356] Compilation cache evicted.
+I1118 07:27:00.953216 132948838285440 cache_test.py:157] Initial caches: {PosixPath('/tmp/absl_testing/ParentCacheTest/test_cache_tier3/tmp5bbxdmww/648655169b685cf4/a6671d5af1195de6_d45b2250203f605b_736547350e2abcc7.bin')}
+I1118 07:27:00.953216 132948838285440 cache_test.py:157] Initial caches: {PosixPath('/tmp/absl_testing/ParentCacheTest/test_cache_tier3/tmp5bbxdmww/648655169b685cf4/a6671d5af1195de6_d45b2250203f605b_736547350e2abcc7.bin')}
+I1118 07:27:01.035984 132948838285440 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 07:27:01.035984 132948838285440 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 07:27:01.114711 132948838285440 cache_test.py:170] Caches after first compile: {PosixPath('/tmp/absl_testing/ParentCacheTest/test_cache_tier3/tmp5bbxdmww/648655169b685cf4/a6671d5af1195de6_d45b2250203f605b_736547350e2abcc7.bin'), PosixPath('/tmp/absl_testing/ParentCacheTest/test_cache_tier3/tmp5bbxdmww/648655169b685cf4/91b849c35d3a83be_763f9ec309637157_149e52f8215b63fe.bin')}
+I0000 00:00:1794986822.115254  319824 compilation_cache.cc:356] Compilation cache evicted.
+I1118 07:27:01.114711 132948838285440 cache_test.py:170] Caches after first compile: {PosixPath('/tmp/absl_testing/ParentCacheTest/test_cache_tier3/tmp5bbxdmww/648655169b685cf4/a6671d5af1195de6_d45b2250203f605b_736547350e2abcc7.bin'), PosixPath('/tmp/absl_testing/ParentCacheTest/test_cache_tier3/tmp5bbxdmww/648655169b685cf4/91b849c35d3a83be_763f9ec309637157_149e52f8215b63fe.bin')}
+I1118 07:27:02.145487 132948838285440 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 07:27:02.145487 132948838285440 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I1118 07:27:02.184120 132948838285440 cache_test.py:186] Caches after second compile: {PosixPath('/tmp/absl_testing/ParentCacheTest/test_cache_tier3/tmp5bbxdmww/648655169b685cf4/a6671d5af1195de6_d45b2250203f605b_736547350e2abcc7.bin'), PosixPath('/tmp/absl_testing/ParentCacheTest/test_cache_tier3/tmp5bbxdmww/648655169b685cf4/91b849c35d3a83be_763f9ec309637157_149e52f8215b63fe.bin')}
+I1118 07:27:02.184120 132948838285440 cache_test.py:186] Caches after second compile: {PosixPath('/tmp/absl_testing/ParentCacheTest/test_cache_tier3/tmp5bbxdmww/648655169b685cf4/a6671d5af1195de6_d45b2250203f605b_736547350e2abcc7.bin'), PosixPath('/tmp/absl_testing/ParentCacheTest/test_cache_tier3/tmp5bbxdmww/648655169b685cf4/91b849c35d3a83be_763f9ec309637157_149e52f8215b63fe.bin')}
+[       OK ] __mp_main__.CacheTest.test_persistent_cache_tier3
+----------------------------------------------------------------------
+Ran 1 test in 3.403s
+
+OK
+I0000 00:00:1794986823.188455  319824 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794986823.188521  319824 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=8
+num_cache_hits=3 {37.5%}
+num_compilations=2
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+
+[       OK ] ParentCacheTest.test_cache_tier3
+----------------------------------------------------------------------
+Ran 4 tests in 17.886s
+
+OK (skipped=2)

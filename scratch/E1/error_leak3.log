@@ -1,0 +1,62 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794972684.323670  142545 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794972685.252591  142545 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794972685.253975  142545 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/usr/local/lib/python3.13/dist-packages/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+I0000 00:00:1794972686.573463  142545 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794972687.311624  142545 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+I0000 00:00:1794972693.832918  142793 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1794972693.832943  142793 tier2_compilation_cache.cc:81] Tier-2 compilation cache is disabled for world size 1.
+/usr/local/lib/python3.13/dist-packages/transformers/integrations/sdpa_attention.py:174: UserWarning: //TorchTpu/Performance// TorchTPU only supports FLASH_ATTENTION SDPBackend for scaled_dot_product_attention when these conditions are met:
+- inputs have static shapes
+- dropout_p is in [0.0, 1.0) (current: 0.1)
+- inputs are float32 or bfloat16 (current: Half)
+- inputs have the same rank (query: 4, key: 4, value: 4)
+- query rank is at least 4 (current: 4)
+- batch size is at least 1
+- Head dimension (dim - 1) is less than 128 or divisible by 128
+(query shape: [2, 4, 16, 16])
+- attn_mask does not require gradient (current: 0) (Triggered internally at csrc/ops/scaled_dot_product_attention/scaled_dot_product_attention_aten_kernels.cc:264.)
+  attn_output = torch.nn.functional.scaled_dot_product_attention(
+/usr/local/lib/python3.13/dist-packages/transformers/integrations/sdpa_attention.py:174: UserWarning: //TorchTpu/Performance// TorchTPU only supports SHLO optimized MATH SDPBackend when these conditions are met:
+- dropout_p is 0.0 (current: 0.1)
+- inputs are not complex (current: Half)
+- inputs have the same rank (query: 4, key: 4, value: 4)
+- attn_mask does not require gradient (current: 0) (Triggered internally at csrc/ops/scaled_dot_product_attention/scaled_dot_product_attention_aten_kernels.cc:289.)
+  attn_output = torch.nn.functional.scaled_dot_product_attention(
+bert forward returned (lazy)
+loc("layer_norm/layer_norm"): error: 'stablehlo.multiply' op requires compatible types for all operands and results
+E0000 00:00:1794972694.548689  142793 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: === 
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794972694.548857  142793 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: === 
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794972694.586235  142794 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: === 
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794972694.586300  142794 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: === 
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794972694.627941  142794 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: === 
+csrc/common/status_builder.cc:97
+
+unrelated t5 .to('tpu') FAILED: RuntimeError failed to inline functions in MLIR module
+small op: [2.0, 2.0, 2.0]
+I0000 00:00:1794972695.672271  142545 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794972695.672323  142545 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=138
+num_cache_hits=77 {55.7%}
+num_compilations=60
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

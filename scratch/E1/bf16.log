@@ -1,0 +1,659 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794970414.208700   81910 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794970415.945104   81910 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794970415.950616   81910 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/usr/local/lib/python3.13/dist-packages/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+I0000 00:00:1794970418.579798   81910 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794970419.760926   81910 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+I0000 00:00:1794970423.999248   82460 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1794970423.999280   82460 tier2_compilation_cache.cc:81] Tier-2 compilation cache is disabled for world size 1.
+llama compile=False cpu=['5.59703', '5.32817', '5.12534'] tpu=['5.59708', '5.32813', '5.12524'] maxlogitdiff=7.02e-03 t=2.2s
+[transformers] Model config: bos_token_id must be `None` or an integer within the vocabulary (between 0 and 255), got 50256. This may result in unexpected behavior.
+[transformers] Model config: eos_token_id must be `None` or an integer within the vocabulary (between 0 and 255), got 50256. This may result in unexpected behavior.
+[transformers] `loss_type=None` was set in the config but it is unrecognized. Using the default loss: `ForCausalLMLoss`.
+gpt2 compile=False cpu=['5.52695', '5.09390', '4.83015'] tpu=['5.52675', '5.09374', '4.83018'] maxlogitdiff=6.63e-03 t=1.1s
+bert compile=False cpu=['5.50798', '5.31794', '5.14644'] tpu=['5.50805', '5.31805', '5.14662'] maxlogitdiff=5.43e-03 t=0.5s
+/usr/local/lib/python3.13/dist-packages/transformers/integrations/sdpa_attention.py:174: UserWarning: //TorchTpu/Performance// TorchTPU only supports FLASH_ATTENTION SDPBackend for scaled_dot_product_attention when these conditions are met:
+- inputs have static shapes
+- dropout_p is in [0.0, 1.0) (current: 0)
+- inputs are float32 or bfloat16 (current: Float)
+- inputs have the same rank (query: 4, key: 4, value: 4)
+- query rank is at least 4 (current: 4)
+- batch size is at least 1
+- Head dimension (dim - 1) is less than 128 or divisible by 128
+(query shape: [2, 4, 16, 16])
+- attn_mask does not require gradient (current: 1) (Triggered internally at csrc/ops/scaled_dot_product_attention/scaled_dot_product_attention_aten_kernels.cc:264.)
+  attn_output = torch.nn.functional.scaled_dot_product_attention(
+/usr/local/lib/python3.13/dist-packages/transformers/integrations/sdpa_attention.py:174: UserWarning: //TorchTpu/Performance// TorchTPU only supports SHLO optimized MATH SDPBackend when these conditions are met:
+- dropout_p is 0.0 (current: 0)
+- inputs are not complex (current: Float)
+- inputs have the same rank (query: 4, key: 4, value: 4)
+- attn_mask does not require gradient (current: 1) (Triggered internally at csrc/ops/scaled_dot_product_attention/scaled_dot_product_attention_aten_kernels.cc:289.)
+  attn_output = torch.nn.functional.scaled_dot_product_attention(
+t5 compile=False cpu=['5.93226', '4.90903', '4.26602'] tpu=['5.93386', '4.90777', '4.26370'] maxlogitdiff=6.89e-02 t=2.2s
+llama bf16 loss cpu=5.5970 tpu=5.5970 logits dtype=torch.bfloat16 maxgraddiff=9.77e-04
+llama autocast loss cpu=5.5970 tpu=5.5969 logits dtype cpu=torch.bfloat16 tpu=torch.bfloat16 grad dtype=torch.float32
+llama autocast-default dtype logits=torch.float16 default=torch.float16
+gpt2 bf16 loss cpu=5.5291 tpu=5.5388 logits dtype=torch.bfloat16 maxgraddiff=2.26e-01
+gpt2 autocast loss cpu=5.5291 tpu=5.5432 logits dtype cpu=torch.bfloat16 tpu=torch.bfloat16 grad dtype=torch.float32
+gpt2 autocast-default dtype logits=torch.float16 default=torch.float16
+bert bf16 loss cpu=5.5312 tpu=5.5000 logits dtype=torch.bfloat16 maxgraddiff=1.16e-01
+loc("layer_norm/layer_norm"): error: 'stablehlo.multiply' op requires compatible types for all operands and results
+E0000 00:00:1794970448.503314   82460 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.503552   82460 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.582428   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.582496   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.696684   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697152   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697225   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697272   82461 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697284   82461 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697290   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697309   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697318   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697330   82461 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697348   82461 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697354   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697372   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697379   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697385   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697413   82461 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697422   82461 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697427   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697444   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697451   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697458   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697467   82461 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697473   82461 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697478   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697506   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697515   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697532   82461 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697539   82461 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697544   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697560   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697567   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697573   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697586   82461 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697593   82461 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697597   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697613   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697619   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697624   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697635   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697645   82461 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697651   82461 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697655   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697678   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697685   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697701   82461 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697708   82461 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697712   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697724   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697730   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697738   82461 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697744   82461 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697748   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697799   82461 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697810   82461 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697814   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697832   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697839   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697844   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697851   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697860   82461 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697866   82461 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697870   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697885   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697891   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697897   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697904   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697914   82461 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697927   82461 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697931   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697948   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697954   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697960   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697966   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697975   82461 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697981   82461 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.697985   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698006   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698013   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698028   82461 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698035   82461 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698039   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698058   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698064   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698070   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698083   82461 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698089   82461 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698092   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698105   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698112   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698118   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698125   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698134   82461 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698141   82461 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698145   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698166   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698180   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698224   82461 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698234   82461 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698239   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698252   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698259   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698268   82461 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698274   82461 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698278   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698320   82461 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698350   82461 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698355   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698373   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698381   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698400   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698408   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698418   82461 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698425   82461 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698429   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698445   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698454   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698459   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698466   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698475   82461 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698481   82461 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698485   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698500   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698507   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698516   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698523   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698531   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698549   82461 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698556   82461 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698560   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698582   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698590   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698596   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698607   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.698643   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E1/bf16.py", line 23, in <module>
+    print(f"{name} autocast loss cpu={lc.loss.item():.4f} tpu={lt.loss.item():.4f} logits dtype cpu={lc.logits.dtype} tpu={lt.logits.dtype} grad dtype={next(mt.parameters()).grad.dtype}", flush=True)
+                                                               ~~~~~~~~~~~~^^
+RuntimeError: failed to inline functions in MLIR module
+bert autocast FAIL RuntimeError: failed to inline functions in MLIR module
+bert autocast-default dtype logits=torch.float16 default=torch.float16
+loc("layer_norm/layer_norm"): error: 'stablehlo.multiply' op requires compatible types for all operands and results
+E0000 00:00:1794970448.899483   82460 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970448.899925   82460 device_buffer.cc:600] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970449.068011   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970449.068178   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+E0000 00:00:1794970449.068227   82461 materialize.cc:481] [MaterializationWorker] ExecutionTask failed: INTERNAL: failed to inline functions in MLIR module [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:97
+
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E1/bf16.py", line 10, in <module>
+    mc=copy.deepcopy(mb); mt=mb.to("tpu")
+                             ~~~~~^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/transformers/modeling_utils.py", line 3710, in to
+    return super().to(*args, **kwargs)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py", line 1388, in to
+    return self._apply(convert)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+    ~~~~~~~~~~~~~^^^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py", line 966, in _apply
+    param_applied = fn(param)
+  File "/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py", line 1374, in convert
+    return t.to(
+           ~~~~^
+        device,
+        ^^^^^^^
+        dtype if t.is_floating_point() or t.is_complex() else None,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        non_blocking,
+        ^^^^^^^^^^^^^
+    )
+    ^
+RuntimeError: failed to inline functions in MLIR module
+t5 bf16 FAIL RuntimeError: failed to inline functions in MLIR module
+t5 autocast loss cpu=5.9324 tpu=5.9312 logits dtype cpu=torch.bfloat16 tpu=torch.bfloat16 grad dtype=torch.float32
+t5 autocast-default dtype logits=torch.float16 default=torch.float16
+I0000 00:00:1794970452.350977   81910 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794970453.516178   81910 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=6540
+num_cache_hits=5850 {89.4%}
+num_compilations=688
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

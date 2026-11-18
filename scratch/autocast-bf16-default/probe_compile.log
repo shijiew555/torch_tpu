@@ -1,0 +1,16 @@
+main default: torch.bfloat16
+backend eager -> torch.bfloat16
+backend aot_eager -> torch.bfloat16
+backend None -> torch.bfloat16
+
+
+
+def forward(self, L_p_ : torch.Tensor):
+    l_p_ = L_p_
+    _enter_autocast = torch.amp.autocast_mode._enter_autocast('tpu', None, True, None)
+    matmul = l_p_ @ l_p_;  l_p_ = None
+    _exit_autocast = torch.amp.autocast_mode._exit_autocast(_enter_autocast);  _enter_autocast = _exit_autocast = None
+    return (matmul,)
+    
+spy -> torch.bfloat16 [('MainThread', torch.bfloat16)]
+

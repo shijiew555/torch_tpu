@@ -1,0 +1,52 @@
+== before
+I0000 00:00:1794981944.507377  258485 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794981953.510984  258485 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+I0000 00:00:1794981953.711133  258485 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+  _tcmalloc_check.check_tcmalloc()
+I0000 00:00:1794981954.259151  258485 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794981955.290352  258485 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+I0000 00:00:1794981955.304397  260294 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1794981955.304422  260294 tier2_compilation_cache.cc:81] Tier-2 compilation cache is disabled for world size 1.
+torch_tpu file: /root/torch_tpu/.claude/tmp/autocast-bf16-default/ov_before/torch_tpu/__init__.py
+main default: torch.float16
+main mm under autocast: torch.float16
+300x300 sum of 4: inf
+backward outside autocast: {'bw_thread': 'Dummy-1', 'bw_dtype': torch.float16, 'bw_enabled': False}
+backward of autocast fwd: {'bw_thread': 'Dummy-1', 'bw_dtype': torch.float16, 'bw_enabled': False}
+backward inside autocast: {'bw_thread': 'Dummy-1', 'bw_dtype': torch.float16, 'bw_enabled': True}
+new thread: {'dtype': torch.float16, 'mm': torch.float16}
+compile mm under autocast: torch.float16
+GradScaler enabled: True
+I0000 00:00:1794982033.758708  258485 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794982033.758745  258485 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=23
+num_cache_hits=11 {47.8%}
+num_compilations=12
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+
+== after
+I0000 00:00:1794982036.606031  260938 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794982037.646313  260938 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+I0000 00:00:1794982037.651044  260938 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+  _tcmalloc_check.check_tcmalloc()
+I0000 00:00:1794982037.661653  260938 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794982038.888719  260938 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+I0000 00:00:1794982038.899341  261147 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1794982038.899363  261147 tier2_compilation_cache.cc:81] Tier-2 compilation cache is disabled for world size 1.
+torch_tpu file: /root/torch_tpu/.claude/tmp/autocast-bf16-default/ov_after/torch_tpu/__init__.py
+main default: torch.bfloat16
+main mm under autocast: torch.bfloat16
+300x300 sum of 4: 360448.0
+backward outside autocast: {'bw_thread': 'Dummy-1', 'bw_dtype': torch.bfloat16, 'bw_enabled': False}
+backward of autocast fwd: {'bw_thread': 'Dummy-1', 'bw_dtype': torch.bfloat16, 'bw_enabled': False}
+backward inside autocast: {'bw_thread': 'Dummy-1', 'bw_dtype': torch.bfloat16, 'bw_enabled': True}
+new thread: {'dtype': torch.float16, 'mm': torch.float16}
+compile mm under autocast: torch.float16
+GradScaler enabled: True
+I0000 00:00:1794982040.552654  260938 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794982040.552697  260938 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=22
+num_cache_hits=9 {40.9%}
+num_compilations=13
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

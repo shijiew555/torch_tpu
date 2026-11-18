@@ -1,0 +1,65 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794972753.144516  147892 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794972754.141243  147892 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794972754.142715  147892 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/usr/local/lib/python3.13/dist-packages/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+I0000 00:00:1794972755.525352  147892 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794972756.647701  147892 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+/usr/local/lib/python3.13/dist-packages/torch_tpu/_internal/compile/fx_passes/sink_get_attr_constants.py:84: UserWarning: Attempted to insert a get_attr Node with no underlying reference in the owning GraphModule! Call GraphModule.add_submodule to add the necessary submodule, GraphModule.add_parameter to add the necessary Parameter, or nn.Module.register_buffer to add the necessary buffer
+  get_attr_node = submod.graph.get_attr(attr_name)
+I0000 00:00:1794972760.955762  147892 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1794972761.025782  147892 tier2_compilation_cache.cc:81] Tier-2 compilation cache is disabled for world size 1.
+L=16 loss cpu=5.52855 tpu=5.52839 t=4.9s unique_graphs=1
+V1118 03:32:42.770000 147892 torch/_dynamo/guards.py:5621] [0/1] [__recompiles] Recompiling function wrapper in /usr/local/lib/python3.13/dist-packages/transformers/utils/generic.py:937
+V1118 03:32:42.770000 147892 torch/_dynamo/guards.py:5621] [0/1] [__recompiles]     triggered by the following guard failure(s):
+V1118 03:32:42.770000 147892 torch/_dynamo/guards.py:5621] [0/1] [__recompiles]     - 0/0: tensor 'kwargs['input_ids']' size mismatch at index 1. expected 16, actual 20
+/usr/local/lib/python3.13/dist-packages/torch_tpu/_internal/compile/fx_passes/sink_get_attr_constants.py:84: UserWarning: Attempted to insert a get_attr Node with no underlying reference in the owning GraphModule! Call GraphModule.add_submodule to add the necessary submodule, GraphModule.add_parameter to add the necessary Parameter, or nn.Module.register_buffer to add the necessary buffer
+  get_attr_node = submod.graph.get_attr(attr_name)
+L=20 loss cpu=5.60228 tpu=5.60217 t=3.4s unique_graphs=2
+V1118 03:32:46.181000 147892 torch/_dynamo/guards.py:5621] [0/2] [__recompiles] Recompiling function wrapper in /usr/local/lib/python3.13/dist-packages/transformers/utils/generic.py:937
+V1118 03:32:46.181000 147892 torch/_dynamo/guards.py:5621] [0/2] [__recompiles]     triggered by the following guard failure(s):
+V1118 03:32:46.181000 147892 torch/_dynamo/guards.py:5621] [0/2] [__recompiles]     - 0/1: tensor 'kwargs['input_ids']' size mismatch at index 1. expected 20, actual 24
+V1118 03:32:46.181000 147892 torch/_dynamo/guards.py:5621] [0/2] [__recompiles]     - 0/0: tensor 'kwargs['input_ids']' size mismatch at index 1. expected 16, actual 24
+/usr/local/lib/python3.13/dist-packages/torch_tpu/_internal/compile/fx_passes/sink_get_attr_constants.py:84: UserWarning: Attempted to insert a get_attr Node with no underlying reference in the owning GraphModule! Call GraphModule.add_submodule to add the necessary submodule, GraphModule.add_parameter to add the necessary Parameter, or nn.Module.register_buffer to add the necessary buffer
+  get_attr_node = submod.graph.get_attr(attr_name)
+L=24 loss cpu=5.57109 tpu=5.57099 t=3.2s unique_graphs=3
+V1118 03:32:49.391000 147892 torch/_dynamo/guards.py:5621] [0/3] [__recompiles] Recompiling function wrapper in /usr/local/lib/python3.13/dist-packages/transformers/utils/generic.py:937
+V1118 03:32:49.391000 147892 torch/_dynamo/guards.py:5621] [0/3] [__recompiles]     triggered by the following guard failure(s):
+V1118 03:32:49.391000 147892 torch/_dynamo/guards.py:5621] [0/3] [__recompiles]     - 0/2: tensor 'kwargs['input_ids']' size mismatch at index 1. expected 24, actual 28
+V1118 03:32:49.391000 147892 torch/_dynamo/guards.py:5621] [0/3] [__recompiles]     - 0/1: tensor 'kwargs['input_ids']' size mismatch at index 1. expected 20, actual 28
+V1118 03:32:49.391000 147892 torch/_dynamo/guards.py:5621] [0/3] [__recompiles]     - 0/0: tensor 'kwargs['input_ids']' size mismatch at index 1. expected 16, actual 28
+/usr/local/lib/python3.13/dist-packages/torch_tpu/_internal/compile/fx_passes/sink_get_attr_constants.py:84: UserWarning: Attempted to insert a get_attr Node with no underlying reference in the owning GraphModule! Call GraphModule.add_submodule to add the necessary submodule, GraphModule.add_parameter to add the necessary Parameter, or nn.Module.register_buffer to add the necessary buffer
+  get_attr_node = submod.graph.get_attr(attr_name)
+L=28 loss cpu=5.53247 tpu=5.53257 t=3.6s unique_graphs=4
+V1118 03:32:52.957000 147892 torch/_dynamo/guards.py:5621] [0/4] [__recompiles] Recompiling function wrapper in /usr/local/lib/python3.13/dist-packages/transformers/utils/generic.py:937
+V1118 03:32:52.957000 147892 torch/_dynamo/guards.py:5621] [0/4] [__recompiles]     triggered by the following guard failure(s):
+V1118 03:32:52.957000 147892 torch/_dynamo/guards.py:5621] [0/4] [__recompiles]     - 0/3: tensor 'kwargs['input_ids']' size mismatch at index 1. expected 28, actual 32
+V1118 03:32:52.957000 147892 torch/_dynamo/guards.py:5621] [0/4] [__recompiles]     - 0/2: tensor 'kwargs['input_ids']' size mismatch at index 1. expected 24, actual 32
+V1118 03:32:52.957000 147892 torch/_dynamo/guards.py:5621] [0/4] [__recompiles]     - 0/1: tensor 'kwargs['input_ids']' size mismatch at index 1. expected 20, actual 32
+V1118 03:32:52.957000 147892 torch/_dynamo/guards.py:5621] [0/4] [__recompiles]     - 0/0: tensor 'kwargs['input_ids']' size mismatch at index 1. expected 16, actual 32
+/usr/local/lib/python3.13/dist-packages/torch_tpu/_internal/compile/fx_passes/sink_get_attr_constants.py:84: UserWarning: Attempted to insert a get_attr Node with no underlying reference in the owning GraphModule! Call GraphModule.add_submodule to add the necessary submodule, GraphModule.add_parameter to add the necessary Parameter, or nn.Module.register_buffer to add the necessary buffer
+  get_attr_node = submod.graph.get_attr(attr_name)
+L=32 loss cpu=5.55548 tpu=5.55538 t=3.1s unique_graphs=5
+V1118 03:32:59.304000 147892 torch/_dynamo/guards.py:5621] [0/5] [__recompiles] Recompiling function wrapper in /usr/local/lib/python3.13/dist-packages/transformers/utils/generic.py:937
+V1118 03:32:59.304000 147892 torch/_dynamo/guards.py:5621] [0/5] [__recompiles]     triggered by the following guard failure(s):
+V1118 03:32:59.304000 147892 torch/_dynamo/guards.py:5621] [0/5] [__recompiles]     - 0/4: tensor 'kwargs['input_ids']' size mismatch at index 1. expected 32, actual 17
+V1118 03:32:59.304000 147892 torch/_dynamo/guards.py:5621] [0/5] [__recompiles]     - 0/3: tensor 'kwargs['input_ids']' size mismatch at index 1. expected 28, actual 17
+V1118 03:32:59.304000 147892 torch/_dynamo/guards.py:5621] [0/5] [__recompiles]     - 0/2: tensor 'kwargs['input_ids']' size mismatch at index 1. expected 24, actual 17
+V1118 03:32:59.304000 147892 torch/_dynamo/guards.py:5621] [0/5] [__recompiles]     - 0/1: tensor 'kwargs['input_ids']' size mismatch at index 1. expected 20, actual 17
+V1118 03:32:59.304000 147892 torch/_dynamo/guards.py:5621] [0/5] [__recompiles]     - 0/0: tensor 'kwargs['input_ids']' size mismatch at index 1. expected 16, actual 17
+/usr/local/lib/python3.13/dist-packages/torch_tpu/_internal/compile/fx_passes/sink_get_attr_constants.py:84: UserWarning: Attempted to insert a get_attr Node with no underlying reference in the owning GraphModule! Call GraphModule.add_submodule to add the necessary submodule, GraphModule.add_parameter to add the necessary Parameter, or nn.Module.register_buffer to add the necessary buffer
+  get_attr_node = submod.graph.get_attr(attr_name)
+L=17 loss cpu=5.55386 tpu=5.55374 t=3.1s unique_graphs=6
+L=20 loss cpu=5.60228 tpu=5.60217 t=0.0s unique_graphs=6
+I0000 00:00:1794972783.538414  147892 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794972783.538481  147892 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=54
+num_cache_hits=24 {44.4%}
+num_compilations=30
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

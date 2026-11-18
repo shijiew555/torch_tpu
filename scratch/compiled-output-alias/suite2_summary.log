@@ -1,0 +1,7 @@
+before output_alias_test exit=1 Ran 13 tests in 6.198s FAILED (failures=5, errors=1) 
+after output_alias_test exit=1 Ran 13 tests in 2.498s FAILED (failures=1) 
+after random_ops_test exit=0 Ran 13 tests in 2.938s OK 
+after trace_autograd_ops_test exit=0 Ran 4 tests in 2.634s OK 
+after compile_api_test exit=1 Ran 106 tests in 13.123s FAILED (errors=2) 
+after activation_checkpointing_test exit=0 Ran 14 tests in 9.748s OK 
+after dtensor_test exit=0 Ran 1 test in 1.484s OK 

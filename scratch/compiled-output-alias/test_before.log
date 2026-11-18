@@ -1,0 +1,183 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794985891.840862  300409 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794985892.863530  300409 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794985892.868412  300409 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/root/torch_tpu/.claude/tmp/compiled-output-alias/ov/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+Running tests under Python 3.13.18: /usr/bin/python3
+Repro with --test_random_seed=1234
+[ RUN      ] OutputAliasTest.test_compiled_outputs_alias_like_eager0 (fn=<function _views_and_slice at 0x7c42429f8ea0>, requires_grad=False)
+I0000 00:00:1794985892.906838  300409 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794985893.562489  300409 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+I1118 07:11:33.803953 136624033603712 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+I0000 00:00:1794985893.818257  300409 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1794985893.818282  300409 tier2_compilation_cache.cc:81] Tier-2 compilation cache is disabled for world size 1.
+[  FAILED  ] OutputAliasTest.test_compiled_outputs_alias_like_eager0 (fn=<function _views_and_slice at 0x7c42429f8ea0>, requires_grad=False)
+[ RUN      ] OutputAliasTest.test_compiled_outputs_alias_like_eager1 (fn=<function _views_and_slice at 0x7c42429f8ea0>, requires_grad=True)
+I1118 07:11:34.304719 136624033603712 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] OutputAliasTest.test_compiled_outputs_alias_like_eager1 (fn=<function _views_and_slice at 0x7c42429f8ea0>, requires_grad=True)
+[ RUN      ] OutputAliasTest.test_compiled_outputs_alias_like_eager10 (fn=<function _independent at 0x7c41bd014720>, requires_grad=False)
+I1118 07:11:34.386170 136624033603712 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] OutputAliasTest.test_compiled_outputs_alias_like_eager10 (fn=<function _independent at 0x7c41bd014720>, requires_grad=False)
+[ RUN      ] OutputAliasTest.test_compiled_outputs_alias_like_eager11 (fn=<function _independent at 0x7c41bd014720>, requires_grad=True)
+I1118 07:11:34.477924 136624033603712 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] OutputAliasTest.test_compiled_outputs_alias_like_eager11 (fn=<function _independent at 0x7c41bd014720>, requires_grad=True)
+[ RUN      ] OutputAliasTest.test_compiled_outputs_alias_like_eager2 (fn=<function _transpose at 0x7c41bd463f60>, requires_grad=False)
+I1118 07:11:34.534397 136624033603712 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[  FAILED  ] OutputAliasTest.test_compiled_outputs_alias_like_eager2 (fn=<function _transpose at 0x7c41bd463f60>, requires_grad=False)
+[ RUN      ] OutputAliasTest.test_compiled_outputs_alias_like_eager3 (fn=<function _transpose at 0x7c41bd463f60>, requires_grad=True)
+I1118 07:11:34.646420 136624033603712 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] OutputAliasTest.test_compiled_outputs_alias_like_eager3 (fn=<function _transpose at 0x7c41bd463f60>, requires_grad=True)
+[ RUN      ] OutputAliasTest.test_compiled_outputs_alias_like_eager4 (fn=<function _views_only at 0x7c41bd463c40>, requires_grad=False)
+I1118 07:11:34.835557 136624033603712 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[  FAILED  ] OutputAliasTest.test_compiled_outputs_alias_like_eager4 (fn=<function _views_only at 0x7c41bd463c40>, requires_grad=False)
+[ RUN      ] OutputAliasTest.test_compiled_outputs_alias_like_eager5 (fn=<function _views_only at 0x7c41bd463c40>, requires_grad=True)
+I1118 07:11:34.956611 136624033603712 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] OutputAliasTest.test_compiled_outputs_alias_like_eager5 (fn=<function _views_only at 0x7c41bd463c40>, requires_grad=True)
+[ RUN      ] OutputAliasTest.test_compiled_outputs_alias_like_eager6 (fn=<function _split at 0x7c41bd463ec0>, requires_grad=False)
+I1118 07:11:35.096547 136624033603712 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[  FAILED  ] OutputAliasTest.test_compiled_outputs_alias_like_eager6 (fn=<function _split at 0x7c41bd463ec0>, requires_grad=False)
+[ RUN      ] OutputAliasTest.test_compiled_outputs_alias_like_eager7 (fn=<function _split at 0x7c41bd463ec0>, requires_grad=True)
+I1118 07:11:35.296155 136624033603712 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[  FAILED  ] OutputAliasTest.test_compiled_outputs_alias_like_eager7 (fn=<function _split at 0x7c41bd463ec0>, requires_grad=True)
+[ RUN      ] OutputAliasTest.test_compiled_outputs_alias_like_eager8 (fn=<function _duplicate at 0x7c41bd014680>, requires_grad=False)
+I1118 07:11:35.353731 136624033603712 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] OutputAliasTest.test_compiled_outputs_alias_like_eager8 (fn=<function _duplicate at 0x7c41bd014680>, requires_grad=False)
+[ RUN      ] OutputAliasTest.test_compiled_outputs_alias_like_eager9 (fn=<function _duplicate at 0x7c41bd014680>, requires_grad=True)
+I1118 07:11:35.437713 136624033603712 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] OutputAliasTest.test_compiled_outputs_alias_like_eager9 (fn=<function _duplicate at 0x7c41bd014680>, requires_grad=True)
+======================================================================
+FAIL: test_compiled_outputs_alias_like_eager0 (fn=<function _views_and_slice at 0x7c42429f8ea0>, requires_grad=False) (__main__.OutputAliasTest)
+OutputAliasTest.test_compiled_outputs_alias_like_eager0 (fn=<function _views_and_slice at 0x7c42429f8ea0>, requires_grad=False)
+test_compiled_outputs_alias_like_eager(fn=<function _views_and_slice at 0x7c42429f8ea0>, requires_grad=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/dist-packages/absl/testing/parameterized.py", line 319, in bound_param_test
+    return test_method(self, **testcase_params)
+  File "/root/torch_tpu/.claude/tmp/compiled-output-alias/repo/tests/compile/output_alias_test.py", line 105, in test_compiled_outputs_alias_like_eager
+    self.assertEqual(aliasing, expected_aliasing)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [[True, False, False], [False, True, False], [False, False, True]] != [[True, True, True], [True, True, True], [True, True, True]]
+
+First differing element 0:
+[True, False, False]
+[True, True, True]
+
+- [[True, False, False], [False, True, False], [False, False, True]]
++ [[True, True, True], [True, True, True], [True, True, True]]
+
+======================================================================
+FAIL: test_compiled_outputs_alias_like_eager2 (fn=<function _transpose at 0x7c41bd463f60>, requires_grad=False) (__main__.OutputAliasTest)
+OutputAliasTest.test_compiled_outputs_alias_like_eager2 (fn=<function _transpose at 0x7c41bd463f60>, requires_grad=False)
+test_compiled_outputs_alias_like_eager(fn=<function _transpose at 0x7c41bd463f60>, requires_grad=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/dist-packages/absl/testing/parameterized.py", line 319, in bound_param_test
+    return test_method(self, **testcase_params)
+  File "/root/torch_tpu/.claude/tmp/compiled-output-alias/repo/tests/compile/output_alias_test.py", line 105, in test_compiled_outputs_alias_like_eager
+    self.assertEqual(aliasing, expected_aliasing)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [[True, False], [False, True]] != [[True, True], [True, True]]
+
+First differing element 0:
+[True, False]
+[True, True]
+
+- [[True, False], [False, True]]
+?         ^^^^     ^^^^
+
++ [[True, True], [True, True]]
+?         ^^^     ^^^
+
+
+======================================================================
+FAIL: test_compiled_outputs_alias_like_eager4 (fn=<function _views_only at 0x7c41bd463c40>, requires_grad=False) (__main__.OutputAliasTest)
+OutputAliasTest.test_compiled_outputs_alias_like_eager4 (fn=<function _views_only at 0x7c41bd463c40>, requires_grad=False)
+test_compiled_outputs_alias_like_eager(fn=<function _views_only at 0x7c41bd463c40>, requires_grad=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/dist-packages/absl/testing/parameterized.py", line 319, in bound_param_test
+    return test_method(self, **testcase_params)
+  File "/root/torch_tpu/.claude/tmp/compiled-output-alias/repo/tests/compile/output_alias_test.py", line 105, in test_compiled_outputs_alias_like_eager
+    self.assertEqual(aliasing, expected_aliasing)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [[True, False], [False, True]] != [[True, True], [True, True]]
+
+First differing element 0:
+[True, False]
+[True, True]
+
+- [[True, False], [False, True]]
+?         ^^^^     ^^^^
+
++ [[True, True], [True, True]]
+?         ^^^     ^^^
+
+
+======================================================================
+FAIL: test_compiled_outputs_alias_like_eager6 (fn=<function _split at 0x7c41bd463ec0>, requires_grad=False) (__main__.OutputAliasTest)
+OutputAliasTest.test_compiled_outputs_alias_like_eager6 (fn=<function _split at 0x7c41bd463ec0>, requires_grad=False)
+test_compiled_outputs_alias_like_eager(fn=<function _split at 0x7c41bd463ec0>, requires_grad=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/dist-packages/absl/testing/parameterized.py", line 319, in bound_param_test
+    return test_method(self, **testcase_params)
+  File "/root/torch_tpu/.claude/tmp/compiled-output-alias/repo/tests/compile/output_alias_test.py", line 105, in test_compiled_outputs_alias_like_eager
+    self.assertEqual(aliasing, expected_aliasing)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [[True, False, False, False], [False, True, False[62 chars]rue]] != [[True, True, True, True], [True, True, True, Tru[50 chars]rue]]
+
+First differing element 0:
+[True, False, False, False]
+[True, True, True, True]
+
+- [[True, False, False, False],
+-  [False, True, False, False],
+-  [False, False, True, False],
+-  [False, False, False, True]]
++ [[True, True, True, True],
++  [True, True, True, True],
++  [True, True, True, True],
++  [True, True, True, True]]
+
+======================================================================
+FAIL: test_compiled_outputs_alias_like_eager7 (fn=<function _split at 0x7c41bd463ec0>, requires_grad=True) (__main__.OutputAliasTest)
+OutputAliasTest.test_compiled_outputs_alias_like_eager7 (fn=<function _split at 0x7c41bd463ec0>, requires_grad=True)
+test_compiled_outputs_alias_like_eager(fn=<function _split at 0x7c41bd463ec0>, requires_grad=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/dist-packages/absl/testing/parameterized.py", line 319, in bound_param_test
+    return test_method(self, **testcase_params)
+  File "/root/torch_tpu/.claude/tmp/compiled-output-alias/repo/tests/compile/output_alias_test.py", line 105, in test_compiled_outputs_alias_like_eager
+    self.assertEqual(aliasing, expected_aliasing)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [[True, False, False, False], [False, True, False[62 chars]rue]] != [[True, True, True, True], [True, True, True, Tru[50 chars]rue]]
+
+First differing element 0:
+[True, False, False, False]
+[True, True, True, True]
+
+- [[True, False, False, False],
+-  [False, True, False, False],
+-  [False, False, True, False],
+-  [False, False, False, True]]
++ [[True, True, True, True],
++  [True, True, True, True],
++  [True, True, True, True],
++  [True, True, True, True]]
+
+----------------------------------------------------------------------
+Ran 12 tests in 2.566s
+
+FAILED (failures=5)
+I0000 00:00:1794985896.476029  300409 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794985896.476102  300409 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=35
+num_cache_hits=17 {48.5%}
+num_compilations=18
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

@@ -1,0 +1,60 @@
+.....F
+=================================== FAILURES ===================================
+_ ErrorTestingTest.test_standalone_method_in_parameterized_test_enforces_decorator _
+
+self = <error_testing_test.ErrorTestingTest testMethod=test_standalone_method_in_parameterized_test_enforces_decorator>
+
+    def test_standalone_method_in_parameterized_test_enforces_decorator(self):
+      """Tests standalone method in parameterized test enforces decorator."""
+    
+      class DummyParameterizedTest(et.TpuOnlyErrorTestBase):
+    
+        def test_standalone_missing(self):
+          pass
+    
+      test_standalone = DummyParameterizedTest("test_standalone_missing")
+      with flagsaver.flagsaver(test_mode="tpu"):
+        with self.assertRaisesRegex(  # pylint: disable=g-error-prone-assert-raises
+            AssertionError,
+            "TpuOnlyErrorTestBase",
+        ):
+>         test_standalone.setUp()
+
+tests/error_testing_test.py:119: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/error_testing.py:978: in setUp
+    super().setUp()
+tests/error_testing.py:952: in setUp
+    if TEST_MODE.value == "gpu":
+       ^^^^^^^^^^^^^^^
+/usr/local/lib/python3.13/dist-packages/absl/flags/_flagvalues.py:1414: in value
+    val = getattr(self._flagvalues, self._name)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def __getattr__(self, name: Text) -> Any:
+      """Retrieves the 'value' attribute of the flag --name."""
+      fl = self._flags()
+      if name not in fl:
+        raise AttributeError(name)
+      if name in self.__dict__['__hiddenflags']:
+        raise AttributeError(name)
+    
+      if self.__dict__['__flags_parsed'] or fl[name].present:
+        return fl[name].value
+      else:
+>       raise _exceptions.UnparsedFlagAccessError(
+            'Trying to access flag --%s before flags were parsed.' % name)
+E       absl.flags._exceptions.UnparsedFlagAccessError: Trying to access flag --test_mode before flags were parsed.
+
+/usr/local/lib/python3.13/dist-packages/absl/flags/_flagvalues.py:498: UnparsedFlagAccessError
+=============================== warnings summary ===============================
+../../../../../../usr/local/lib/python3.13/dist-packages/torch_tpu/__init__.py:40
+  /usr/local/lib/python3.13/dist-packages/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+    _tcmalloc_check.check_tcmalloc()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/error_testing_test.py::ErrorTestingTest::test_standalone_method_in_parameterized_test_enforces_decorator
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
+1 failed, 5 passed, 1 warning in 20.09s

@@ -1,0 +1,65 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794986743.468387  316107 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794986744.547382  316107 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794986744.552217  316107 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/root/torch_tpu/.claude/tmp/compiled-output-alias/ov/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+Running tests under Python 3.13.18: /usr/bin/python3
+Repro with --test_random_seed=1234
+[ RUN      ] FxOutputReconstructorTest.test_compiled_runner_does_not_unbox_single_tensor_argument_generic_sequence
+I0000 00:00:1794986744.574545  316107 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794986745.294882  316107 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+I0000 00:00:1794986745.307095  316286 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1794986745.307129  316286 tier2_compilation_cache.cc:81] Tier-2 compilation cache is disabled for world size 1.
+[       OK ] FxOutputReconstructorTest.test_compiled_runner_does_not_unbox_single_tensor_argument_generic_sequence
+[ RUN      ] FxOutputReconstructorTest.test_compiled_runner_does_not_unbox_single_tensor_argument_list
+[       OK ] FxOutputReconstructorTest.test_compiled_runner_does_not_unbox_single_tensor_argument_list
+[ RUN      ] FxOutputReconstructorTest.test_compiled_runner_does_not_unbox_single_tensor_argument_tuple
+[       OK ] FxOutputReconstructorTest.test_compiled_runner_does_not_unbox_single_tensor_argument_tuple
+[ RUN      ] FxOutputReconstructorTest.test_compiled_runner_reconstructs_duplicate_size_one_strided_outputs
+[       OK ] FxOutputReconstructorTest.test_compiled_runner_reconstructs_duplicate_size_one_strided_outputs
+[ RUN      ] FxOutputReconstructorTest.test_compiled_runner_unpacks_non_exact_sequence_inputs_generator_of_views
+[       OK ] FxOutputReconstructorTest.test_compiled_runner_unpacks_non_exact_sequence_inputs_generator_of_views
+[ RUN      ] FxOutputReconstructorTest.test_compiled_runner_unpacks_non_exact_sequence_inputs_namedtuple
+[       OK ] FxOutputReconstructorTest.test_compiled_runner_unpacks_non_exact_sequence_inputs_namedtuple
+[ RUN      ] FxOutputReconstructorTest.test_compiled_runner_without_reconstruct_fn_returns_output_list
+[       OK ] FxOutputReconstructorTest.test_compiled_runner_without_reconstruct_fn_returns_output_list
+[ RUN      ] FxOutputReconstructorTest.test_flat_list_with_none_and_passthrough
+[       OK ] FxOutputReconstructorTest.test_flat_list_with_none_and_passthrough
+[ RUN      ] FxOutputReconstructorTest.test_flat_tuple_duplicate_cloning
+[       OK ] FxOutputReconstructorTest.test_flat_tuple_duplicate_cloning
+[ RUN      ] FxOutputReconstructorTest.test_general_nested_pytree
+[       OK ] FxOutputReconstructorTest.test_general_nested_pytree
+[ RUN      ] FxOutputReconstructorTest.test_leaf_output_and_pickle
+[       OK ] FxOutputReconstructorTest.test_leaf_output_and_pickle
+[ RUN      ] FxOutputReconstructorTest.test_non_contiguous_stride_forcing_and_dynamic_bypass
+[       OK ] FxOutputReconstructorTest.test_non_contiguous_stride_forcing_and_dynamic_bypass
+[ RUN      ] FxOutputReconstructorTest.test_passthrough_from_non_exact_sequence_namedtuple
+[       OK ] FxOutputReconstructorTest.test_passthrough_from_non_exact_sequence_namedtuple
+[ RUN      ] FxOutputReconstructorTest.test_passthrough_from_non_exact_sequence_user_list
+[       OK ] FxOutputReconstructorTest.test_passthrough_from_non_exact_sequence_user_list
+[ RUN      ] FxOutputReconstructorTest.test_size_one_dimension_stride_fast_path
+[       OK ] FxOutputReconstructorTest.test_size_one_dimension_stride_fast_path
+[ RUN      ] FxOutputReconstructorTest.test_zero_size_dimension_stride_fast_path_cpu_leading_zero
+[       OK ] FxOutputReconstructorTest.test_zero_size_dimension_stride_fast_path_cpu_leading_zero
+[ RUN      ] FxOutputReconstructorTest.test_zero_size_dimension_stride_fast_path_cpu_trailing_zero
+[       OK ] FxOutputReconstructorTest.test_zero_size_dimension_stride_fast_path_cpu_trailing_zero
+[ RUN      ] FxOutputReconstructorTest.test_zero_size_dimension_stride_fast_path_tpu_leading_zero
+[       OK ] FxOutputReconstructorTest.test_zero_size_dimension_stride_fast_path_tpu_leading_zero
+[ RUN      ] FxOutputReconstructorTest.test_zero_size_dimension_stride_fast_path_tpu_trailing_zero
+[       OK ] FxOutputReconstructorTest.test_zero_size_dimension_stride_fast_path_tpu_trailing_zero
+----------------------------------------------------------------------
+Ran 19 tests in 1.355s
+
+OK
+I0000 00:00:1794986746.929966  316107 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794986746.930033  316107 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=20
+num_cache_hits=12 {60.0%}
+num_compilations=8
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

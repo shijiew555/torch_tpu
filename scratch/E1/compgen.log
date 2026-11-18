@@ -1,0 +1,31 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794971258.374851  106347 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794971267.864424  106347 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794971286.498629  106347 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/usr/local/lib/python3.13/dist-packages/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+I0000 00:00:1794971288.022674  106347 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794971288.765604  106347 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+I0000 00:00:1794971290.070379  106815 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1794971290.120296  106815 tier2_compilation_cache.cc:81] Tier-2 compilation cache is disabled for world size 1.
+/usr/local/lib/python3.13/dist-packages/torch_tpu/_internal/compile/fx_passes/sink_get_attr_constants.py:84: UserWarning: Attempted to insert a get_attr Node with no underlying reference in the owning GraphModule! Call GraphModule.add_submodule to add the necessary submodule, GraphModule.add_parameter to add the necessary Parameter, or nn.Module.register_buffer to add the necessary buffer
+  get_attr_node = submod.graph.get_attr(attr_name)
+W1118 03:08:28.260000 106347 torch/_dynamo/convert_frame.py:2008] [0/8] torch._dynamo hit config.recompile_limit (8)
+W1118 03:08:28.260000 106347 torch/_dynamo/convert_frame.py:2008] [0/8]    function: 'wrapper' (/usr/local/lib/python3.13/dist-packages/transformers/utils/generic.py:937)
+W1118 03:08:28.260000 106347 torch/_dynamo/convert_frame.py:2008] [0/8]    last reason: 0/7: tensor 'kwargs['past_key_values'].layers[0].keys' size mismatch at index 2. expected 16, actual 17
+W1118 03:08:28.260000 106347 torch/_dynamo/convert_frame.py:2008] [0/8] To log all recompilation reasons, use TORCH_LOGS="recompiles".
+W1118 03:08:28.260000 106347 torch/_dynamo/convert_frame.py:2008] [0/8] To diagnose recompilation issues, see https://docs.pytorch.org/docs/main/user_guide/torch_compiler/compile/programming_model.recompilation.html
+compiled dynamic-cache generate run0 match=True t=19.6s
+compiled dynamic-cache generate run1 match=True t=0.1s
+dynamo counters: {'calls_captured': 1324, 'unique_graphs': 8} 
+I0000 00:00:1794971310.846233  106347 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794971310.846481  106347 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=2412
+num_cache_hits=2171 {90.0%}
+num_compilations=241
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

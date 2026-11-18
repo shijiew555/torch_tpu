@@ -1,0 +1,64 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794988391.532800  346684 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794988392.586503  346684 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794988392.591322  346684 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/root/torch_tpu/.claude/tmp/compiled-output-alias/ov/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+Running tests under Python 3.13.18: /usr/bin/python3
+Repro with --test_random_seed=1234
+[ RUN      ] RandomOpsTest.test_dropout_compile
+I0000 00:00:1794988392.612006  346684 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794988393.264308  346684 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+I0000 00:00:1794988393.284132  346857 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1794988393.284164  346857 tier2_compilation_cache.cc:81] Tier-2 compilation cache is disabled for world size 1.
+I1118 07:53:13.876622 132563451687040 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] RandomOpsTest.test_dropout_compile
+[ RUN      ] RandomOpsTest.test_dropout_compile_with_former_eager_run
+I1118 07:53:14.107816 132563451687040 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] RandomOpsTest.test_dropout_compile_with_former_eager_run
+[ RUN      ] RandomOpsTest.test_eager_vs_compile_numerics
+I1118 07:53:14.210973 132563451687040 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] RandomOpsTest.test_eager_vs_compile_numerics
+[ RUN      ] RandomOpsTest.test_explicit_generator_compile
+I1118 07:53:14.341856 132563451687040 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] RandomOpsTest.test_explicit_generator_compile
+[ RUN      ] RandomOpsTest.test_multiple_random_ops_compile
+I1118 07:53:14.443204 132563451687040 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] RandomOpsTest.test_multiple_random_ops_compile
+[ RUN      ] RandomOpsTest.test_no_rng_state_update_compile
+I1118 07:53:14.718456 132563451687040 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] RandomOpsTest.test_no_rng_state_update_compile
+[ RUN      ] RandomOpsTest.test_random_ops_compile_bernoulli
+I1118 07:53:14.806754 132563451687040 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] RandomOpsTest.test_random_ops_compile_bernoulli
+[ RUN      ] RandomOpsTest.test_random_ops_compile_bernoulli_functional
+I1118 07:53:14.927722 132563451687040 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] RandomOpsTest.test_random_ops_compile_bernoulli_functional
+[ RUN      ] RandomOpsTest.test_random_ops_compile_bernoulli_out
+I1118 07:53:15.052744 132563451687040 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] RandomOpsTest.test_random_ops_compile_bernoulli_out
+[ RUN      ] RandomOpsTest.test_random_ops_compile_bernoulli_tensor
+I1118 07:53:15.143996 132563451687040 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] RandomOpsTest.test_random_ops_compile_bernoulli_tensor
+[ RUN      ] RandomOpsTest.test_random_ops_compile_exponential
+I1118 07:53:15.272246 132563451687040 split_compiler.py:1104] Split graph into 1 partitions, 0 of which run on CPU
+[       OK ] RandomOpsTest.test_random_ops_compile_exponential
+[ RUN      ] RandomOpsTest.test_random_ops_compile_rand
+[       OK ] RandomOpsTest.test_random_ops_compile_rand
+[ RUN      ] RandomOpsTest.test_random_ops_compile_randn
+[       OK ] RandomOpsTest.test_random_ops_compile_randn
+----------------------------------------------------------------------
+Ran 13 tests in 2.938s
+
+OK
+I0000 00:00:1794988396.554366  346684 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794988396.554475  346684 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=124
+num_cache_hits=108 {87.0%}
+num_compilations=16
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

@@ -1,0 +1,17 @@
+FAIL torch.float32 True True RuntimeError unique2(): sorted=False is not yet supported
+FAIL torch.float32 True False RuntimeError unique2(): sorted=False is not yet supported
+FAIL torch.float32 False True RuntimeError unique2(): sorted=False is not yet supported
+FAIL torch.float32 False False RuntimeError unique2(): sorted=False is not yet supported
+FAIL torch.bfloat16 True True RuntimeError unique2(): sorted=False is not yet supported
+FAIL torch.bfloat16 True False RuntimeError unique2(): sorted=False is not yet supported
+FAIL torch.bfloat16 False True RuntimeError unique2(): sorted=False is not yet supported
+FAIL torch.bfloat16 False False RuntimeError unique2(): sorted=False is not yet supported
+FAIL torch.int64 True True RuntimeError unique2(): sorted=False is not yet supported
+FAIL torch.int64 True False RuntimeError unique2(): sorted=False is not yet supported
+FAIL torch.int64 False True RuntimeError unique2(): sorted=False is not yet supported
+FAIL torch.int64 False False RuntimeError unique2(): sorted=False is not yet supported
+FAIL torch.bool True True RuntimeError unique2(): sorted=False is not yet supported
+FAIL torch.bool True False RuntimeError unique2(): sorted=False is not yet supported
+FAIL torch.bool False True RuntimeError unique2(): sorted=False is not yet supported
+FAIL torch.bool False False RuntimeError unique2(): sorted=False is not yet supported
+failures: 16 of 16

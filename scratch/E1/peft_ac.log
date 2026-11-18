@@ -1,0 +1,83 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794972148.715794  133694 pjrt_api.cc:119] GetPjrtApi was found for TPU at /usr/local/lib/python3.13/dist-packages/libtpu/libtpu.so
+I0000 00:00:1794972169.962623  133694 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1794972170.795442  133694 libtpu_version.cc:63] Setting libtpu version to: 0.0.50
+/usr/local/lib/python3.13/dist-packages/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+I0000 00:00:1794972173.249030  133694 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.116. The framework PJRT API version is 0.117.
+I0000 00:00:1794972186.234723  133694 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+I0000 00:00:1794972191.678426  134249 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1794972191.678463  134249 tier2_compilation_cache.cc:81] Tier-2 compilation cache is disabled for world size 1.
+lora: OK cpu=[5.59703, 5.53505, 5.45303] tpu=[5.59708, 5.53506, 5.45298] merged_dev=tpu:0 (7.1s)
+/usr/local/lib/python3.13/dist-packages/torch_tpu/_internal/compile/fx_passes/sink_get_attr_constants.py:84: UserWarning: Attempted to insert a get_attr Node with no underlying reference in the owning GraphModule! Call GraphModule.add_submodule to add the necessary submodule, GraphModule.add_parameter to add the necessary Parameter, or nn.Module.register_buffer to add the necessary buffer
+  get_attr_node = submod.graph.get_attr(attr_name)
+autocast_compile: OK loss cpu=5.5970 tpu=5.5969 (31.1s)
+[transformers] The speedups for torchdynamo mostly come with GPU Ampere or higher and which is not detected here.
+  0%|          | 0/4 [00:00<?, ?it/s]Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/tmp/E1/peft_ac.py", line 6, in tryit
+    t=time.time(); r=fn(); print(f"{label}: OK {r} ({time.time()-t:.1f}s)", flush=True)
+                     ~~^^
+  File "/root/torch_tpu/.claude/tmp/E1/peft_ac.py", line 38, in trainer_bf16_compile
+    r=tr.train(); ev=tr.evaluate()
+  File "/usr/local/lib/python3.13/dist-packages/transformers/trainer.py", line 1559, in train
+    return inner_training_loop(
+        args=args,
+    ...<2 lines>...
+        ignore_keys_for_eval=ignore_keys_for_eval,
+    )
+  File "/usr/local/lib/python3.13/dist-packages/transformers/trainer.py", line 1643, in _inner_training_loop
+    self._run_epoch(
+    ~~~~~~~~~~~~~~~^
+        model=model,
+        ^^^^^^^^^^^^
+    ...<9 lines>...
+        steps_trained_in_current_epoch=steps_trained_in_current_epoch,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/usr/local/lib/python3.13/dist-packages/transformers/trainer.py", line 1889, in _run_epoch
+    tr_loss_step = self.training_step(model, inputs, num_items_in_batch)
+  File "/usr/local/lib/python3.13/dist-packages/transformers/trainer.py", line 2062, in training_step
+    loss = self.compute_loss(model, inputs, num_items_in_batch=num_items_in_batch)
+  File "/usr/local/lib/python3.13/dist-packages/transformers/trainer.py", line 2144, in compute_loss
+    outputs = model(**inputs)
+  File "/usr/local/lib/python3.13/dist-packages/torch/_dynamo/eval_frame.py", line 563, in __call__
+    return super().__call__(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.13/dist-packages/torch/_dynamo/eval_frame.py", line 1278, in compile_wrapper
+    raise e.remove_dynamo_frames() from None  # see TORCHDYNAMO_VERBOSE=1
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/_dynamo/output_graph.py", line 3260, in _call_user_compiler
+    raise BackendCompilerFailed(
+        self.compiler_fn, e, inspect.currentframe()
+    ).with_traceback(e.__traceback__) from None
+  File "/usr/local/lib/python3.13/dist-packages/torch/_dynamo/output_graph.py", line 3232, in _call_user_compiler
+    compiled_fn = compiler_fn(gm, example_inputs)
+  File "/usr/local/lib/python3.13/dist-packages/torch/_dynamo/repro/after_dynamo.py", line 163, in __call__
+    compiled_gm = compiler_fn(gm, example_inputs)
+  File "/usr/local/lib/python3.13/dist-packages/torch_tpu/_loader.py", line 138, in _tpu_inductor_wrapper_call
+    raise RuntimeError(_INDUCTOR_TPU_ERROR)
+torch._dynamo.exc.BackendCompilerFailed: backend='inductor' raised:
+RuntimeError: torch.compile(..., backend='inductor') on TPU is experimental and does not yet have full TPU support; compilation is likely to fail with cryptic errors, e.g. https://github.com/google-pytorch/torch_tpu/issues/4300. Pass backend='tpu' or do not specify `backend` in torch.compile to use TorchTPU, which does have full TPU support. If you do want to run Inductor on TPU, you can bypass this error by passing options={'tpu_backend': 'pallas'}.
+
+Set TORCHDYNAMO_VERBOSE=1 for the internal stack trace (please do this especially if you're reporting a bug to PyTorch). For even more developer context, set TORCH_LOGS="+dynamo"
+
+trainer_bf16_compile: FAIL BackendCompilerFailed: backend='inductor' raised:
+RuntimeError: torch.compile(..., backend='inductor') on TPU is experimental and does not yet have full TPU support; compilation is likely to fail with cryptic errors, e.g. https://github.com/google-pytorch/torch_tpu/issues/4300. Pass backend='tpu' or do not specify `backen
+  0%|          | 0/4 [00:03<?, ?it/s]
+I0000 00:00:1794972261.344611  133694 compilation_cache.cc:356] Compilation cache evicted.
+I0000 00:00:1794972261.742408  133694 compilation_cache.cc:211] CompilationCache final stats: num_cache_reqs=847
+num_cache_hits=719 {84.8%}
+num_compilations=128
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+
