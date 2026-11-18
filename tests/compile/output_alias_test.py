@@ -114,7 +114,7 @@ class OutputAliasTest(seed_test_utils.RepeatableTest):
       utils.assert_close(output, expected_output)
 
   def test_aliased_output_reconstructor_survives_pickle(self):
-    base = torch.arange(16.0).view(4, 4)
+    base = torch.arange(16.0).view(4, 4).clone()
     _, spec = pytree.tree_flatten((base, base[1:]))
     layout = torch_tpu_export._TensorLayout(  # pylint: disable=protected-access
         dtype=torch.float32,
