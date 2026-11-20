@@ -16,8 +16,10 @@ If fewer than five meet the standard, report fewer and say why.
 
 ## How you work (two phases)
 
-You do not launch explorers yourself.
-A waiting agent must not hold a concurrency slot that its child needs.
+This Claude Code version supports nested subagents, but you do not
+launch explorers yourself. At most two subagents may be active in the
+whole hierarchy. A parent stays active while its child runs, so a
+waiting explorer controller would hold a slot that its explorers need.
 So the controller launches explorers for you. Work in two phases:
 
 1. Plan phase. Read the context below, do light research, then write
@@ -40,7 +42,9 @@ So the controller launches explorers for you. Work in two phases:
 * Also consider performance and other useful changes if the evidence is
   strong.
 * Check the user's own issues and PRs (GitHub user `shijiew555`) to avoid
-  duplicate work.
+  duplicate work. Also read `$COORD/discovery/candidates.md` and
+  `$COORD/tasks/`: these tasks already exist and must not be proposed
+  again. Reuse the dead ends listed there.
 * Check open and closed issues and PRs in `google-pytorch/torch_tpu` for
   overlap. Do not pick an issue that is assigned, claimed in a comment, or
   linked to an open PR.
@@ -77,6 +81,22 @@ Time:
   the remaining time, and report.
 * At T0+7h: stop all work and all processes you started.
 
+Environment (checked 2026-11-20):
+* Colab VM: 24 CPUs, 47 GB RAM, one TPU v5e chip, libtpu 0.0.50.
+* System Python 3.13, torch 2.14.1+cpu. The installed torch_tpu is
+  0.2.0 unless the controller tells you it is now 0.3.0. Check with
+  `pip show torch_tpu`.
+* Bazel 9.3.1 (bazelisk). Build command and cache facts:
+  `$COORD/BUILD_NOTES.md`.
+* The restored Bazel cache matches upstream commits up to `3c6acc43`
+  (XLA `4bd1084b`, no `--force_pic`). Current upstream/main has a new
+  XLA revision and `--force_pic`, so a build of current main is a full
+  build (about 4 hours). For C++ tests, use a worktree based on
+  `3c6acc43` unless the controller says otherwise. The PR branch is then
+  rebased onto current upstream/main.
+* Python-only changes can run on the installed binaries with a
+  `PYTHONPATH` overlay: `$COORD/discovery/E6.md`.
+
 Locations:
 * Repo: `/root/torch_tpu`. Upstream: `google-pytorch/torch_tpu`.
   Fork: `shijiew555/torch_tpu` (remote `origin`).
@@ -85,7 +105,7 @@ Locations:
   `/root/torch_tpu/.claude/tmp/<your agent or task name>/`.
   Both are ignored by git (`.git/info/exclude`).
 * Never write to `/content/drive/` (the mounted Google Drive). Only the
-  user makes backups there.
+  user and the controller make backups there.
 * Never put agent files, coordination files, or `.claude/` content in a
   contribution commit. The commit "changes for my dev workflow" must never
   be in a PR branch.

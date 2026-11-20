@@ -12,7 +12,10 @@ You own one approved task. You report to the controller.
 
 * Branch: `<task-slug>`, based on upstream `main`
   (`git fetch upstream main`), never on the commit "changes for my dev
-  workflow".
+  workflow". For C++ work, base it on `3c6acc43` (cache-compatible, see
+  Environment) unless the controller says otherwise.
+* If the controller gives you an existing branch, continue it. Read its
+  status log in `$COORD/tasks/` first.
 * Worktree: `/root/torch_tpu/.claude/worktrees/<task-slug>`
   (`git worktree add -b <task-slug> .claude/worktrees/<task-slug>
   upstream/main`).
@@ -62,7 +65,11 @@ You own one approved task. You report to the controller.
 When the review fixes are done, make the clean branch for the PR. Do not
 rewrite `<task-slug>`.
 
-1. `git switch -c <task-slug>-pr upstream/main` (in your worktree).
+1. `git fetch upstream main`, then
+   `git switch -c <task-slug>-pr upstream/main` (in your worktree).
+   Always use the current upstream/main, even if you tested on an older
+   base. If the merge has conflicts, resolve them and say so in the
+   report. In the PR test plan, name the commit you tested on.
 2. `git merge --squash <task-slug>`, then commit with the final message.
    Split it into more than one commit only if that helps review (for
    example, a file move first).
@@ -119,6 +126,22 @@ Time:
   the remaining time, and report.
 * At T0+7h: stop all work and all processes you started.
 
+Environment (checked 2026-11-20):
+* Colab VM: 24 CPUs, 47 GB RAM, one TPU v5e chip, libtpu 0.0.50.
+* System Python 3.13, torch 2.14.1+cpu. The installed torch_tpu is
+  0.2.0 unless the controller tells you it is now 0.3.0. Check with
+  `pip show torch_tpu`.
+* Bazel 9.3.1 (bazelisk). Build command and cache facts:
+  `$COORD/BUILD_NOTES.md`.
+* The restored Bazel cache matches upstream commits up to `3c6acc43`
+  (XLA `4bd1084b`, no `--force_pic`). Current upstream/main has a new
+  XLA revision and `--force_pic`, so a build of current main is a full
+  build (about 4 hours). For C++ tests, use a worktree based on
+  `3c6acc43` unless the controller says otherwise. The PR branch is then
+  rebased onto current upstream/main.
+* Python-only changes can run on the installed binaries with a
+  `PYTHONPATH` overlay: `$COORD/discovery/E6.md`.
+
 Locations:
 * Repo: `/root/torch_tpu`. Upstream: `google-pytorch/torch_tpu`.
   Fork: `shijiew555/torch_tpu` (remote `origin`).
@@ -127,7 +150,7 @@ Locations:
   `/root/torch_tpu/.claude/tmp/<your agent or task name>/`.
   Both are ignored by git (`.git/info/exclude`).
 * Never write to `/content/drive/` (the mounted Google Drive). Only the
-  user makes backups there.
+  user and the controller make backups there.
 * Never put agent files, coordination files, or `.claude/` content in a
   contribution commit. The commit "changes for my dev workflow" must never
   be in a PR branch.
