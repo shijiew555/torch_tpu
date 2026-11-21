@@ -45,7 +45,9 @@ Repository cache size: 12 GB.
 
 ## Build command
 
-Run this from the repo root (or a worktree of upstream main):
+Run this from the repo root (or a worktree of upstream main).
+Bazel needs `MODULE.bazel` in the current directory.
+If you run it from `/root`, it fails.
 
 ```bash
 bazel build --config=wheel_common //ci/wheel:torch_tpu_wheel \
@@ -62,6 +64,25 @@ bazel build --config=wheel_common //ci/wheel:torch_tpu_wheel \
 * Run the build in the background with a log file.
 
 The wheel is written to `bazel-bin/ci/wheel/`.
+
+## Known failure on the first build in a new output base
+
+On a new VM or in a new worktree, the first analysis can fail after about 12 minutes with this error:
+
+```
+rules_python:pip_archive(@@rules_python++pip+torch_tpu_pypi_2_16_0_314_torch) FAIL: ...
+torch==2.16.0.dev20261112+cpu): end: failure:
+...
+===== stderr start =====
+Timed out
+```
+
+* The cause is the 600 s limit on the download of the torch nightly wheel (222 MB) for the hermetic Python 3.14.
+  The download runs at the same time as the unpack of the LLVM toolchain, and it can be too slow.
+* The wheel is still on the PyTorch nightly index, so this is not a missing file.
+* To fix it, run the same build command again.
+  Repositories that finished stay in the output base, so the second analysis is faster.
+  On 2026-11-21 the second try passed.
 
 ## Known failure without the workaround
 
@@ -172,8 +193,23 @@ If a save is interrupted, delete the `.partial` file.
      | bash -s -- --install-wheel
    ```
 
-3. Run the build command from "Build command" above.
+3. Make a worktree at the commit in `MANIFEST.txt` (`source_commit`):
+
+   ```bash
+   git -C /root/torch_tpu remote add upstream \
+     https://github.com/google-pytorch/torch_tpu.git
+   git -C /root/torch_tpu fetch upstream main
+   git -C /root/torch_tpu worktree add --detach \
+     .claude/worktrees/build-base <source_commit>
+   ```
+
+   Do not build the fork's `main`.
+   It can be an older commit with a different XLA revision (`bazel/xla_revision.bzl`).
+   A different XLA revision makes all of XLA compile again, which takes hours.
+
+4. In the worktree, run the build command from "Build command" above.
    Bazel uses the restored cache, so only the changed files compile.
+   If the first try fails with `Timed out` on the torch download, see "Known failure on the first build in a new output base".
 
 The restore script does these steps:
 
@@ -188,13 +224,23 @@ The restore script does these steps:
 On 2026-11-18, new worktrees on the same VM reused the disk cache of the base build.
 Worker builds in new worktrees had about 13,600 disk cache hits each.
 Each worktree has its own output base, so a new VM with a restored cache is the same case.
-A restore on a new VM was not tested yet.
+
+On 2026-11-21, a restore on a new VM worked.
+The build of `afd6943a` had 13,713 disk cache hits, 6,904 internal actions, and 0 local compiles.
+The successful try took 1,205 s.
+The total, with the failed first try, was about 33 minutes.
+Most of the time is setup in the new output base: Bazel unpacks the external repositories (LLVM is the slowest) and downloads the torch nightly wheel.
+A second build in the same worktree skips this setup.
 
 ### When the cache does not help
 
 * Cache hits need the same Bazel, Python, and torch versions as in `MANIFEST.txt`, and the same build flags.
 * Files that changed since the saved commit compile again.
   If upstream main moved a lot, more of the build runs again.
+* A different XLA revision in `bazel/xla_revision.bzl` makes all of XLA and everything that depends on it compile again.
+  Compare it with the saved commit before you build another commit.
+* The disk cache stores only action outputs.
+  It does not store analysis results or unpacked repositories, so a new output base always spends time on setup.
 * The saved wheel matches only the commit in `MANIFEST.txt`.
   Do not use it to test a change on a newer commit.
 
@@ -203,4 +249,5 @@ A restore on a new VM was not tested yet.
 * Save: tested on 2026-11-18.
   It took 1,479 s and wrote a 9.5 GB archive and the 107 MB base wheel.
   `pigz -t` on the archive and a zip test on the wheel both passed.
-* Restore on a new VM: not tested yet.
+* Restore on a new VM: tested on 2026-11-21.
+  The build of the saved commit had 0 local compiles (see "Evidence that the cache works").
