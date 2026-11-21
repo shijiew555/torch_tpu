@@ -10,11 +10,17 @@ Repository cache size: 12 GB.
 ## Environment
 
 * Colab TPU VM, 24 CPUs, 47 GB RAM, 226 GB disk.
-* Python 3.13, torch 2.14.1+cpu, torch_tpu 0.3.0 wheel installed in system Python.
+* System Python 3.13, torch 2.14.1+cpu.
+  A new VM can have an older torch_tpu.
+  To match these notes, run `pip install torch_tpu==0.3.0`.
+* The build uses its own hermetic Python 3.14 and torch nightly, not the system Python.
 * Source: upstream `google-pytorch/torch_tpu` main at `afd6943a`.
 * Bazel 9.3.1 through bazelisk.
 
 ## One-time setup
+
+On a new VM with a saved cache, the restore script does steps 1 and 3.
+See "Restore on a new VM".
 
 1. Install bazelisk as `bazel`:
 
@@ -39,9 +45,8 @@ Repository cache size: 12 GB.
 
    The disk cache needs no setup.
    The repo `.bazelrc` already sets `build --disk_cache=~/.cache/bazel/bazel-disk-cache`, and all worktrees share it.
-   A `--disk_cache` line under `common` in `/root/.bazelrc` has no effect, because the repo's `build` line overrides it.
-   The caches are not persistent on Colab.
-   A new VM starts the build from zero unless you restore them (see below).
+   Do not add a `--disk_cache` line under `common` in `/root/.bazelrc`.
+   It has no effect, because the repo's `build` line overrides it.
 
 ## Build command
 
@@ -113,7 +118,9 @@ Actions then run without a sandbox and see headers that are not declared.
 Put it after `--config=no_rbe`, because `no_rbe` clears `--remote_cache`.
 Helion CI writes this cache with Python 3.12 and `local_torch`, so many actions may miss.
 
-## Running one test against the built wheel (not yet run)
+## Running one test against the built wheel
+
+On 2026-11-20, `//tests:async_transfer_test` passed on TPU this way (see `tasks/env-build.md`).
 
 ```bash
 bazel test --config=wheel_common --config=no_rbe \
@@ -131,123 +138,132 @@ See `discovery/E6.md` for the exact steps.
 
 ## Save and restore the build cache (Google Drive)
 
-Two scripts in `scripts/` keep the build results across Colab VMs.
-A full build takes hours, but a restored cache turns most of it into cache hits.
+A cold build takes about 4 hours.
+With a restored cache, a build of the saved commit on a new VM takes about 30 minutes.
+Two scripts on this branch save the cache to Google Drive and restore it.
 Google Drive must be mounted at `/content/drive`.
 
 ### What is saved
 
-All files go to `/content/drive/MyDrive/torch_tpu_build/`:
+The save script writes these files to `/content/drive/MyDrive/torch_tpu_build/`:
 
-* `bazel-cache.tar.gz`: the Bazel disk cache (`/root/.cache/bazel/bazel-disk-cache`, 5.8 GB on 2026-11-18) and repository cache (`/root/.cache/bazel-repo`, 12 GB).
-  The disk cache holds the compiled actions and is the important part.
-* `wheel/*.whl`: the built wheel, if the build made one.
-* `MANIFEST.txt`: the save time, source commit, and Bazel, Python, and torch versions.
+* `bazel-cache.tar.gz`: one archive of the two Bazel caches (9.5 GB compressed on 2026-11-18).
+  * Disk cache, `/root/.cache/bazel/bazel-disk-cache` (5.8 GB).
+    It holds the outputs of build actions, such as object files and linked `.so` files.
+    It saves the compile time, so it is the important part.
+    The repo `.bazelrc` sets this path with `build --disk_cache`, so it needs no setup.
+  * Repository cache, `/root/.cache/bazel-repo` (12 GB).
+    It holds the downloaded archives of external repositories, such as XLA and LLVM.
+    It saves the download time.
+    `/root/.bazelrc` sets this path with `common --repository_cache`.
+* `wheel/*.whl`: the wheel of the saved commit, if the build made one.
+* `MANIFEST.txt`: the save time, the source commit, the Bazel version, and the XLA revision.
 
-The Bazel output bases (`/root/.cache/bazel/_bazel_root/`) are not saved.
-It is very large, and Bazel fills it again from the disk cache.
+These things are not saved, so a new VM spends about 15 to 20 minutes on setup:
 
-### Save (before the VM stops)
+* The Bazel output base (`/root/.cache/bazel/_bazel_root/<hash>/`).
+  Bazel unpacks the external repositories into it again from the repository cache.
+  LLVM is the slowest.
+* The torch nightly wheel of the hermetic Python 3.14 (222 MB).
+  rules_python downloads it with pip, not through the repository cache.
 
-1. Wait until no bazel build or test is running.
-   If one is running, the script warns you and waits 10 seconds, so that you can stop it with Ctrl-C.
-2. Run:
+### When to save
+
+* Save after a build at a new base commit, for example after a rebase that changes `MODULE.bazel` or `bazel/xla_revision.bzl`.
+* You do not need to save after small changes to `csrc/` or Python files.
+  Bazel compiles only those files again, on top of the saved cache.
+* A save takes about 25 minutes, so start it well before the VM stops.
+
+### Save
+
+1. Make sure that no `bazel build` or `bazel test` runs.
+   If one runs, the script warns you and waits 10 seconds, so that you can stop it with Ctrl-C.
+2. Run the save script from this branch.
+   Give the worktree that ran the build.
+   The script takes the wheel and the source commit from it.
 
    ```bash
-   bash /root/torch_tpu/.claude/coord/scripts/save_build_cache.sh
-   ```
-
-   To take the wheel from a different checkout, give its path:
-
-   ```bash
-   bash /root/torch_tpu/.claude/coord/scripts/save_build_cache.sh \
-     /root/torch_tpu/.claude/worktrees/<name>
+   git -C /root/torch_tpu fetch origin agent-coord
+   git -C /root/torch_tpu show origin/agent-coord:scripts/save_build_cache.sh \
+     | bash -s -- /root/torch_tpu/.claude/worktrees/build-base
    ```
 
 3. Check the output.
-   It shows the size, the time it took, the wheel name, and the manifest.
+   It shows the size, the time, the wheel name, and the manifest.
 
 The script writes `bazel-cache.tar.gz.partial` first and renames it at the end.
 So an interrupted save does not replace an older good archive.
 If a save is interrupted, delete the `.partial` file.
 
-### Restore (on a new VM)
+### Restore on a new VM
 
-1. Clone the fork and get this branch:
+1. Mount Google Drive at `/content/drive`.
+2. Clone the fork, and get this branch and upstream main:
 
    ```bash
    git clone https://github.com/shijiew555/torch_tpu.git /root/torch_tpu
-   git -C /root/torch_tpu fetch origin agent-coord
+   cd /root/torch_tpu
+   git remote add upstream https://github.com/google-pytorch/torch_tpu.git
+   git fetch origin agent-coord
+   git fetch upstream main
    ```
 
-2. Run the restore script straight from the branch:
-
-   ```bash
-   git -C /root/torch_tpu show origin/agent-coord:scripts/restore_build_cache.sh | bash
-   ```
-
-   To also install the saved wheel into system Python, add the flag:
+3. Run the restore script from this branch:
 
    ```bash
    git -C /root/torch_tpu show origin/agent-coord:scripts/restore_build_cache.sh \
-     | bash -s -- --install-wheel
+     | bash
    ```
 
-3. Make a worktree at the commit in `MANIFEST.txt` (`source_commit`):
+   The script does these steps:
+
+   * Shows `MANIFEST.txt`.
+   * Unpacks the two caches into `/root/.cache/`.
+   * Adds the `--repository_cache` line to `/root/.bazelrc`, once only.
+   * Installs bazelisk as `/usr/local/bin/bazel` if it is missing.
+
+4. Make a worktree at the `source_commit` in `MANIFEST.txt`:
 
    ```bash
-   git -C /root/torch_tpu remote add upstream \
-     https://github.com/google-pytorch/torch_tpu.git
-   git -C /root/torch_tpu fetch upstream main
-   git -C /root/torch_tpu worktree add --detach \
-     .claude/worktrees/build-base <source_commit>
+   cd /root/torch_tpu
+   git worktree add --detach .claude/worktrees/build-base <source_commit>
    ```
 
    Do not build the fork's `main`.
-   It can be an older commit with a different XLA revision (`bazel/xla_revision.bzl`).
+   It can be a different commit with a different XLA revision.
    A different XLA revision makes all of XLA compile again, which takes hours.
 
-4. In the worktree, run the build command from "Build command" above.
-   Bazel uses the restored cache, so only the changed files compile.
-   If the first try fails with `Timed out` on the torch download, see "Known failure on the first build in a new output base".
+5. In the worktree, run the command from "Build command":
 
-The restore script does these steps:
+   ```bash
+   cd /root/torch_tpu/.claude/worktrees/build-base
+   bazel build --config=wheel_common //ci/wheel:torch_tpu_wheel \
+     --config=no_rbe \
+     --spawn_strategy=sandboxed,local --strategy=sandboxed,local
+   ```
 
-* Shows `MANIFEST.txt`.
-* Unpacks the caches into `/root/.cache/`.
-* Adds the `--repository_cache` line to `/root/.bazelrc`, once only.
-* Installs bazelisk as `/usr/local/bin/bazel` if it is missing.
-* With `--install-wheel`, runs `pip install --force-reinstall --no-deps` on the saved wheel.
+   If the first try fails with `Timed out` on the torch download, run it again.
+   See "Known failure on the first build in a new output base".
 
-### Evidence that the cache works
-
-On 2026-11-18, new worktrees on the same VM reused the disk cache of the base build.
-Worker builds in new worktrees had about 13,600 disk cache hits each.
-Each worktree has its own output base, so a new VM with a restored cache is the same case.
-
-On 2026-11-21, a restore on a new VM worked.
-The build of `afd6943a` had 13,713 disk cache hits, 6,904 internal actions, and 0 local compiles.
-The successful try took 1,205 s.
-The total, with the failed first try, was about 33 minutes.
-Most of the time is setup in the new output base: Bazel unpacks the external repositories (LLVM is the slowest) and downloads the torch nightly wheel.
-A second build in the same worktree skips this setup.
+6. To develop, make a branch in the same worktree.
+   Keep using this worktree, because a new worktree has a new output base and spends the setup time again.
 
 ### When the cache does not help
 
-* Cache hits need the same Bazel, Python, and torch versions as in `MANIFEST.txt`, and the same build flags.
+* Cache hits need the same Bazel version and the same build flags.
 * Files that changed since the saved commit compile again.
-  If upstream main moved a lot, more of the build runs again.
+  A change to a header that many files include makes all of those files compile again.
 * A different XLA revision in `bazel/xla_revision.bzl` makes all of XLA and everything that depends on it compile again.
-  Compare it with the saved commit before you build another commit.
-* The disk cache stores only action outputs.
-  It does not store analysis results or unpacked repositories, so a new output base always spends time on setup.
+  Compare it with `MANIFEST.txt` before you build another commit.
 * The saved wheel matches only the commit in `MANIFEST.txt`.
-  Do not use it to test a change on a newer commit.
+  It is for Python 3.14, so you cannot install it into the system Python 3.13.
+  Use it through `bazel test --//:test_wheel=True`, or in a Python 3.14 venv.
 
-### Test status
+### Test results
 
-* Save: tested on 2026-11-18.
-  It took 1,479 s and wrote a 9.5 GB archive and the 107 MB base wheel.
+* Save, 2026-11-18: 1,479 s.
+  It wrote a 9.5 GB archive and the 107 MB wheel.
   `pigz -t` on the archive and a zip test on the wheel both passed.
-* Restore on a new VM: tested on 2026-11-21.
-  The build of the saved commit had 0 local compiles (see "Evidence that the cache works").
+* Restore on a new VM, 2026-11-21: the build of `afd6943a` had 13,713 disk cache hits, 6,904 internal actions, and 0 local compiles.
+  The build that passed took 1,205 s.
+  With the first try that timed out, the total was about 33 minutes.

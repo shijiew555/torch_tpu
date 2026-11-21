@@ -1,14 +1,13 @@
 #!/usr/bin/env bash
 # Restores the torch_tpu Bazel caches from Google Drive to a new VM.
 #
-# Usage: restore_build_cache.sh [--install-wheel]
-#   --install-wheel: also pip install the saved wheel.
+# Usage: restore_build_cache.sh
 #
 # Restores /root/.cache/bazel/bazel-disk-cache (the disk cache path that
 # the repo .bazelrc sets) and /root/.cache/bazel-repo, and adds the
 # repository cache to /root/.bazelrc. Then the build command in
-# BUILD_NOTES.md reuses the cache. Cache hits need the same Bazel, Python and torch versions as
-# in MANIFEST.txt, and the same build flags.
+# BUILD_NOTES.md reuses the cache. Cache hits need the same commit, Bazel
+# version, and build flags as in MANIFEST.txt.
 set -euo pipefail
 
 readonly SRC="/content/drive/MyDrive/torch_tpu_build"
@@ -42,13 +41,4 @@ if ! command -v bazel >/dev/null; then
   chmod +x /usr/local/bin/bazel
 fi
 
-if [[ "${1:-}" == "--install-wheel" ]]; then
-  shopt -s nullglob
-  wheels=("${SRC}"/wheel/*.whl)
-  if [[ ${#wheels[@]} -eq 0 ]]; then
-    echo "ERROR: no saved wheel in ${SRC}/wheel/." >&2
-    exit 1
-  fi
-  pip install --force-reinstall --no-deps "${wheels[@]}"
-fi
 echo "Done. Build with the command in BUILD_NOTES.md."
