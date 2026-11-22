@@ -1,0 +1,127 @@
+[c] aminmax| #4 moved=False in=T(20, 20):torch.float32 args=[] kw={'dim': 0, 'out': (tensor([0.0000e+00, 0.0000e+00, 0.0000e+0
+    cpu: ValueError: aminmax(): the `min` and `max` out= tensors must not overlap.
+    tpu: ok: [T(20,):torch.float32,T(20,):torch.float32]
+[c] cat| #6 moved=False in=[T(0,):torch.float32,T(4, 6):torch.float32] args=[] kw={'dim': 0, 'out': tensor([])}
+    cpu: RuntimeError: unsupported operation: some elements of the input tensor and the written-to tensor refer to a single memory location. Please clone() the tensor before
+    tpu: ok: T(4, 6):torch.float32
+[c] cat| #7 moved=False in=[T(4, 6):torch.float32,T(4, 6):torch.float32] args=[] kw={'dim': 0, 'out': tensor([[-0.1117, -0.4966,  0.1631, -0.881
+    cpu: RuntimeError: unsupported operation: some elements of the input tensor and the written-to tensor refer to a single memory location. Please clone() the tensor before
+    tpu: ok: T(8, 6):torch.float32
+[c] cat| #8 moved=False in=[T(8, 6):torch.float32,T(4, 6):torch.float32] args=[] kw={'out': tensor([[0., 0., 0., 0., 0., 0.],
+        [0., 0., 0
+    cpu: RuntimeError: unsupported operation: some elements of the input tensor and the written-to tensor refer to a single memory location. Please clone() the tensor before
+    tpu: ok: T(12, 6):torch.float32
+[c] exponential| #0 moved=False in=T(10,):torch.float32 args=[0] kw={}
+    cpu: RuntimeError: exponential_ expects lambda > 0.0, but found lambda=0
+    tpu: ok: T(10,):torch.float32
+[c] gather| #4 moved=True in=T(2, 2):torch.float32 args=[1,T(2, 2):torch.int64] kw={}
+    cpu: RuntimeError: index 23 is out of bounds for dimension 1 with size 2
+    tpu: ok: T(2, 2):torch.float32
+[c] gather| #6 moved=False in=T(6,):torch.float32 args=[0,T(3,):torch.int64] kw={'out': tensor([0.4019, 0.2598, 0.3666, 0.0583, 0.7006, 0.05
+    cpu: RuntimeError: unsupported operation: some elements of the input tensor and the written-to tensor refer to a single memory location. Please clone() the tensor before
+    tpu: ok: T(3,):torch.float32
+[c] gather| #7 moved=False in=T(3,):torch.int64 args=[0,T(2,):torch.int64] kw={'out': tensor([2])}
+    cpu: RuntimeError: unsupported operation: some elements of the input tensor and the written-to tensor refer to a single memory location. Please clone() the tensor before
+    tpu: ok: T(2,):torch.int64
+[c] masked_select| #0 moved=False in=T(6,):torch.float32 args=[T(6,):torch.bool] kw={'out': tensor([0.0290, 0.0290, 0.0290])}
+    cpu: RuntimeError: unsupported operation: more than one element of the written-to tensor refers to a single memory location. Please clone() the tensor before performing 
+    tpu: ok: T(3,):torch.float32
+[c] masked_select| #1 moved=False in=T(6,):torch.float32 args=[T(6,):torch.bool] kw={'out': tensor([0.4019, 0.2598, 0.3666, 0.0583, 0.7006, 0.05
+    cpu: RuntimeError: unsupported operation: some elements of the input tensor and the written-to tensor refer to a single memory location. Please clone() the tensor before
+    tpu: ok: T(3,):torch.float32
+[c] masked_select| #2 moved=False in=T(6,):torch.bool args=[T(6,):torch.bool] kw={'out': tensor([ True, False,  True,  True, False, False])}
+    cpu: RuntimeError: unsupported operation: some elements of the input tensor and the written-to tensor refer to a single memory location. Please clone() the tensor before
+    tpu: ok: T(3,):torch.bool
+[e] linalg.eig| #0 moved=False in=T(8, 8):torch.float16 args=[] kw={}
+    cpu: NotImplementedError: "linalg_eig_out_cpu" not implemented for 'Half'
+    tpu: RuntimeError: operator 'aten::linalg_eig' is not implemented for TPU. Please file a feature request
+[d] native_layer_norm| #1 moved=False in=T(1, 2, 3):torch.float32 args=[[1,2,3],T(1, 2):torch.float32,None,1e-05] kw={}
+    cpu: RuntimeError: Expected weight to be of same shape as normalized_shape, but got weight of shape [1, 2] and normalized_shape = [1, 2, 3]
+    tpu: RuntimeError: layer_norm(): failed to broadcast tensor: <unknown>:0: error: broadcast_dimensions size (3) must match input rank (2)
+[d] native_layer_norm| #2 moved=False in=T(1, 2, 3):torch.float32 args=[[1,2,3],None,T(1, 2):torch.float32,1e-05] kw={}
+    cpu: RuntimeError: Expected bias to be of same shape as normalized_shape, but got bias of shape [1, 2] and normalized_shape = [1, 2, 3]
+    tpu: RuntimeError: layer_norm(): failed to broadcast tensor: <unknown>:0: error: broadcast_dimensions size (3) must match input rank (2)
+[c] native_layer_norm| #3 moved=False in=T(2, 2, 3):torch.float32 args=[[2,2],None,None,1e-05] kw={}
+    cpu: RuntimeError: Given normalized_shape=[2, 2], expected input with shape [*, 2, 2], but got input of size[2, 2, 3]
+    tpu: ok: [T(2, 2, 3):torch.float32,T(2, 1, 1):torch.float32,T(2, 1, 1):torch.float32]
+[d] nn.functional.adaptive_max_pool2d| #1 moved=False in=T(1, 2, 3, 4):torch.float32 args=[] kw={'output_size': ()}
+    cpu: RuntimeError: adaptive_max_pool2d(): internal error: output_size.size() must be 2
+    tpu: RuntimeError: adaptive_max_pool2d(): internal error: output_size.size() must be 2
+[d] nn.functional.adaptive_max_pool3d| #1 moved=False in=T(1, 2, 3, 4):torch.float32 args=[] kw={'output_size': ()}
+    cpu: RuntimeError: adaptive_max_pool3d(): internal error: output_size.size() must be 3
+    tpu: RuntimeError: adaptive_max_pool3d(): internal error: output_size.size() must be 3
+[e] narrow_copy| #1 moved=True in=T(10, 5, 20):torch.float32 args=[3,0,0] kw={}
+    cpu: RuntimeError: Expected dim < static_cast<int64_t>(self_sizes.size()) to be true, but got false.  (Could this error message be improved?  If so, please report an enh
+    tpu: IndexError: Dimension out of range (expected to be in range of [-3, 2], but got 3)
+[c] multinomial| #6 moved=True in=T(3,):torch.float32 args=[] kw={'num_samples': 2, 'replacement': False}
+    cpu: RuntimeError: probability tensor contains either `inf`, `nan` or element < 0
+    tpu: ok: T(2,):torch.int64
+[c] multinomial| #7 moved=True in=T(3,):torch.float32 args=[] kw={'num_samples': 2, 'replacement': False}
+    cpu: RuntimeError: probability tensor contains either `inf`, `nan` or element < 0
+    tpu: ok: T(2,):torch.int64
+[c] multinomial| #8 moved=True in=T(3,):torch.float32 args=[] kw={'num_samples': 2, 'replacement': False}
+    cpu: RuntimeError: probability tensor contains either `inf`, `nan` or element < 0
+    tpu: ok: T(2,):torch.int64
+[c] multinomial| #9 moved=True in=T(3,):torch.float32 args=[] kw={'num_samples': 2, 'replacement': False}
+    cpu: RuntimeError: probability tensor contains either `inf`, `nan` or element < 0
+    tpu: ok: T(2,):torch.int64
+[c] multinomial| #10 moved=True in=T(3,):torch.float32 args=[] kw={'num_samples': 2, 'replacement': False}
+    cpu: RuntimeError: invalid multinomial distribution (sum of probabilities <= 0)
+    tpu: ok: T(2,):torch.int64
+[c] multinomial| #11 moved=True in=T(3, 3):torch.float32 args=[] kw={'num_samples': 2, 'replacement': False}
+    cpu: RuntimeError: invalid multinomial distribution (sum of probabilities <= 0)
+    tpu: ok: T(3, 2):torch.int64
+[c] multinomial| #12 moved=True in=T(3, 3):torch.float32 args=[] kw={'num_samples': 2, 'replacement': False}
+    cpu: RuntimeError: invalid multinomial distribution (sum of probabilities <= 0)
+    tpu: ok: T(3, 2):torch.int64
+[c] multinomial| #13 moved=True in=T(3,):torch.float32 args=[] kw={'num_samples': 2, 'replacement': True}
+    cpu: RuntimeError: invalid multinomial distribution (encountering probability entry < 0)
+    tpu: ok: T(2,):torch.int64
+[c] multinomial| #14 moved=True in=T(3,):torch.float32 args=[] kw={'num_samples': 2, 'replacement': True}
+    cpu: RuntimeError: invalid multinomial distribution (encountering probability entry = infinity or NaN)
+    tpu: ok: T(2,):torch.int64
+[c] multinomial| #15 moved=True in=T(3,):torch.float32 args=[] kw={'num_samples': 2, 'replacement': True}
+    cpu: RuntimeError: invalid multinomial distribution (encountering probability entry < 0)
+    tpu: ok: T(2,):torch.int64
+[c] multinomial| #16 moved=True in=T(3,):torch.float32 args=[] kw={'num_samples': 2, 'replacement': True}
+    cpu: RuntimeError: invalid multinomial distribution (encountering probability entry < 0)
+    tpu: ok: T(2,):torch.int64
+[c] multinomial| #17 moved=True in=T(3,):torch.float32 args=[] kw={'num_samples': 2, 'replacement': True}
+    cpu: RuntimeError: invalid multinomial distribution (sum of probabilities <= 0)
+    tpu: ok: T(2,):torch.int64
+[c] multinomial| #18 moved=True in=T(3, 3):torch.float32 args=[] kw={'num_samples': 2, 'replacement': True}
+    cpu: RuntimeError: invalid multinomial distribution (sum of probabilities <= 0)
+    tpu: ok: T(3, 2):torch.int64
+[c] multinomial| #19 moved=True in=T(3, 3):torch.float32 args=[] kw={'num_samples': 2, 'replacement': True}
+    cpu: RuntimeError: invalid multinomial distribution (sum of probabilities <= 0)
+    tpu: ok: T(3, 2):torch.int64
+[c] nn.functional.max_pool1d| #5 moved=False in=T(0, 10):torch.float32 args=[] kw={'kernel_size': 1}
+    cpu: RuntimeError: max_pool1d: Expected 2D or 3D (batch mode) tensor with optional 0 dim batch size for input, but got:[0, 10]
+    tpu: ok: T(0, 10):torch.float32
+CRASH 134 nn.functional.max_pool1d| in=T(1, 10, 0):torch.float32 args=[] kw={'kernel_size': 1} _umath, numpy.linalg._umath_linalg, torch._C, torch._C._dynamo.autograd_compiler, torch._C._dynamo.eval_frame, torch._C._dynamo.guards, torch._C._dynamo.utils, torch._C._fft, torch._C._linalg, torch._C._nested, torch._C._nn, torch._C._sparse, torch._C._special, numpy.random._common, numpy.random.bit_generator, numpy.random._bounded_integers, numpy.random._pcg64, numpy.random._generator, numpy.random._mt19937, numpy.random._philox, numpy.random._sfc64, numpy.random.mtrand, markupsafe._speedups, zmq.backend.cython._zmq, psutil._psutil_linux (total: 25) | timeout: the monitored command dumped core | 
+CRASH 134 nn.functional.max_pool2d| in=T(1, 0, 10):torch.float32 args=[] kw={'kernel_size': 1} _umath, numpy.linalg._umath_linalg, torch._C, torch._C._dynamo.autograd_compiler, torch._C._dynamo.eval_frame, torch._C._dynamo.guards, torch._C._dynamo.utils, torch._C._fft, torch._C._linalg, torch._C._nested, torch._C._nn, torch._C._sparse, torch._C._special, numpy.random._common, numpy.random.bit_generator, numpy.random._bounded_integers, numpy.random._pcg64, numpy.random._generator, numpy.random._mt19937, numpy.random._philox, numpy.random._sfc64, numpy.random.mtrand, markupsafe._speedups, zmq.backend.cython._zmq, psutil._psutil_linux (total: 25) | timeout: the monitored command dumped core | 
+CRASH 134 nn.functional.max_pool3d| in=T(0, 1, 49, 50):torch.float32 args=[] kw={'kernel_size': 2, 'stride': 50, 'padding': -1, 'return_indi _umath, numpy.linalg._umath_linalg, torch._C, torch._C._dynamo.autograd_compiler, torch._C._dynamo.eval_frame, torch._C._dynamo.guards, torch._C._dynamo.utils, torch._C._fft, torch._C._linalg, torch._C._nested, torch._C._nn, torch._C._sparse, torch._C._special, numpy.random._common, numpy.random.bit_generator, numpy.random._bounded_integers, numpy.random._pcg64, numpy.random._generator, numpy.random._mt19937, numpy.random._philox, numpy.random._sfc64, numpy.random.mtrand, markupsafe._speedups, zmq.backend.cython._zmq, psutil._psutil_linux (total: 25) | timeout: the monitored command dumped core | 
+[c] roll| #0 moved=False in=T(5,):torch.float32 args=[[]] kw={}
+    cpu: RuntimeError: `shifts` required
+    tpu: ok: T(5,):torch.float32
+[c] roll| #2 moved=False in=T(5,):torch.float32 args=[0,2] kw={}
+    cpu: IndexError: Dimension out of range (expected to be in range of [-1, 0], but got 2)
+    tpu: ok: T(5,):torch.float32
+[c] roll| #3 moved=False in=T():torch.float32 args=[0,0] kw={}
+    cpu: IndexError: Dimension specified as 0 but tensor has no dimensions
+    tpu: ok: T():torch.float32
+[c] scatter| #3 moved=True in=T(3, 5):torch.float32 args=[0,T(2, 2):torch.int64,T(2, 5):torch.float32] kw={}
+    cpu: RuntimeError: index 34 is out of bounds for dimension 0 with size 3
+    tpu: ok: T(3, 5):torch.float32
+[c] scatter_add| #3 moved=True in=T(3, 5):torch.float32 args=[0,T(2, 2):torch.int64,T(2, 5):torch.float32] kw={}
+    cpu: RuntimeError: index 34 is out of bounds for dimension 0 with size 3
+    tpu: ok: T(3, 5):torch.float32
+[c] take| #1 moved=False in=T(6,):torch.float32 args=[T(3,):torch.int64] kw={'out': tensor([0.4019, 0.2598, 0.3666, 0.0583, 0.7006, 0.05
+    cpu: RuntimeError: unsupported operation: some elements of the input tensor and the written-to tensor refer to a single memory location. Please clone() the tensor before
+    tpu: ok: T(3,):torch.float32
+[c] take| #2 moved=False in=T(3,):torch.int64 args=[T(2,):torch.int64] kw={'out': tensor([2, 1])}
+    cpu: RuntimeError: unsupported operation: some elements of the input tensor and the written-to tensor refer to a single memory location. Please clone() the tensor before
+    tpu: ok: T(2,):torch.int64
+[c] uniform| #0 moved=False in=T(10,):torch.float32 args=[3,-1] kw={}
+    cpu: RuntimeError: uniform_ expects to return a [from, to) range, but found from=3 > to=-1
+    tpu: ok: T(10,):torch.float32
