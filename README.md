@@ -18,6 +18,6 @@ autocast-bf16-default, compiled-output-alias, unfold-col2im-precision,
 unique-sorted-false.
 PR 5: best new task from session 3 discovery (needs user approval).
 pin-memory-deprecation (unfinished) does not count.
-PR 5 approved by user (about 00:00Z): ckpt-tpu-rng-state (restore TPU RNG
+PR 5 approved by user (23:33Z): ckpt-tpu-rng-state (restore TPU RNG
 state in eager activation checkpointing). See discovery/candidates-s3.md.
 Queue: ckpt-tpu-rng-state, then unfold-col2im-precision, unique-sorted-false.
