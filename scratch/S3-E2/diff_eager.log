@@ -1,0 +1,29 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1795389422.407679  155246 pjrt_api.cc:119] GetPjrtApi was found for TPU at /root/torch_tpu/.claude/worktrees/build-base/.venv/lib/python3.14/site-packages/libtpu/libtpu.so
+I0000 00:00:1795389423.338714  155246 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1795389423.340305  155246 libtpu_version.cc:63] Setting libtpu version to: 0.0.53.1
+/root/torch_tpu/.claude/worktrees/build-base/.venv/lib/python3.14/site-packages/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+I0000 00:00:1795389428.249054  155246 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.117. The framework PJRT API version is 0.118.
+I0000 00:00:1795389429.057639  155246 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+/root/torch_tpu/.claude/worktrees/build-base/.venv/lib/python3.14/site-packages/torch/nn/modules/linear.py:134: UserWarning: //TorchTpu/Performance// TPU is using HIGHEST precision as requested, but performance may be significantly lower. Consider using torch.set_float32_matmul_precision('medium') for better performance. (Triggered internally at csrc/ops/precision_context.cc:84.)
+  return F.linear(input, self.weight, self.bias)
+I0000 00:00:1795389429.334263  155496 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1795389429.334291  155496 tier2_compilation_cache.cc:80] Tier-2 compilation cache is disabled for world size 1.
+OK unet compile=False bf16=False out_rel=1.02e-05 grad_rel=1.33e-05 time=4.1s
+OK vae compile=False bf16=False out_rel=2.22e-06 grad_rel=8.95e-07 time=3.3s
+OK dit compile=False bf16=False out_rel=1.39e-01 grad_rel=1.98e-01 time=0.3s
+OK sd3 compile=False bf16=False out_rel=5.03e-06 grad_rel=3.18e-05 time=0.4s
+OK sched DDPMScheduler rel=1.10e-05
+OK sched DDIMScheduler rel=8.05e-05
+I0000 00:00:1795389439.710063  155246 compilation_cache.cc:376] Compilation cache evicted.
+I0000 00:00:1795389439.710918  155246 compilation_cache.cc:231] CompilationCache final stats: num_cache_reqs=5481
+num_cache_hits=4989 {91.0%}
+num_compilations=492
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

@@ -1,0 +1,67 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1795388631.955356  134260 pjrt_api.cc:119] GetPjrtApi was found for TPU at /root/torch_tpu/.claude/worktrees/build-base/.venv/lib/python3.14/site-packages/libtpu/libtpu.so
+I0000 00:00:1795388632.891823  134260 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1795388632.894012  134260 libtpu_version.cc:63] Setting libtpu version to: 0.0.53.1
+/root/torch_tpu/.claude/worktrees/build-base/.venv/lib/python3.14/site-packages/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+I0000 00:00:1795388632.994836  134260 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.117. The framework PJRT API version is 0.118.
+I0000 00:00:1795388633.807921  134260 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+I0000 00:00:1795388635.748540  134492 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1795388635.748572  134492 tier2_compilation_cache.cc:80] Tier-2 compilation cache is disabled for world size 1.
+/root/torch_tpu/.claude/worktrees/build-base/.venv/lib/python3.14/site-packages/torch/nn/modules/conv.py:560: UserWarning: //TorchTpu/Performance// TPU is using HIGHEST precision as requested, but performance may be significantly lower. Consider using torch.set_float32_matmul_precision('medium') for better performance. (Triggered internally at csrc/ops/precision_context.cc:84.)
+  return F.conv2d(
+FAIL fasterrcnn_mobilenet_v3_large_320_fpn compile=False: RuntimeError: operator 'torchvision::nms' is not implemented for TPU. Please file a feature request
+       keep = nms(boxes_for_nms, scores, iou_threshold)
+     File "/root/torch_tpu/.claude/worktrees/build-base/.venv/lib/python3.14/site-packages/torchvision/ops/boxes.py", line 54, in nms
+       return torch.ops.torchvision.nms(boxes, scores, iou_threshold)
+              ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     File "/root/torch_tpu/.claude/worktrees/build-base/.venv/lib/python3.14/site-packages/torch/_ops.py", line 1366, in __call__
+       return self._op(*args, **kwargs)
+              ~~~~~~~~^^^^^^^^^^^^^^^^^
+   RuntimeError: operator 'torchvision::nms' is not implemented for TPU. Please file a feature request
+loc("index/index"): error: slice size (1) is out of bounds for operand dimension (0) at index 0
+LLVM ERROR: Failed to infer result type(s):
+"stablehlo.gather"(...) {} : (tensor<0xi64>, tensor<0x1xi64>) -> ( ??? )
+https://symbolize.stripped_domain/r/?trace=791da5afbc0c,791da5aa232f,791da5aa227d,791da5a858fe,791d42f4edb0,791d42f4eee0,791d427cc4ab,791d41f44c97,791d41f44d71,791d43394775,791d3ceb9d9c,791d3ceb8c2c,791d3cab875d,791d3cab86ba,791d3c8d61c1,791d3c96b15c,791d3c97d997,791d3c9bf53d,791d3c99c718,791d3c99e2a5,791d3c96f8c6,791d3c94d524,791d3c9505a5,791d3c957137,791d3c930733,791d8b9f9db3,791da5af9b83,791da5b86ecb&map= 
+*** SIGABRT received by PID 134260 (TID 134492) on cpu 20, si_code=-6, from PID 134260; stack trace: ***
+PC: @     0x791da5afbc0c  (unknown)  pthread_kill
+    @     0x791d3a8f1293       1888  FailureSignalHandler()
+    @     0x791da5aa2330       1552  (unknown)
+    @     0x791da5aa227e         32  raise
+    @     0x791da5a858ff        192  abort
+    @     0x791d42f4edb1        208  llvm::report_fatal_error()
+    @     0x791d42f4eee1         64  llvm::report_fatal_error()
+    @     0x791d427cc4ac        432  mlir::detail::reportFatalInferReturnTypesError()
+    @     0x791d41f44c98        208  mlir::stablehlo::GatherOp::build()
+    @     0x791d41f44d72        384  mlir::stablehlo::GatherOp::create()
+    @     0x791d43394776         96  mlir::stablehlo::Gather()
+    @     0x791d3ceb9d9d        752  torch_tpu::(anonymous namespace)::BuildIndexShlo()
+    @     0x791d3ceb8c2d        384  absl::lts_20260526::internal_any_invocable::RemoteInvoker<>()
+    @     0x791d3cab875e        192  torch_tpu::ToMlirOpBuilder<>()::{lambda()#1}::operator()()
+    @     0x791d3cab86bb         32  absl::lts_20260526::internal_any_invocable::RemoteInvoker<>()
+    @     0x791d3c8d61c2        400  absl::lts_20260526::internal_any_invocable::RemoteInvoker<>()
+    @     0x791d3c96b15d       1568  torch_tpu::Traversal::BuildMlirModule()
+    @     0x791d3c97d998        512  absl::lts_20260526::internal_any_invocable::RemoteInvoker<>()
+    @     0x791d3c9bf53e        224  torch_tpu::ContextedModule::Make()
+    @     0x791d3c99c719       1024  torch_tpu::CompilationCache::GetOrCompileImpl()
+    @     0x791d3c99e2a6        144  torch_tpu::CompilationCache::GetOrCompile()
+    @     0x791d3c96f8c7        624  torch_tpu::Traversal::Compile()
+    @     0x791d3c94d525        992  torch_tpu::ExecutionTask::FromTraversal()
+    @     0x791d3c9505a6        832  torch_tpu::ExecutionTask::FromTraversalWithLogging()
+    @     0x791d3c957138        464  torch_tpu::MakeExecutionTasks()
+    @     0x791d3c930734       1024  std::thread::_State_impl<>::_M_run()
+    @     0x791d8b9f9db4         32  (unknown)
+    @     0x791da5af9b84        176  (unknown)
+    @     0x791da5b86ecc  (unknown)  (unknown)
+https://symbolize.stripped_domain/r/?trace=791da5afbc0c,791d3a8f1292,791da5aa232f,791da5aa227d,791da5a858fe,791d42f4edb0,791d42f4eee0,791d427cc4ab,791d41f44c97,791d41f44d71,791d43394775,791d3ceb9d9c,791d3ceb8c2c,791d3cab875d,791d3cab86ba,791d3c8d61c1,791d3c96b15c,791d3c97d997,791d3c9bf53d,791d3c99c718,791d3c99e2a5,791d3c96f8c6,791d3c94d524,791d3c9505a5,791d3c957137,791d3c930733,791d8b9f9db3,791da5af9b83,791da5b86ecb&map= 
+E1122 23:07:55.130584  134492 coredump_hook.cc:310] RAW: Remote crash data gathering hook invoked.
+E1122 23:07:55.130596  134492 client.cc:261] RAW: Coroner client retries enabled, will retry for up to 30 sec.
+E1122 23:07:55.130600  134492 coredump_hook.cc:405] RAW: Sending fingerprint to remote end.
+E1122 23:07:55.130641  134492 coredump_hook.cc:415] RAW: Cannot send fingerprint to Coroner: [NOT_FOUND] stat failed on crash reporting socket /var/google/services/logmanagerd/remote_coredump.socket (Is the listener running?): No such file or directory
+E1122 23:07:55.130649  134492 coredump_hook.cc:467] RAW: Dumping core locally.
+E1122 23:11:38.624285  134492 process_state.cc:796] RAW: Raising signal 6 with default behavior
+timeout: the monitored command dumped core

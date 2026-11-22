@@ -1,0 +1,130 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1795389380.211657  152450 pjrt_api.cc:119] GetPjrtApi was found for TPU at /root/torch_tpu/.claude/worktrees/build-base/.venv/lib/python3.14/site-packages/libtpu/libtpu.so
+I0000 00:00:1795389381.147613  152450 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1795389381.149158  152450 libtpu_version.cc:63] Setting libtpu version to: 0.0.53.1
+/root/torch_tpu/.claude/worktrees/build-base/.venv/lib/python3.14/site-packages/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+I0000 00:00:1795389381.255857  152450 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.117. The framework PJRT API version is 0.118.
+I0000 00:00:1795389382.049041  152450 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+I0000 00:00:1795389382.064258  152697 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1795389382.064295  152697 tier2_compilation_cache.cc:80] Tier-2 compilation cache is disabled for world size 1.
+OK box_iou: fwd maxdiff=5.96e-08
+OK generalized_box_iou: fwd maxdiff=5.96e-08
+OK box_convert: fwd maxdiff=0.00e+00
+OK clip_boxes_to_image: fwd maxdiff=0.00e+00
+OK remove_small_boxes: fwd maxdiff=0.00e+00
+OK sigmoid_focal_loss: fwd maxdiff=4.47e-08 grad0 maxdiff=4.19e-09 grad1 maxdiff=3.35e-08
+FAIL nms: RuntimeError: operator 'torchvision::nms' is not implemented for TPU. Please file a feature request
+   return self._op(*args, **kwargs)
+FAIL batched_nms: RuntimeError: operator 'torchvision::nms' is not implemented for TPU. Please file a feature request
+   return self._op(*args, **kwargs)
+FAIL roi_align: RuntimeError: operator 'torchvision::roi_align' is not implemented for TPU. Please file a feature request
+   return self._handle.redispatch_boxed(keyset, *args, **kwargs)  # type: ignore[return-value]
+FAIL roi_pool: RuntimeError: operator 'torchvision::roi_pool' is not implemented for TPU. Please file a feature request
+   return self._handle.redispatch_boxed(keyset, *args, **kwargs)  # type: ignore[return-value]
+FAIL ps_roi_align: RuntimeError: operator 'torchvision::ps_roi_align' is not implemented for TPU. Please file a feature request
+   return self._handle.redispatch_boxed(keyset, *args, **kwargs)  # type: ignore[return-value]
+FAIL deform_conv2d: RuntimeError: operator 'torchvision::deform_conv2d' is not implemented for TPU. Please file a feature request
+   return self._handle.redispatch_boxed(keyset, *args, **kwargs)  # type: ignore[return-value]
+/root/torch_tpu/.claude/worktrees/build-base/.venv/lib/python3.14/site-packages/torch/nn/modules/conv.py:560: UserWarning: //TorchTpu/Performance// TPU is using HIGHEST precision as requested, but performance may be significantly lower. Consider using torch.set_float32_matmul_precision('medium') for better performance. (Triggered internally at csrc/ops/precision_context.cc:84.)
+  return F.conv2d(
+FAIL FeaturePyramidNetwork: RuntimeError: convolution(): expected tensor to be on tpu, got cpu
+   )
+OK stochastic_depth: fwd maxdiff=0.00e+00
+OK tv2 Resize bilinear: fwd maxdiff=1.19e-07
+OK tv2 Resize antialias: fwd maxdiff=1.19e-07
+OK tv2 Normalize: fwd maxdiff=2.38e-07
+OK tv2 CenterCrop: fwd maxdiff=0.00e+00
+OK tv2 HorizontalFlip: fwd maxdiff=0.00e+00
+OK tv2 VerticalFlip: fwd maxdiff=0.00e+00
+OK tv2 ColorJitter brightness: fwd maxdiff=0.00e+00
+OK tv2 ColorJitter contrast: fwd maxdiff=5.96e-08
+OK tv2 ColorJitter saturation: fwd maxdiff=5.96e-08
+OK tv2 ColorJitter hue: fwd maxdiff=7.75e-07
+OK tv2 Grayscale: fwd maxdiff=1.19e-07
+OK tv2 GaussianBlur: fwd maxdiff=5.36e-07
+OK tv2 Pad reflect: fwd maxdiff=0.00e+00
+OK tv2 RandomRotation fixed: fwd maxdiff=0.00e+00
+OK tv2 RandomAffine fixed: fwd maxdiff=0.00e+00
+OK tv2 ElasticTransform none: fwd maxdiff=0.00e+00
+MISMATCH tv2 Resize uint8: fwd maxdiff=2.15e+02
+OK tv2 ToDtype uint8->f32: fwd maxdiff=0.00e+00
+OK tv2 equalize uint8: fwd maxdiff=0.00e+00
+OK tv2 posterize uint8: fwd maxdiff=0.00e+00
+OK tv2 autocontrast: fwd maxdiff=5.96e-08
+OK tv2 adjust_sharpness: fwd maxdiff=1.19e-07
+OK interp bilinear sf2 ac=False: fwd maxdiff=2.38e-07 grad0 maxdiff=1.91e-06
+OK interp bilinear sf1.5 ac=False: fwd maxdiff=4.77e-07 grad0 maxdiff=1.43e-06
+OK interp bicubic sf2 ac=False: fwd maxdiff=7.15e-07 grad0 maxdiff=7.63e-06
+OK interp bicubic sf1.5 ac=False: fwd maxdiff=1.19e-06 grad0 maxdiff=5.72e-06
+OK interp bilinear sf2 ac=True: fwd maxdiff=3.58e-07 grad0 maxdiff=1.91e-06
+OK interp bilinear sf1.5 ac=True: fwd maxdiff=2.38e-07 grad0 maxdiff=9.54e-07
+OK interp bicubic sf2 ac=True: fwd maxdiff=1.19e-06 grad0 maxdiff=7.63e-06
+OK interp bicubic sf1.5 ac=True: fwd maxdiff=3.40e-06 grad0 maxdiff=1.14e-05
+OK interp nearest sf2: fwd maxdiff=0.00e+00 grad0 maxdiff=0.00e+00
+OK interp nearest-exact sf0.5: fwd maxdiff=0.00e+00 grad0 maxdiff=0.00e+00
+OK interp area: fwd maxdiff=1.19e-07 grad0 maxdiff=1.79e-07
+FAIL interp trilinear: RuntimeError: operator 'aten::upsample_trilinear3d.out' is not implemented for TPU. Please file a feature request
+   )
+OK interp nearest3d: fwd maxdiff=0.00e+00 grad0 maxdiff=3.81e-06
+OK grid_sample bilinear zeros: fwd maxdiff=1.19e-07 grad0 maxdiff=2.38e-07 grad1 maxdiff=3.81e-06
+OK grid_sample bilinear border: fwd maxdiff=1.19e-07 grad0 maxdiff=2.38e-07 grad1 maxdiff=3.81e-06
+OK grid_sample bilinear reflection: fwd maxdiff=1.19e-07 grad0 maxdiff=2.38e-07 grad1 maxdiff=3.81e-06
+OK grid_sample nearest zeros: fwd maxdiff=0.00e+00
+OK grid_sample nearest border: fwd maxdiff=0.00e+00
+OK grid_sample nearest reflection: fwd maxdiff=0.00e+00
+OK grid_sample bicubic zeros: fwd maxdiff=3.58e-07 grad0 maxdiff=9.54e-07 grad1 maxdiff=2.19e-05
+OK grid_sample bicubic border: fwd maxdiff=4.77e-07 grad0 maxdiff=1.19e-06 grad1 maxdiff=5.72e-05
+OK grid_sample bicubic reflection: fwd maxdiff=4.77e-07 grad0 maxdiff=1.19e-06 grad1 maxdiff=3.05e-05
+OK affine_grid: fwd maxdiff=1.19e-07 grad0 maxdiff=3.81e-06
+OK pixel_shuffle: fwd maxdiff=0.00e+00 grad0 maxdiff=0.00e+00
+OK pixel_unshuffle: fwd maxdiff=0.00e+00 grad0 maxdiff=0.00e+00
+OK group_norm: fwd maxdiff=1.19e-07 grad0 maxdiff=1.19e-07 grad1 maxdiff=1.14e-05 grad2 maxdiff=1.53e-05
+OK group_norm channels_last: fwd maxdiff=4.77e-07 grad0 maxdiff=2.06e-06
+OK conv2d channels_last: fwd maxdiff=2.86e-06 grad0 maxdiff=7.63e-05 grad1 maxdiff=1.22e-04
+OK conv3d: fwd maxdiff=3.81e-06 grad0 maxdiff=1.53e-04 grad1 maxdiff=1.22e-04
+OK conv3d stride2: fwd maxdiff=9.54e-07 grad0 maxdiff=9.54e-06 grad1 maxdiff=3.05e-05
+OK conv_transpose3d: fwd maxdiff=1.91e-06 grad0 maxdiff=1.22e-04 grad1 maxdiff=3.05e-04
+OK conv_transpose2d groups: fwd maxdiff=9.54e-07 grad0 maxdiff=3.05e-05 grad1 maxdiff=1.22e-04
+OK max_pool3d: fwd maxdiff=0.00e+00 grad0 maxdiff=0.00e+00
+OK max_pool3d pad: fwd maxdiff=0.00e+00 grad0 maxdiff=0.00e+00
+OK avg_pool3d: fwd maxdiff=5.96e-08 grad0 maxdiff=1.49e-08
+OK avg_pool3d pad ceil: fwd maxdiff=1.19e-07 grad0 maxdiff=2.38e-07
+OK adaptive_avg_pool3d: fwd maxdiff=4.47e-08 grad0 maxdiff=5.59e-09
+FAIL adaptive_max_pool2d: RuntimeError: operator 'aten::adaptive_max_pool2d_backward.grad_input' is not implemented for TPU. Please file a feature request
+   )  # Calls into the C++ engine to run the backward pass
+FAIL adaptive_max_pool3d: RuntimeError: operator 'aten::adaptive_max_pool3d.out' is not implemented for TPU. Please file a feature request
+   return torch._C._nn.adaptive_max_pool3d(input, output_size)
+OK max_pool2d ceil: fwd maxdiff=0.00e+00 grad0 maxdiff=0.00e+00
+OK max_pool2d indices: fwd maxdiff=0.00e+00
+FAIL max_unpool2d: RuntimeError: operator 'aten::max_unpool2d' is not implemented for TPU. Please file a feature request
+   return torch._C._nn.max_unpool2d(input, indices, output_size)
+FAIL fractional_max_pool2d: RuntimeError: operator 'aten::fractional_max_pool2d.output' is not implemented for TPU. Please file a feature request
+   )
+FAIL kthvalue: RuntimeError: operator 'aten::kthvalue.values' is not implemented for TPU. Please file a feature request
+   cmp("kthvalue", lambda a: torch.kthvalue(a, 3, dim=-1)[0], v)
+FAIL median dim: RuntimeError: operator 'aten::median.dim_values' is not implemented for TPU. Please file a feature request
+   cmp("median dim", lambda a: torch.median(a, dim=-1)[0], v)
+OK instance_norm: fwd maxdiff=4.77e-07 grad0 maxdiff=1.69e-06
+OK local_response_norm: fwd maxdiff=1.14e-05 grad0 maxdiff=4.58e-05
+OK silu: fwd maxdiff=9.54e-07 grad0 maxdiff=2.38e-06
+FAIL mish: RuntimeError: operator 'aten::mish.out' is not implemented for TPU. Please file a feature request
+   return torch._C._nn.mish(input)
+OK hardswish: fwd maxdiff=2.38e-07 grad0 maxdiff=9.54e-07
+OK pad replicate 3d: fwd maxdiff=0.00e+00 grad0 maxdiff=3.81e-06
+OK pad reflect 3d: fwd maxdiff=0.00e+00 grad0 maxdiff=1.91e-06
+OK pad circular: fwd maxdiff=0.00e+00 grad0 maxdiff=0.00e+00
+OK channel_shuffle: fwd maxdiff=0.00e+00
+OK nn.ChannelShuffle: fwd maxdiff=0.00e+00
+OK embedding_bag: fwd maxdiff=0.00e+00 grad0 maxdiff=0.00e+00
+I0000 00:00:1795389409.598316  152450 compilation_cache.cc:376] Compilation cache evicted.
+I0000 00:00:1795389409.598501  152450 compilation_cache.cc:231] CompilationCache final stats: num_cache_reqs=709
+num_cache_hits=292 {41.1%}
+num_compilations=417
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

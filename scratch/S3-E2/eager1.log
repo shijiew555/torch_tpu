@@ -1,0 +1,31 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1795388500.978443  118501 pjrt_api.cc:119] GetPjrtApi was found for TPU at /root/torch_tpu/.claude/worktrees/build-base/.venv/lib/python3.14/site-packages/libtpu/libtpu.so
+I0000 00:00:1795388501.927241  118501 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1795388501.928856  118501 libtpu_version.cc:63] Setting libtpu version to: 0.0.53.1
+/root/torch_tpu/.claude/worktrees/build-base/.venv/lib/python3.14/site-packages/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+I0000 00:00:1795388502.029898  118501 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.117. The framework PJRT API version is 0.118.
+I0000 00:00:1795388502.784158  118501 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+/root/torch_tpu/.claude/worktrees/build-base/.venv/lib/python3.14/site-packages/torch/nn/modules/conv.py:560: UserWarning: //TorchTpu/Performance// TPU is using HIGHEST precision as requested, but performance may be significantly lower. Consider using torch.set_float32_matmul_precision('medium') for better performance. (Triggered internally at csrc/ops/precision_context.cc:84.)
+  return F.conv2d(
+I0000 00:00:1795388503.192664  118718 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1795388503.192712  118718 tier2_compilation_cache.cc:80] Tier-2 compilation cache is disabled for world size 1.
+OK resnet18 size=64 compile=False loss cpu=0.267008 tpu=0.267008 grad_total_rel=2.04e-05 worst_grad=layer1.0.bn1.weight rel=2.61e-05 worst_buf=bn1.running_mean rel=1.00e+00 eval-after-step rel=1.96e+00 tpu_time=2.3s
+OK mobilenet_v3_small size=64 compile=False loss cpu=0.000117093 tpu=0.000117093 grad_total_rel=5.42e-06 worst_grad=features.1.block.2.1.bias rel=1.62e-05 worst_buf=features.0.1.running_mean rel=1.00e+00 eval-after-step rel=9.94e-01 tpu_time=1.5s
+OK efficientnet_b0 size=64 compile=False loss cpu=0.0411501 tpu=0.04115 grad_total_rel=1.03e-04 worst_grad=features.3.1.block.2.fc1.weight rel=1.49e-04 worst_buf=features.0.1.running_mean rel=1.00e+00 eval-after-step rel=1.00e+00 tpu_time=2.5s
+OK regnet_y_400mf size=64 compile=False loss cpu=0.118593 tpu=0.118592 grad_total_rel=1.67e-02 worst_grad=trunk_output.block1.block1-0.f.se.fc1.weight rel=2.53e-02 worst_buf=stem.1.running_mean rel=1.00e+00 eval-after-step rel=1.02e-01 tpu_time=2.7s
+OK shufflenet_v2_x0_5 size=64 compile=False loss cpu=0.0757983 tpu=0.0757986 grad_total_rel=4.11e-03 worst_grad=stage2.0.branch2.6.bias rel=6.65e-03 worst_buf=conv1.1.running_mean rel=1.00e+00 eval-after-step rel=2.25e-01 tpu_time=0.9s
+OK densenet121 size=64 compile=False loss cpu=0.0775505 tpu=0.0775505 grad_total_rel=6.71e-05 worst_grad=features.denseblock1.denselayer1.norm1.weight rel=7.83e-05 worst_buf=features.norm0.running_mean rel=1.00e+00 eval-after-step rel=1.92e-02 tpu_time=6.2s
+OK googlenet size=96 compile=False loss cpu=0.0298599 tpu=0.0298599 grad_total_rel=4.20e-04 worst_grad=inception4c.branch1.conv.weight rel=1.09e-03 worst_buf=conv1.bn.running_mean rel=1.00e+00 eval-after-step rel=3.96e-02 tpu_time=8.3s
+OK squeezenet1_0 size=64 compile=False loss cpu=0.0310429 tpu=0.0310429 grad_total_rel=2.91e-07 worst_grad=features.0.weight rel=5.35e-07 worst_buf= rel=0.00e+00 eval-after-step rel=2.14e-07 tpu_time=3.1s
+I0000 00:00:1795388540.436644  118501 compilation_cache.cc:376] Compilation cache evicted.
+I0000 00:00:1795388540.437991  118501 compilation_cache.cc:231] CompilationCache final stats: num_cache_reqs=5892
+num_cache_hits=3560 {60.4%}
+num_compilations=2332
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

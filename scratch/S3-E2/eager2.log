@@ -1,0 +1,48 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1795388553.373712  129101 pjrt_api.cc:119] GetPjrtApi was found for TPU at /root/torch_tpu/.claude/worktrees/build-base/.venv/lib/python3.14/site-packages/libtpu/libtpu.so
+I0000 00:00:1795388554.310946  129101 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1795388554.312493  129101 libtpu_version.cc:63] Setting libtpu version to: 0.0.53.1
+/root/torch_tpu/.claude/worktrees/build-base/.venv/lib/python3.14/site-packages/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+I0000 00:00:1795388554.412342  129101 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.117. The framework PJRT API version is 0.118.
+I0000 00:00:1795388555.144566  129101 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+/root/torch_tpu/.claude/worktrees/build-base/.venv/lib/python3.14/site-packages/torch/nn/modules/conv.py:560: UserWarning: //TorchTpu/Performance// TPU is using HIGHEST precision as requested, but performance may be significantly lower. Consider using torch.set_float32_matmul_precision('medium') for better performance. (Triggered internally at csrc/ops/precision_context.cc:84.)
+  return F.conv2d(
+I0000 00:00:1795388556.025684  129313 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1795388556.025717  129313 tier2_compilation_cache.cc:80] Tier-2 compilation cache is disabled for world size 1.
+OK swin_t size=64 compile=False loss cpu=0.0912203 tpu=0.0912203 grad_total_rel=9.66e-07 worst_grad=features.7.0.attn.qkv.weight rel=1.19e-06 worst_buf= rel=0.00e+00 eval-after-step rel=8.73e-08 tpu_time=4.7s
+OK convnext_tiny size=64 compile=False loss cpu=0.314298 tpu=0.314298 grad_total_rel=1.43e-06 worst_grad=features.0.0.weight rel=1.50e-06 worst_buf= rel=0.00e+00 eval-after-step rel=0.00e+00 tpu_time=2.0s
+FAIL inception_v3 compile=False: RuntimeError: Given input size: (768x4x4). Calculated output size: (768x0x0). Output size is too small
+     File "/root/torch_tpu/.claude/worktrees/build-base/.venv/lib/python3.14/site-packages/torch/nn/modules/module.py", line 1787, in _wrapped_call_impl
+       return self._call_impl(*args, **kwargs)
+              ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+     File "/root/torch_tpu/.claude/worktrees/build-base/.venv/lib/python3.14/site-packages/torch/nn/modules/module.py", line 1798, in _call_impl
+       return forward_call(*args, **kwargs)
+     File "/root/torch_tpu/.claude/worktrees/build-base/.venv/lib/python3.14/site-packages/torchvision/models/inception.py", line 382, in forward
+       x = F.avg_pool2d(x, kernel_size=5, stride=3)
+   RuntimeError: Given input size: (768x4x4). Calculated output size: (768x0x0). Output size is too small
+OK mnasnet0_5 size=64 compile=False loss cpu=0.281645 tpu=0.281645 grad_total_rel=1.03e-02 worst_grad=layers.8.0.layers.1.bias rel=2.94e-02 worst_buf=layers.4.running_mean rel=1.00e+00 eval-after-step rel=9.92e-01 tpu_time=1.6s
+FAIL vit_b_16 compile=False: AssertionError: Wrong image height! Expected 224 but got 32!
+     File "/root/torch_tpu/.claude/worktrees/build-base/.venv/lib/python3.14/site-packages/torchvision/models/vision_transformer.py", line 291, in forward
+       x = self._process_input(x)
+     File "/root/torch_tpu/.claude/worktrees/build-base/.venv/lib/python3.14/site-packages/torchvision/models/vision_transformer.py", line 271, in _process_input
+       torch._assert(h == self.image_size, f"Wrong image height! Expected {self.image_size} but got {h}!")
+       ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     File "/root/torch_tpu/.claude/worktrees/build-base/.venv/lib/python3.14/site-packages/torch/__init__.py", line 2703, in _assert
+       raise AssertionError(message)
+   AssertionError: Wrong image height! Expected 224 but got 32!
+OK deeplabv3_resnet50 size=64 compile=False loss cpu=0.0920475 tpu=0.092047 grad_total_rel=2.39e-02 worst_grad=backbone.layer1.0.bn2.weight rel=2.48e-02 worst_buf=backbone.bn1.running_mean rel=1.00e+00 eval-after-step rel=7.35e+01 tpu_time=9.2s
+OK fcn_resnet50 size=64 compile=False loss cpu=0.143458 tpu=0.143458 grad_total_rel=1.94e-02 worst_grad=backbone.layer1.1.bn1.weight rel=2.26e-02 worst_buf=backbone.bn1.running_mean rel=1.00e+00 eval-after-step rel=1.77e+02 tpu_time=24.9s
+OK lraspp_mobilenet_v3_large size=64 compile=False loss cpu=0.260572 tpu=0.260572 grad_total_rel=6.20e-06 worst_grad=backbone.2.block.2.1.bias rel=1.89e-05 worst_buf=backbone.0.1.running_mean rel=1.00e+00 eval-after-step rel=3.01e-02 tpu_time=2.1s
+OK r3d_18 size=32 compile=False loss cpu=0.0457654 tpu=0.0457654 grad_total_rel=1.40e-05 worst_grad=layer4.0.conv1.0.weight rel=1.64e-05 worst_buf=stem.1.running_mean rel=1.00e+00 eval-after-step rel=2.80e+00 tpu_time=6.5s
+I0000 00:00:1795388619.969322  129101 compilation_cache.cc:376] Compilation cache evicted.
+I0000 00:00:1795388619.970578  129101 compilation_cache.cc:231] CompilationCache final stats: num_cache_reqs=4026
+num_cache_hits=3083 {76.5%}
+num_compilations=943
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

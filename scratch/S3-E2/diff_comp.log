@@ -1,0 +1,33 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1795389463.464812  159172 pjrt_api.cc:119] GetPjrtApi was found for TPU at /root/torch_tpu/.claude/worktrees/build-base/.venv/lib/python3.14/site-packages/libtpu/libtpu.so
+I0000 00:00:1795389464.413516  159172 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1795389464.415123  159172 libtpu_version.cc:63] Setting libtpu version to: 0.0.53.1
+/root/torch_tpu/.claude/worktrees/build-base/.venv/lib/python3.14/site-packages/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+I0000 00:00:1795389465.036568  159172 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.117. The framework PJRT API version is 0.118.
+I0000 00:00:1795389465.839996  159172 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+/root/torch_tpu/.claude/worktrees/build-base/.venv/lib/python3.14/site-packages/torch/_ops.py:929: UserWarning: //TorchTpu/Performance// TPU is using HIGHEST precision as requested, but performance may be significantly lower. Consider using torch.set_float32_matmul_precision('medium') for better performance. (Triggered internally at csrc/ops/precision_context.cc:84.)
+  return self._op(*args, **kwargs)
+I0000 00:00:1795389470.917890  159172 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1795389470.917921  159172 tier2_compilation_cache.cc:80] Tier-2 compilation cache is disabled for world size 1.
+OK unet compile=True bf16=False out_rel=1.03e-05 grad_rel=1.33e-05 time=14.2s
+FAIL vae compile=True bf16=False: RuntimeError: view(): cannot create a view of shape [512, 64] from the input tensor of shape [2, 256, 64] and strides [16384, 1, 256]; consider creating a new tensor using reshape() instead of taking a view
+   Use tlparse to see full graph. (https://github.com/pytorch/tlparse?tab=readme-ov-file#tlparse-parse-structured-pt2-logs)
+   
+   While executing %submod_0 : [num_users=124] = call_module[target=submod_0](args = (%tangents_1, %silu_21, %primals_124, %getitem_89, %div_11, %detach_52, %detach_53, %primals_122, %silu_20, %primals_120, %getitem_86, %convolution_27, %detach_54, %detach_55, %primals_118, %silu_19, %primals_116, %getitem_83, %div_10, %detach_56, %detach_57, %primals_114, %convolution_23, %primals_112, %silu_18, %primals_110, %getitem_80, %convolution_24, %detach_58, %detach_59, %primals_108, %silu_17, %primals_106, %getitem_77, %detach_60, %detach_61, %primals_104, %clone_6, %primals_102, %_to_copy, %silu_16, %primals_100, %getitem_74, %convolution_21, %detach_62, %detach_63, %primals_98, %silu_15, %primals_96, %getitem_71, %div_8, %detach_64, %detach_65, %primals_94, %silu_14, %primals_92, %getitem_68, %convolution_19, %detach_66, %detach_67, %primals_90, %silu_13, %primals_88, %getitem_65, %div_7, %detach_68, %detach_69, %primals_86, %silu_12, %primals_84, %getitem_62, %convolution_17, %detach_70, %detach_71, %primals_82, %silu_11, %primals_80, %getitem_59, %div_6, %detach_72, %detach_73, %primals_78, %primals_76, %view_12, %transpose_11, %transpose_12, %transpose_13, %detach_74, %getitem_51, %getitem_56, %getitem_57, %_unsafe_view_7, %primals_74, %primals_72, %primals_70, %transpose_9, %detach_75, %detach_76, %primals_68, %silu_10, %primals_66, %getitem_44, %convolution_15, %detach_77, %detach_78, %primals_64, %silu_9, %primals_62, %getitem_41, %convolution_14, %detach_79, %detach_80, %primals_60, %convolution_13, %primals_58, %getitem_39, %primals_56, %convolution_11, %primals_54, %silu_8, %primals_52, %getitem_36, %div_4, %detach_81, %detach_82, %primals_50, %silu_7, %primals_48, %getitem_33, %convolution_9, %detach_83, %detach_84, %primals_46, %silu_6, %primals_44, %getitem_30, %div_3, %detach_85, %detach_86, %primals_42, %primals_40, %view_5, %transpose_3, %transpose_4, %transpose_5, %detach_87, %getitem_22, %getitem_27, %getitem_28, %_unsafe_view, %primals_38, %primals_36, %primals_34, %transpose_1, %detach_88, %detach_89, %primals_32, %silu_5, %primals_30, %getitem_15, %convolution_7, %detach_90, %detach_91, %primals_28, %silu_4, %primals_26, %getitem_12, %div_1, %detach_92, %detach_93, %primals_24, %convolution_3, %primals_22, %silu_3, %primals_20, %getitem_9, %convolution_4, %detach_94, %detach_95, %primals_18, %silu_2, %primals_16, %getitem_6, %detach_96, %detach_97, %primals_14, %constant_pad_nd, %primals_12, %silu_1, %primals_10, %getitem_3, %convolution_1, %detach_98, %detach_99, %primals_8, %silu, %primals_6, %getitem, %convolution, %detach_100, %detach_101, %primals_4, %primals_1, %primals_2), kwargs = {})
+   Original traceback:
+   None
+   Use tlparse to see full graph. (https://github.com/pytorch/tlparse?tab=readme-ov-file#tlparse-parse-structured-pt2-logs)
+OK dit compile=True bf16=False out_rel=9.29e-06 grad_rel=2.15e-05 time=2.5s
+OK sd3 compile=True bf16=False out_rel=5.03e-06 grad_rel=3.18e-05 time=3.4s
+I0000 00:00:1795389496.367695  159172 compilation_cache.cc:376] Compilation cache evicted.
+I0000 00:00:1795389496.368162  159172 compilation_cache.cc:231] CompilationCache final stats: num_cache_reqs=37
+num_cache_hits=6 {16.2%}
+num_compilations=31
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+
