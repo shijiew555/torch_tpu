@@ -1,0 +1,24 @@
+== long_empty_idx
+tensor([], dtype=torch.int64)
+loc("index/index"): error: slice size (1) is out of bounds for operand dimension (0) at index 0
+"stablehlo.gather"(...) {} : (tensor<0xi64>, tensor<0x1xi64>) -> ( ??? )
+*** SIGABRT received by PID 180714 (TID 180899) on cpu 17, si_code=-6, from PID 180714; stack trace: ***
+== float_empty_idx
+tensor([])
+loc("index/index"): error: slice size (1) is out of bounds for operand dimension (0) at index 0
+"stablehlo.gather"(...) {} : (tensor<0xf32>, tensor<0x1xi64>) -> ( ??? )
+*** SIGABRT received by PID 180977 (TID 181261) on cpu 15, si_code=-6, from PID 180977; stack trace: ***
+== empty_2d_rows
+tensor([], size=(0, 4))
+loc("index/index"): error: slice size (1) is out of bounds for operand dimension (0) at index 0
+"stablehlo.gather"(...) {} : (tensor<0x4xf32>, tensor<0x1xi64>) -> ( ??? )
+*** SIGABRT received by PID 181344 (TID 181573) on cpu 4, si_code=-6, from PID 181344; stack trace: ***
+== index_select
+tensor([])
+loc("index_select/index_select"): error: slice size (1) is out of bounds for operand dimension (0) at index 0
+"stablehlo.gather"(...) {} : (tensor<0xf32>, tensor<0x1xi64>) -> ( ??? )
+*** SIGABRT received by PID 181675 (TID 181901) on cpu 1, si_code=-6, from PID 181675; stack trace: ***
+== nonempty_empty_idx
+tensor([], dtype=torch.int64)
+== bool_mask_then_index
+tensor([], dtype=torch.int64)

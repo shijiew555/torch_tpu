@@ -1,0 +1,26 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1795389987.029189  179880 pjrt_api.cc:119] GetPjrtApi was found for TPU at /root/torch_tpu/.claude/worktrees/build-base/.venv/lib/python3.14/site-packages/libtpu/libtpu.so
+I0000 00:00:1795389987.968199  179880 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1795389987.969757  179880 libtpu_version.cc:63] Setting libtpu version to: 0.0.53.1
+/root/torch_tpu/.claude/worktrees/build-base/.venv/lib/python3.14/site-packages/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+I0000 00:00:1795389987.977746  179880 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.117. The framework PJRT API version is 0.118.
+I0000 00:00:1795389988.753930  179880 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+I0000 00:00:1795389988.772724  180075 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1795389988.772749  180075 tier2_compilation_cache.cc:80] Tier-2 compilation cache is disabled for world size 1.
+hasattr(torch.tpu, '_initialized'): False
+cpu use_reentrant=True: grad diff vs no checkpoint = 0.0
+cpu use_reentrant=False: grad diff vs no checkpoint = 0.0
+tpu use_reentrant=True: grad diff vs no checkpoint = 1.5137939453125
+tpu use_reentrant=False: grad diff vs no checkpoint = 1.5137939453125
+I0000 00:00:1795389990.049210  179880 compilation_cache.cc:376] Compilation cache evicted.
+I0000 00:00:1795389990.049285  179880 compilation_cache.cc:231] CompilationCache final stats: num_cache_reqs=48
+num_cache_hits=35 {72.9%}
+num_compilations=13
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

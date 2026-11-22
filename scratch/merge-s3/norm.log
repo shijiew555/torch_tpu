@@ -1,0 +1,61 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1795389996.616368  180341 pjrt_api.cc:119] GetPjrtApi was found for TPU at /root/torch_tpu/.claude/worktrees/build-base/.venv/lib/python3.14/site-packages/libtpu/libtpu.so
+I0000 00:00:1795389997.537592  180341 device_rt.cc:178] PjRt runtime initialization deferred for tpu
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+I0000 00:00:1795389997.539156  180341 libtpu_version.cc:63] Setting libtpu version to: 0.0.53.1
+/root/torch_tpu/.claude/worktrees/build-base/.venv/lib/python3.14/site-packages/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+I0000 00:00:1795389997.543442  180341 pjrt_api.cc:168] The PJRT plugin has PJRT API version 0.117. The framework PJRT API version is 0.118.
+I0000 00:00:1795389998.313657  180341 pjrt_c_api_client.cc:188] PjRtCApiClient created.
+I0000 00:00:1795389998.323920  180539 compilation_cache_utils.cc:220] Tier-3 compilation cache root directory: 
+I0000 00:00:1795389998.323946  180539 tier2_compilation_cache.cc:80] Tier-2 compilation cache is disabled for world size 1.
+layer_norm_shape 
+  cpu: RuntimeError: Given normalized_shape=[4], expected input with shape [*, 4], but got input of size[2, 3]
+  tpu: ok shape=(2, 3) sum=0.0000
+layer_norm_shape_same_numel 
+  cpu: RuntimeError: Given normalized_shape=[3, 2], expected input with shape [*, 3, 2], but got input of size[2, 6]
+  tpu: ok shape=(2, 6) sum=-0.0000
+E0000 00:00:1795389998.610341  180539 device_buffer.cc:623] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:99
+
+E0000 00:00:1795389998.610617  180539 device_buffer.cc:623] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:99
+
+layer_norm_module 
+  cpu: RuntimeError: Given normalized_shape=[768], expected input with shape [*, 768], but got input of size[2, 512]
+  tpu: RuntimeError: layer_norm(): failed to broadcast tensor: <unknown>:0: error: Cannot broadcast input: 'tensor<768xf32>' to target shape tensor<2x512>
+E0000 00:00:1795389998.614236  180539 device_buffer.cc:623] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:99
+
+E0000 00:00:1795389998.614404  180539 device_buffer.cc:623] [SetAsError] Failed to set materialization error: FAILED_PRECONDITION: attempted to set materialization error after materialization was already started [type.googleapis.com/torch_tpu.root_op_name='']
+=== Source Location Trace: ===
+csrc/common/status_builder.cc:99
+
+layer_norm_weight 
+  cpu: RuntimeError: Expected weight to be of same shape as normalized_shape, but got weight of shape [4] and normalized_shape = [3]
+  tpu: RuntimeError: layer_norm(): failed to broadcast tensor: <unknown>:0: error: Cannot broadcast input: 'tensor<4xf32>' to target shape tensor<2x3>
+rms_norm_shape 
+  cpu: RuntimeError: Given normalized_shape=[4], expected input with shape [*4], but got input of size[2, 3]
+  tpu: RuntimeError: rms_norm(): expected input trailing dimensions to match normalized_shape [4], got input of shape [2, 3]
+rms_norm_weight 
+  cpu: RuntimeError: Expected weight to be of same shape as normalized_shape, but got weight of shape [4] and normalized_shape = [3]
+  tpu: RuntimeError: rms_norm(): expected weight to be of same shape as normalized_shape [3], got weight of shape [4]
+group_norm_groups 
+  cpu: RuntimeError: Expected number of channels in input to be divisible by num_groups, but got input of shape [2, 6, 4] and num_groups=4
+  tpu: RuntimeError: Expected number of channels in input to be divisible by num_groups, but got input of shape [2, 6, 4] and num_groups=4
+group_norm_weight 
+  cpu: RuntimeError: Expected weight to be a vector of size equal to the number of channels in input, but got weight of shape [5] and input of shape [2, 6, 4]
+  tpu: RuntimeError: Expected weight to be a vector of size equal to the number of channels in input, but got weight of shape [5] and input of shape [2, 6, 4]
+I0000 00:00:1795389999.669419  180341 compilation_cache.cc:376] Compilation cache evicted.
+I0000 00:00:1795389999.669459  180341 compilation_cache.cc:231] CompilationCache final stats: num_cache_reqs=23
+num_cache_hits=9 {39.1%}
+num_compilations=12
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+
