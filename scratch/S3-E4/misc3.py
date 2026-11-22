@@ -1,0 +1,18 @@
+import faulthandler, warnings; faulthandler.dump_traceback_later(300, exit=True)
+import torch, torch_tpu  # noqa
+d="tpu"
+exec(open("misc2.py").read().split('x = torch.randn(2000, 300)')[0].split('d="tpu"')[1])
+x = torch.randn(2000, 300)
+a, b = repr(x.to(d)), repr(x)
+print("repr equal ignoring device:", a.replace(",\n       device='tpu:0')", ")") == b)
+import difflib; print("\n".join(list(difflib.unified_diff(b.splitlines(), a.splitlines(), lineterm=""))[:12]))
+y = torch.randn(4,5)*1e-5; print(repr(y.to(d))); print(repr(y))
+sp = torch.eye(3).to_sparse()
+t("sparse_coo_to", lambda: (lambda s: s)(sp.to(d)).device)
+t("sparse_coo_add", lambda: (sp.to(d) + sp.to(d)).to_dense().cpu())
+t("sparse_coo_mm", lambda: torch.sparse.mm(sp.to(d), torch.ones(3,2,device=d)).cpu())
+t("sparse_coo_to_dense", lambda: sp.to(d).to_dense().cpu())
+t("sparse_coo_back", lambda: sp.to(d).cpu().to_dense())
+t("sparse_coo_values", lambda: sp.to(d).coalesce().values().cpu())
+src = open("misc2.py").read(); k = src.index("def det():"); exec(src[k:src.index("t(\"backends\"", k)])
+t("deterministic_ops", det)

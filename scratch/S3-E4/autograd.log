@@ -1,0 +1,47 @@
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+/root/torch_tpu/.claude/worktrees/build-base/.venv/lib/python3.14/site-packages/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+[register_hook] cpu: ([7.0, 7.0, 7.0, 7.0], ['cpu']) warns=[]
+[register_hook] tpu: ([7.0, 7.0, 7.0, 7.0], ['tpu']) warns=[]
+[module_hooks] cpu: (['pre', (torch.Size([2, 3]), 'cpu')], [-0.92618, 0.75679, 0.79649, -0.92618]) warns=[]
+[module_hooks] tpu: (['pre', (torch.Size([2, 3]), 'tpu')], [-0.85843, 0.17469, -0.64073, -0.85843]) warns=['//TorchTpu/Performance// TPU is using HIGHEST precision as requested, but performance may be significantly lower. Consid']
+[saved_tensors_hooks] cpu: ([-0.11079, 0.14307, 0.63975, 1.43971], ['cpu', 'cpu', 'cpu', 'cpu']) warns=[]
+[saved_tensors_hooks] tpu: ([-0.11079, 0.14307, 0.63975, 1.43971], ['tpu', 'tpu', 'tpu', 'tpu']) warns=[]
+[save_on_cpu_pin] cpu: ([-0.07564, 0.12657, 0.01253, -0.12532], 0.6721) warns=[]
+[save_on_cpu_pin] tpu: ([-0.07564, 0.12657, 0.01253, -0.12532], 0.6721) warns=["The argument 'device' of Tensor.pin_memory() is deprecated. Please do not pass this argument. (Triggered internally at /", "The argument 'device' of Tensor.is_pinned() is deprecated. Please do not pass this argument. (Triggered internally at /_", "The argument 'device' of Tensor.pin_memory() is deprecated. Please do not pass this argument. (Triggered internally at /", "The argument 'device' of Tensor.is_pinned() is deprecated. Please do not pass this argument. (Triggered internally at /_", "The argument 'device' of Tensor.pin_memory() is deprecated. Please do not pass this argument. (Triggered internally at /", "The argument 'device' of Tensor.is_pinned() is deprecated. Please do not pass this argument. (Triggered internally at /_", "The argument 'device' of Tensor.pin_memory() is deprecated. Please do not pass this argument. (Triggered internally at /", "The argument 'device' of Tensor.is_pinned() is deprecated. Please do not pass this argument. (Triggered internally at /_", "The argument 'device' of Tensor.pin_memory() is deprecated. Please do not pass this argument. (Triggered internally at /", "The argument 'device' of Tensor.is_pinned() is deprecated. Please do not pass this argument. (Triggered internally at /_", "The argument 'device' of Tensor.pin_memory() is deprecated. Please do not pass this argument. (Triggered internally at /", "The argument 'device' of Tensor.is_pinned() is deprecated. Please do not pass this argument. (Triggered internally at /_"]
+[save_on_cpu_nopin] cpu: [-1.18157, -0.964, -0.38958, 0.38958] warns=[]
+[save_on_cpu_nopin] tpu: [-1.18157, -0.964, -0.38958, 0.38958] warns=[]
+[detect_anomaly_ok] cpu: [-1.38177, -1.05984, -0.39468, 0.39468] warns=['Anomaly Detection has been enabled. This mode will increase the runtime and should only be enabled for debugging.']
+[detect_anomaly_ok] tpu: [-1.38177, -1.05984, -0.39468, 0.39468] warns=['Anomaly Detection has been enabled. This mode will increase the runtime and should only be enabled for debugging.']
+[detect_anomaly_nan] cpu: EXC RuntimeError: Function 'DivBackward0' returned nan values in its 1th output.
+[detect_anomaly_nan] tpu: EXC RuntimeError: Function 'DivBackward0' returned nan values in its 1th output.
+[grad_allow_unused] cpu: ([2.0, 2.0, 2.0], [0.0, 0.0, 0.0], None) warns=[]
+[grad_allow_unused] tpu: ([2.0, 2.0, 2.0], [0.0, 0.0, 0.0], None) warns=[]
+[is_grads_batched] cpu: ([-0.2263, 0.92622, 0.66761], [-0.2263, 0.92622, 0.66761]) warns=[]
+[is_grads_batched] tpu: ([3.28863, -2.50696, -0.11832], [3.28863, -2.50696, -0.11832]) warns=[]
+[forward_ad] cpu: ([0.0, 0.71618, 1.7251, 3.20541], [0.0, 0.0, 0.0, 0.0]) warns=['`torch.jit.script` is not supported in Python 3.14+ and may break. Please switch to `torch.compile` or `torch.export`.', '`torch.jit.script` is not supported in Python 3.14+ and may break. Please switch to `torch.compile` or `torch.export`.', '`torch.jit.script` is not supported in Python 3.14+ and may break. Please switch to `torch.compile` or `torch.export`.', '`torch.jit.script` is not supported in Python 3.14+ and may break. Please switch to `torch.compile` or `torch.export`.', '`torch.jit.script` is not supported in Python 3.14+ and may break. Please switch to `torch.compile` or `torch.export`.', '`torch.jit.script` is not supported in Python 3.14+ and may break. Please switch to `torch.compile` or `torch.export`.', '`torch.jit.script` is not supported in Python 3.14+ and may break. Please switch to `torch.compile` or `torch.export`.', '`torch.jit.script` is not supported in Python 3.14+ and may break. Please switch to `torch.compile` or `torch.export`.', '`torch.jit.script` is not supported in Python 3.14+ and may break. Please switch to `torch.compile` or `torch.export`.', '`torch.jit.script` is not supported in Python 3.14+ and may break. Please switch to `torch.compile` or `torch.export`.', '`torch.jit.script` is not supported in Python 3.14+ and may break. Please switch to `torch.compile` or `torch.export`.', '`torch.jit.script` is not supported in Python 3.14+ and may break. Please switch to `torch.compile` or `torch.export`.', '`torch.jit.script` is not supported in Python 3.14+ and may break. Please switch to `torch.compile` or `torch.export`.', '`torch.jit.script` is not supported in Python 3.14+ and may break. Please switch to `torch.compile` or `torch.export`.', '`torch.jit.script` is not supported in Python 3.14+ and may break. Please switch to `torch.compile` or `torch.export`.', '`torch.jit.script` is not supported in Python 3.14+ and may break. Please switch to `torch.compile` or `torch.export`.', '`torch.jit.script` is not supported in Python 3.14+ and may break. Please switch to `torch.compile` or `torch.export`.']
+[forward_ad] tpu: ([0.0, 0.71618, 1.7251, 3.2054], [0.0, 0.0, 0.0, 0.0]) warns=[]
+[inference_mode_later] cpu: ('EXC1 Inference tensors cannot be saved for backward. Please do not use Tensors created in inference mode in computation ', 'EXC2 Inplace update to inference tensor outside InferenceMode is not allowed.You can ', True) warns=[]
+[inference_mode_later] tpu: ('EXC1 Inference tensors cannot be saved for backward. Please do not use Tensors created in inference mode in computation ', 'EXC2 Inplace update to inference tensor outside InferenceMode is not allowed.You can ', True) warns=[]
+[retain_grad] cpu: ([6.0, 6.0, 6.0], [18.0, 18.0, 18.0]) warns=[]
+[retain_grad] tpu: ([6.0, 6.0, 6.0], [18.0, 18.0, 18.0]) warns=[]
+[requires_grad_view] cpu: ([2.0, 4.0, 6.0], True) warns=[]
+[requires_grad_view] tpu: ([2.0, 4.0, 6.0], True) warns=[]
+[custom_function] cpu: [2.0, 2.79122, 3.89547, 5.43656] warns=[]
+[custom_function] tpu: [2.0, 2.79122, 3.89546, 5.43656] warns=[]
+[double_backward] cpu: [0.0, 2.0, 4.0, 6.0] warns=[]
+[double_backward] tpu: [0.0, 2.0, 4.0, 6.0] warns=[]
+[gradcheck_f64] cpu: True warns=[]
+[gradcheck_f64] tpu: True warns=[]
+[post_accumulate_hook] cpu: [[2.0, 2.0, 2.0]] warns=[]
+[post_accumulate_hook] tpu: [[2.0, 2.0, 2.0]] warns=[]
+[checkpoint_nonreentrant_nodrop] cpu: [-0.31346, 0.34081, -0.55974, -0.13143] warns=[]
+[checkpoint_nonreentrant_nodrop] tpu: [-0.31346, 0.34081, -0.55974, -0.13143] warns=[]
+num_cache_hits=318 {64.7%}
+num_compilations=173
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

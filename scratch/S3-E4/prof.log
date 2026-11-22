@@ -1,0 +1,60 @@
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+/root/torch_tpu/.claude/worktrees/build-base/.venv/lib/python3.14/site-packages/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+USDT:2026-11-22 23:03:45 133825:133825 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-22 23:03:45 133825:133825 SyncActivityProfilerHandler.cpp:46] profiler_stop
+USDT:2026-11-22 23:03:45 133825:133825 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-22 23:03:45 133825:133825 SyncActivityProfilerHandler.cpp:46] profiler_stop
+[W1122 23:03:45.528773706 collection.cpp:1201] Warning: Detected an event which was likely passed to kineto by the PyTorch profiler, but is not present in the set of known events: PJRT_LoadedExecutable_Execute This most likely means that Kineto has not maintained address stability for this event. Please report this to the PyTorch team. (function operator())
+USDT:2026-11-22 23:03:45 133825:133825 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-22 23:03:45 133825:133825 SyncActivityProfilerHandler.cpp:46] profiler_stop
+PrivateUse1 activity: ProfilerActivity.TPU
+ACTS [<ProfilerActivity.CPU: 0>] warns []
+ n events 25 has my_step True
+ events with device time: 0 []
+ device types: {'DeviceType.CPU'}
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                                                   Name    Self CPU %      Self CPU   CPU total %     CPU total  CPU time avg       CPU Mem  Self CPU Mem    # of Calls  
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                                                my_step        41.15%     954.511us        59.74%       1.386ms       1.386ms           0 B           0 B             1  
+                                         aten::_to_copy        22.16%     514.018us        22.73%     527.149us     527.149us           4 B           0 B             1  
+                                Optimizer.step#SGD.step         5.07%     117.689us         7.79%     180.640us     180.640us           0 B           0 B             1  
+                                           aten::linear         4.09%      94.871us         4.09%      94.871us      47.435us           0 B           0 B             2  
+                      Optimizer.zero_grad#SGD.zero_grad         3.52%      81.669us         3.52%      81.669us      81.669us           0 B           0 B             1  
+                                    aten::_foreach_add_         2.71%      62.951us         2.71%      62.951us      62.951us           0 B           0 B             1  
+torch::autograd::CppNode<torch_tpu::(anonymous names...         2.56%      59.289us         2.56%      59.289us      59.289us           0 B           0 B             1  
+                                  aten::linear_backward         2.48%      57.471us         2.48%      57.471us      28.736us           0 B           0 B             2  
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+Self CPU time total: 2.320ms
+
+ chrome trace cats {None: 12, 'cpu_op': 44, 'fwdbwd': 8, 'user_annotation': 3, 'cpu_instant_event': 2, 'Trace': 1}
+ACTS [<ProfilerActivity.CPU: 0>, <ProfilerActivity.TPU: 5>] warns []
+ n events 70 has my_step True
+ events with device time: 45 ['tt_jit_linear(7883668009089137697)', '%convolution_add_fusion = f32[64,512]{1,0:T(8,128)} fusion(f32[64,256]{1,0:T(8,128)} %Arg_0.1, f32[512,256]{1,0:T(8,128)} %Arg_1.1, f32[512]{0:T(512)} %Arg_2.1), kind=kOutput, calls=%fused_computation', 'tt_jit_relu(2735202260266731430)', '%broadcast_maximum_fusion = f32[64,512]{1,0:T(8,128)} fusion(f32[64,512]{1,0:T(8,128)} %Arg_0.1), kind=kLoop, calls=%fused_computation', 'tt_jit_linear(17759236558407433529)']
+ device types: {'DeviceType.TPU', 'DeviceType.CPU'}
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                                                   Name    Self CPU %      Self CPU   CPU total %     CPU total  CPU time avg      Self TPU    Self TPU %     TPU total  TPU time avg       CPU Mem  Self CPU Mem    # of Calls  
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                                         aten::_to_copy        34.98%     721.710us        35.70%     736.640us     736.640us       0.000us         0.00%       0.000us       0.000us           4 B           0 B             1  
+                                                my_step        33.93%     700.120us        48.53%       1.001ms       1.001ms       0.000us         0.00%       0.000us       0.000us           0 B           0 B             1  
+                                Optimizer.step#SGD.step         4.10%      84.500us         6.07%     125.350us     125.350us       0.000us         0.00%       0.000us       0.000us           0 B           0 B             1  
+autograd::engine::evaluate_function: torch::autograd...         3.51%      72.410us         4.92%     101.450us     101.450us       0.000us         0.00%       0.000us       0.000us           0 B           0 B             1  
+                      Optimizer.zero_grad#SGD.zero_grad         3.35%      69.140us         3.35%      69.140us      69.140us       0.000us         0.00%       0.000us       0.000us           0 B           0 B             1  
+                                           aten::linear         2.91%      59.960us         2.91%      59.960us      29.980us       0.000us         0.00%       0.000us       0.000us           0 B           0 B             2  
+                                  aten::linear_backward         2.47%      51.010us         2.47%      51.010us      25.505us       0.000us         0.00%       0.000us       0.000us           0 B           0 B             2  
+                                    aten::_foreach_add_         1.98%      40.850us         1.98%      40.850us      40.850us       0.000us         0.00%       0.000us       0.000us           0 B           0 B             1  
+--------------
+ chrome trace cats {None: 113, 'cpu_op': 1974, 'fwdbwd': 8, 'user_annotation': 3, 'cpu_instant_event': 2, 'kernel': 45, 'Trace': 1}
+tb files ['/tmp/s3e4_tb/369262951c12_133825.1795388625525949941.pt.trace.json']
+mem alloc before/after/del: 3080192 3080192 3080192 peak 3080192 3080192 peak after reset 3080192
+memory_reserved 3080192 stats keys ['active.all.allocated', 'active.all.current', 'active.all.freed', 'active.all.peak', 'active.large_pool.allocated', 'active.large_pool.current', 'active.large_pool.freed', 'active.large_pool.peak', 'active.small_pool.allocated', 'active.small_pool.current']
+torch.tpu.memory_allocated skip
+mem_get_info (16906255872, 16909336064)
+num_cache_hits=70 {87.5%}
+num_compilations=10
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+
