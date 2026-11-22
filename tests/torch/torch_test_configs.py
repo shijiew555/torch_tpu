@@ -367,6 +367,14 @@ TEST_EXCLUSIONS: Final[
             "test_prune_linear_bias_linear",
         ],
     },
+    "test_autocast": {
+        # These tests count casts to float16, the PyTorch default autocast
+        # dtype, but TorchTPU autocasts to bfloat16 by default.
+        "TestAutocastDevice": [
+            "test_cache_disabled",
+            "test_cast_cache_is_global",
+        ],
+    },
     "test_autograd": {
         "TestAutogradDeviceType": [
             "test_checkpointing_without_reentrant_dataparallel",
