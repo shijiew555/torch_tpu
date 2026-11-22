@@ -39,7 +39,7 @@ The call covers the thread that loads TorchTPU and autograd backward, which inhe
 A Python thread started later still gets float16.
 A full fix for all threads needs a per-backend default in PyTorch core.
 
-Environment: TPU v5e, torch 2.14.1+cpu, torch_tpu 0.3.0, libtpu 0.0.50.
+Environment: TPU v5e, torch 2.16.0.dev20261112+cpu, torch_tpu 0.3.0 built from `afd6943a`, libtpu 0.0.53.1.
 
 # PR draft
 
@@ -59,24 +59,37 @@ PyTorch keeps this default per thread, so the change covers the thread that load
 Threads that the user starts later still default to float16 until PyTorch core supports a per-backend default.
 The API reference now documents this.
 
+Two upstream tests, `TestAutocastDevice.test_cache_disabled` and `test_cast_cache_is_global`, count casts of a weight to float16.
+With the bfloat16 default the weight is cast to bfloat16, so they fail, and this change excludes them for TPU.
+
 Fixes #<issue>
 
 ## Test Plan
 
 New tests in `amp_test` check `torch.get_autocast_dtype("tpu")`, the output dtype and overflow of a matmul under `torch.autocast("tpu")`, and the dtype seen in autograd backward.
 They fail before the change and pass after it.
-`device_module_test_tpu` passes before and after.
-`test_autocast_works` fails before and after in my environment, because the installed 0.3.0 binaries predate the `aten::linear` lowering change that its expected MLIR checks.
 
-Environment: TPU v5e, torch 2.14.1+cpu, libtpu 0.0.50.
-The tests ran with this branch's Python sources on top of the torch_tpu 0.3.0 binaries, not with a Bazel build.
+| Test | Before | After |
+| --- | --- | --- |
+| Repro script above | float16, inf | bfloat16, 360448.0 |
+| New `amp_test` tests (3) | 3 fail | pass |
+| `device_module_test_tpu` (41) | pass | pass |
+| PyTorch `test_autocast` (9) | pass | pass, 2 excluded |
+
+`test_autocast_rnn` fails before and after in my environment with `failed to inline functions in MLIR module`.
+It needs the C++ change in 5bf70a27, which the binaries I used do not have.
+
+Environment: TPU v5e, torch 2.16.0.dev20261112+cpu, libtpu 0.0.53.1.
+The tests ran with the Python sources of this branch at `<SHA>` on top of torch_tpu binaries built from `afd6943a`, not with a Bazel build of this branch.
+PyTorch tests came from the matching PyTorch commit `82b208e2`.
 
 ```
-python3 -m tests.amp_test
-python3 -m tests.device.device_module_tpu_test
+python -m tests.amp_test
+python -m tests.device.device_module_tpu_test
+TORCH_TPU_INTERNAL_TORCH_TEST_MODULE=test_autocast python -m tests.torch.torch_test_runner
 BASE_SHA=upstream/main nox -s lint
 ```
 
 🤖 Generated with [Claude Code](https://claude.com/claude-code)
 
-https://claude.ai/code/session_01PrgHFEYJoJ26r8bKhDx9RT
+https://claude.ai/code/session_01PrgHFE4WieLXb9ZHJRG4nq

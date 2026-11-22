@@ -1,21 +1,32 @@
-# autocast-bf16-default (worker 1)
+# autocast-bf16-default
 
-State: done, 06:31Z. Waiting for user approval of issue + PR.
+State (session 3 refresh, in progress): PR branch rebuilt on upstream/main
+82d0a494. Final checks running.
 
-* Branches (pushed to origin): autocast-bf16-default 5d6f9787 (backup),
-  autocast-bf16-default-pr 50a7b83a (clean, 1 commit on upstream/main e411f09d).
-* Fix: _loader._init_device_impl calls torch.set_autocast_dtype("tpu", bf16).
-  Tests in amp_test.py (3 new); device_module_testing setUp default fp16 -> bf16.
-  Docs note on thread scope in docs/api_reference.md.
-* Results (overlay on 0.3.0 binaries, TPU v5e, logs in .claude/tmp/autocast-bf16-default/):
-  * amp_test new tests: fail before (3), pass after.
-  * amp_test test_autocast_works: fails before and after (identical). Cause: 0.3.0
-    binaries predate 2b69edb1 (linear f32 accumulation lowering). Env artifact.
+* Branches on origin:
+  * autocast-bf16-default: backup, now 3 commits on e411f09d. New commit
+    adds the PyTorch test_autocast exclusions (see below).
+  * autocast-bf16-default-pr: old clean branch on e411f09d. Superseded.
+  * autocast-bf16-default-pr2: new clean branch, 1 commit on 82d0a494.
+* Env: worktree venv, torch 2.16.0.dev20261112+cpu, libtpu 0.0.53.1,
+  afd6943a wheel + Python source overlay of the tested commit. TPU v5e.
+  Scripts and logs: .claude/tmp/autocast-bf16-default-s3/.
+* New finding: with the fix, PyTorch test_autocast (TorchTPU runner,
+  PyTorch tests at 82b208e2) fails 2 tests: TestAutocastDevice
+  test_cache_disabled and test_cast_cache_is_global. They count casts to
+  float16 (hard-coded). Fix: exclude both in tests/torch/torch_test_configs.py.
+  Upstream PyTorch could use torch.get_autocast_dtype(device) instead.
+* Results (before = base, after = fix):
+  * Repro: float16 / inf -> bfloat16 / 360448.0 (installed wheel, e411,
+    main 82d0a494 all reproduce the bug).
+  * amp_test: new 3 tests pass after. test_autocast_works now passes.
+    test_autocast_rnn errors before and after on main (needs C++ 5bf70a27,
+    not in afd6943a binaries).
   * device_module_tpu_test: 41 OK before and after.
-  * nox -s lint: pass (backup and PR branch). nox -s format: no changes.
-* Coverage: main thread yes; autograd backward thread yes; new Python thread no
-  (float16, PyTorch TLS default); DataLoader workers not tested.
-* Found: stale AOTAutograd cache can return float16 compiled graphs after the
-  change (cache key ignores autocast dtype for `_enter_autocast(..., None, ...)`).
-  Follow-up candidate.
-* PR + issue draft: coord/tasks/autocast-bf16-default-pr.md
+  * PyTorch test_autocast: 9 OK (2 skipped) before; after: 2 fail without
+    exclusion, pass with it.
+  * nox -s lint (BASE_SHA=upstream/main): pass. nox -s format: no changes.
+* Pre-existing (not this task): PyTorch test_ops test_fake_autocast aborts
+  the process at index_reduce (scatter.cc:412 CHECK, rank 2 vs 1), before
+  and after the fix.
+* PR + issue draft: coord/pr_desc/autocast-bf16-default.md
