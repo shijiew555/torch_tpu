@@ -9,3 +9,12 @@ Session 2 times: T0 2026-11-20T21:59:51Z.
 Session 1 times: T0 2026-11-18T02:32:14Z.
 
 PR and issue drafts: `pr_desc/<task-slug>.md`.
+
+## Session 3 plan (user decision 23:05Z)
+
+PRs 1-4: refresh the completed session 1-2 branches (rebase check, new test
+run on the afd6943a setup, fill in results in pr_desc/):
+autocast-bf16-default, compiled-output-alias, unfold-col2im-precision,
+unique-sorted-false.
+PR 5: best new task from session 3 discovery (needs user approval).
+pin-memory-deprecation (unfinished) does not count.
