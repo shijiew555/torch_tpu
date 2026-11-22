@@ -1,7 +1,7 @@
 # autocast-bf16-default
 
-State (session 3 refresh, in progress): PR branch rebuilt on upstream/main
-82d0a494. Final checks running.
+State: session 3 refresh done, 23:45Z. Waiting for user approval.
+pr2 = 3ef9ff18 (tested commit), backup = e8aafb1d.
 
 * Branches on origin:
   * autocast-bf16-default: backup, now 3 commits on e411f09d. New commit
@@ -19,6 +19,7 @@ State (session 3 refresh, in progress): PR branch rebuilt on upstream/main
 * Results (before = base, after = fix):
   * Repro: float16 / inf -> bfloat16 / 360448.0 (installed wheel, e411,
     main 82d0a494 all reproduce the bug).
+  * New amp tests on 82d0a494 source: 3 fail.
   * amp_test: new 3 tests pass after. test_autocast_works now passes.
     test_autocast_rnn errors before and after on main (needs C++ 5bf70a27,
     not in afd6943a binaries).
@@ -26,6 +27,9 @@ State (session 3 refresh, in progress): PR branch rebuilt on upstream/main
   * PyTorch test_autocast: 9 OK (2 skipped) before; after: 2 fail without
     exclusion, pass with it.
   * nox -s lint (BASE_SHA=upstream/main): pass. nox -s format: no changes.
+* PyTorch test_ops test_fake_autocast (456 tests, without index_reduce):
+  identical results before and after (4 errors: linalg_ldl_solve,
+  linalg_pinv, logdet, nn_functional_prelu).
 * Pre-existing (not this task): PyTorch test_ops test_fake_autocast aborts
   the process at index_reduce (scatter.cc:412 CHECK, rank 2 vs 1), before
   and after the fix.
