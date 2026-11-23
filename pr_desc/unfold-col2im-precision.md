@@ -5,6 +5,7 @@ Title: float32 unfold backward and F.fold give bfloat16-accurate results
 `Tensor.unfold` backward, `F.unfold` backward and `F.fold` return float32 results with errors of about 1e-2 on TPU.
 The error is the same as when the input is rounded to bfloat16 on CPU.
 `torch.set_float32_matmul_precision("highest")` does not change it.
+`torch.compile(backend="tpu")` gives the same error.
 
 Repro:
 
@@ -13,6 +14,7 @@ Repro:
    ```python
    import torch
    import torch.nn.functional as F
+   import torch_tpu
 
    torch.manual_seed(0)
    cols = torch.randn(2, 18, 15)
@@ -23,10 +25,13 @@ Repro:
 2. Expected: an error of about 1e-6.
    Actual: 0.0156.
 
+With the same kind of random input, `F.unfold` backward has an error of 0.0114 and `Tensor.unfold` backward has an error of 0.0072.
+
 Cause: the unfold backward and col2im lowerings use a convolution with 0/1 weights and an empty precision config.
 The TPU then computes the convolution with bfloat16 inputs.
 
-Environment: torch 2.14.1+cpu, torch_tpu 0.3.0, libtpu 0.0.50, TPU v5e.
+Environment: torch 2.16.0.dev20261112+cpu, torch_tpu 0.3.0 built from source at afd6943a, libtpu 0.0.53.1, TPU v5e, Python 3.14.
+The root cause lines are unchanged on main at 82d0a494.
 
 # PR draft
 
@@ -38,8 +43,9 @@ Fixes #<issue>.
 
 `Tensor.unfold` backward, `F.unfold` backward and `F.fold` returned float32 results that were only bfloat16-accurate, with errors of about 1e-2.
 Both lowerings sum the input through a convolution with 0/1 weights and an empty precision config, so the TPU rounds the input to bfloat16.
-This change sets HIGHEST precision on the input for float32, as `gather.cc` does for its one-hot dot.
+This change sets HIGHEST precision on the input for float32, as `gather.cc` and `scatter.cc` do for their one-hot dots.
 The weights are exact 0/1 values, so they keep DEFAULT precision.
+Other dtypes do not change.
 
 `test_col2im_fold` now uses the default tolerances.
 Its integer inputs never needed the loose tolerances.
@@ -52,17 +58,22 @@ New tests in `tests/ops_unit_test.py` compare float32 results with CPU at the de
 * `test_im2col_backward_float32_precision`
 * `test_unfold_backward_float32_precision`
 
-Before the fix, the three new tests fail with maximum absolute errors of 1.6e-2 for `F.fold`, 1.3e-2 for `F.unfold` backward and 5.6e-3 for `Tensor.unfold` backward.
-After the fix, all im2col, col2im and unfold tests in `ops_unit_test.py` pass:
+Results on TPU v5e, with the change applied to afd6943a and built from source:
+
+| Check | Before | After |
+| --- | --- | --- |
+| `F.fold` max abs error vs CPU, eager and `torch.compile` | 1.6e-2 | 4.8e-7 |
+| `F.unfold` backward max abs error vs CPU | 1.1e-2 | 4.8e-7 |
+| `Tensor.unfold` backward max abs error vs CPU | 7.2e-3 | 0 |
+| `ops_unit_test.py` filter `*col2im* *im2col* *unfold* *fold*` (15 tests) | 3 new tests fail | pass |
+| `ops_test.py` filter `*unfold*`, with and without `--compute_grad=True` | pass | pass |
+
+The `ops_unit_test.py` run:
 
 ```bash
-bazel test --config=wheel_common --config=no_rbe \
-  --spawn_strategy=sandboxed,local --strategy=sandboxed,local \
-  --//:test_wheel=True --local_test_jobs=1 \
-  '--test_filter=*col2im* *im2col* *unfold*' \
-  //tests:ops_unit_test_tpu-v5lite
+TESTBRIDGE_TEST_ONLY='*col2im* *im2col* *unfold* *fold*' python -m tests.ops_unit_test
 ```
 
-`nox -s lint` passes.
+`nox -s lint` and `nox -s format` pass on this branch, which is based on 82d0a494.
 
-Environment: TPU v5e, libtpu 0.0.50, torch 2.14.1+cpu, hermetic Python 3.14.
+Environment: TPU v5e, libtpu 0.0.53.1, torch 2.16.0.dev20261112+cpu, Python 3.14.

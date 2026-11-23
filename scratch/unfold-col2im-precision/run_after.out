@@ -1,0 +1,13 @@
+=== after repro
+matmul_precision=default  F.fold                   max abs err 4.77e-07
+matmul_precision=default  F.unfold backward        max abs err 4.77e-07
+matmul_precision=default  Tensor.unfold backward   max abs err 0
+matmul_precision=highest  F.fold                   max abs err 4.77e-07
+matmul_precision=highest  F.unfold backward        max abs err 4.77e-07
+matmul_precision=highest  Tensor.unfold backward   max abs err 0
+torch.compile(backend='tpu') F.fold max abs err 4.77e-07
+
+=== after ops_unit_test filter
+exit 0
+Ran 15 tests in 2.160s
+OK

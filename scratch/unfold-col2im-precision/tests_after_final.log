@@ -1,0 +1,46 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+Running tests under Python 3.14.9: /root/torch_tpu/.claude/worktrees/unfold-col2im-precision/.venv/bin/python
+Repro with --test_random_seed=1234
+[ RUN      ] OpsUnitTest.test_col2im_fold
+[       OK ] OpsUnitTest.test_col2im_fold
+[ RUN      ] OpsUnitTest.test_col2im_fold_float32_precision
+[       OK ] OpsUnitTest.test_col2im_fold_float32_precision
+[ RUN      ] OpsUnitTest.test_im2col_backward_float32_precision
+[       OK ] OpsUnitTest.test_im2col_backward_float32_precision
+[ RUN      ] OpsUnitTest.test_im2col_dtypes0 (torch.float32)
+[       OK ] OpsUnitTest.test_im2col_dtypes0 (torch.float32)
+[ RUN      ] OpsUnitTest.test_im2col_dtypes1 (torch.float64)
+[       OK ] OpsUnitTest.test_im2col_dtypes1 (torch.float64)
+[ RUN      ] OpsUnitTest.test_im2col_dtypes2 (torch.float16)
+[       OK ] OpsUnitTest.test_im2col_dtypes2 (torch.float16)
+[ RUN      ] OpsUnitTest.test_im2col_dtypes3 (torch.bfloat16)
+[       OK ] OpsUnitTest.test_im2col_dtypes3 (torch.bfloat16)
+[ RUN      ] OpsUnitTest.test_im2col_errors
+[       OK ] OpsUnitTest.test_im2col_errors
+[ RUN      ] OpsUnitTest.test_im2col_geometries0 ((1, 1), (1, 1), (0, 0), (1, 1))
+[       OK ] OpsUnitTest.test_im2col_geometries0 ((1, 1), (1, 1), (0, 0), (1, 1))
+[ RUN      ] OpsUnitTest.test_im2col_geometries1 ((2, 3), (1, 1), (0, 0), (1, 1))
+[       OK ] OpsUnitTest.test_im2col_geometries1 ((2, 3), (1, 1), (0, 0), (1, 1))
+[ RUN      ] OpsUnitTest.test_im2col_geometries2 ((2, 2), (2, 2), (0, 0), (1, 1))
+[       OK ] OpsUnitTest.test_im2col_geometries2 ((2, 2), (2, 2), (0, 0), (1, 1))
+[ RUN      ] OpsUnitTest.test_im2col_geometries3 ((2, 2), (1, 1), (1, 1), (1, 1))
+[       OK ] OpsUnitTest.test_im2col_geometries3 ((2, 2), (1, 1), (1, 1), (1, 1))
+[ RUN      ] OpsUnitTest.test_im2col_geometries4 ((2, 2), (1, 1), (0, 0), (2, 2))
+[       OK ] OpsUnitTest.test_im2col_geometries4 ((2, 2), (1, 1), (0, 0), (2, 2))
+[ RUN      ] OpsUnitTest.test_im2col_geometries5 ((3, 3), (2, 1), (1, 0), (2, 1))
+[       OK ] OpsUnitTest.test_im2col_geometries5 ((3, 3), (2, 1), (1, 0), (2, 1))
+[ RUN      ] OpsUnitTest.test_unfold_backward_float32_precision
+[       OK ] OpsUnitTest.test_unfold_backward_float32_precision
+----------------------------------------------------------------------
+Ran 15 tests in 2.324s
+
+OK
+num_cache_hits=0 {0.0%}
+num_compilations=18
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+
