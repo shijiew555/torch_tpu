@@ -1,9 +1,9 @@
 # ckpt-tpu-rng-state (session 3 worker)
 
-State: fix and tests done, lint passes. Next: PR branch and draft.
+State: done. PR branch ckpt-tpu-rng-state-pr aae1baaf (squashed on upstream/main 82d0a494), draft in pr_desc/ckpt-tpu-rng-state.md.
 
 * Base: upstream/main 82d0a494. Worktree: .claude/worktrees/ckpt-tpu-rng-state.
-* Backup branch: ckpt-tpu-rng-state 58c539021 (pushed).
+* Backup branch: ckpt-tpu-rng-state 58c53902 (pushed).
 * Fix: metaclass property `_DeviceModuleMeta._initialized` (bad-fork check +
   backend `_is_initialized()`, no warning). `is_initialized()` returns it.
   torch.tpu reaches it through `private_fallback`.
@@ -28,3 +28,4 @@ State: fix and tests done, lint passes. Next: PR branch and draft.
 Env limits: on the upstream/main overlay, 11 compiled RNG tests fail before
 and after (wheel lacks `get_non_default_device_layout`). tt_apis_test needs
 torch 2.14. device_module_no_tpu_test needs a non-TPU host.
+* PR branch: new tests + test_initialized pass on its overlay; lint passes.
