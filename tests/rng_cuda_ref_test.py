@@ -26,6 +26,7 @@ from absl.testing import absltest
 from absl.testing import parameterized
 import torch
 from torch_tpu._internal.utils import annotations
+from torch_tpu._internal.utils import test_utils
 from tests import accelerator_test_utils
 from tests import oss_utils
 from tests import seed_test_utils
@@ -621,7 +622,7 @@ class RngCudaRefTest(_BaseRngTest):
     fn(x).sum().backward()
     expected_grads = [x.grad, linear.weight.grad]
 
-    torch.testing.assert_close(checkpointed_grads, expected_grads)
+    test_utils.assert_close(checkpointed_grads, expected_grads)
 
 
 class CompiledRngTest(_BaseRngTest):
