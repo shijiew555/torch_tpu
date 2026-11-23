@@ -1,0 +1,7 @@
+matmul_precision=default  F.fold                   max abs err 0.0156
+matmul_precision=default  F.unfold backward        max abs err 0.0114
+matmul_precision=default  Tensor.unfold backward   max abs err 0.00717
+matmul_precision=highest  F.fold                   max abs err 0.0156
+matmul_precision=highest  F.unfold backward        max abs err 0.0114
+matmul_precision=highest  Tensor.unfold backward   max abs err 0.00717
+torch.compile(backend='tpu') F.fold max abs err 0.0156

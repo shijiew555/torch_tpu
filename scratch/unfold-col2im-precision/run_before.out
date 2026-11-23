@@ -1,0 +1,19 @@
+=== before repro
+matmul_precision=default  F.fold                   max abs err 0.0156
+matmul_precision=default  F.unfold backward        max abs err 0.0114
+matmul_precision=default  Tensor.unfold backward   max abs err 0.00717
+matmul_precision=highest  F.fold                   max abs err 0.0156
+matmul_precision=highest  F.unfold backward        max abs err 0.0114
+matmul_precision=highest  Tensor.unfold backward   max abs err 0.00717
+num_cache_hits=4 {50.0%}
+num_compilations=4
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+
+=== before ops_unit_test filter
+exit 1
+FAIL: test_col2im_fold_float32_precision (__main__.OpsUnitTest)
+FAIL: test_im2col_backward_float32_precision (__main__.OpsUnitTest)
+FAIL: test_unfold_backward_float32_precision (__main__.OpsUnitTest)
+Ran 15 tests in 4.362s
+FAILED (failures=3)

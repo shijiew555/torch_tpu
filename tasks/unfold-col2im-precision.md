@@ -1,5 +1,18 @@
 # unfold-col2im-precision (worker 2)
 
+## Session 3 refresh (in progress)
+
+* Test branch unfold-col2im-precision-s3 = backup commits on afd6943a.
+  Worktree .claude/worktrees/unfold-col2im-precision, venv with torch
+  2.16.0.dev20261112+cpu, libtpu 0.0.53.1, afd6943a wheel + Python overlay.
+* Before (afd6943a wheel), repro: F.fold 0.0156, F.unfold bwd 0.0114,
+  Tensor.unfold bwd 0.00717, same with matmul precision highest;
+  torch.compile F.fold 0.0156. ops_unit_test '*col2im* *im2col* *unfold*
+  *fold*': 15 run, 3 new tests FAIL (1.56e-2, 1.29e-2, 5.56e-3).
+* Wheel build of -s3 running.
+
+## Session 2
+
 State: done, validated. PR draft ready. Nothing posted.
 
 * Branches (pushed to origin): unfold-col2im-precision 0cf8dcc1,
