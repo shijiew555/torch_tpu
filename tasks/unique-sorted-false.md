@@ -1,20 +1,37 @@
 # unique-sorted-false
 
-## Session 3 refresh (in progress)
+## Session 3 refresh (done)
 
-* Test branch unique-sorted-false-s3 = backup commits cherry-picked on
-  afd6943a, plus one commit that removes the sorted=False skip of
-  ops_test test_unique (GPU goldens: CUDA _unique2 always sorts).
-  Worktree .claude/worktrees/unique-sorted-false, venv: torch
-  2.16.0.dev20261112+cpu, libtpu 0.0.53.1, afd6943a wheel + Python overlay.
-* Repro before (afd6943a wheel): CPU torch.unique(x, sorted=False) works;
-  TPU raises "unique2(): sorted=False is not yet supported".
-* PR #6879 (open upstream) conflicts textually with our -pr branch in
-  unique_aten_kernels.cc and ops_unit_test.py (git merge-tree). Trivial
-  resolution: #6879 keeps the same TT_CHECK_THROW.
-* Note: `flock /root/bazel.lock bazel` leaks the lock to the bazel server.
-  Use `flock -o`.
-* Wheel build of -s3 running.
+State: done, validated. PR draft updated. Nothing posted.
+
+* Branches (origin): unique-sorted-false-s3 78bc93f8 (test branch on
+  afd6943a), unique-sorted-false-pr2 947d7f21 (one commit on upstream/main
+  82d0a494). Old branches untouched.
+* New in s3: ops_test test_unique no longer skips sorted=False samples
+  (GPU goldens are sorted; CUDA _unique2 always sorts, Unique.cu L200-207
+  at pytorch e9565720). The max_samples_per_op_dtype=20 override (only for
+  that skip) is removed.
+* Merge onto 82d0a494: one conflict in the ops_test skip_if (upstream
+  191c30aff moved the compiled-mode skip to skipTest). Resolved, same
+  meaning.
+* PR #6879 (open) conflicts textually with -pr2 in unique_aten_kernels.cc
+  (it keeps the same TT_CHECK_THROW) and ops_unit_test.py (adjacent new
+  tests). Mentioned in the draft.
+* Build: wheel of s3, 1879 s, 13603 disk cache hits. Wheel copy:
+  tmp/unique-sorted-false-s3/. Error string gone from the binaries.
+* Results (TPU v5e, torch 2.16.0.dev20261112+cpu, libtpu 0.0.53.1):
+  * Repro: before RuntimeError, after tensor([1, 2, 3]).
+  * ops_unit_test '*unique*' (791): before 16 FAIL (test_unique_unsorted),
+    after OK (72 skipped).
+  * ops_test TestOps.test_unique* with goldens: before 30 subtest FAIL,
+    after OK (20 samples: 190 subtests; 5 samples: 50 subtests).
+  * Old test_unique2_unsupported_sorted: before OK, after FAIL (expected).
+  * Full tpu_errors_test after: 368 run, 1 FAIL
+    test_pallas_mesh_invariants_errors (jax not installed in venv).
+  * nox -s format: no change. BASE_SHA=upstream/main nox -s lint: pass.
+* Logs: scratch/unique-sorted-false/s3/.
+* Lock note: `flock /root/bazel.lock bazel` leaks the lock to the bazel
+  server. Use `flock -o`.
 
 ## Session 2
 

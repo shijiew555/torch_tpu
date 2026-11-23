@@ -1,0 +1,57 @@
+torch 2.16.0.dev20261112+cpu libtpu 0.0.53.1
+=== before repro
+cpu sorted=False: tensor([1, 2, 3])
+tpu sorted=False: RuntimeError: unique2(): sorted=False is not yet supported
+num_cache_hits=0 {NA}
+num_compilations=0
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+
+=== before ops_unit_test '*unique*'
+exit 1
+FAIL: test_unique_unsorted0 (return_inverse=True, return_counts=True, dtype=torch.float32) (__main__.OpsGradUnitTest)
+FAIL: test_unique_unsorted1 (return_inverse=True, return_counts=True, dtype=torch.bfloat16) (__main__.OpsGradUnitTest)
+FAIL: test_unique_unsorted10 (return_inverse=False, return_counts=True, dtype=torch.int64) (__main__.OpsGradUnitTest)
+FAIL: test_unique_unsorted11 (return_inverse=False, return_counts=True, dtype=torch.bool) (__main__.OpsGradUnitTest)
+FAIL: test_unique_unsorted12 (return_inverse=False, return_counts=False, dtype=torch.float32) (__main__.OpsGradUnitTest)
+FAIL: test_unique_unsorted13 (return_inverse=False, return_counts=False, dtype=torch.bfloat16) (__main__.OpsGradUnitTest)
+FAIL: test_unique_unsorted14 (return_inverse=False, return_counts=False, dtype=torch.int64) (__main__.OpsGradUnitTest)
+FAIL: test_unique_unsorted15 (return_inverse=False, return_counts=False, dtype=torch.bool) (__main__.OpsGradUnitTest)
+FAIL: test_unique_unsorted2 (return_inverse=True, return_counts=True, dtype=torch.int64) (__main__.OpsGradUnitTest)
+FAIL: test_unique_unsorted3 (return_inverse=True, return_counts=True, dtype=torch.bool) (__main__.OpsGradUnitTest)
+FAIL: test_unique_unsorted4 (return_inverse=True, return_counts=False, dtype=torch.float32) (__main__.OpsGradUnitTest)
+FAIL: test_unique_unsorted5 (return_inverse=True, return_counts=False, dtype=torch.bfloat16) (__main__.OpsGradUnitTest)
+FAIL: test_unique_unsorted6 (return_inverse=True, return_counts=False, dtype=torch.int64) (__main__.OpsGradUnitTest)
+FAIL: test_unique_unsorted7 (return_inverse=True, return_counts=False, dtype=torch.bool) (__main__.OpsGradUnitTest)
+FAIL: test_unique_unsorted8 (return_inverse=False, return_counts=True, dtype=torch.float32) (__main__.OpsGradUnitTest)
+FAIL: test_unique_unsorted9 (return_inverse=False, return_counts=True, dtype=torch.bfloat16) (__main__.OpsGradUnitTest)
+Ran 791 tests in 54.481s
+FAILED (failures=16, skipped=72)
+=== before tpu_errors_test '*unique*' from /root/torch_tpu/.claude/worktrees/build-base
+exit 1
+=== before ops_test test_unique (dir /root/torch_tpu/.claude/worktrees/unique-sorted-false, max_samples 20)
+exit 1
+unique2(): sorted=False is not yet supported
+unique2(): sorted=False is not yet supported
+unique2(): sorted=False is not yet supported
+unique2(): sorted=False is not yet supported
+unique2(): sorted=False is not yet supported
+unique2(): sorted=False is not yet supported
+unique2(): sorted=False is not yet supported
+unique2(): sorted=False is not yet supported
+unique2(): sorted=False is not yet supported
+unique2(): sorted=False is not yet supported
+unique2(): sorted=False is not yet supported
+unique2(): sorted=False is not yet supported
+unique2(): sorted=False is not yet supported
+unique2(): sorted=False is not yet supported
+unique2(): sorted=False is not yet supported
+unique2(): sorted=False is not yet supported
+unique2(): sorted=False is not yet supported
+unique2(): sorted=False is not yet supported
+unique2(): sorted=False is not yet supported
+unique2(): sorted=False is not yet supported
+=== before tpu_errors_test '*unique*' from /root/torch_tpu/.claude/worktrees/build-base
+exit 0
+Ran 1 test in 0.933s
+OK
