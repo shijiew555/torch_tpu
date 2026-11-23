@@ -1,7 +1,5 @@
 # PR draft
 
-Branch: `unique-sorted-false-pr2` (one commit on upstream/main 82d0a494).
-
 Title: Accept sorted=False in torch.unique
 
 ## Description

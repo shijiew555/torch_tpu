@@ -91,7 +91,3 @@ python -m tests.device.device_module_tpu_test
 TORCH_TPU_INTERNAL_TORCH_TEST_MODULE=test_autocast python -m tests.torch.torch_test_runner
 BASE_SHA=upstream/main nox -s lint
 ```
-
-🤖 Generated with [Claude Code](https://claude.com/claude-code)
-
-https://claude.ai/code/session_01PrgHFE4WieLXb9ZHJRG4nq
