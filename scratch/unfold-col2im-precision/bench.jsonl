@@ -1,0 +1,61 @@
+{"label": "before", "dtype": "float32", "case": "fold vit224 p16", "first_ms": 877.4553130024287, "median_us": 92065.88609995379, "round": 1}
+{"label": "before", "dtype": "float32", "case": "unfold fwd+bwd vit224 p16", "first_ms": 861.478024002281, "median_us": 96394.61379993008, "round": 1}
+{"label": "before", "dtype": "float32", "case": "fold 64ch 56x56 k3", "first_ms": 405.93598800114705, "median_us": 6110.785599958035, "round": 1}
+{"label": "before", "dtype": "float32", "case": "unfold fwd+bwd 64ch 56x56 k3", "first_ms": 170.853960000386, "median_us": 7121.292599913431, "round": 1}
+{"label": "before", "dtype": "float32", "case": "Tensor.unfold bwd 16x16000 w400 h160", "first_ms": 183.4669509989908, "median_us": 13813.835300243227, "round": 1}
+{"label": "before", "dtype": "bfloat16", "case": "fold vit224 p16", "first_ms": 694.9484620017756, "median_us": 92421.34099986288, "round": 1}
+{"label": "before", "dtype": "bfloat16", "case": "unfold fwd+bwd vit224 p16", "first_ms": 898.9171510002052, "median_us": 96010.53389997105, "round": 1}
+{"label": "before", "dtype": "bfloat16", "case": "fold 64ch 56x56 k3", "first_ms": 399.5843589982542, "median_us": 4718.153800058644, "round": 1}
+{"label": "before", "dtype": "bfloat16", "case": "unfold fwd+bwd 64ch 56x56 k3", "first_ms": 220.24779799903627, "median_us": 5238.095700042322, "round": 1}
+{"label": "before", "dtype": "bfloat16", "case": "Tensor.unfold bwd 16x16000 w400 h160", "first_ms": 186.5264500011108, "median_us": 13763.758299683104, "round": 1}
+{"label": "after", "dtype": "float32", "case": "fold vit224 p16", "first_ms": 1167.8508469994995, "median_us": 309686.26240028243, "round": 1}
+{"label": "after", "dtype": "float32", "case": "unfold fwd+bwd vit224 p16", "first_ms": 1090.1974809967214, "median_us": 314024.609199987, "round": 1}
+{"label": "after", "dtype": "float32", "case": "fold 64ch 56x56 k3", "first_ms": 610.4313779978838, "median_us": 11137.60039988847, "round": 1}
+{"label": "after", "dtype": "float32", "case": "unfold fwd+bwd 64ch 56x56 k3", "first_ms": 170.8742010014248, "median_us": 12137.923299815156, "round": 1}
+{"label": "after", "dtype": "float32", "case": "Tensor.unfold bwd 16x16000 w400 h160", "first_ms": 316.2838930002181, "median_us": 24783.389599906513, "round": 1}
+{"label": "after", "dtype": "bfloat16", "case": "fold vit224 p16", "first_ms": 688.9822030025243, "median_us": 92431.20899991482, "round": 1}
+{"label": "after", "dtype": "bfloat16", "case": "unfold fwd+bwd vit224 p16", "first_ms": 913.5159910001676, "median_us": 96022.86990011635, "round": 1}
+{"label": "after", "dtype": "bfloat16", "case": "fold 64ch 56x56 k3", "first_ms": 393.05403899925295, "median_us": 4718.272799800616, "round": 1}
+{"label": "after", "dtype": "bfloat16", "case": "unfold fwd+bwd 64ch 56x56 k3", "first_ms": 188.87539000206743, "median_us": 5235.496800014516, "round": 1}
+{"label": "after", "dtype": "bfloat16", "case": "Tensor.unfold bwd 16x16000 w400 h160", "first_ms": 179.8354409984313, "median_us": 13747.73230018036, "round": 1}
+{"label": "before", "dtype": "float32", "case": "fold vit224 p16", "first_ms": 866.6740340013348, "median_us": 92067.28600001952, "round": 2}
+{"label": "before", "dtype": "float32", "case": "unfold fwd+bwd vit224 p16", "first_ms": 858.259853997879, "median_us": 96400.99690004718, "round": 2}
+{"label": "before", "dtype": "float32", "case": "fold 64ch 56x56 k3", "first_ms": 404.6843780015479, "median_us": 6111.178699939046, "round": 2}
+{"label": "before", "dtype": "float32", "case": "unfold fwd+bwd 64ch 56x56 k3", "first_ms": 144.14060200215317, "median_us": 7114.405699758208, "round": 2}
+{"label": "before", "dtype": "float32", "case": "Tensor.unfold bwd 16x16000 w400 h160", "first_ms": 187.94409000111045, "median_us": 13799.111199841718, "round": 2}
+{"label": "before", "dtype": "bfloat16", "case": "fold vit224 p16", "first_ms": 683.6738839992904, "median_us": 92422.98309982289, "round": 2}
+{"label": "before", "dtype": "bfloat16", "case": "unfold fwd+bwd vit224 p16", "first_ms": 892.6856119978765, "median_us": 96017.6329001115, "round": 2}
+{"label": "before", "dtype": "bfloat16", "case": "fold 64ch 56x56 k3", "first_ms": 401.27405900057056, "median_us": 4709.349699987797, "round": 2}
+{"label": "before", "dtype": "bfloat16", "case": "unfold fwd+bwd 64ch 56x56 k3", "first_ms": 225.64045800027088, "median_us": 5243.111699746805, "round": 2}
+{"label": "before", "dtype": "bfloat16", "case": "Tensor.unfold bwd 16x16000 w400 h160", "first_ms": 191.1116299997957, "median_us": 13739.972300027148, "round": 2}
+{"label": "after", "dtype": "float32", "case": "fold vit224 p16", "first_ms": 1204.3736560008256, "median_us": 309691.5273999912, "round": 2}
+{"label": "after", "dtype": "float32", "case": "unfold fwd+bwd vit224 p16", "first_ms": 1051.717833001021, "median_us": 314018.2171999186, "round": 2}
+{"label": "after", "dtype": "float32", "case": "fold 64ch 56x56 k3", "first_ms": 653.387335001753, "median_us": 11151.556400000118, "round": 2}
+{"label": "after", "dtype": "float32", "case": "unfold fwd+bwd 64ch 56x56 k3", "first_ms": 164.96786000061547, "median_us": 12138.518299980205, "round": 2}
+{"label": "after", "dtype": "float32", "case": "Tensor.unfold bwd 16x16000 w400 h160", "first_ms": 321.86162200014223, "median_us": 24782.724699980463, "round": 2}
+{"label": "after", "dtype": "bfloat16", "case": "fold vit224 p16", "first_ms": 711.8956209997123, "median_us": 92427.15010004758, "round": 2}
+{"label": "after", "dtype": "bfloat16", "case": "unfold fwd+bwd vit224 p16", "first_ms": 870.4319539974676, "median_us": 96018.59190006508, "round": 2}
+{"label": "after", "dtype": "bfloat16", "case": "fold 64ch 56x56 k3", "first_ms": 393.6225689976709, "median_us": 4721.7456998623675, "round": 2}
+{"label": "after", "dtype": "bfloat16", "case": "unfold fwd+bwd 64ch 56x56 k3", "first_ms": 192.84680999771808, "median_us": 5247.259699899587, "round": 2}
+{"label": "after", "dtype": "bfloat16", "case": "Tensor.unfold bwd 16x16000 w400 h160", "first_ms": 182.51768099798937, "median_us": 13766.409299933002, "round": 2}
+{"label": "before", "dtype": "float32", "case": "fold vit224 p16", "first_ms": 863.6460829984571, "median_us": 92067.56509993284, "round": 3}
+{"label": "before", "dtype": "float32", "case": "unfold fwd+bwd vit224 p16", "first_ms": 860.8394440016127, "median_us": 96394.44780004851, "round": 3}
+{"label": "before", "dtype": "float32", "case": "fold 64ch 56x56 k3", "first_ms": 403.546149002068, "median_us": 6121.059699944453, "round": 3}
+{"label": "before", "dtype": "float32", "case": "unfold fwd+bwd 64ch 56x56 k3", "first_ms": 173.17252100110636, "median_us": 7117.923599798814, "round": 3}
+{"label": "before", "dtype": "float32", "case": "Tensor.unfold bwd 16x16000 w400 h160", "first_ms": 178.3390499986126, "median_us": 13805.996299925027, "round": 3}
+{"label": "before", "dtype": "bfloat16", "case": "fold vit224 p16", "first_ms": 684.0195229997335, "median_us": 92420.83600001934, "round": 3}
+{"label": "before", "dtype": "bfloat16", "case": "unfold fwd+bwd vit224 p16", "first_ms": 888.7683419998211, "median_us": 96015.69689984899, "round": 3}
+{"label": "before", "dtype": "bfloat16", "case": "fold 64ch 56x56 k3", "first_ms": 393.9574789983453, "median_us": 4711.866800062126, "round": 3}
+{"label": "before", "dtype": "bfloat16", "case": "unfold fwd+bwd 64ch 56x56 k3", "first_ms": 181.84593999831122, "median_us": 5239.832699953695, "round": 3}
+{"label": "before", "dtype": "bfloat16", "case": "Tensor.unfold bwd 16x16000 w400 h160", "first_ms": 177.54118100128835, "median_us": 13745.111300158896, "round": 3}
+{"label": "after", "dtype": "float32", "case": "fold vit224 p16", "first_ms": 1164.73854799915, "median_us": 309684.362400003, "round": 3}
+{"label": "after", "dtype": "float32", "case": "unfold fwd+bwd vit224 p16", "first_ms": 1093.5861519974424, "median_us": 314013.6442001676, "round": 3}
+{"label": "after", "dtype": "float32", "case": "fold 64ch 56x56 k3", "first_ms": 616.1788170029467, "median_us": 11153.393400309142, "round": 3}
+{"label": "after", "dtype": "float32", "case": "unfold fwd+bwd 64ch 56x56 k3", "first_ms": 163.85472099864273, "median_us": 12144.578299921704, "round": 3}
+{"label": "after", "dtype": "float32", "case": "Tensor.unfold bwd 16x16000 w400 h160", "first_ms": 318.30811200052267, "median_us": 24782.98870009894, "round": 3}
+{"label": "after", "dtype": "bfloat16", "case": "fold vit224 p16", "first_ms": 690.7248030001938, "median_us": 92426.79710005177, "round": 3}
+{"label": "after", "dtype": "bfloat16", "case": "unfold fwd+bwd vit224 p16", "first_ms": 893.8982330000727, "median_us": 96022.13489997666, "round": 3}
+{"label": "after", "dtype": "bfloat16", "case": "fold 64ch 56x56 k3", "first_ms": 421.9188970018877, "median_us": 4715.693699836265, "round": 3}
+{"label": "after", "dtype": "bfloat16", "case": "unfold fwd+bwd 64ch 56x56 k3", "first_ms": 221.55041899895878, "median_us": 5246.927699772641, "round": 3}
+{"label": "after", "dtype": "bfloat16", "case": "Tensor.unfold bwd 16x16000 w400 h160", "first_ms": 184.99960999906762, "median_us": 13749.595300032524, "round": 3}
+exit 0

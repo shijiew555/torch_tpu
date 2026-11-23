@@ -74,6 +74,19 @@ The `ops_unit_test.py` run:
 TESTBRIDGE_TEST_ONLY='*col2im* *im2col* *unfold* *fold*' python -m tests.ops_unit_test
 ```
 
+HIGHEST precision makes float32 calls slower.
+Median steady-state time per call on TPU v5e, batch 8 (Tensor.unfold: 16 x 16000), 3 alternating rounds of before and after:
+
+| Case (float32) | Before | After | Ratio |
+| --- | --- | --- | --- |
+| `F.fold`, 224x224 image, kernel and stride 16 | 92.1 ms | 309.7 ms | 3.36x |
+| `F.unfold` forward and backward, 224x224 image, kernel and stride 16 | 96.4 ms | 314.0 ms | 3.26x |
+| `F.fold`, 64 channels, 56x56, kernel 3, padding 1 | 6.1 ms | 11.2 ms | 1.82x |
+| `F.unfold` forward and backward, 64 channels, 56x56, kernel 3, padding 1 | 7.1 ms | 12.1 ms | 1.71x |
+| `Tensor.unfold` backward, window 400, step 160 | 13.8 ms | 24.8 ms | 1.80x |
+
+The same cases in bfloat16 show no change (ratio 1.00x).
+
 `nox -s lint` and `nox -s format` pass on this branch, which is based on 82d0a494.
 
 Environment: TPU v5e, libtpu 0.0.53.1, torch 2.16.0.dev20261112+cpu, Python 3.14.

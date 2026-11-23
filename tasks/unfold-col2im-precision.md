@@ -28,7 +28,19 @@ State: done. Ready for user approval. Nothing posted.
 * pr2: BASE_SHA=upstream/main nox -s lint pass; nox -s format no change.
 * Review: precedent now also in scatter.cc (same pattern); commit message
   says so. Test docstrings reworded. No other findings.
-* Not done: performance/compile-time measurement of HIGHEST.
+* Benchmark (coordinator follow-up): paired ABAB x3 under one TPU lock,
+  extracted before/after wheels via PYTHONPATH, same venv, median per
+  call with torch.accelerator.synchronize. LARGE COST for f32:
+  fold/unfold ViT 224 p16 (batch 8) 92 -> 310 ms (3.4x), 96 -> 314 ms
+  (3.3x); 64ch 56x56 k3: fold 6.1 -> 11.2 ms (1.8x), unfold fwd+bwd
+  7.1 -> 12.1 ms (1.7x); Tensor.unfold bwd 16x16000 w400 h160 13.8 ->
+  24.8 ms (1.8x). First call also slower (867 -> 1168 ms ViT fold).
+  bf16 control: 1.00x everywhere. Rounds agree within 0.01x.
+  Note: even "before" is slow (92 ms for a 1.2M-element fold), so the
+  convolution lowering itself is costly. An exact gather/pad-and-add
+  lowering might be both exact and faster (untested idea).
+  Script/log: scratch/unfold-col2im-precision/bench.{py,sh,jsonl}.
+  Fix not changed; waiting for coordinator decision.
 
 ## Session 2
 
