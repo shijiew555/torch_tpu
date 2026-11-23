@@ -1,0 +1,22 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+/root/torch_tpu/.claude/tmp/ckpt-tpu-rng-state/fix/ov/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+Running tests under Python 3.14.9: /root/torch_tpu/.claude/worktrees/ckpt-tpu-rng-state/.venv/bin/python
+Repro with --test_random_seed=1234
+[ RUN      ] RngCudaRefTest.test_eager_activation_checkpointing_dropout_reentrant
+[       OK ] RngCudaRefTest.test_eager_activation_checkpointing_dropout_reentrant
+[ RUN      ] RngCudaRefTest.test_eager_activation_checkpointing_dropout_non_reentrant
+[       OK ] RngCudaRefTest.test_eager_activation_checkpointing_dropout_non_reentrant
+----------------------------------------------------------------------
+Ran 2 tests in 1.248s
+
+OK
+num_cache_hits=76 {69.0%}
+num_compilations=34
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

@@ -1,0 +1,190 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+/root/torch_tpu/.claude/tmp/ckpt-tpu-rng-state/base/ov/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+Running tests under Python 3.14.9: /root/torch_tpu/.claude/worktrees/ckpt-tpu-rng-state/.venv/bin/python
+Repro with --test_random_seed=1234
+[ RUN      ] RngCudaRefTest.test_eager_activation_checkpointing_dropout_reentrant
+[  FAILED  ] RngCudaRefTest.test_eager_activation_checkpointing_dropout_reentrant
+[ RUN      ] RngCudaRefTest.test_eager_activation_checkpointing_dropout_non_reentrant
+[  FAILED  ] RngCudaRefTest.test_eager_activation_checkpointing_dropout_non_reentrant
+======================================================================
+FAIL: test_eager_activation_checkpointing_dropout_reentrant (__main__.RngCudaRefTest)
+RngCudaRefTest.test_eager_activation_checkpointing_dropout_reentrant
+test_eager_activation_checkpointing_dropout_reentrant(True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/worktrees/ckpt-tpu-rng-state/.venv/lib/python3.14/site-packages/absl/testing/parameterized.py", line 329, in bound_param_test
+    return test_method(self, *testcase_params)
+  File "/root/torch_tpu/.claude/tmp/ckpt-tpu-rng-state/base/repo/tests/rng_cuda_ref_test.py", line 625, in test_eager_activation_checkpointing_dropout
+    test_utils.assert_close(checkpointed_grads, expected_grads)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/torch_tpu/.claude/tmp/ckpt-tpu-rng-state/base/ov/torch_tpu/_internal/utils/test_utils.py", line 155, in assert_close
+    assert_close(
+    ~~~~~~~~~~~~^
+        actual=actual_item,
+        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+        check_dtype=check_dtype,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/root/torch_tpu/.claude/tmp/ckpt-tpu-rng-state/base/ov/torch_tpu/_internal/utils/test_utils.py", line 172, in assert_close
+    _assert_tensor_close(
+    ~~~~~~~~~~~~~~~~~~~~^
+        actual=actual,
+        ^^^^^^^^^^^^^^
+    ...<4 lines>...
+        check_value=check_value,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/root/torch_tpu/.claude/tmp/ckpt-tpu-rng-state/base/ov/torch_tpu/_internal/utils/test_utils.py", line 740, in _assert_tensor_close
+    _raw_assert_tensor_close(
+    ~~~~~~~~~~~~~~~~~~~~~~~~^
+        actual=actual,
+        ^^^^^^^^^^^^^^
+    ...<3 lines>...
+        msg=msg_handler,
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/root/torch_tpu/.claude/tmp/ckpt-tpu-rng-state/base/ov/torch_tpu/_internal/utils/test_utils.py", line 265, in _raw_assert_tensor_close
+    torch.testing.assert_close(  # TORCH_ASSERT_CLOSE_OK=root usage
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        actual=actual,
+        ^^^^^^^^^^^^^^
+    ...<5 lines>...
+        msg=msg,
+        ^^^^^^^^
+    )
+    ^
+  File "/root/torch_tpu/.claude/worktrees/ckpt-tpu-rng-state/.venv/lib/python3.14/site-packages/torch/testing/_comparison.py", line 1689, in assert_close
+    raise error_metas[0].to_error(msg)
+AssertionError: Tensor-likes are not close!
+
+Mismatched elements: 32 / 32 (100.0%)
+Greatest absolute difference: 2.125 at index (0, 6) (up to 1e-05 allowed)
+Greatest relative difference: 45.41935348510742 at index (2, 0) (up to 1.3e-06 allowed)
+    at index (0, 6), expected=1.26513671875, actual=-0.85986328125, relative diff=1.6796603202819824, diff=2.125
+    at index (2, 0), expected=-0.0302734375, actual=-1.4052734375, relative diff=45.41935348510742, diff=1.375
+
+Expected tensor:
+tensor([[ 1.1807, -0.7695,  0.6887,  0.9792,  1.2452,  0.9292,  1.2651, -1.8535],
+        [-0.0605, -0.0166,  0.0312,  0.4155,  0.5322,  0.1758, -0.6602,  0.4404],
+        [-0.0303, -1.3438, -0.0085,  0.2283,  0.3604,  0.8374,  0.0464, -1.7561],
+        [ 1.0000,  0.1592,  0.2610,  1.1052,  1.6759,  0.3589,  1.0322, -1.0576]],
+       device='tpu:0')
+
+Actual tensor:
+tensor([[-4.4043e-01, -2.8418e-01, -7.1875e-01,  3.0347e-01, -3.6621e-01,
+         -1.9336e-01, -8.5986e-01, -7.1021e-01],
+        [-1.2598e-01, -7.0703e-01,  5.8594e-02,  2.0020e-01, -2.8711e-01,
+          2.9297e-01, -1.1475e-01, -6.1328e-01],
+        [-1.4053e+00, -1.2100e+00, -3.4424e-01,  3.4961e-01, -3.8467e-01,
+          1.1562e+00, -1.1812e+00, -7.4146e-01],
+        [-3.2324e-01, -4.9316e-01, -4.7314e-01,  4.1431e-01,  2.5400e-01,
+         -7.2266e-02, -4.8828e-04, -1.1885e+00]], device='tpu:0')
+
+Tolerance Suggestions:
+  Loose check failed.
+  Optimal tight tolerances (with 1.2x safety margin):
+    - rtol >= 2.0155924353531463 (2.1e+00)
+    - atol >= 1.6889648437500004 (1.7e+00)
+
+======================================================================
+FAIL: test_eager_activation_checkpointing_dropout_non_reentrant (__main__.RngCudaRefTest)
+RngCudaRefTest.test_eager_activation_checkpointing_dropout_non_reentrant
+test_eager_activation_checkpointing_dropout_non_reentrant(False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/torch_tpu/.claude/worktrees/ckpt-tpu-rng-state/.venv/lib/python3.14/site-packages/absl/testing/parameterized.py", line 329, in bound_param_test
+    return test_method(self, *testcase_params)
+  File "/root/torch_tpu/.claude/tmp/ckpt-tpu-rng-state/base/repo/tests/rng_cuda_ref_test.py", line 625, in test_eager_activation_checkpointing_dropout
+    test_utils.assert_close(checkpointed_grads, expected_grads)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/torch_tpu/.claude/tmp/ckpt-tpu-rng-state/base/ov/torch_tpu/_internal/utils/test_utils.py", line 155, in assert_close
+    assert_close(
+    ~~~~~~~~~~~~^
+        actual=actual_item,
+        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+        check_dtype=check_dtype,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/root/torch_tpu/.claude/tmp/ckpt-tpu-rng-state/base/ov/torch_tpu/_internal/utils/test_utils.py", line 172, in assert_close
+    _assert_tensor_close(
+    ~~~~~~~~~~~~~~~~~~~~^
+        actual=actual,
+        ^^^^^^^^^^^^^^
+    ...<4 lines>...
+        check_value=check_value,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/root/torch_tpu/.claude/tmp/ckpt-tpu-rng-state/base/ov/torch_tpu/_internal/utils/test_utils.py", line 740, in _assert_tensor_close
+    _raw_assert_tensor_close(
+    ~~~~~~~~~~~~~~~~~~~~~~~~^
+        actual=actual,
+        ^^^^^^^^^^^^^^
+    ...<3 lines>...
+        msg=msg_handler,
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/root/torch_tpu/.claude/tmp/ckpt-tpu-rng-state/base/ov/torch_tpu/_internal/utils/test_utils.py", line 265, in _raw_assert_tensor_close
+    torch.testing.assert_close(  # TORCH_ASSERT_CLOSE_OK=root usage
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        actual=actual,
+        ^^^^^^^^^^^^^^
+    ...<5 lines>...
+        msg=msg,
+        ^^^^^^^^
+    )
+    ^
+  File "/root/torch_tpu/.claude/worktrees/ckpt-tpu-rng-state/.venv/lib/python3.14/site-packages/torch/testing/_comparison.py", line 1689, in assert_close
+    raise error_metas[0].to_error(msg)
+AssertionError: Tensor-likes are not close!
+
+Mismatched elements: 32 / 32 (100.0%)
+Greatest absolute difference: 2.125 at index (0, 6) (up to 1e-05 allowed)
+Greatest relative difference: 45.41935348510742 at index (2, 0) (up to 1.3e-06 allowed)
+    at index (0, 6), expected=1.26513671875, actual=-0.85986328125, relative diff=1.6796603202819824, diff=2.125
+    at index (2, 0), expected=-0.0302734375, actual=-1.4052734375, relative diff=45.41935348510742, diff=1.375
+
+Expected tensor:
+tensor([[ 1.1807, -0.7695,  0.6887,  0.9792,  1.2452,  0.9292,  1.2651, -1.8535],
+        [-0.0605, -0.0166,  0.0312,  0.4155,  0.5322,  0.1758, -0.6602,  0.4404],
+        [-0.0303, -1.3438, -0.0085,  0.2283,  0.3604,  0.8374,  0.0464, -1.7561],
+        [ 1.0000,  0.1592,  0.2610,  1.1052,  1.6759,  0.3589,  1.0322, -1.0576]],
+       device='tpu:0')
+
+Actual tensor:
+tensor([[-4.4043e-01, -2.8418e-01, -7.1875e-01,  3.0347e-01, -3.6621e-01,
+         -1.9336e-01, -8.5986e-01, -7.1021e-01],
+        [-1.2598e-01, -7.0703e-01,  5.8594e-02,  2.0020e-01, -2.8711e-01,
+          2.9297e-01, -1.1475e-01, -6.1328e-01],
+        [-1.4053e+00, -1.2100e+00, -3.4424e-01,  3.4961e-01, -3.8467e-01,
+          1.1562e+00, -1.1812e+00, -7.4146e-01],
+        [-3.2324e-01, -4.9316e-01, -4.7314e-01,  4.1431e-01,  2.5400e-01,
+         -7.2266e-02, -4.8828e-04, -1.1885e+00]], device='tpu:0')
+
+Tolerance Suggestions:
+  Loose check failed.
+  Optimal tight tolerances (with 1.2x safety margin):
+    - rtol >= 2.0155924353531463 (2.1e+00)
+    - atol >= 1.6889648437500004 (1.7e+00)
+
+----------------------------------------------------------------------
+Ran 2 tests in 3.931s
+
+FAILED (failures=2)
+num_cache_hits=246 {73.2%}
+num_compilations=90
+num_unbounded_dynamic_hits=0
+peak_compilation_memory_bytes=unknown
+

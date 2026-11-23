@@ -1,0 +1,15 @@
+Successfully renamed PrivateUse1 backend to 'tpu'. Device: device(type='tpu')
+Registered Python module for 'tpu'.
+Device type: tpu, Device index: default
+Initializing TPU distributed runtime
+/root/torch_tpu/.claude/tmp/ckpt-tpu-rng-state/fix/ov/torch_tpu/__init__.py:40: UserWarning: //TorchTpu/Performance/TcMalloc// tcmalloc is not loaded; TorchTPU host performance may be degraded due to glibc ptmalloc contention. Preload libtcmalloc before starting Python (e.g. LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4), or set PYTHONWARNINGS="ignore://TorchTpu/Performance/TcMalloc/" to suppress this warning.
+  _tcmalloc_check.check_tcmalloc()
+<string>:1: ResourceWarning: unclosed file <_io.TextIOWrapper name='ckpt_dropout.py' mode='r' encoding='utf-8'>
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+
+/root/torch_tpu/.claude/tmp/ckpt-tpu-rng-state/fix/ov/torch_tpu/__init__.py
+hasattr(torch.tpu, '_initialized'): True
+cpu use_reentrant=True: grad diff vs no checkpoint = 0.0
+cpu use_reentrant=False: grad diff vs no checkpoint = 0.0
+tpu use_reentrant=True: grad diff vs no checkpoint = 0.0
+tpu use_reentrant=False: grad diff vs no checkpoint = 0.0
