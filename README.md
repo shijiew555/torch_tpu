@@ -24,3 +24,5 @@ Queue: ckpt-tpu-rng-state, then unfold-col2im-precision, unique-sorted-false.
 
 User decision (01:40Z): submit PR 4 as v1 (always HIGHEST for f32). If review objects, do v2 (follow torch.set_float32_matmul_precision).
 User opens issues and PRs manually. Deliverables: torch_tpu_pr_deliverables.md (also in /content/drive/MyDrive/).
+
+Cache saved to Drive 2026-11-23T02:13Z (908 s, 10.4 GB, source afd6943a). pigz -t and wheel zip test passed. Disk cache now also holds the unfold and unique fix builds.
