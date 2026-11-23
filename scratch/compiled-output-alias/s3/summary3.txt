@@ -1,0 +1,17 @@
+mainc output_alias_test exit=1 Ran 15 tests in 2.789s FAILED (failures=6, errors=1) 
+pr2c output_alias_test exit=0 Ran 15 tests in 2.704s OK 
+pr2c fx_output_reconstructor_test exit=0 Ran 19 tests in 1.273s OK 
+pr2c small_graph_test exit=0 Ran 75 tests in 11.960s OK (skipped=3) 
+pr2c output_modify_test exit=0 Ran 2 tests in 1.292s OK 
+pr2c clone_mutated_returned_placeholders_test exit=0 Ran 42 tests in 0.988s OK 
+pr2c backend_serialization_test exit=1 Ran 12 tests in 5.850s FAILED (failures=1) 
+pr2c aot_autograd_cache_test exit=0 Ran 1 test in 1.441s OK Ran 1 test in 1.595s OK Ran 1 test in 1.464s OK Ran 1 test in 1.563s OK Ran 1 test in 1.400s OK Ran 1 test in 1.367s OK Ran 1 test in 1.047s OK Ran 8 tests in 47.211s OK (skipped=5) 
+pr2c cache_test exit=0 Ran 1 test in 3.300s OK Ran 1 test in 3.283s OK Ran 4 tests in 17.199s OK (skipped=2) 
+pr2c split_compile_test exit=0 Ran 18 tests in 10.969s OK 
+pr2c random_ops_test exit=0 Ran 13 tests in 3.647s OK 
+pr2c trace_autograd_ops_test exit=0 Ran 4 tests in 2.728s OK 
+pr2c activation_checkpointing_test exit=0 Ran 14 tests in 11.336s OK 
+pr2c dtensor_test exit=0 Ran 1 test in 1.724s OK 
+mainc compile_api_test exit=134 
+pr2c compile_api_test exit=134 
+ALLDONE

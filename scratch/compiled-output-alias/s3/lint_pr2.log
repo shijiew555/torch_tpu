@@ -1,0 +1,21 @@
+nox > Running session lint
+nox > Creating virtual environment (uv) using python3 in .nox/lint
+nox > uv pip install clang-format google-re2 ruff
+nox > ci/tools/clang_format.sh lint
+INFO: Running clang-format check...
+INFO: clang-format check passed successfully.
+nox > ci/tools/ruff_lint.sh lint
+INFO: Running ruff check on modified Python files...
+All checks passed!
+INFO: ruff check passed successfully.
+nox > ci/tools/buildifier_lint.sh lint
+INFO: Running buildifier check on modified Bazel files against upstream/main...
+INFO: buildifier check passed successfully.
+nox > python3 ci/tools/check_directory_layout.py
+Directory layout validated successfully.
+nox > python3 -m ci.tools.check_agent_skills
+Agent skill names validated successfully.
+nox > python -m ci.tools.custom_linter --root .
+INFO: Checked 3 files across 72 rules using 1/24 CPU worker(s) in 0.008s (walk=0.001s, eval=0.007s)
+INFO: Custom convention checks passed successfully.
+nox > Session lint was successful.

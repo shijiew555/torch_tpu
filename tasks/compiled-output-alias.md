@@ -17,3 +17,8 @@
 * E2E repro (overlay of 3c6acc43 vs fix): base `b[0,:3]=[0,2,4]`, shared=False; fix `[100,102,104]`, shared=True.
 * PR #6203 touches export.py in another region. `git merge-tree` of pr2 with #6203: export.py merges cleanly. Its 2 conflicts (clone_mutated_returned_placeholders.py, compile_api_test.py) also occur between #6203 and upstream/main itself. It does not fix this bug. No upstream commit since 3c6acc43 changes export.py.
 * New PR branch compiled-output-alias-pr2 4b53310f (1 commit on upstream/main 82d0a494), pushed. Lint and format pass on it.
+* 23:50Z Review pass found a bug: groups keyed by `data_ptr()`, which is 0 for tensors with no elements, so `y[:0]` grouped with an unrelated `new_zeros(0)`. Fix: key by `untyped_storage().data_ptr()`, skip 0-byte storages. New test case `_empty_slice` failed before, passes after. Commit f7ee0c2f on backup and pr2 (pr2 = 4b53310f + f7ee0c2f, normal push). Lint and format pass.
+* Overlay caveat: upstream 1694da75 makes compiler.py call C++ `tpu_torch_compile.get_non_default_device_layout`, missing in the afd6943a wheel. Plain main/pr2 overlays fail with AttributeError. Test overlays `ov_mainc`/`ov_pr2c` revert 1694da75 in compiler.py only.
+* 00:05Z Results on main 82d0a494 vs pr2 f7ee0c2f (summary3.txt, summary4.txt): output_alias_test 6 failed + 1 error of 15 -> 15 OK. 12 other compile modules identical on both. backend_serialization_test float4 cache test fails on both; compile_api_test aborts on both at test_force_strides_strided_middle_dimension (61 OK before it). Environment, not this change.
+* Default /tmp inductor/AOTAutograd cache ignores overlay Python changes; always use a fresh TORCHINDUCTOR_CACHE_DIR.
+* State: done. PR draft updated: pr_desc/compiled-output-alias.md.

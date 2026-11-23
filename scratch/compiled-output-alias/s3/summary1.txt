@@ -1,0 +1,18 @@
+base output_alias_test exit=1 Ran 13 tests in 2.685s FAILED (failures=5, errors=1) 
+fix output_alias_test exit=0 Ran 13 tests in 2.646s OK 
+base fx_output_reconstructor_test exit=0 Ran 19 tests in 1.323s OK 
+fix fx_output_reconstructor_test exit=0 Ran 19 tests in 1.286s OK 
+base small_graph_test exit=0 Ran 75 tests in 12.535s OK (skipped=3) 
+fix small_graph_test exit=0 Ran 75 tests in 12.009s OK (skipped=3) 
+base output_modify_test exit=0 Ran 2 tests in 1.273s OK 
+fix output_modify_test exit=0 Ran 2 tests in 1.291s OK 
+base clone_mutated_returned_placeholders_test exit=0 Ran 42 tests in 1.046s OK 
+fix clone_mutated_returned_placeholders_test exit=0 Ran 42 tests in 1.045s OK 
+base backend_serialization_test exit=0 Ran 11 tests in 5.396s OK 
+fix backend_serialization_test exit=0 Ran 11 tests in 5.487s OK 
+base aot_autograd_cache_test exit=0 Ran 1 test in 1.349s OK Ran 1 test in 1.114s OK Ran 2 tests in 12.926s OK (skipped=1) 
+fix aot_autograd_cache_test exit=0 Ran 1 test in 1.394s OK Ran 1 test in 1.072s OK Ran 2 tests in 13.104s OK (skipped=1) 
+base cache_test exit=0 Ran 1 test in 3.327s OK Ran 1 test in 3.304s OK Ran 4 tests in 17.153s OK (skipped=2) 
+fix cache_test exit=0 Ran 1 test in 3.242s OK Ran 1 test in 3.323s OK Ran 4 tests in 17.044s OK (skipped=2) 
+base split_compile_test exit=0 Ran 17 tests in 11.113s OK 
+fix split_compile_test exit=0 Ran 17 tests in 10.446s OK 
