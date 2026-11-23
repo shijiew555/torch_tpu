@@ -4377,7 +4377,7 @@ class OpsUnitTest(TorchTpuVsCpuTestBase):
     self.assert_close_tpu_vs_cpu(test_fn)
 
   def test_im2col_backward_float32_precision(self):
-    """Tests that the float32 gradient of F.unfold is not bfloat16-accurate.
+    """Tests that float32 F.unfold backward does not round to bfloat16.
 
     The gradient of im2col is computed by col2im.
     """
@@ -4395,7 +4395,7 @@ class OpsUnitTest(TorchTpuVsCpuTestBase):
     self.assert_close_tpu_vs_cpu(test_fn)
 
   def test_unfold_backward_float32_precision(self):
-    """Tests that the float32 gradient of Tensor.unfold is not bf16-accurate."""
+    """Tests that float32 Tensor.unfold backward does not round to bfloat16."""
     torch.manual_seed(0)
     x = torch.randn(5, 4, 3)
     grad_out = torch.randn(4, 4, 3, 2)
