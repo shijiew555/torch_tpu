@@ -165,7 +165,10 @@ Venv per worktree:
   first analysis. If the first try fails with `Timed out` on the torch
   download, run it again.
 * Bazel runs: run only one bazel build or test at a time on the whole
-  machine (memory limit). Take the lock: `flock /root/bazel.lock bazel ...`.
+  machine (memory limit). Take the lock with `-o`:
+  `flock -o /root/bazel.lock bazel ...`. Without `-o`, the Bazel server
+  inherits the lock and holds it while idle. Run `bazel shutdown` in your
+  own worktree when you finish your bazel work.
   For TPU tests run with bazel, build first under the bazel lock only, then
   run the test under both locks.
 
