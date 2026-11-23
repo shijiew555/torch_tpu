@@ -21,3 +21,6 @@ pin-memory-deprecation (unfinished) does not count.
 PR 5 approved by user (23:33Z): ckpt-tpu-rng-state (restore TPU RNG
 state in eager activation checkpointing). See discovery/candidates-s3.md.
 Queue: ckpt-tpu-rng-state, then unfold-col2im-precision, unique-sorted-false.
+
+User decision (01:40Z): submit PR 4 as v1 (always HIGHEST for f32). If review objects, do v2 (follow torch.set_float32_matmul_precision).
+User opens issues and PRs manually. Deliverables: torch_tpu_pr_deliverables.md (also in /content/drive/MyDrive/).
